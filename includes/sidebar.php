@@ -18,6 +18,7 @@
                             <li><a href="createticket.php"><span class="label label-primary pull-right">New</span>Add Ticket</a></li>
                         </ul>
                     </li>
+                    <li><a href="users.php"><i class="fa fa-user"></i><span>Users</span></a>
                     </li>
                     <li><a href="view_tickets.php"><i class="fa fa-list-alt"></i><span>View ticket</span></a></li>
 
