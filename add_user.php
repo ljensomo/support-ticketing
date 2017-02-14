@@ -56,7 +56,8 @@
                     <h2>Users</h2>
                     <ol class="breadcrumb">
                         <li><a href="#">Home</a></li>
-                        <li><a href="users.php" class="active">Users</a></li>
+                        <li><a href="users.php">Users</a></li>
+                        <li><a href="add_user.php" class="active">Add Users</a></li>
                     </ol>
                 </div>	
                 <div class="cl-mcont">
