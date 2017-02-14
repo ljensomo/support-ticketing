@@ -46,99 +46,10 @@
     <body>
 
         <!-- Fixed navbar -->
-        <div id="head-nav" class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="fa fa-gear"></span>
-                    </button>
-                    <a class="navbar-brand" href="#"><span>FORTIS</span></a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="dropdown-submenu"><a href="#">Sub menu</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                    </ul>
-                                </li>              
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right user-nav">
-                        <li class="dropdown profile_menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="images/avatar2.jpg" /><span>Jason Gicha</span> <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Messages</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Sign Out</a></li>
-                            </ul>
-                        </li>
-                    </ul>           
-
-
-                </div><!--/.nav-collapse animate-collapse -->
-            </div>
-        </div>
+        <?php include 'includes/topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
-            <div class="cl-sidebar" data-position="right" data-step="1" data-intro="<strong>Fixed Sidebar</strong> <br/> It adjust to your needs." >
-                <div class="cl-toggle"><i class="fa fa-bars"></i></div>
-                <div class="cl-navblock">
-                    <div class="menu-space">
-                        <div class="content">
-                            <div class="side-user">
-                                <div class="avatar"><img src="images/avatar1_50.jpg" alt="Avatar" /></div>
-                                <div class="info">
-                                    <a href="#">Jason Gicha</a>
-                                    <img src="images/state_online.png" alt="Status" /> <span>Online</span>
-                                </div>
-                            </div>
-                            <ul class="cl-vnavigation">
-                                <li><a href="index.php"><i class="fa fa-home"></i><span>Dashboard</span></a>
-                                <li><a href="#"><i class="fa fa-envelope nav-icon"></i><span>Support</span></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="createticket.php"><span class="label label-primary pull-right">New</span>Create Ticket</a></li>
-                                        <li><a href="createticket.php"><span class="label label-primary pull-right">New</span>Add Ticket</a></li>
-                                    </ul>
-                                </li>
-                                </li>
-                                <li><a href="view_tickets.php"><i class="fa fa-list-alt"></i><span>View ticket</span></a></li>
-
-                                <li><a href="#"><i class="fa fa-list-alt"></i><span>Forms</span></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="form-elements.html">Components</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href= "homebanner.php"><i class="fa fa-table"></i><span>About Us</span></a>
-                                </li>              
-                                <li><a href="#"><i class="fa fa-envelope nav-icon"></i><span>Email</span></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="email-inbox.html"><span class="label label-primary pull-right">New</span>Inbox</a></li>
-                                        <li><a href="email-read.html"><span class="label label-primary pull-right">New</span>Email Detail</a></li>
-                                    </ul>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="text-right collapse-button" style="padding:7px 9px;">
-                        <input type="text" class="form-control search" placeholder="Search..." />
-                        <button id="sidebar-collapse" class="btn btn-default" style=""><i style="color:#fff;" class="fa fa-angle-left"></i></button>
-                    </div>
-                </div>
-            </div>
+            <?php include 'includes/sidebar.php'; ?>
 
             <div class="container-fluid" id="pcont">
                 <div class="cl-mcont">
