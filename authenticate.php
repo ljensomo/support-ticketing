@@ -22,12 +22,12 @@
 
 							//print_r($_SESSION);
 
-							echo "<script>window.location='http://localhost/ticketing/Index.php'</script>";	
+							echo "<script>window.location='http://localhost/Thesis_ticketing/Index.php'</script>";	
 					}
 
 				}else{
 				//echo "no record count";
-				echo "<script>window.location='http://localhost/ticketing/error502.php'</script>";
+				echo "<script>window.location='http://localhost/Thesis_ticketing/error502.php'</script>";
 				}
 			}	
  ?>

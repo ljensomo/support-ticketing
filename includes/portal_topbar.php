@@ -1,4 +1,4 @@
-<?php //
+<?php
     include(".\check_session.php");
 ?>
 <div id="head-nav" class="navbar navbar-inverse navbar-fixed-top">
