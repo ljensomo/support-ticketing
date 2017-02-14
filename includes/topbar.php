@@ -2,6 +2,8 @@
 session_start();
 $loggeduser = $_SESSION['admin'];
 
+include 'functions.php';
+
 if (!isset($_SESSION['admin'])) {
     redirect_to('login.html');
 }
