@@ -8,7 +8,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right user-nav">
-                <li><a href="login.php"></i><span>Login</span></a></li>
+                <li><a href="login.html"></i><span>Login</span></a></li>
             </ul>			
         </div><!--/.nav-collapse animate-collapse -->
     </div>
