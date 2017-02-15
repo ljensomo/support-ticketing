@@ -11,28 +11,28 @@
                     </div>
                 </div>
                 <ul class="cl-vnavigation">
-                    <li><a href="index.php"><i class="fa fa-home"></i><span>Dashboard</span></a>
+                    <li><a href="index.php"><i class="fa fa-home"></i><span>Home</span></a>
                     <li><a href="#"><i class="fa fa-envelope nav-icon"></i><span>Support</span></a>
                         <ul class="sub-menu">
-                            <li><a href="createticket.php"><span class="label label-primary pull-right">New</span>Create Ticket</a></li>
-                            <li><a href="createticket.php"><span class="label label-primary pull-right">New</span>Add Ticket</a></li>
+                            <li><a href="createticket.php"><span class="label label-primary pull-right">New</span>Issue Ticket</a></li>
                         </ul>
                     </li>
                     <li><a href="users.php"><i class="fa fa-user"></i><span>Users</span></a>
                     </li>
-                    <li><a href="view_tickets.php"><i class="fa fa-list-alt"></i><span>View ticket</span></a></li>
-
-                    <li><a href="#"><i class="fa fa-list-alt"></i><span>Forms</span></a>
+                    <li><a href="admin_view_ticket.php"><i class="fa fa-list-alt"></i><span>View ticket</span></a></li>
+                       <li><a href="#"><i class="fa fa-gear nav-icon"></i><span>Settings</span></a>
                         <ul class="sub-menu">
-                            <li><a href="form-elements.html">Components</a></li>
+                            <li><a href="severity.php"><span class="label label-primary pull-right">New</span>Severity</a></li>
+                            <li><a href="#"><span class="label label-primary pull-right">New</span>Resolution</a></li>
+                            <li><a href="status.php"><span class="label label-primary pull-right">New</span>Status</a></li>
                         </ul>
-                    </li>
+                
                     <li><a href= "homebanner.php"><i class="fa fa-table"></i><span>About Us</span></a>
                     </li>              
                     <li><a href="#"><i class="fa fa-envelope nav-icon"></i><span>Email</span></a>
                         <ul class="sub-menu">
-                            <li><a href="email-inbox.html"><span class="label label-primary pull-right">New</span>Inbox</a></li>
-                            <li><a href="email-read.html"><span class="label label-primary pull-right">New</span>Email Detail</a></li>
+                            <li><a href="#"><span class="label label-primary pull-right">New</span>Inbox</a></li>
+                            <li><a href="#"><span class="label label-primary pull-right">New</span>Email Detail</a></li>
                         </ul>
                     </li>
 

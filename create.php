@@ -1,5 +1,5 @@
 <?php 
-require_once('connection.php');
+    require_once 'connection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,12 +67,14 @@ require_once('connection.php');
                           <div class="content">
                              <form method="POST" action="controler\inserttickets.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
                               <div class="form-group">
+                                
                                 <label class="col-sm-3 control-label">Issue Type</label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-6"> 
                                 <select class="form-control" name="sel_issue_type">
-                                    <option value="1">  Bug</option>
-                                    <option value="2">Normal</option>
-                                  </select>                                 
+                                    <option value="1">asd</option>
+                                   
+                                  </select>   
+                                                                
                                 
                                 </div>
                               </div>
@@ -141,6 +143,7 @@ require_once('connection.php');
                          </form>
                     </div>
                 </div>
+
             </div>
       
       

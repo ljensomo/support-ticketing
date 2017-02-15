@@ -447,7 +447,7 @@ pre {
 .dropdown-menu > li > a:focus,
 .dropdown-submenu:hover > a,
 .dropdown-menu li > a:hover {
-    background-color: #2391ed;
+    background-color: #9a0201;
     background-image: none;
     color: #FFF;
 }
@@ -472,7 +472,7 @@ pre {
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #36A3FF;
+    background-color: #995454;
     color: #FFF;
 }
 .navbar-default .navbar-nav > li > a:hover,
@@ -3165,7 +3165,7 @@ div.dataTables_length label select {
 h2,
 h1:first-child {
     margin-top: 0;
-  border-bottom:2px solid darkred;
+ border-bottom: 1px solid #9a0201;
 }
 /*Tab Bottom*/
 .tab-bottom .nav-tabs {

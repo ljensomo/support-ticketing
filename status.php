@@ -53,13 +53,8 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Users</h2>
-                    <ol class="breadcrumb">
-                      	<li class="active">Users</li>
-                        <li><a href="add_user.php">Add Users</a></li>
-                       
-
-                    </ol>
+                    <h2>Status</h2>
+                    
                 </div>	
                 <div class="cl-mcont">
 
@@ -67,44 +62,40 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
-                                    <h3>Users</h3>
+                                    <h3>Description</h3>
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="datatable" >
                                             <thead>
                                                 <tr>
-                                                    <th>Username</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Role</th>
+                                                    <th>Status ID</th>
+                                                    <th>Status</th>
                                                     <th>Action</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * FROM users a INNER JOIN user_level b ON a.userlevel_id=b.userlevel_id";
+                                                $sql = "SELECT * FROM status";
                                                 $res = $db->prepare($sql);
                                                 $res->execute();
                                                 while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                                                     ?>
                                                     <tr class="odd gradeX">
-                                                        <td><?php echo $row['username']; ?></td>
-                                                        <td><?php echo $row['fname']; ?></td>
-                                                        <td><?php echo $row['lname']; ?></td>
-                                                        <td><?php echo $row['user_desc']; ?></td>
-                                                        <td class="center">
+                                                        <td><?php echo $row['status_id']; ?></td>
+                                                        <td><?php echo $row['status_desc']; ?></td>
+                                                        <td>
                                                 <center>
-                                                    <?php if ($row['is_active'] == 1) { ?>
-                                                        <button class="btn btn-grey btn-sm" type="button"p><i class="fa fa-lock"></i></button>
-                                                    <?php } else { ?>
-                                                        <button class="btn btn-grey btn-sm" type="button"><i class="fa fa-unlock"></i></button>
-                                                    <?php } ?>
-                                                    <a class="btn btn-info btn-sm" href="view_user.php?cid=<?php echo $row['id']; ?>"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="edit_user.php?cid=<?php echo $row['id']; ?>"><i class="fa fa-pencil"></i></a>
-                                                    <a class="btn btn-danger btn-sm" href="#myModal" data-toggle="modal"><i class="fa fa-trash-o"></i></a> 
-                                                </center>        
-                                                </td>
+                                                   
+                                                    
+                                                    
+                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-plus"></i></a>
+                                                    <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-danger btn-sm" href="#" data-toggle="modal"><i class="fa fa-trash-o"></i></a> 
+                                                </center></td>
+                                                         
+                                         
                                                 </tr>
                                                 <?php
                                             }
@@ -113,13 +104,13 @@
                                         </table>							
                                     </div>
                                 </div>
+                                
                             </div>				
                         </div>
                     </div>
-
                 </div>
-            </div> 
 
+            </div>
         </div>
 
         <script src="js/jquery.js"></script>

@@ -64,7 +64,7 @@
                             <div class="stat"><span class="up"> 13,5%</span></div>
                         </div>
                         <div class="butpro butstyle">
-                            <div class="sub"><h3>CLOSED TICKTES</h3><span>125</span></div>
+                            <div class="sub"><h3>CLOSED TICKETS</h3><span>125</span></div>
                             <div class="stat"><span class="down"> 20,7%</span></div>
                         </div>  
                         <div class="butpro butstyle">

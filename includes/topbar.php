@@ -19,11 +19,8 @@ require_once 'connection.php';
             <a class="navbar-brand" href="#"><span>FORTIS</span></a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact <b class="caret"></b></a>
+            
+                
                     <ul class="dropdown-menu">
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>
@@ -35,7 +32,7 @@ require_once 'connection.php';
                                 <li><a href="#">Something else here</a></li>
                             </ul>
                         </li>              
-                    </ul>
+                  
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right user-nav">
@@ -44,7 +41,7 @@ require_once 'connection.php';
                     <ul class="dropdown-menu">
                         <li><a href="#">My Account</a></li>
                         <li><a href="#">Profile</a></li>
-                        <li><a href="#">Messages</a></li>
+                        <li><a href="users_messages.php">Messages</a></li>
                         <li class="divider"></li>
                         <li><a href="includes/logout.php">Sign Out</a></li>
                     </ul>
