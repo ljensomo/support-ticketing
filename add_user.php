@@ -55,31 +55,83 @@
                 <div class="page-head">
                     <h2>Users</h2>
                     <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
+                    
                         <li><a href="users.php">Users</a></li>
-                        <li><a href="add_user.php" class="active">Add Users</a></li>
-                    </ol>
-                </div>	
-                <div class="cl-mcont">
+                        <li class="active">Add Users</li>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-flat">
-                                <div class="header">							
-                                    <h3>Users</h3>
+                    </ol>
+
+                </div>	
+        <div class="cl-mcont">
+                
+                <div class="block-flat">
+                          <div class="head">  
+
+                            <h3>Ticket Informations</h3>
+                            <hr>
+                          </div>
+                          <div class="content">
+                             <form method="POST" action="#" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                              <div class="form-group">
+                                <label class="col-sm-3 control-label">Issue Type</label>
+                                <div class="col-sm-6">
+                                  <input class="form-control" placeholder="First Name" name="txtfname" type="text">                               
+                                
                                 </div>
-                                <div class="content">
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-3 control-label">Company Name</label>
+                                <div class="col-sm-6">
+                                  <input class="form-control" placeholder="M.I." name="txtmname" type="text">
                                     
-                                    <!-- -->
                                 </div>
-                            </div>				
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-3 control-label">Reporter</label>
+                                <div class="col-sm-6">
+                                  <input class="form-control" placeholder="Last Name" name="txtlname" type="text">
+                                </div>
+                              </div>
+                               <div class="form-group">
+                                <label class="col-sm-3 control-label">Phone</label>
+                                <div class="col-sm-6">
+                                  <input class="form-control" placeholder="Contact Number" name="txtCnum" type="text">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-3 control-label">Role</label>
+                                <div class="col-sm-6">
+                                   <select class="form-control" name="sel_role">
+                                    <option value="5">Minor</option>
+                                  </select>                                 
+                                </div>
+                              </div>
+                               
+                              
+                              <div class="form-group">
+                                <label class="col-sm-3 control-label">Username</label>
+                                <div class="col-sm-6">
+                                  <input class="form-control" placeholder="Username" name="txtEmail" type="email">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-3 control-label">Serverity</label>
+                                <div class="col-sm-6">
+                                  <input class="form-control" placeholder="Password" name="txtpass" type="password">
+                                </div>
+                              </div>
+                            <div class="spacer text-center">
+                                <button type="submit" class="btn btn-danger btn-lg">Save</button>
+                            </div>
+                                    
+                           
+                            </form>
                         </div>
                     </div>
-
                 </div>
-            </div> 
+            </div>
 
-        </div>
+
 
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
