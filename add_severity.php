@@ -53,84 +53,50 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Users</h2>
+                    <h2>Severity</h2>
                     <ol class="breadcrumb">
-                    
-                        <li><a href="users.php">Users</a></li>
-                        <li class="active">Add Users</li>
-
+                        <li class="active">Severity</li>
+                        <li><a href="add_severity.php">Add Severity</a></li>
                     </ol>
-
                 </div>	
-        <div class="cl-mcont">
-                
-                <div class="block-flat">
-                          <div class="head">  
+                <div class="cl-mcont">
 
-                            <h3>Ticket Informations</h3>
-                            <hr>
-                          </div>
-                          <div class="content">
-                             <form method="POST" action="#" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">First Name</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control" placeholder="First Name" name="txtfname" type="text">                               
-                                
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="block-flat">
+                                <div class="header">							
+                                    <h3>Add Severity</h3>
                                 </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Middle Name</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control" placeholder="M.I." name="txtmname" type="text">
-                                    
+                                <div class="content">
+                                    <form method="POST" action="includes/add_severity_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Name</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="Name" name="name" id="name" type="text" required>                               
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Description</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="Description" name="description" id="description" type="text">                               
+                                            </div>
+                                        </div>
+
+                                        <div class="spacer text-center">
+                                            <button type="submit" class="btn btn-danger btn-md">Save</button>
+                                            <button type="reset" class="btn btn-default btn-md">Cancel</button>
+                                        </div>
+                                    </form>
                                 </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Last Name</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control" placeholder="Last Name" name="txtlname" type="text">
-                                </div>
-                              </div>
-                               <div class="form-group">
-                                <label class="col-sm-3 control-label">Contact Number</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control" placeholder="Contact Number" name="txtCnum" type="text">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Role</label>
-                                <div class="col-sm-6">
-                                   <select class="form-control" name="sel_role">
-                                    <option value="5">Minor</option>
-                                  </select>                                 
-                                </div>
-                              </div>
-                               
-                              
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Username</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control" placeholder="Username" name="txtEmail" type="email">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Password</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control" placeholder="Password" name="txtpass" type="password">
-                                </div>
-                              </div>
-                            <div class="spacer text-center">
-                                <button type="submit" class="btn btn-danger btn-lg">Save</button>
-                            </div>
-                           
-                            </form>
+
+                            </div>				
                         </div>
                     </div>
                 </div>
+
             </div>
-
-
+        </div>
 
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
