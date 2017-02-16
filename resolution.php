@@ -53,7 +53,7 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Status</h2>
+                    <h2>Resolutions</h2>
                     
                 </div>  
                 <div class="cl-mcont">
@@ -62,7 +62,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">                            
-                                    <h3>Resolution</h3>
+                                    <h3>Description</h3>
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
@@ -90,7 +90,7 @@
                                                    
                                                     
                                                     
-                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-plus"></i></a>
+                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
                                                     <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
                                                     <a class="btn btn-danger btn-sm" href="#" data-toggle="modal"><i class="fa fa-trash-o"></i></a> 
                                                 </center></td>
