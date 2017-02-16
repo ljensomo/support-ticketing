@@ -65,42 +65,46 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
-                                    <a class="btn btn-primary" href="add_severity.php">Add Severity</a>
+                                    <h3>Add Severity</h3>
                                 </div>
                                 <div class="content">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="datatable" >
-                                            <thead>
-                                                <tr>
-                                                    <th>Severity ID</th>
-                                                    <th>Severity</th>
-                                                    <th>Action</th>
+                                    <?php
+                                    $id = "";
+                                    $name = "";
+                                    $description = "";
+                                    if (isset($_GET['id'])) {
+                                        $id = $_GET['id'];
+                                        $sqlLoader = "SELECT * FROM severity where severity_id=?";
+                                        $resLoader = $db->prepare($sqlLoader);
+                                        $resLoader->execute(array($id));
+                                        while ($rowLoader = $resLoader->fetch(PDO::FETCH_ASSOC)) {
+                                            $id = $rowLoader['severity_id'];
+                                            $name = $rowLoader['severity'];
+                                            $description = $rowLoader['description'];
+                                        }
+                                    }
+                                    ?>
+                                    <form method="POST" action="includes/edit_severity_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Name</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="name" id="name" type="text" value="<?php echo $name; ?>" required>                               
+                                            </div>
+                                        </div>
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $sql = "SELECT * FROM severity";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>
-                                                    <tr class="odd gradeX">
-                                                        <td><?php echo $row['severity_id']; ?></td>
-                                                        <td><?php echo $row['severity']; ?></td>
-                                                        <td>
-                                                <center>
-                                                    <a class="btn btn-info btn-sm" href="view_severity.php?id=<?php echo $row['severity_id']; ?>"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="edit_severity.php?id=<?php echo $row['severity_id']; ?>"><i class="fa fa-pencil"></i></a>
-                                                    <a class="btn btn-danger btn-sm" href="#" data-toggle="modal"><i class="fa fa-trash-o"></i></a> 
-                                                </center></td>
-                                                </tr>
-                                                <?php
-                                            }
-                                            ?>
-                                            </tbody>
-                                        </table>							
-                                    </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Description</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="description" id="description" value="<?php echo $description; ?>" type="text">                               
+                                            </div>
+                                        </div>
+
+                                        <div class="spacer text-center">
+                                            <button type="submit" class="btn btn-danger btn-md">Update</button>
+                                            <button type="reset" class="btn btn-default btn-md">Cancel</button>
+                                        </div>
+                                    </form>
                                 </div>
 
                             </div>				
