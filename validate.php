@@ -23,7 +23,7 @@
         <link href="css/style.css" rel="stylesheet" />	
 
     </head>
-   <body class="texture">
+   <body>
 
 <div id="cl-wrapper" class="login-container">
 
