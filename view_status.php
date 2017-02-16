@@ -53,58 +53,66 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Status</h2>
+                    <h2>Severity</h2>
                     <ol class="breadcrumb">
-                    
-                        <li><a href="status.php">Status</a></li>
-                        <li class="active">Add Status</li>
-
+                        <li class="active">Severity</li>
+                        <li><a href="add_severity.php">Add Severity</a></li>
                     </ol>
-
                 </div>	
-        <div class="cl-mcont">
-                
-                <div class="block-flat">
-                          <div class="head">  
+                <div class="cl-mcont">
 
-                            <h3>Descriptions</h3>
-                            <hr>
-                          </div>
-                          <div class="content">
-                             <form method="POST" action="includes/add_status_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Name</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control"  name="name" type="text">                               
-                                
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="block-flat">
+                                <div class="header">							
+                                    <h3>Add Severity</h3>
                                 </div>
-                              </div>
-                              
-                               <div class="form-group">
-                                <label class="col-sm-3 control-label">Description</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control"  name="description" type="text">                               
-                                
+                                <div class="content">
+                                    <?php
+                                    $id = "";
+                                    $name = "";
+                                    $description = "";
+                                    if (isset($_GET['id'])) {
+                                        $id = $_GET['id'];
+                                        
+                                        $sqlLoader = "SELECT * FROM status where status_id=?";
+                                        $resLoader = $db->prepare($sqlLoader);
+                                        $resLoader->execute(array($id));
+                                        while ($rowLoader = $resLoader->fetch(PDO::FETCH_ASSOC)) {
+                                            $id = $rowLoader['status_id'];
+                                            $name = $rowLoader['status_desc'];
+                                            $description = $rowLoader['description'];
+                                        }
+                                    }
+                                    ?>
+                                    <form method="POST" action="includes/add_status_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Name</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="name" id="name" type="text" value="<?php echo $name; ?>" readonly>                               
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Description</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="description" id="description" value="<?php echo $description; ?>" type="text" readonly>                               
+                                            </div>
+                                        </div>
+
+                                        <div class="spacer text-center">
+                                            <a href="status.php" class="btn btn-danger btn-md">Back</a>
+                                        </div>
+                                    </form>
                                 </div>
-                              </div>
-                              
-                              
-                            <div class="spacer text-center">
-                                <button type="submit" class="btn btn-danger btn-lg">Save</button>
-                                <button type="reset" class="btn btn-default btn-lg">Cancel</button>
-                            </div>
-                                    
-                           
-                            </form>
+
+                            </div>				
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
-            </div>
-            </div>
 
-
+            </div>
+        </div>
 
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
