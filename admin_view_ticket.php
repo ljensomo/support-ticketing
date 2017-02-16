@@ -69,7 +69,7 @@
                                 <thead class="no-border">
                                     <tr>
                                         <th style="width:80%;">Desciptions</th>
-                                        <th class="text-right">Action</th>
+                                        <th class="text-right">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody class="no-border-y">
