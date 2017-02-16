@@ -74,6 +74,7 @@
                                                 <tr>
                                                     <th>Resolution ID</th>
                                                     <th>Resolution</th>
+                                                    
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -92,9 +93,9 @@
 
 
 
-                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
-                                                    <a class="btn btn-danger btn-sm" href="#" data-toggle="modal"><i class="fa fa-trash-o"></i></a> 
+                                                    <a class="btn btn-info btn-sm" href="view_resolution.php?id=<?php echo $row['resolution_id'];?>"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-warning btn-sm" href="edit_resolution.php?id=<?php echo $row['resolution_id'];?>"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-danger btn-sm" href="delete_resolution.php?id=<?php echo $row['resolution_id'];?>" data-toggle="modal"><i class="fa fa-trash-o"></i></a> 
                                                 </center></td>
 
 

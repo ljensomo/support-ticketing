@@ -55,55 +55,65 @@
                 <div class="page-head">
                     <h2>Resolutions</h2>
                     <ol class="breadcrumb">
-                    
-                        <li><a href="resolution.php">Resolutions</a></li>
-                        <li class="active">Add Resolutions</li>
-
+                        <li class="active">Resolutions</li>
+                        <li><a href="add_resolution.php">Add Resolutions</a></li>
                     </ol>
-
                 </div>	
-        <div class="cl-mcont">
-                
-                <div class="block-flat">
-                          <div class="head">  
+                <div class="cl-mcont">
 
-                            <h3>Descriptions</h3>
-                            <hr>
-                          </div>
-                          <div class="content">
-                             <form method="POST" action="includes/add_resolution_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Name</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control"  name="name" type="text" required>                               
-                                
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="block-flat">
+                                <div class="header">							
+                                    <h3>Edit Resolutions</h3>
                                 </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Description</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control"  name="description" type="text" required>                               
-                                
+                                <div class="content">
+                                    <?php
+                                    $id = "";
+                                    $name = "";
+                                    $description = "";
+                                    if (isset($_GET['id'])) {
+                                        $id = $_GET['id'];
+                                        $sqlLoader = "SELECT * FROM resolution where resolution_id=?";
+                                        $resLoader = $db->prepare($sqlLoader);
+                                        $resLoader->execute(array($id));
+                                        while ($rowLoader = $resLoader->fetch(PDO::FETCH_ASSOC)) {
+                                            $id = $rowLoader['resolution_id'];
+                                            $name = $rowLoader['resolution'];
+                                            $description = $rowLoader['description'];
+                                        }
+                                    }
+                                    ?>
+                                    <form method="POST" action="includes/edit_resolution_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Name</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="name" id="name" type="text" value="<?php echo $name; ?>" required>                               
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Description</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="description" id="description" value="<?php echo $description; ?>" type="text">                               
+                                            </div>
+                                        </div>
+
+                                        <div class="spacer text-center">
+                                            <button type="submit" class="btn btn-danger btn-md">Update</button>
+                                            <button type="reset" class="btn btn-default btn-md">Cancel</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                </div>
-                              
-                              
-                            <div class="spacer text-center">
-                                <button type="submit" class="btn btn-danger btn-lg">Save</button>
-                                <button type="reset" class="btn btn-default btn-lg">Cancel</button>
-                            </div>
-                                    
-                           
-                            </form>
+
+                            </div>				
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
-            </div>
-            </div>
 
-
+            </div>
+        </div>
 
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>

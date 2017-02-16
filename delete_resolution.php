@@ -53,57 +53,87 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Resolutions</h2>
+                    <h2>Resolution</h2>
                     <ol class="breadcrumb">
-                    
-                        <li><a href="resolution.php">Resolutions</a></li>
-                        <li class="active">Add Resolutions</li>
-
+                        <li class="active">Resolution</li>
+                        <li><a href="delete_severity.php">Delete Resolution</a></li>
                     </ol>
-
                 </div>	
-        <div class="cl-mcont">
-                
-                <div class="block-flat">
-                          <div class="head">  
+                <div class="cl-mcont">
 
-                            <h3>Descriptions</h3>
-                            <hr>
-                          </div>
-                          <div class="content">
-                             <form method="POST" action="includes/add_resolution_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Name</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control"  name="name" type="text" required>                               
-                                
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="block-flat">
+                                <div class="header">							
+                                    <h3>Delete Resolution</h3>
                                 </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Description</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control"  name="description" type="text" required>                               
-                                
-                                </div>
-                                </div>
-                              
-                              
-                            <div class="spacer text-center">
-                                <button type="submit" class="btn btn-danger btn-lg">Save</button>
-                                <button type="reset" class="btn btn-default btn-lg">Cancel</button>
-                            </div>
+                                <div class="content">
+                                    <?php
+                                    $id = "";
+                                    $name = "";
+                                    $description = "";
+                                    if (isset($_GET['id'])) {
+                                        $id = $_GET['id'];
+                                        $sqlLoader = "SELECT * FROM resolution where resolution_id=?";
+                                        $resLoader = $db->prepare($sqlLoader);
+                                        $resLoader->execute(array($id));
+                                        while ($rowLoader = $resLoader->fetch(PDO::FETCH_ASSOC)) {
+                                            $id = $rowLoader['resolution_id'];
+                                            $name = $rowLoader['resolution'];
+                                            $description = $rowLoader['description'];
+                                        }
+                                    }
+                                    ?>
+                                    <form class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Name</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="name" id="name" type="text" value="<?php echo $name; ?>" readonly>                               
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Description</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="description" id="description" value="<?php echo $description; ?>" type="text" readonly>                               
+                                            </div>
+                                        </div>
+                                    </form>
                                     
-                           
-                            </form>
+                                    <div class="spacer text-center">
+                                        <a href="resolution.php" class="btn btn-default btn-md">Back</a>
+                                        <button class="btn btn-danger btn-md" data-toggle="modal" data-target="#delete-modal">Delete</button> 
+                                    </div>
+
+                                    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="text-center">
+                                                        <div class="i-circle danger"><i class="fa fa-times"></i></div>
+                                                        <h4>Warning</h4>
+                                                        <p>Are you sure you want to delete this record?</p>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                    <a class="btn btn-danger" href="includes/delete_resolution_process.php?id=<?php echo $id; ?>">Yes</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>				
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
-            </div>
-            </div>
 
-
+            </div>
+        </div>
 
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
