@@ -100,8 +100,7 @@
                                         </div>
 
                                         <div class="spacer text-center">
-                                            <button type="submit" class="btn btn-danger btn-md">Save</button>
-                                            <button type="reset" class="btn btn-default btn-md">Cancel</button>
+                                            <a href="severity.php" class="btn btn-danger btn-md">Back</a>
                                         </div>
                                     </form>
                                 </div>
