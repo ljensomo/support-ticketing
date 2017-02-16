@@ -42,173 +42,173 @@
     <body>
 
         <!-- Fixed navbar -->
-      <?php include'includes/portal_topbar.php';?>
-        
-            <div class="page-head">
-                <h3>Fortis Technologies Corp.</h3>
-                <ol class="breadcrumb">
-                  <li class="active">Home</li>
-                  <li><a href="create.php">Create Ticket</a></li>
-                  <li><a href="validate.php">View Ticket</a></li>
-                </ol>
-            </div>
-    
+        <?php include 'includes/portal_topbar.php'; ?>
 
+        <div id="cl-wrapper" class="fixed-menu">
 
+            <div class="container-fluid" id="pcont">
+                <div class="page-head">
+                    <h3>Fortis Technologies Corp.</h3>
+                    <ol class="breadcrumb">
+                        <li class="active">Home</li>
+                        <li><a href="create.php">Create Ticket</a></li>
+                        <li><a href="validate.php">View Ticket</a></li>
+                    </ol>
+                </div>
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="spacer"></div>
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                </ol>
 
-<div class="container">
-    <div class="row">
-	 <div class="col-md-12">
-    
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src="images/SERVICE.jpg">
+                                    </div>
 
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img src="images/SERVICE.jpg">
-        </div>
+                                    <div class="item">
+                                        <img src="images/SOFT.jpg">
+                                    </div>
 
-        <div class="item">
-          <img src="images/SOFT.jpg">
-        </div>
+                                    <div class="item">
+                                        <img src="images/DC.jpg">
+                                    </div>
+                                </div>
 
-        <div class="item">
-          <img src="images/DC.jpg">
-        </div>
-      </div>
-
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-</div>
-</div>
-<br>
-        
-    <div class="cl-mcont cl-mcont-fixed">
-			<div class="block-flat">
-				<div class="row">
-				<div class="col-md-12">
-                        <div class="header">
-                            <center><img src="images/logo2.jpg"></center>
-                        </div>
-						<div class="col-md-12">
-                        <div class="content">
-                              <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
-                              <small> - Some historic guy</small></center>
-							  <br>
-							  
-							  </div>
-							  </div>
-							  
-							  <div class="content">
-						<div class="row">
-							  <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
-                              <small> - Some historic guy</small></center>
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
                             </div>
-							</div>
-						</div>
-						</div>
-						</div>
-					
-						<div class="block-flat">
-							<div class="row">
-							<div class="col-md-6">
-							<i class="fa fa-flag-o fa-4x pull-left color-danger"></i>
-							<h1>MISSION</h1> 
-							<p>To deliver quality. cost-effective, industry-proven technology solutions to customers by combining people, hardware and software.</p>
-							</div>
-
-							<i class="fa fa-eye fa-4x pull-left color-danger"></i>
-							<h1>VISION</h1> 
-							<p>To deliver quality. cost-effective, industry-proven technology solutions to customers by combining people, hardware and software.</p>
-							</div>
-							</div> 
-			
-				
-					<div class="block-flat">
-					<div class="col-md-12">
-					<center><h2>Serve Co-Location and Co-Managed Fully Managed Services</h2></center>
-					<br></br>
-					<a target="_blank" href="images/serverCO.png">
-					<center><img src="images/serverCO.png" class="img-responsive" alt="Cinque Terre"></center>
-					<br>
-					<br>
-					</a>
-					</div>
-					<center><h2>Incident Problem annd Change Management Implementation</h2></center>
-					<br></br>	
-					<center><img src="images/incident.png" class="img-responsive" alt="Cinque Terre"></center>
-					</div>
-					<div class="block-flat">
-							<div class="img">
-				  <a target="_blank" href="images/logo2.jpg">
-						<img src="images/logo2.jpg" alt="Trolltunga Norway" width="300" height="200">
-				  </a>
-				  </div>
-				  </div>
-				  <div class="desc">Fortis Technologies</div>
-	
-
-
-				
-					<div class="block-flat">
-                       <div class="row">
-						<div class="col-md-12">
-							<div class="header">                            
-								<h3>Body Elements</h3>
-							</div>
-                        <div class="content overflow-hidden">
-                            <h4>Paragraph Text</h4>
-                            <p>To me this vast ivory-ribbed chest, with the long, unrelieved spine, extending far away from it in a straight line, not a little resembled the hull of a great ship new-laid upon the stocks, when only some twenty of her naked bow-ribs are inserted, and the keel is otherwise, for the time, but a long, disconnected timber.</p>
-                            <p class="text-right">Herman Melville - Moby-Dick</p>
-                            
-                            <h4>Lead Paragraph</h4>
-                            <p class="lead">'I've heard something like it,' said Alice.</p>
-                            <p class="text-right">Lewis Carroll - Alice in Wonderland</p>
-                            
-                            <h4>Italic</h4>
-                            <p><i>"Consul," said he, "I have no longer any doubt. I have spotted my man.</i></p>
-                            <p class="text-right">Jules Verne - Around the World in 80 Days</p>
-                            
-                            <h4>Small</h4>
-                            <small>This is a tiny small text!</small><br>
-                            
                         </div>
                     </div>
-				   </div>
-				</div>
+                    <br>
 
-                    <div class="block-flat">
-                        <div class="header">
-                            <h3>Text Color</h3>
+                    <div class="cl-mcont cl-mcont-fixed">
+                        <div class="block-flat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="header">
+                                        <center><img src="images/logo2.jpg"></center>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="content">
+                                            <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
+                                                <small> - Some historic guy</small></center>
+                                            <br>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="content">
+                                        <div class="row">
+                                            <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
+                                                <small> - Some historic guy</small></center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="content overflow-hidden">
-                            <p class="color-primary">This is an emphasis primary color text</p>
-                            <p class="color-success">This is an emphasis success color text</p>
-                            <p class="color-warning">This is an emphasis success color text</p>
-                            <p class="color-danger">This is an emphasis success color text</p>
-                            
+
+                        <div class="block-flat">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <i class="fa fa-flag-o fa-4x pull-left color-danger"></i>
+                                    <h1>MISSION</h1> 
+                                    <p>To deliver quality. cost-effective, industry-proven technology solutions to customers by combining people, hardware and software.</p>
+                                </div>
+
+                                <i class="fa fa-eye fa-4x pull-left color-danger"></i>
+                                <h1>VISION</h1> 
+                                <p>To deliver quality. cost-effective, industry-proven technology solutions to customers by combining people, hardware and software.</p>
+                            </div>
+                        </div> 
+
+
+                        <div class="block-flat">
+                            <div class="col-md-12">
+                                <center><h2>Serve Co-Location and Co-Managed Fully Managed Services</h2></center>
+                                <br></br>
+                                <a target="_blank" href="images/serverCO.png">
+                                    <center><img src="images/serverCO.png" class="img-responsive" alt="Cinque Terre"></center>
+                                    <br>
+                                    <br>
+                                </a>
+                            </div>
+                            <center><h2>Incident Problem annd Change Management Implementation</h2></center>
+                            <br></br>	
+                            <center><img src="images/incident.png" class="img-responsive" alt="Cinque Terre"></center>
                         </div>
-                    </div>
-                </div>          
+                        <div class="block-flat">
+                            <div class="img">
+                                <a target="_blank" href="images/logo2.jpg">
+                                    <img src="images/logo2.jpg" alt="Trolltunga Norway" width="300" height="200">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="desc">Fortis Technologies</div>
+
+
+
+
+                        <div class="block-flat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="header">                            
+                                        <h3>Body Elements</h3>
+                                    </div>
+                                    <div class="content overflow-hidden">
+                                        <h4>Paragraph Text</h4>
+                                        <p>To me this vast ivory-ribbed chest, with the long, unrelieved spine, extending far away from it in a straight line, not a little resembled the hull of a great ship new-laid upon the stocks, when only some twenty of her naked bow-ribs are inserted, and the keel is otherwise, for the time, but a long, disconnected timber.</p>
+                                        <p class="text-right">Herman Melville - Moby-Dick</p>
+
+                                        <h4>Lead Paragraph</h4>
+                                        <p class="lead">'I've heard something like it,' said Alice.</p>
+                                        <p class="text-right">Lewis Carroll - Alice in Wonderland</p>
+
+                                        <h4>Italic</h4>
+                                        <p><i>"Consul," said he, "I have no longer any doubt. I have spotted my man.</i></p>
+                                        <p class="text-right">Jules Verne - Around the World in 80 Days</p>
+
+                                        <h4>Small</h4>
+                                        <small>This is a tiny small text!</small><br>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="block-flat">
+                            <div class="header">
+                                <h3>Text Color</h3>
+                            </div>
+                            <div class="content overflow-hidden">
+                                <p class="color-primary">This is an emphasis primary color text</p>
+                                <p class="color-success">This is an emphasis success color text</p>
+                                <p class="color-warning">This is an emphasis success color text</p>
+                                <p class="color-danger">This is an emphasis success color text</p>
+
+                            </div>
+                        </div>
+                    </div>          
+                </div>
+
             </div>
-            
-            </div>
-          </div>
-         
+        </div>
+
 
 
 
