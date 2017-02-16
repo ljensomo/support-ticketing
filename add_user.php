@@ -73,27 +73,27 @@
                           <div class="content">
                              <form method="POST" action="#" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
                               <div class="form-group">
-                                <label class="col-sm-3 control-label">Issue Type</label>
+                                <label class="col-sm-3 control-label">First Name</label>
                                 <div class="col-sm-6">
                                   <input class="form-control" placeholder="First Name" name="txtfname" type="text">                               
                                 
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class="col-sm-3 control-label">Company Name</label>
+                                <label class="col-sm-3 control-label">Middle Name</label>
                                 <div class="col-sm-6">
                                   <input class="form-control" placeholder="M.I." name="txtmname" type="text">
                                     
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class="col-sm-3 control-label">Reporter</label>
+                                <label class="col-sm-3 control-label">Last Name</label>
                                 <div class="col-sm-6">
                                   <input class="form-control" placeholder="Last Name" name="txtlname" type="text">
                                 </div>
                               </div>
                                <div class="form-group">
-                                <label class="col-sm-3 control-label">Phone</label>
+                                <label class="col-sm-3 control-label">Contact Number</label>
                                 <div class="col-sm-6">
                                   <input class="form-control" placeholder="Contact Number" name="txtCnum" type="text">
                                 </div>
@@ -115,7 +115,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class="col-sm-3 control-label">Serverity</label>
+                                <label class="col-sm-3 control-label">Password</label>
                                 <div class="col-sm-6">
                                   <input class="form-control" placeholder="Password" name="txtpass" type="password">
                                 </div>
