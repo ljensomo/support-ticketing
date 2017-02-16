@@ -90,7 +90,7 @@
                                                    
                                                     
                                                     
-                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-plus"></i></a>
+                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
                                                     <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
                                                     <a class="btn btn-danger btn-sm" href="#" data-toggle="modal"><i class="fa fa-trash-o"></i></a> 
                                                 </center></td>
