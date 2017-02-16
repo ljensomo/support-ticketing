@@ -19,21 +19,19 @@ require_once 'connection.php';
             <a class="navbar-brand" href="#"><span>FORTIS</span></a>
         </div>
         <div class="navbar-collapse collapse">
-            
-                
+
+
+            <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="dropdown-submenu"><a href="#">Sub menu</a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>
-                        <li class="dropdown-submenu"><a href="#">Sub menu</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                            </ul>
-                        </li>              
-                  
-                </li>
+                    </ul>
+                </li>              
             </ul>
             <ul class="nav navbar-nav navbar-right user-nav">
                 <li class="dropdown profile_menu">

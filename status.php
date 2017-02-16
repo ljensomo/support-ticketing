@@ -54,7 +54,10 @@
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
                     <h2>Status</h2>
-                    
+                    <ol class="breadcrumb">
+                        <li class="active">Status</li>
+                        <li><a href="add_status.php">Add Status</a></li>
+                    </ol>
                 </div>	
                 <div class="cl-mcont">
 
@@ -62,7 +65,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
-                                    <h3>Description</h3>
+                                    <a class="btn btn-primary" href="add_status.php">Add Status</a>
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">

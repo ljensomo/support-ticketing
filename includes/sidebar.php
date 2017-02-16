@@ -22,9 +22,9 @@
                     <li><a href="admin_view_ticket.php"><i class="fa fa-list-alt"></i><span>View ticket</span></a></li>
                        <li><a href="#"><i class="fa fa-gear nav-icon"></i><span>Settings</span></a>
                         <ul class="sub-menu">
-                            <li><a href="severity.php"><span class="label label-primary pull-right">New</span>Severity</a></li>
-                            <li><a href="resolution.php"><span class="label label-primary pull-right">New</span>Resolution</a></li>
-                            <li><a href="status.php"><span class="label label-primary pull-right">New</span>Status</a></li>
+                            <li><a href="severity.php">Severity</a></li>
+                            <li><a href="resolution.php">Resolution</a></li>
+                            <li><a href="status.php">Status</a></li>
                         </ul>
                 
                     <li><a href= "homebanner.php"><i class="fa fa-table"></i><span>About Us</span></a>

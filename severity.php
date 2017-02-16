@@ -54,7 +54,10 @@
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
                     <h2>Severity</h2>
-                    
+                    <ol class="breadcrumb">
+                        <li class="active">Severity</li>
+                        <li><a href="add_severity.php">Add Severity</a></li>
+                    </ol>
                 </div>	
                 <div class="cl-mcont">
 
@@ -62,7 +65,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
-                                    <h3>Description</h3>
+                                     <a class="btn btn-primary" href="add_severity.php">Add Severity</a>
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
@@ -90,7 +93,7 @@
                                                    
                                                     
                                                     
-                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-plus"></i></a>
                                                     <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
                                                     <a class="btn btn-danger btn-sm" href="#" data-toggle="modal"><i class="fa fa-trash-o"></i></a> 
                                                 </center></td>

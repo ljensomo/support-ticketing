@@ -53,8 +53,11 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Resolutions</h2>
-                    
+                    <h2>Resolution</h2>
+                    <ol class="breadcrumb">
+                        <li class="active">Resolution</li>
+                        <li><a href="add_resolution.php">Add Resolution</a></li>
+                    </ol>
                 </div>  
                 <div class="cl-mcont">
 
@@ -62,7 +65,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">                            
-                                    <h3>Description</h3>
+                                    <a class="btn btn-primary" href="add_resolution.php">Add Resolution</a>
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
@@ -72,7 +75,6 @@
                                                     <th>Resolution ID</th>
                                                     <th>Resolution</th>
                                                     <th>Action</th>
-                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -87,15 +89,15 @@
                                                         <td><?php echo $row['resolution']; ?></td>
                                                         <td>
                                                 <center>
-                                                   
-                                                    
-                                                    
+
+
+
                                                     <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
                                                     <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
                                                     <a class="btn btn-danger btn-sm" href="#" data-toggle="modal"><i class="fa fa-trash-o"></i></a> 
                                                 </center></td>
-                                                         
-                                         
+
+
                                                 </tr>
                                                 <?php
                                             }
@@ -104,7 +106,7 @@
                                         </table>                            
                                     </div>
                                 </div>
-                                
+
                             </div>              
                         </div>
                     </div>
@@ -141,4 +143,4 @@
         <script type="text/javascript" src="js/jquery.flot/jquery.flot.resize.js"></script>
         <script type="text/javascript" src="js/jquery.flot/jquery.flot.labels.js"></script>
     </body>
-    </html>
+</html>

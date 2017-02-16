@@ -57,8 +57,6 @@
                     <ol class="breadcrumb">
                       	<li class="active">Users</li>
                         <li><a href="add_user.php">Add Users</a></li>
-                       
-
                     </ol>
                 </div>	
                 <div class="cl-mcont">
@@ -67,7 +65,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
-                                    <h3>Users</h3>
+                                    <a class="btn btn-primary" href="add_user.php">Add User</a>
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
