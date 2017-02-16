@@ -61,14 +61,14 @@ require_once('connection.php');
             <div class="row">
                 <div class="col-md-12">
                     <div class="block-flat">
-                        <div class="head"> 
-                                                       
-                            <h3>Tickets Status</h3>
-                            <div class="text-right">
-                                <input class="form-control search" placeholder="Search Ticket..." type="text">
+                 
+                        
+                                                    
+                            <span>Tickets Status</span>
+                            <div class="pull-right">                           
+                             <label><input aria-controls="datatable" class="form-control" placeholder="Search" type="text"></label>
                             </div>
-                            
-                        </div>
+             
                         <div class="content">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="datatable">

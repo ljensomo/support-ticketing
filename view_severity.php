@@ -74,8 +74,9 @@
                                     $description = "";
                                     if (isset($_GET['id'])) {
                                         $id = $_GET['id'];
+                                       
                                         $sqlLoader = "SELECT * FROM severity where severity_id=?";
-                                        $resLoader = $db->prepare($sqlLoader);
+                                         $resLoader = $db->prepare($sqlLoader);
                                         $resLoader->execute(array($id));
                                         while ($rowLoader = $resLoader->fetch(PDO::FETCH_ASSOC)) {
                                             $id = $rowLoader['severity_id'];
