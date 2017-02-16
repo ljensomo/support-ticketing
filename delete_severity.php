@@ -56,7 +56,7 @@
                     <h2>Severity</h2>
                     <ol class="breadcrumb">
                         <li class="active">Severity</li>
-                        <li><a href="add_severity.php">Add Severity</a></li>
+                        <li><a href="delete_severity.php">Delete Severity</a></li>
                     </ol>
                 </div>	
                 <div class="cl-mcont">
@@ -65,41 +65,65 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
-                                    <a class="btn btn-primary" href="add_severity.php">Add Severity</a>
+                                    <h3>Delete Severity</h3>
                                 </div>
                                 <div class="content">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="datatable" >
-                                            <thead>
-                                                <tr>
-                                                    <th>Severity ID</th>
-                                                    <th>Severity</th>
-                                                    <th>Action</th>
+                                    <?php
+                                    $id = "";
+                                    $name = "";
+                                    $description = "";
+                                    if (isset($_GET['id'])) {
+                                        $id = $_GET['id'];
+                                        $sqlLoader = "SELECT * FROM severity where severity_id=?";
+                                        $resLoader = $db->prepare($sqlLoader);
+                                        $resLoader->execute(array($id));
+                                        while ($rowLoader = $resLoader->fetch(PDO::FETCH_ASSOC)) {
+                                            $id = $rowLoader['severity_id'];
+                                            $name = $rowLoader['severity'];
+                                            $description = $rowLoader['description'];
+                                        }
+                                    }
+                                    ?>
+                                    <form class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Name</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="name" id="name" type="text" value="<?php echo $name; ?>" readonly>                               
+                                            </div>
+                                        </div>
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $sql = "SELECT * FROM severity";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>
-                                                    <tr class="odd gradeX">
-                                                        <td><?php echo $row['severity_id']; ?></td>
-                                                        <td><?php echo $row['severity']; ?></td>
-                                                        <td>
-                                                <center>
-                                                    <a class="btn btn-info btn-sm" href="view_severity.php?id=<?php echo $row['severity_id']; ?>"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="edit_severity.php?id=<?php echo $row['severity_id']; ?>"><i class="fa fa-pencil"></i></a>
-                                                    <a class="btn btn-danger btn-sm" href="delete_severity.php?id=<?php echo $row['severity_id']; ?>"><i class="fa fa-trash-o"></i></a> 
-                                                </center></td>
-                                                </tr>
-                                                <?php
-                                            }
-                                            ?>
-                                            </tbody>
-                                        </table>							
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Description</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="description" id="description" value="<?php echo $description; ?>" type="text" readonly>                               
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
+                                    <div class="spacer text-center">
+                                        <a href="severity.php" class="btn btn-default btn-md">Back</a>
+                                        <button class="btn btn-danger btn-md" data-toggle="modal" data-target="#delete-modal">Delete</button> 
+                                    </div>
+
+                                    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="text-center">
+                                                        <div class="i-circle danger"><i class="fa fa-times"></i></div>
+                                                        <h4>Warning</h4>
+                                                        <p>Are you sure you want to delete this record?</p>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                    <a class="btn btn-danger" href="includes/delete_severity_process.php?id=<?php echo $id; ?>">Yes</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
