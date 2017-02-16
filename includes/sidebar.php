@@ -23,7 +23,7 @@
                        <li><a href="#"><i class="fa fa-gear nav-icon"></i><span>Settings</span></a>
                         <ul class="sub-menu">
                             <li><a href="severity.php"><span class="label label-primary pull-right">New</span>Severity</a></li>
-                            <li><a href="#"><span class="label label-primary pull-right">New</span>Resolution</a></li>
+                            <li><a href="resolution.php"><span class="label label-primary pull-right">New</span>Resolution</a></li>
                             <li><a href="status.php"><span class="label label-primary pull-right">New</span>Status</a></li>
                         </ul>
                 
