@@ -113,7 +113,7 @@
 
                         <div class="col-sm-6 col-md-6">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#chat-1" data-toggle="tab">Baby<3</a></li>
+                                <li class="active"><a href="#chat-1" data-toggle="tab">Bryant</a></li>
                                 <li><a href="#chat-2" data-toggle="tab">Lorenz</a></li>
                                 <li><a href="#chat-3" data-toggle="tab">Jane</a></li>
                             </ul>
