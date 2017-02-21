@@ -1,3 +1,6 @@
+<?php 
+require_once('connection.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -72,8 +75,21 @@
                                             <label class="col-sm-3 control-label">Issue Type</label>
                                             <div class="col-sm-6">
                                                 <select class="form-control" name="sel_issue_type">
-                                                    <option value="1">Bug</option>
-                                                    <option value="2">Normal</option>
+                                                    
+                                                    <?php
+                                                        $query = "SELECT * FROM issue";
+                                                        $stmt = $con->prepare($query);
+                                                        $stmt->execute();
+                                                
+                                                        foreach ($stmt->fetchAll() as $data) {
+                                                    ?>
+                                                    
+                                                    <option value=<?php echo $data['issue_id']?>><?php echo $data['Issue_desc']?></option>
+                                                    <?php 
+                                                        }
+                                                    ?>
+                                                
+                                                    
                                                 </select>                                 
 
                                             </div>
@@ -121,11 +137,18 @@
                                             <label class="col-sm-3 control-label">Serverity</label>
                                             <div class="col-sm-6">
                                                 <select class="form-control" name="sel_sev">
-                                                    <option value="5">Minor</option>
-                                                    <option value="1">Normal</option>
-                                                    <option value="2">Danger</option>
-                                                    <option value="3">Severe</option>
-                                                    <option value="4">Critical</option>
+                                                    <?php
+                                                        $query = "SELECT * FROM severity";
+                                                        $stmt = $con->prepare($query);
+                                                        $stmt->execute();
+                                                
+                                                        foreach ($stmt->fetchAll() as $data) {
+                                                    ?>
+                                                    
+                                                    <option value=<?php echo $data['severity_id']?>><?php echo $data['severity']?></option>
+                                                    <?php 
+                                                        }
+                                                    ?>
                                                 </select>                                 
                                             </div>
                                         </div>
@@ -133,7 +156,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Attachment</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" name="txtAttach" type="file" placeholder="Drop files here to attach" required>
+                                                <input class="form-control" name="txtAttach" type="file"  placeholder="Drop files here to attach" required>
                                             </div>
 	                                        </div>
 	                                        <div class="form-group">
