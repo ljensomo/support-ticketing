@@ -6,7 +6,15 @@
                 <div class="side-user">
                     <div class="avatar"><img src="images/avatar1_50.jpg" alt="Avatar" /></div>
                     <div class="info">
-                        <a href="#">Jason Gicha</a>
+                    <?php
+                        $loggeduser = $_SESSION['admin'];
+                        $sql = "SELECT * FROM users WHERE username = ?";
+                        $res = $db->prepare($sql);
+                        $res->execute(array($loggeduser));
+                        $row = $res->fetch(PDO::FETCH_NUM);
+                        ?>
+
+                        <a href="#"><?php echo $row[3] . " " . $row[5]; ?></a>
                         <img src="images/state_online.png" alt="Status" /> <span>Online</span>
                     </div>
                 </div>
