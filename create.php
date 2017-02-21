@@ -50,8 +50,8 @@
                 <div class="page-head">
                     <h3>Fortis Technologies Corp.</h3>
                     <ol class="breadcrumb">
-                        <li>Home</li>
-                        <li><a href="create.php" class="active">Create Ticket</a></li>
+                        <li><a href="homebanner.php">Home</a></li>
+                        <li class="active">Create Ticket</a></li>
                         <li><a href="validate.php">View Ticket</a></li>
                     </ol>
                 </div>
@@ -67,12 +67,12 @@
                                     <hr>
                                 </div>
                                 <div class="content">
-                                    <form method="POST" action="controler\inserttickets.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
+                                    <form method="POST" action="includes\create_ticket_process.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Issue Type</label>
                                             <div class="col-sm-6">
                                                 <select class="form-control" name="sel_issue_type">
-                                                    <option value="1">  Bug</option>
+                                                    <option value="1">Bug</option>
                                                     <option value="2">Normal</option>
                                                 </select>                                 
 
@@ -116,7 +116,7 @@
                                                 <textarea class="form-control" placeholder="Problem Description" name="txtArea" required></textarea>
                                             </div>
                                         </div>
-                                        <!--
+                                        
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Serverity</label>
                                             <div class="col-sm-6">
@@ -129,14 +129,19 @@
                                                 </select>                                 
                                             </div>
                                         </div>
-                                        -->
+                                       
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Attachment</label>
                                             <div class="col-sm-6">
                                                 <input class="form-control" type="file" name="txtAttach" placeholder="Drop files here to attach"></textarea>
                                             </div>
+	                                        </div>
+	                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Transaction #</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="Transaction #" name="txtNO" type="text" required>
+                                            </div>
                                         </div>
-
                                 </div>
                                 <div class="spacer text-center">
                                     <button type="submit" class="btn btn-danger btn-lg">Create Ticket</button>
