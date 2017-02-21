@@ -89,7 +89,7 @@
                             <div class="widget-block  white-box calendar-box">
                                 <div class="col-md-6 blue-box calendar no-padding">
                                     <div class="padding ui-datepicker"></div>
-                                </div>
+                                </div>  
                                 <div class="col-md-6">
                                     <div class="padding">
                                         <h2 class="text-center">Monday</h2>
