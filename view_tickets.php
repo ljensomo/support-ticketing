@@ -46,8 +46,10 @@ require_once('connection.php');
      
    <!-- Fixed navbar -->
       <?php include'includes/portal_topbar.php';?>
-             
-         <div class="page-head">
+         
+         <div id="cl-wrapper" class="fixed-menu">
+            <div class="container-fluid" id="pcont">    
+                <div class="page-head">
                 <h3>Fortis Technologies Corp.</h3>
                 <ol class="breadcrumb">
                   <li><a href="HomeBanner.php">Home</a></li>
@@ -56,10 +58,11 @@ require_once('connection.php');
                 </a></ol><a href="view_tickets.php">
             </a></div>
 
-        <div class="cl-mcont">
+        <div class="container">
         
             <div class="row">
                 <div class="col-md-12">
+                     <div class="spacer"></div>
                     <div class="block-flat">
                  
                         
@@ -128,6 +131,7 @@ require_once('connection.php');
                     </div>              
                 </div>
             </div>
+
             <div class="col-md-12">
                   <ul class="nav nav-tabs">
                           <li class="active"><a href="#Responsive Comments" data-toggle="tab">Reponsive Comments</a></li>
@@ -153,7 +157,7 @@ require_once('connection.php');
                     </div>
                     
                 </div>
-
+                </div>
                     
            
 
