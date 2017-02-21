@@ -15,7 +15,7 @@ foreach ($required as $fields) {
     }
 }
 
-$sql = "SELECT COUNT(*) FROM status WHERE status_id =?";
+$sql = "SELECT COUNT(*) FROM status WHERE status_desc =?";
 $qry = $db->prepare($sql);
 $qry->execute(array($name));
 
