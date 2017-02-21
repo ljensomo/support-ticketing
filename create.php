@@ -133,7 +133,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Attachment</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" type="file" name="txtAttach" placeholder="Drop files here to attach"></textarea>
+                                                <input class="form-control" name="txtAttach" type="file" placeholder="Drop files here to attach" required>
                                             </div>
 	                                        </div>
 	                                        <div class="form-group">
@@ -145,7 +145,9 @@
                                 </div>
                                 <div class="spacer text-center">
                                     <button type="submit" class="btn btn-danger btn-lg">Create Ticket</button>
+                                        <button type="reset" class="btn btn-default btn-lg">Cancel</button>
                                 </div>
+
                             </div>
                             </form>
                         </div>
