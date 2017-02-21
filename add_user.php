@@ -71,7 +71,7 @@
                             <hr>
                           </div>
                           <div class="content">
-                             <form method="POST" action="#" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                             <form method="POST" action="includes/add_users_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
                               <div class="form-group">
                                 <label class="col-sm-3 control-label">First Name</label>
                                 <div class="col-sm-6">
@@ -102,7 +102,8 @@
                                 <label class="col-sm-3 control-label">Role</label>
                                 <div class="col-sm-6">
                                    <select class="form-control" name="sel_role">
-                                    <option value="5">Minor</option>
+                                    <option value="5">1</option>
+                                    <option value="5">2</option>
                                   </select>                                 
                                 </div>
                               </div>
@@ -122,6 +123,7 @@
                               </div>
                             <div class="spacer text-center">
                                 <button type="submit" class="btn btn-danger btn-lg">Save</button>
+                                <button type="reset" class="btn btn-default btn-lg">Cancel</button>
                             </div>
                            
                             </form>
