@@ -55,77 +55,86 @@
                 <div class="page-head">
                     <h2>Users</h2>
                     <ol class="breadcrumb">
-                    
+
                         <li><a href="users.php">Users</a></li>
-                        <li class="active">Add Users</li>
+                        <li class="active">Add User</li>
 
                     </ol>
 
                 </div>	
-        <div class="cl-mcont">
-                
-                <div class="block-flat">
-                          <div class="head">  
+                <div class="cl-mcont">
+
+                    <div class="block-flat">
+                        <div class="head">  
 
                             <h3>Ticket Informations</h3>
                             <hr>
-                          </div>
-                          <div class="content">
-                             <form method="POST" action="includes/add_users_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">First Name</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control" placeholder="First Name" name="txtfname" type="text">                               
+                        </div>
+                        <div class="content">
+                            <form method="POST" action="includes/add_users_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;" parsley-validate novalidate>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">First Name</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" placeholder="First Name" name="firstname" type="text" required>                               
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Middle Name</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" placeholder="M.I." name="middlename" type="text">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Last Name</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" placeholder="Last Name" name="lastname" type="text" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Contact Number</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" placeholder="Contact Number" name="contact" type="text" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Role</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="role">
+                                            <option></option>
+                                            <option value="1">Administrator</option>
+                                            <option value="2">User</option>
+                                        </select>                                 
+                                    </div>
+                                </div>
                                 
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Username</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" placeholder="Username" name="username" type="text" required>
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Middle Name</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control" placeholder="M.I." name="txtmname" type="text">
-                                    
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Password</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" placeholder="Password" id="password" name="password" type="password" required>
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Last Name</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control" placeholder="Last Name" name="txtlname" type="text">
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Confirm Password</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" placeholder="Confirm Password" name="confirm_password" id="confirm_password" type="password" required parsley-equalto="#password">
+                                    </div>
                                 </div>
-                              </div>
-                               <div class="form-group">
-                                <label class="col-sm-3 control-label">Contact Number</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control" placeholder="Contact Number" name="txtCnum" type="text">
+
+                                <div class="spacer text-center">
+                                    <button type="submit" class="btn btn-danger btn-lg">Save</button>
+                                    <button type="reset" class="btn btn-default btn-lg">Cancel</button>
                                 </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Role</label>
-                                <div class="col-sm-6">
-                                   <select class="form-control" name="sel_role">
-                                    <option value="5">1</option>
-                                    <option value="5">2</option>
-                                  </select>                                 
-                                </div>
-                              </div>
-                               
-                              
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Username</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control" placeholder="Username" name="txtEmail" type="email">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Password</label>
-                                <div class="col-sm-6">
-                                  <input class="form-control" placeholder="Password" name="txtpass" type="password">
-                                </div>
-                              </div>
-                            <div class="spacer text-center">
-                                <button type="submit" class="btn btn-danger btn-lg">Save</button>
-                                <button type="reset" class="btn btn-default btn-lg">Cancel</button>
-                            </div>
-                           
+
                             </form>
                         </div>
                     </div>
@@ -134,32 +143,28 @@
 
 
 
-        <script src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
-        <script type="text/javascript" src="js/jquery.sparkline/jquery.sparkline.min.js"></script>
-        <script type="text/javascript" src="js/jquery.easypiechart/jquery.easy-pie-chart.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
-        <script type="text/javascript" src="js/behaviour/general.js"></script>
-        <script src="js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
-        <script type="text/javascript" src="js/jquery.nestable/jquery.nestable.js"></script>
-        <script type="text/javascript" src="js/bootstrap.switch/bootstrap-switch.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="js/jquery.select2/select2.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
-        <script type="text/javascript" src="js/jquery.gritter/js/jquery.gritter.js"></script>
-        <script type="text/javascript" src="js/jquery.datatables/jquery.datatables.min.js"></script>
-        <script type="text/javascript" src="js/jquery.datatables/bootstrap-adapter/js/datatables.js"></script>
 
+            <script src="js/jquery.js"></script>
+            <script src="js/jquery.select2/select2.min.js" type="text/javascript"></script>
+            <script src="js/jquery.parsley/parsley.js" type="text/javascript"></script>
+            <script src="js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
+            <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
+            <script type="text/javascript" src="js/jquery.nestable/jquery.nestable.js"></script>
+            <script type="text/javascript" src="js/behaviour/general.js"></script>
+            <script src="js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
+            <script type="text/javascript" src="js/bootstrap.switch/bootstrap-switch.min.js"></script>
+            <script type="text/javascript" src="js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
-        <script type="text/javascript" src="js/table.js"></script>
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="js/behaviour/voice-commands.js"></script>
-        <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/jquery.flot/jquery.flot.js"></script>
-        <script type="text/javascript" src="js/jquery.flot/jquery.flot.pie.js"></script>
-        <script type="text/javascript" src="js/jquery.flot/jquery.flot.resize.js"></script>
-        <script type="text/javascript" src="js/jquery.flot/jquery.flot.labels.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    //initialize the javascript
+                    App.init();
+                });
+            </script>
+            <!-- Bootstrap core JavaScript
+            ================================================== -->
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="js/behaviour/voice-commands.js"></script>
+            <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
     </body>
 </html>
