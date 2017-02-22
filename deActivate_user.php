@@ -55,8 +55,8 @@
                 <div class="page-head">
                     <h2>Users</h2>
                     <ol class="breadcrumb">
-                      	<li class="active">Users</li>
-                        <li><a href="add_user.php">Add Users</a></li>
+                        <li><a href="users.php">Users</a></li>
+                        <li class="active">De-Activate User</a></li>
                     </ol>
                 </div>	
                 <div class="cl-mcont">
@@ -65,63 +65,55 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
-                                    <a class="btn btn-primary" href="add_user.php">Add User</a>
+                                    <h3>Activate User</h3>
                                 </div>
                                 <div class="content">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="datatable" >
-                                            <thead>
-                                                <tr>
-                                                    <th>User ID</th>
-                                                    <th>Username</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Role</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $sql = "SELECT * FROM users a INNER JOIN user_level b ON a.userlevel_id=b.userlevel_id";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>
-                                                    <tr class="odd gradeX">
-                                                        <td><?php echo $row['userId']; ?></td>
-                                                        <td><?php echo $row['username']; ?></td>
-                                                        <td><?php echo $row['fname']; ?></td>
-                                                        <td><?php echo $row['lname']; ?></td>
-                                                        <td><?php echo $row['user_desc']; ?></td>
-                                                        <td class="center">
-                                                <center>
-                                                    <?php if ($row['is_active'] == 1) { ?>
-                                                        <a class="btn btn-default btn-sm" href="deactivate_user.php?cid=<?php echo $row['userId']; ?>" type="button"p><i class="fa fa-lock"></i></a>
-                                                    <?php } else { ?>
-                                                        <a class="btn btn-default btn-sm" href="activate_user.php?cid=<?php echo $row['userId']; ?>"><i class="fa fa-unlock"></i></a>
-                                                    <?php } ?>
-                                                    <a class="btn btn-info btn-sm" href="view_user.php?cid=<?php echo $row['userId']; ?>"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="#" data-toggle="modal"><i class="fa fa-pencil"></i></a>
-                                                    <a class="btn btn-danger btn-sm" href="delete_user.php?cid=<?php echo $row['userId']; ?>" type="button"p><i class="fa fa-trash-o"></i></a> 
-                                                </center>        
-                                                </td>
-                                                </tr>
-                                                <?php
-                                            }
-                                            ?>
-                                            </tbody>
-                                        </table>							
+                                    <?php
+                                    $id = "";
+                                    $fname = "";
+                                    $lname = "";
+                                    if (isset($_GET['cid'])) {
+                                        $id = $_GET['cid'];
+                                        $sqlLoader = "SELECT * FROM users where userId=?";
+                                        $resLoader = $db->prepare($sqlLoader);
+                                        $resLoader->execute(array($id));
+                                        while ($rowLoader = $resLoader->fetch(PDO::FETCH_ASSOC)) {
+                                            $id = $rowLoader['userId'];
+                                            $fname = $rowLoader['fname'];
+                                            $lname = $rowLoader['lname'];
+                                        }
+                                    }
+                                    ?>
+                                    <form method="POST" action="includes/deactivate_user_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                                        <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">First Name</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="fname" id="fname" type="text" value="<?php echo $fname; ?>" readonly>                               
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Last Name</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="lname" id="lname" value="<?php echo $lname; ?>" type="text" readonly>                               
+                                            </div>
+                                        </div>
+                                         <div class="spacer text-center">
+                                        <a href="users.php" class="btn btn-default btn-md">Back</a>
+                                        <button class="btn btn-danger btn-md" type="submit">De-Activate</button> 
                                     </div>
-                                </div>
-                            </div>				
-                        </div>
+                                    </form>
+                                    
+                                   
+
+                                    
                     </div>
-
                 </div>
-            </div> 
 
+            </div>
         </div>
-      
+
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
         <script type="text/javascript" src="js/jquery.sparkline/jquery.sparkline.min.js"></script>
@@ -150,4 +142,4 @@
         <script type="text/javascript" src="js/jquery.flot/jquery.flot.resize.js"></script>
         <script type="text/javascript" src="js/jquery.flot/jquery.flot.labels.js"></script>
     </body>
-    </html>
+</html>
