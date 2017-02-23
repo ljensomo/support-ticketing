@@ -54,46 +54,66 @@
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
                     <h2>View Tickets</h2>
-                    
                 </div>	
                 <div class="cl-mcont">
 
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block-flat">
-                        <div class="header">                            
-                            <h3>Tickets</h3>
-                        </div>
-                        <div class="content">
-                            <table class="no-border">
-                                <thead class="no-border">
-                                    <tr>
-                                        <th style="width:80%;">Desciptions</th>
-                                        <th class="text-right">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="no-border-y">
-                                    <tr>
-                                        <td><strong>Cloud Services</strong><br> This option make active the cloud services</td>
-                                        <td class="text-right"><button class="btn btn-grey btn-sm" type="button"p><i class="fa fa-lock"></i></button</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Notifications</strong><br> This option actives the notification system</td>
-                                        <td class="text-right"><button class="btn btn-grey btn-sm" type="button"p><i class="fa fa-unlock"></i></button</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Backup</strong><br> This option actives automatic daily backups</td>
-                                        <td class="text-right"><button class="btn btn-grey btn-sm" type="button"p><i class="fa fa-lock"></i></button</td>
-                                    </tr>
-                                </tbody>
-                            </table>                        
-                        </div>
-                    </div>				
+                                <div class="content">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="datatable" >
+                                            <thead>
+                                                <tr>
+                                                    
+                                                    <th>Subject</th>
+                                                    <th>Company Name</th>
+                                                    <th>Date Created</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="no-border-y">
+                                                <?php
+                                                $sql = "SELECT * FROM ticket";
+                                                $res = $db->prepare($sql);
+                                                $res->execute();
+                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                    ?>
+                                                    <tr class="odd gradeX">
+                                                        
+                                                        <td><strong><?php echo $row['problem_sum']; ?></strong><br><?php echo $row['problem_desc']; ?></td>
+                                                        <td><?php echo $row['CompanyName']; ?></td>
+                                                        <td><?php echo $row['date_created']; ?></td>
+                                                        <td><?php echo $row['ticketstatus_id']; ?></td>
+                                                        <td class="center">
+                                                <center>
+                                                    
+                                                    
+                                                    <a class="btn btn-warning btn-sm" href="#" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-danger btn-sm" href="#" type="button"p><i class="fa fa-trash-o"></i></a> 
+                                                    <a class="btn btn-default btn-sm" href="#" type="button"p><i class="fa fa-tag"></i></a> 
+                                                    <a class="btn btn-primary btn-sm" href="#" type="button"p><i class="fa fa-thumb-tack"></i></a> 
+                                                    <a class="btn btn-success btn-sm" href="#" type="button"p><i class="fa fa-reply"></i></a> 
+                                                                                                     
+                                                </center>        
+                                                </td>
+
+                                                </tr>
+                                                <?php
+                                            }
+                                            ?>
+                                            </tbody>
+                                        </table>                            
+                                    </div>
+                                </div>
+                            </div>              
                         </div>
                     </div>
 
                 </div>
             </div> 
+
 
         </div>
 
