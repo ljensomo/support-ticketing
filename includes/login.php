@@ -32,15 +32,16 @@ if ($error) {
     msgAlert($alert = "The user you entered is not yet activated. Please contact your administrator to activate your account.");
     openWindow($goto = "../login.html");
 } else if (password_verify($pw, $row['password'])) {
-
-    if ($row['userlevel_id'] == '1') {
+    $_SESSION['admin'] = $row['username'];
+    openWindow($goto = "../index.php");
+    /*if ($row['userlevel_id'] == '1') {
         $_SESSION['admin'] = $row['username'];
         msgAlert($alert = "Login Successful");
         openWindow($goto = "../index.php");
     } else {
         msgAlert($alert = "Access Denied");
         openWindow($goto = "../login.html");
-    }
+    }*/
 } else if (!password_verify($pw, $row['password'])) {
     msgAlert($alert = "The password you entered is incorrect. Please try again");
     openWindow($goto = "../login.html");

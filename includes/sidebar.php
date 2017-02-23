@@ -19,22 +19,28 @@
                     </div>
                 </div>
                 <ul class="cl-vnavigation">
-                    <li><a href="index.php"><i class="fa fa-home"></i><span>Home</span></a>
+                    <li><a href="index.php"><i class="fa fa-dashboard"></i><span>Home</span></a>
                     <li><a href="#"><i class="fa fa-envelope nav-icon"></i><span>Support</span></a>
                         <ul class="sub-menu">
-                            <li><a href="createticket.php"><span class="label label-primary pull-right">New</span>Issue Ticket</a></li>
+                            <li><a href="createticket.php"><span class="label label-primary pull-right">New</span>Add Ticket</a></li>
                         </ul>
                     </li>
-                    <li><a href="users.php"><i class="fa fa-user"></i><span>Users</span></a>
+                    <?php if ($row[6] == 1) { ?>
+                        <li><a href="users.php"><i class="fa fa-user"></i><span>Users</span></a>
+                        <li><a href= "#"><i class="fa fa-user"></i><span>Assigned</span></a>
                     </li>
-                    <li><a href="admin_view_ticket.php"><i class="fa fa-list-alt"></i><span>View ticket</span></a></li>
+                    <?php } ?>
+
+                    </li>
+                    <li><a href="admin_view_ticket.php"><i class="fa fa-pencil"></i><span>View ticket</span></a></li>
+                    <?php if ($row[6] == 1) { ?>
                        <li><a href="#"><i class="fa fa-gear nav-icon"></i><span>Settings</span></a>
                         <ul class="sub-menu">
                             <li><a href="severity.php">Severity</a></li>
                             <li><a href="resolution.php">Resolution</a></li>
                             <li><a href="status.php">Status</a></li>
                         </ul>
-                
+                    <?php } ?>
                     <li><a href= "homebanner.php"><i class="fa fa-table"></i><span>About Us</span></a>
                     </li>              
                     <li><a href="#"><i class="fa fa-envelope nav-icon"></i><span>Email</span></a>
