@@ -110,6 +110,12 @@ require_once('connection.php');
                                                 <textarea class="form-control" placeholder="Problem Description" name="txtArea" required></textarea>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Transaction #</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="Transaction #" name="txtNO" type="text" required>
+                                            </div>
+                                        </div>
                                         
                                         <div class="form-group">
                                                                                 
@@ -119,12 +125,7 @@ require_once('connection.php');
                                                 <input class="form-control" name="txtAttach" type="file"  placeholder="Drop files here to attach" required>
                                             </div>
 	                                        </div>
-	                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Transaction #</label>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="text" placeholder="Transaction #" name="txtNO" type="text" required>
-                                            </div>
-                                        </div>
+	                                        
                                 </div>
                                 <div class="spacer text-center">
                                     <button type="submit" class="btn btn-danger btn-lg">Create Ticket</button>
