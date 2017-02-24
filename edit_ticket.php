@@ -49,8 +49,8 @@
         <?php include 'includes/topbar.php'; ?>
 
         <div class="fixed-menu sb-collapsed" id="cl-wrapper">
-		<?php include 'includes/sidebar.php'; ?>
-		<div class="page-aside email">
+        <?php include 'includes/sidebar.php'; ?>
+        <div class="page-aside email">
       <div class="fixed nano nscroller">
         <div class="content">
           <div class="header">
@@ -62,9 +62,9 @@
           </div>        
           <div class="mail-nav collapse">
             <ul class="nav nav-pills nav-stacked ">
-              <li class="active"><a href="#"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i> Your unresolved tickets</a></li>
-              <li><a href="unassigned_tickets.php"><i class="fa fa-envelope"></i> Unassgined tickets</a></li>
-              <li><a href="all_unsolved_tickets.php"><i class="fa fa-suitcase"></i> All unsolved tickets</a></li>
+              <li><a href="tickets.php"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i> Your unresolved tickets</a></li>
+              <li><a href="unassgined_tickets.php"><i class="fa fa-envelope"></i> Unassgined tickets</a></li>
+              <li class="active"><a href="#"><i class="fa fa-suitcase"></i> All unsolved tickets</a></li>
               <li><a href="pending_tickets.php"><span class="label label-default pull-right">3</span><i class="fa fa-file-o"></i> Pending tickets</a></li>
 
             </ul>
@@ -75,53 +75,63 @@
       </div>
 
 
-		</div>		
-	<div class="container-fluid" id="pcont">
+        </div>      
+    <div class="container-fluid" id="pcont">
     <div class="block-flat">
-						<div class="header">							
-							<h3>Tickets</h3>
-						</div>
-						<div class="content">
-							<table class="no-border">
-								<thead class="no-border">
-									<tr>
-										<th style="width:4s0%;">Subject</th>
-										<th>Company Name</th>
-										<th>Requester</th>
-										<th>Date Created</th>
-										<th class="text-right">Status</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody class="no-border-y">
-								<?php
-                                                $sql = "SELECT * FROM ticket WHERE ticketstatus_id=1";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>
-									<tr>
-										<td><strong><?php echo $row['problem_sum']; ?></strong><br><?php echo $row['problem_desc']; ?></td>
-										<td><?php echo $row['CompanyName']; ?></td>
-										<td><?php echo $row['Reporter']; ?></td>
-										<td><?php echo $row['date_created']; ?></td>
-										<td class="text-center"><?php echo $row['ticketstatus_id']; ?></td>
-										<td class="center">
-										
-											<a class="btn btn-info btn-sm" href="#.php?id=<?php echo $row['ID']; ?>"><i class="fa fa-search">
-											</i></a>
-											<a class="btn btn-warning btn-sm" href="edit_ticket.php?id=<?php echo $row['ID']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
-										
-										</td>
-									</tr>
-									  <?php
-                                            }
-                                            ?>
-								</tbody>
-							</table>						
-						</div>
-					</div>
-	
+                   <div class="header">                         
+                                    <h3>Ticket</h3>
+                                </div>
+                                <div class="content">
+                                    <?php
+                                    $id = "";
+                                    $companyname = "";
+                                    $subject = "";
+                                    $requester = "";
+                                    if (isset($_GET['id'])) {
+                                        $id = $_GET['id'];
+                                        $sqlLoader = "SELECT * FROM ticket where ID=?";
+                                        $resLoader = $db->prepare($sqlLoader);
+                                        $resLoader->execute(array($id));
+                                        while ($rowLoader = $resLoader->fetch(PDO::FETCH_ASSOC)) {
+                                            $id = $rowLoader['ID'];
+                                            $companyname = $rowLoader['CompanyName'];
+                                            $subject = $rowLoader['problem_sum'];
+                                            $requester = $rowLoader['Reporter'];
+                                        }
+                                    }
+                                    ?>
+                                    <form method="POST" action="includes/edit_ticket_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Company Name</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="companyname" id="companyname" type="text" value="<?php echo $companyname; ?>" readonly>                               
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="col-sm-3 control-label">Requester</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="requester" id="requester" value="<?php echo $requester; ?>" type="text" readonly>                               
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Description</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="subject" id="subject" value="<?php echo $subject; ?>" type="text" readonly>                               
+                                            </div>
+                                        </div>
+
+                                        <div class="spacer text-center">
+                                            <button type="submit" class="btn btn-danger btn-md">Update</button>
+                                            <button type="reset" class="btn btn-default btn-md">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                       
+                    </div>
+    
 </div>
 
         <script src="js/jquery.js"></script>

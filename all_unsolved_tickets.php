@@ -62,9 +62,9 @@
           </div>        
           <div class="mail-nav collapse">
             <ul class="nav nav-pills nav-stacked ">
-              <li class="active"><a href="#"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i> Your unresolved tickets</a></li>
-              <li><a href="unassigned_tickets.php"><i class="fa fa-envelope"></i> Unassgined tickets</a></li>
-              <li><a href="all_unsolved_tickets.php"><i class="fa fa-suitcase"></i> All unsolved tickets</a></li>
+              <li><a href="tickets.php"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i> Your unresolved tickets</a></li>
+              <li><a href="unassgined_tickets.php"><i class="fa fa-envelope"></i> Unassgined tickets</a></li>
+              <li class="active"><a href="#"><i class="fa fa-suitcase"></i> All unsolved tickets</a></li>
               <li><a href="pending_tickets.php"><span class="label label-default pull-right">3</span><i class="fa fa-file-o"></i> Pending tickets</a></li>
 
             </ul>
@@ -107,11 +107,9 @@
 										<td><?php echo $row['date_created']; ?></td>
 										<td class="text-center"><?php echo $row['ticketstatus_id']; ?></td>
 										<td class="center">
-										
-											<a class="btn btn-info btn-sm" href="#.php?id=<?php echo $row['ID']; ?>"><i class="fa fa-search">
-											</i></a>
-											<a class="btn btn-warning btn-sm" href="edit_ticket.php?id=<?php echo $row['ID']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
-										
+										<center>
+											<a class="btn btn-info btn-sm" href="#?cid=<?php echo $row['ID']; ?>"><i class="fa fa-search"></i></a>
+										</center>
 										</td>
 									</tr>
 									  <?php
