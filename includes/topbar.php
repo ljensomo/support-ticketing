@@ -20,7 +20,6 @@ require_once 'connection.php';
         </div>
         <div class="navbar-collapse collapse">
 
-
             <ul class="dropdown-menu">
                 <li><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
