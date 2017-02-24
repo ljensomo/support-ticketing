@@ -71,29 +71,7 @@ require_once('connection.php');
                                 </div>
                                 <div class="content">
                                     <form method="POST" action="includes\create_ticket_process.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Issue Type</label>
-                                            <div class="col-sm-6">
-                                                <select class="form-control" name="sel_issue_type">
-                                                    
-                                                    <?php
-                                                        $query = "SELECT * FROM issue";
-                                                        $stmt = $con->prepare($query);
-                                                        $stmt->execute();
-                                                
-                                                        foreach ($stmt->fetchAll() as $data) {
-                                                    ?>
-                                                    
-                                                    <option value=<?php echo $data['issue_id']?>><?php echo $data['Issue_desc']?></option>
-                                                    <?php 
-                                                        }
-                                                    ?>
-                                                
-                                                    
-                                                </select>                                 
-
-                                            </div>
-                                        </div>
+                                       
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Company Name</label>
                                             <div class="col-sm-6">
@@ -134,25 +112,7 @@ require_once('connection.php');
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">Serverity</label>
-                                            <div class="col-sm-6">
-                                                <select class="form-control" name="sel_sev">
-                                                    <?php
-                                                        $query = "SELECT * FROM severity";
-                                                        $stmt = $con->prepare($query);
-                                                        $stmt->execute();
-                                                
-                                                        foreach ($stmt->fetchAll() as $data) {
-                                                    ?>
-                                                    
-                                                    <option value=<?php echo $data['severity_id']?>><?php echo $data['severity']?></option>
-                                                    <?php 
-                                                        }
-                                                    ?>
-                                                </select>                                 
-                                            </div>
-                                        </div>
-                                       
+                                                                                
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Attachment</label>
                                             <div class="col-sm-6">
