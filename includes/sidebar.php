@@ -1,7 +1,7 @@
-<div class="cl-sidebar" data-position="right" data-step="1" data-intro="<strong>Fixed Sidebar</strong> <br/> It adjust to your needs." >
+<div class="cl-sidebar">
     <div class="cl-toggle"><i class="fa fa-bars"></i></div>
     <div class="cl-navblock">
-        <div class="menu-space">
+        <div class="menu-space nano nscroller" style="height: 311px;">
             <div class="content">
                 <div class="side-user">
                     <div class="avatar"><img src="images/avatar1_50.jpg" alt="Avatar" /></div>
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <ul class="cl-vnavigation">
-                    <li><a href="index.php"><i class="fa fa-dashboard"></i><span>Home</span></a>
+                    <li><a href="index.php"><i class="fa fa-home"></i><span>Home</span></a>
                     <li><a href="#"><i class="fa fa-envelope nav-icon"></i><span>Support</span></a>
                         <ul class="sub-menu">
                             <li><a href="createticket.php"><span class="label label-primary pull-right">New</span>Add Ticket</a></li>
@@ -27,12 +27,19 @@
                     </li>
                     <?php if ($row[6] == 1) { ?>
                         <li><a href="users.php"><i class="fa fa-user"></i><span>Users</span></a>
-                        <li><a href= "#"><i class="fa fa-user"></i><span>Assigned</span></a>
+                        
                     </li>
                     <?php } ?>
 
                     </li>
-                    <li><a href="admin_view_ticket.php"><i class="fa fa-pencil"></i><span>View ticket</span></a></li>
+                    <li><a href="tickets.php"><i class="fa fa-ticket"></i><span>Tickets</span></a>
+                       <!-- <ul class="sub-menu">
+                            <li><a href="#">Unsolved Tickets</a></li>
+                            <li><a href="#">Unassigned Tickets</a></li>
+                            <li><a href="#">All unsolved Tickets</a></li>
+                            <li><a href="#">Pending Tickets</a></li>
+                            <li><a href="#">Solved Tickets</a></li>
+                        </ul></li>-->
                     <?php if ($row[6] == 1) { ?>
                        <li><a href="#"><i class="fa fa-gear nav-icon"></i><span>Settings</span></a>
                         <ul class="sub-menu">
