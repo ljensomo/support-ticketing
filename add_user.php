@@ -105,6 +105,7 @@
                                             <option></option>
                                             <option value="1">Administrator</option>
                                             <option value="2">User</option>
+                                            <option value="2">Watcher</option>
                                         </select>                                 
                                     </div>
                                 </div>
