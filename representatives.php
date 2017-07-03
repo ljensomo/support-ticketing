@@ -40,6 +40,11 @@ require_once('connection.php');
 
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
+         <script type="text/javascript" src="script/jquery-3.2.1.js"></script>
+          <script src="sweetalert-master/dist/sweetalert.min.js"></script>
+   	 <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+
+
 
     </head>
     <body>
@@ -115,7 +120,7 @@ require_once('connection.php');
                                                     <?php } ?>
                                                         <a class="btn btn-info btn-sm" href="#.php?id=<?php echo $row2[0]; ?>"><i class="fa fa-pencil">
                                             </i></a>
-                                            <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#assign-modal"><i class="fa fa-trash-o"></i></a></center>
+                                            <a class="btn btn-danger btn-sm" type =" button" onclick="delete()"><i class="fa fa-trash-o"></i></a></center>
                                                     </td>
                                                     
                                                 </tr>
@@ -132,6 +137,13 @@ require_once('connection.php');
                     </div>              
                 </div>
             </div>
+            <script type="text/javascript">
+            function delete()
+            
+            
+            
+            </script>
+            
 
                     
            
