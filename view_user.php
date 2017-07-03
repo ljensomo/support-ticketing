@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="images/favicon.png">
+        
 
         <title>Fortis Ticketing System</title>
         <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
@@ -76,15 +76,15 @@
                                     $role = "";
                                     if (isset($_GET['cid'])) {
                                         $id = $_GET['cid'];
-                                        $sqlLoader = "SELECT * FROM users where userId=?";
+                                        $sqlLoader = "SELECT * FROM users where id=?";
                                         $resLoader = $db->prepare($sqlLoader);
                                         $resLoader->execute(array($id));
                                         while ($rowLoader = $resLoader->fetch(PDO::FETCH_ASSOC)) {
-                                            $id = $rowLoader['userId'];
+                                            $id = $rowLoader['id'];
                                             $fname = $rowLoader['fname'];
                                             $mname = $rowLoader['mname'];
                                             $lname = $rowLoader['lname'];
-                                            $role = $rowLoader['userlevel_id'];
+                                            
                                         }
                                     }
                                     ?>
@@ -114,7 +114,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Role</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" name="lname" id="lname" value="<?php echo $role; ?>" type="text" readonly>                               
+                                                <input class="form-control" name="lname" id="lname" value="" type="text" readonly>                               
                                             </div>
                                         </div>
                                          <div class="spacer text-center">

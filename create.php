@@ -8,7 +8,7 @@ require_once('connection.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="images/favicon.png">
+        
 
         <title>Fortis Ticketing System</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
@@ -55,7 +55,7 @@ require_once('connection.php');
                     <ol class="breadcrumb">
                         <li><a href="homebanner.php">Home</a></li>
                         <li class="active">Create Ticket</a></li>
-                        <li><a href="validate.php">View Ticket</a></li>
+                        <li><a href="view_tickets.php">View Ticket</a></li>
                     </ol>
                 </div>
 
@@ -69,16 +69,16 @@ require_once('connection.php');
                                     <h3>Ticket Informations</h3>
                                     <hr>
                                 </div>
+                                <?php
+                                            $loggeduser = $_SESSION['admin'];
+                                            $sql = "SELECT * FROM user_info WHERE username = ?";
+                                            $res = $db->prepare($sql);
+                                            $res->execute(array($loggeduser));
+                                            $row = $res->fetch(PDO::FETCH_NUM);
+                                ?>                               
                                 <div class="content">
                                     <form method="POST" action="includes\create_ticket_process.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
-                                       
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Company Name</label>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="text" placeholder="Company name" name="txtCname" type="text" required>
-
-                                            </div>
-                                        </div>
+                                        <input type="hidden" name="company_name" value="<?php echo $row[1]; ?>"/>   
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Reporter</label>
                                             <div class="col-sm-6">
@@ -88,7 +88,7 @@ require_once('connection.php');
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Contact Number</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" type="text" placeholder="Contact Number" name="txtCnum" type="text">
+                                                <input class="form-control" type="text" placeholder="Contact Number" name="txtCnum" type="text" maxlength="11">
                                             </div>
                                         </div>
                                         <div class="form-group">

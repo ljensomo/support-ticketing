@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="images/favicon.png">
+        
 
         <title>Fortis Ticketing System</title>
         <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
@@ -67,11 +67,11 @@
                     <div class="block-flat">
                         <div class="head">  
 
-                            <h3>Ticket Informations</h3>
+                            <h3>Input Details</h3>
                             <hr>
                         </div>
                         <div class="content">
-                            <form method="POST" action="includes/add_users_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;" parsley-validate novalidate>
+                            <form method="POST" action="add_user_account.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;" parsley-validate novalidate>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">First Name</label>
                                     <div class="col-sm-6">
@@ -99,44 +99,18 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Role</label>
+                                    <label class="col-sm-3 control-label">E-mail</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="role">
-                                            <option></option>
-                                            <option value="1">Administrator</option>
-                                            <option value="2">User</option>
-                                            <option value="2">Watcher</option>
-                                        </select>                                 
+                                        <input class="form-control" placeholder="E-mail address" name="mail" type="text" required>
                                     </div>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Username</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" placeholder="Username" name="username" type="text" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Password</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" placeholder="Password" id="password" name="password" type="password" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Confirm Password</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" placeholder="Confirm Password" name="confirm_password" id="confirm_password" type="password" required parsley-equalto="#password">
-                                    </div>
-                                </div>
-
                                 <div class="spacer text-center">
-                                    <button type="submit" class="btn btn-danger btn-lg">Save</button>
+                                    <button type="submit" class="btn btn-danger btn-lg">Next</button>
                                     <button type="reset" class="btn btn-default btn-lg">Cancel</button>
                                 </div>
 
                             </form>
+                            
                         </div>
                     </div>
                 </div>

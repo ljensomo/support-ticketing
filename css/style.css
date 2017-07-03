@@ -3165,7 +3165,7 @@ div.dataTables_length label select {
 h2,
 h1:first-child {
     margin-top: 0;
- border-bottom: 1px solid #9a0201;
+
 }
 /*Tab Bottom*/
 .tab-bottom .nav-tabs {
@@ -5531,4 +5531,12 @@ ul.timeline li > .date {
     .cl-sidebar .collapse-button {
         display: none;
     }
+}
+#menu:hover{
+    background-color: #CCA1A1;
+    height: 100%;
+    width: 100%;
+    transition: .5s;
+    padding-left: 20px;
+    font-color: white;
 }

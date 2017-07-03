@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="images/favicon.png">
+      
 
         <title>Fortis Ticketing System</title>
         <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
@@ -52,39 +52,70 @@
             <?php include 'includes/sidebar.php'; ?>
 
             <div class="container-fluid" id="pcont">
-                <div class="cl-mcont">
+                <div class="block-flat">
 
                     <div class="stats_bar">
                         <div class="butpro butstyle" data-step="2" data-intro="<strong>Beautiful Elements</strong> <br/> If you are looking for a different UI, this is for you!.">
-                            <div class="sub"><h3>THE CLIENTS</h3><span id="total_clientes">170</span></div>
-                            <div class="stat"><span class="spk1"><canvas style="display: inline-block; width: 74px; height: 16px; vertical-align: top;" width="74" height="16"></canvas></span></div>
+                            <?php
+                                                $sql = "SELECT COUNT(*) FROM ticket";
+                                                $res = $db->prepare($sql);
+                                                $res->execute();
+                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                    ?>                        
+                            <div class="sub"><h3>FORTIS CLIENTS</h3><span id="total_clientes"><?php echo $row['COUNT(*)']; ?></span></div>
+                            <div class="stat btn-danger btn-lg"><i class="fa fa-users"></i></div>
+                            <?php } ?>
+                        </div>
+
+
+                        <div class="butpro butstyle">
+                        <?php
+                                                $sql = "SELECT COUNT(*) FROM ticket WHERE ticketstatus_id=1";
+                                                $res = $db->prepare($sql);
+                                                $res->execute();
+                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                    ?>
+
+                            <div class="sub"><h3>OPEN TICKETS</h3><span><?php echo $row['COUNT(*)']; ?></span></div>
+                            <div class="stat btn-info btn-lg"><i class="fa fa-ticket"></i></div>
+                            <?php } ?>
                         </div>
                         <div class="butpro butstyle">
-                            <div class="sub"><h3>OPEN TICKETS</h3><span>951,611</span></div>
-                            <div class="stat"><span class="up"> 13,5%</span></div>
+                        <?php
+                                                $sql = "SELECT COUNT(*) FROM ticket WHERE ticketstatus_id=3";
+                                                $res = $db->prepare($sql);
+                                                $res->execute();
+                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                    ?>                        
+                            <div class="sub"><h3>RESOLVED TICKETS</h3><span><?php echo $row['COUNT(*)']; ?></span></div>
+                            <div class="stat btn-warning btn-lg"><i class="fa fa-tags"></i></div>
+                            <?php } ?>
+                        </div>  
+                        <div class="butpro butstyle">
+                        <?php
+                                                $sql = "SELECT COUNT(*) FROM ticket WHERE ticketstatus_id=5";
+                                                $res = $db->prepare($sql);
+                                                $res->execute();
+                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                    ?>                        
+                            <div class="sub"><h3>ONGOING TICKETS</h3><span><?php echo $row['COUNT(*)']; ?></span></div>
+                            <div class="stat btn-primary btn-lg"><i class="fa fa-tasks"></i></div>
+                            <?php } ?>
+                        </div>  
+                        <div class="butpro butstyle">
+                        <?php
+                                                $sql = "SELECT COUNT(*) FROM ticket WHERE ticketstatus_id=2";
+                                                $res = $db->prepare($sql);
+                                                $res->execute();
+                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                    ?>                        
+                            <div class="sub"><h3>PENDING TICKETS</h3><span><?php echo $row['COUNT(*)']; ?></span></div>
+                            <div class="stat btn-success btn-lg"><i class="fa fa-edit"></i></div>
+                            <?php } ?>
+
+
                         </div>
-                        <div class="butpro butstyle">
-                            <div class="sub"><h3>CLOSED TICKETS</h3><span>125</span></div>
-                            <div class="stat"><span class="down"> 20,7%</span></div>
-                        </div>  
-                        <div class="butpro butstyle">
-                            <div class="sub"><h3>ONGOING TICKETS</h3><span>18</span></div>
-                            <div class="stat"><span class="equal"> 0%</span></div>
-                        </div>  
-                        <div class="butpro butstyle">
-                            <div class="sub"><h3>THE ASSIGNEE</h3><span>3%</span></div>
-                            <div class="stat"><span class="spk2"></span></div>
-                        </div>
-                        <div class="butpro butstyle">
-                            <div class="sub"><h3>CRITICAL TICKETS</h3><span>184</span></div>
-                            <div class="stat"><span class="spk3"></span></div>
-                        </div>  
-
-                    </div>  
-
-
-
-                    <div class="row dash-cols">
+                        <div class="row dash-cols">
                         <div class="col-sm-6 col-md-6">
                             <div class="widget-block  white-box calendar-box">
                                 <div class="col-md-6 blue-box calendar no-padding">
@@ -276,118 +307,15 @@
                                                 </div>
                                             </form>
                                         </div>
+                    
+
+                        
+                    </div>
+
                                     </div>                        
                                 </div>
                             </div>
-                        </div>      
-                    </div>
-
-
-                    <div class="row dash-cols">
-                        <div class="col-sm-6 col-md-6 col-lg-4">
-                            <div class="widget-block">
-                                <div class="white-box padding">
-                                    <div class="row info">
-                                        <div>
-                                            <h3>Your Goals</h3>
-
-                                        </div>
-                                        <div>
-                                            <div id="com_stats" style="height:98px;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-sm-6 col-md-6 col-lg-4">
-                            <div class="widget-block">
-                                <div class="white-box padding">
-                                    <div class="row info text-shadow">
-                                        <div class="col-xs-12">
-                                            <h3>Comments</h3>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <div id="com2_stats" style="height:98px;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-sm-6 col-md-6 col-lg-4">
-                            <div class="widget-block">
-                                <div class="white-box">
-                                    <div class="fact-data">
-                                        <div class="epie-chart" data-percent="45"><span>0%</span></div>
-                                    </div>
-                                    <div class="fact-data no-padding text-shadow">
-                                        <h3>Users sales</h3>
-                                        <h2>4,522</h2>
-                                        <p>Monthly sales from users.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-                    </div>
-
-                    <div class="row dash-cols">
-                        <div class="col-sm-6 col-md-6 col-lg-4">
-                            <div class="block">
-                                <div class="header">
-                                    <h2><i class="fa fa-comment"></i>Comments</h2>
-                                </div>
-                                <div class="content no-padding">
-                                    <div class="fact-data text-center">
-                                        <h3>Positive</h3>
-                                        <h2>60%</h2>
-                                    </div>
-                                    <div class="fact-data text-center">
-                                        <h3>Negative</h3>                           
-                                        <h2>40%</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-sm-6 col-md-6 col-lg-4">
-                            <div class="block">
-                                <div class="header">
-                                    <h2><i class="fa fa-bug"></i>Tickets</h2>
-                                </div>
-                                <div class="content no-padding">
-                                    <div class="fact-data text-center">
-                                        <h3>Frequency</h3>
-                                        <h2>53%</h2>
-                                    </div>
-                                    <div class="fact-data text-center">
-                                        <h3>Pending</h3>                            
-                                        <h2>13</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-sm-6 col-md-6 col-lg-4">
-                            <div class="block">
-                                <div class="header">
-                                    <h2><i class="fa fa-comment"></i>Comments</h2>
-                                </div>
-                                <div class="content no-padding">
-                                    <div class="fact-data text-center">
-                                        <h3>Positive</h3>
-                                        <h2>60%</h2>
-                                    </div>
-                                    <div class="fact-data text-center">
-                                        <h3>Negative</h3>                           
-                                        <h2>40%</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                  
-                    </div>
-
-                </div>
-            </div> 
-
-        </div>
-
+                        </div>
 
 
 

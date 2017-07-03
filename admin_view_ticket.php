@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="images/favicon.png">
+        
 
         <title>Fortis Ticketing System</title>
         <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
@@ -92,7 +92,7 @@
                                                     
                                                     <a class="btn btn-warning btn-sm" href="#" data-toggle="modal"><i class="fa fa-pencil"></i></a>
                                                     <a class="btn btn-danger btn-sm" href="#" type="button"p><i class="fa fa-trash-o"></i></a> 
-                                                    <a class="btn btn-default btn-sm" href="#" type="button"p><i class="fa fa-tag"></i></a> 
+                                                    <a class="btn btn-default btn-sm" href="assign.php" type="button"p><i class="fa fa-tag"></i></a> 
                                                     <a class="btn btn-primary btn-sm" href="#" type="button"p><i class="fa fa-thumb-tack"></i></a> 
                                                     <a class="btn btn-success btn-sm" href="#" type="button"p><i class="fa fa-reply"></i></a> 
                                                                                                      

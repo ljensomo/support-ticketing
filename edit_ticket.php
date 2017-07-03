@@ -62,10 +62,10 @@
           </div>        
           <div class="mail-nav collapse">
             <ul class="nav nav-pills nav-stacked ">
-              <li><a href="tickets.php"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i> Your unresolved tickets</a></li>
-              <li><a href="unassgined_tickets.php"><i class="fa fa-envelope"></i> Unassgined tickets</a></li>
-              <li class="active"><a href="#"><i class="fa fa-suitcase"></i> All unsolved tickets</a></li>
-              <li><a href="pending_tickets.php"><span class="label label-default pull-right">3</span><i class="fa fa-file-o"></i> Pending tickets</a></li>
+              <li class="active"><a href="#"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i> Open Tickets</a></li>
+              <li><a href="unassigned_tickets.php"><i class="fa fa-envelope"></i> Closed Tickets</a></li>
+              <li><a href="all_unsolved_tickets.php"><i class="fa fa-suitcase"></i> Assigned Tickets</a></li>
+              <li><a href="pending_tickets.php"><span class="label label-default pull-right">3</span><i class="fa fa-file-o"></i> Pending Tickets</a></li>
 
             </ul>
             
@@ -87,6 +87,7 @@
                                     $companyname = "";
                                     $subject = "";
                                     $requester = "";
+                                    $problem_desc = "";
                                     if (isset($_GET['id'])) {
                                         $id = $_GET['id'];
                                         $sqlLoader = "SELECT * FROM ticket where ID=?";
@@ -97,6 +98,7 @@
                                             $companyname = $rowLoader['CompanyName'];
                                             $subject = $rowLoader['problem_sum'];
                                             $requester = $rowLoader['Reporter'];
+                                            $problem_desc = $rowLoader['problem_desc'];
                                         }
                                     }
                                     ?>
@@ -117,13 +119,88 @@
 
 
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">Description</label>
+                                            <label class="col-sm-3 control-label">Subject</label>
                                             <div class="col-sm-6">
                                                 <input class="form-control" name="subject" id="subject" value="<?php echo $subject; ?>" type="text" readonly>                               
                                             </div>
                                         </div>
 
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Problem Description</label>
+                                            <div class="col-sm-6">
+                                                <txtarea class="form-control" name="subject" id="subject" type="text" readonly><?php echo $problem_desc; ?></txtarea>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                    <label class="col-sm-3 control-label">Status</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="role">
+                                            
+                                             <option></option>
+                                             <?php
+                                                $sql = "SELECT * FROM status";
+                                                $res = $db->prepare($sql);
+                                                $res->execute();
+                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                    ?>
+                                           
+                                            <option value="<?php echo $row['status_id']?>"><?php echo $row['status_desc']?></option>
+                                      
+                                            <?php 
+                                                }
+                                                ?>
+
+                                        </select>                                 
+                                    </div>
+                                </div>
+                                       <div class="form-group">
+                                    <label class="col-sm-3 control-label">Issue Type</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="role">
+                                            
+                                             <option></option>
+                                             <?php
+                                                $sql = "SELECT * FROM issue";
+                                                $res = $db->prepare($sql);
+                                                $res->execute();
+                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                    ?>
+                                           
+                                            <option value="<?php echo $row['issue_id']?>"><?php echo $row['Issue_desc']?></option>
+                                      
+                                            <?php 
+                                                }
+                                                ?>
+
+                                        </select>                                 
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-sm-3 control-label">Resolution</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="role">
+                                            
+                                             <option></option>
+                                             <?php
+                                                $sql = "SELECT * FROM resolution";
+                                                $res = $db->prepare($sql);
+                                                $res->execute();
+                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                    ?>
+                                           
+                                            <option value="<?php echo $row['resolution_id']?>"><?php echo $row['resolution']?></option>
+                                      
+                                            <?php 
+                                                }
+                                                ?>
+
+                                        </select>                                 
+                                    </div>
+                                </div>
+                                
+                                
                                         <div class="spacer text-center">
+
                                             <button type="submit" class="btn btn-danger btn-md">Update</button>
                                             <button type="reset" class="btn btn-default btn-md">Cancel</button>
                                         </div>

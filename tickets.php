@@ -62,10 +62,10 @@
           </div>        
           <div class="mail-nav collapse">
             <ul class="nav nav-pills nav-stacked ">
-              <li class="active"><a href="#"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i> Your unresolved tickets</a></li>
-              <li><a href="unassigned_tickets.php"><i class="fa fa-envelope"></i> Unassgined tickets</a></li>
-              <li><a href="all_unsolved_tickets.php"><i class="fa fa-suitcase"></i> All unsolved tickets</a></li>
-              <li><a href="pending_tickets.php"><span class="label label-default pull-right">3</span><i class="fa fa-file-o"></i> Pending tickets</a></li>
+              <li class="active"><a href="#"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i> Open Tickets</a></li>
+              <li><a href="close_tickets.php"><i class="fa fa-envelope"></i> Closed Tickets</a></li>
+              <li><a href="all_unsolved_tickets.php"><i class="fa fa-suitcase"></i> Assigned Tickets</a></li>
+              <li><a href="pending_tickets.php"><span class="label label-default pull-right">3</span><i class="fa fa-file-o"></i> Pending Tickets</a></li>
 
             </ul>
             
@@ -89,7 +89,6 @@
 										<th>Company Name</th>
 										<th>Requester</th>
 										<th>Date Created</th>
-										<th class="text-right">Status</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -99,18 +98,17 @@
                                                 $res = $db->prepare($sql);
                                                 $res->execute();
                                                 while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>
+                                ?>
 									<tr>
 										<td><strong><?php echo $row['problem_sum']; ?></strong><br><?php echo $row['problem_desc']; ?></td>
 										<td><?php echo $row['CompanyName']; ?></td>
 										<td><?php echo $row['Reporter']; ?></td>
 										<td><?php echo $row['date_created']; ?></td>
-										<td class="text-center"><?php echo $row['ticketstatus_id']; ?></td>
 										<td class="center">
 										
-											<a class="btn btn-info btn-sm" href="#.php?id=<?php echo $row['ID']; ?>"><i class="fa fa-search">
+											 <a class="btn btn-info btn-sm" href="#.php?id=<?php echo $row['ID']; ?>"><i class="fa fa-search">
 											</i></a>
-											<a class="btn btn-warning btn-sm" href="edit_ticket.php?id=<?php echo $row['ID']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#assign-modal"><i class="fa fa-pencil"></i></a>
 										
 										</td>
 									</tr>
@@ -118,7 +116,65 @@
                                             }
                                             ?>
 								</tbody>
-							</table>						
+							</table>
+                            <div class="modal fade" id="assign-modal" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="text-center">
+                                                        <div class="i-circle info"><i class="fa fa-users"></i></div>
+                                                        
+                                                     
+                                            <?php
+                        $loggeduser = $_SESSION['admin'];
+                        $sql = "SELECT * FROM users WHERE username = ?";
+                        $res = $db->prepare($sql);
+                        $res->execute(array($loggeduser));
+                        $row = $res->fetch(PDO::FETCH_NUM);
+                        ?>
+                        <?php if ($row[6] == 1) { ?>
+                                        <h4>Assign to :</h4>
+                                                <select class="form-control" name="assignee">
+                                            
+                                             <option></option>
+                                             <?php
+                                                $sql = "SELECT * FROM users";
+                                                $res = $db->prepare($sql);
+                                                $res->execute();
+                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                    ?>
+                                           
+                                            <option class="text-center" value="<?php echo $row['userId']?>"><?php echo $row['fname'] . " " . $row['mname'] . " " . $row['lname'] ?></option>
+                                      
+                                            <?php 
+                                                }
+                                                ?>
+                                                
+                                            </select>                                 
+                                                  
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <a class="btn btn-danger" href="edit_ticket.php?id=<?php echo $row[0]; ?>">Assign</a>
+                                                    <div class="pull-left">
+                                                    <a class="btn btn-info btn-md" href="edit_ticket.php?id=<?php echo $row[0]; ?>">Assign to me</a>
+                                                    </div>
+                                                </div>
+                                                <?php }else{ ?>
+                                                <h4>Ticket</h4>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <a class="btn btn-info btn-md" href="edit_ticket.php?id=<?php echo $row[0]; ?>">Assign to me</a>
+                                                    </div>
+                                                 </div>
+                                                 <?php } ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>						
 						</div>
 					</div>
 	

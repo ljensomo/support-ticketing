@@ -20,7 +20,7 @@ if ($error) {
 
     openWindow($goto = "../users.php");
 } else {
-    $sql = "UPDATE users SET is_active =? WHERE userId =?";
+    $sql = "UPDATE users SET is_active =? WHERE id =?";
     $qry = $db->prepare($sql);
     $qry->execute(array(0,$id));
     msgAlert($alert = "Successfully De-Activated");

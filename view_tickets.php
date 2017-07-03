@@ -8,7 +8,7 @@ require_once('connection.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="images/favicon.png">
+        
 
         <title>Fortis Ticketing System</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
@@ -88,22 +88,15 @@ require_once('connection.php');
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                        $query = "SELECT * FROM ticket";
-                                        $stmt = $con->prepare($query);
-                                        $stmt->execute();
-                                                
-                                            foreach ($stmt->fetchAll() as $data) {
-                                                ?>
-
+                                      
                                                 <tr class="odd gradex">
-                                                    <td><?php echo $data['ID']?></td>
-                                                    <td><?php echo $data['CompanyName']?></td>
-                                                    <td><?php echo $data['Reporter']?></td>
-                                                    <td><?php echo $data['problem_desc']?></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
                                                     <td class="center">none</td>
-                                                    <td><?php echo $data['ticketstatus_id']?></td>
-                                                    <td><?php echo $data['date_created']?></td>
+                                                    <td></td>
+                                                    <td></td>
                                                     <td>
                                                         <button class="btn btn-default btn-xs" type="button">Actions</button>
                                                         <div class="btn-group">
@@ -121,9 +114,7 @@ require_once('connection.php');
                                                     
                                                 </tr>
                                                     
-                                                <?php    
-                                               } 
-                                                ?>
+                                        
                                     </tbody>
                                 </table>                            
                             </div>
@@ -202,3 +193,4 @@ require_once('connection.php');
         <script type="text/javascript" src="js/jquery.flot/jquery.flot.labels.js"></script>
     </body>
 </html>
+

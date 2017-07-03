@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="images/favicon.png">
+        
 
         <title>Fortis Ticketing System</title>
         <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
@@ -74,11 +74,11 @@
                                     $lname = "";
                                     if (isset($_GET['cid'])) {
                                         $id = $_GET['cid'];
-                                        $sqlLoader = "SELECT * FROM users where userId=?";
+                                        $sqlLoader = "SELECT * FROM users where user_id=?";
                                         $resLoader = $db->prepare($sqlLoader);
                                         $resLoader->execute(array($id));
                                         while ($rowLoader = $resLoader->fetch(PDO::FETCH_ASSOC)) {
-                                            $id = $rowLoader['userId'];
+                                            $id = $rowLoader['user_id'];
                                             $fname = $rowLoader['fname'];
                                             $lname = $rowLoader['lname'];
                                         }

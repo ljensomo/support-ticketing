@@ -62,9 +62,9 @@
           </div>        
           <div class="mail-nav collapse">
             <ul class="nav nav-pills nav-stacked ">
-              <li><a href="tickets.php"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i> Your unresolved tickets</a></li>
-              <li><a href="unassgined_tickets.php"><i class="fa fa-envelope"></i> Unassgined tickets</a></li>
-              <li class="active"><a href="#"><i class="fa fa-suitcase"></i> All unsolved tickets</a></li>
+              <li><a href="tickets.php"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i> Open Tickets</a></li>
+              <li><a href="close_tickets.php"><i class="fa fa-envelope"></i>Closed tickets</a></li>
+              <li class="active"><a href="#"><i class="fa fa-suitcase"></i>Assigned tickets</a></li>
               <li><a href="pending_tickets.php"><span class="label label-default pull-right">3</span><i class="fa fa-file-o"></i> Pending tickets</a></li>
 
             </ul>
@@ -89,7 +89,7 @@
 										<th>Company Name</th>
 										<th>Requester</th>
 										<th>Date Created</th>
-										<th class="text-right">Status</th>
+										<th>Issue Type</th>
 										<th>Action</th>
 									</tr>
 								</thead>

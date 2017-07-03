@@ -3,7 +3,9 @@
 require_once 'connection.php';
 include 'functions.php';
 
-$companyname = $_POST['txtCname'];
+
+
+$companyname = $_POST['company_name'];
 $reporter = $_POST['txtReporter'];
 $email = $_POST['txtCnum'];	
 $cnum = $_POST['txtEmail'];
@@ -34,10 +36,10 @@ if ($error) {
     msgAlert($alert = "Invalid");
     openWindow($goto = "../create.php");
 } else {
-    $sqlAdd = "INSERT INTO ticket(companyname,reporter,email_add,cnum,problem_sum,problem_desc,ticketstatus_id,transactionid,attachment,date_created) VALUES (?,?,?,?,?,?,?,?,?,?);";
+    $sqlAdd = "INSERT INTO ticket(companyname,reporter,email_add,cnum,problem_sum,problem_desc,ticketstatus_id,transactionid,attachment,date_created,severity_id,issue_type_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
     $qryAdd = $db->prepare($sqlAdd);
-    $qryAdd->execute(array($companyname,$reporter,$email,$cnum,$subject,$problem,1,$transaction,$attachment,$date));
+    $qryAdd->execute(array($companyname,$reporter,$email,$cnum,$subject,$problem,1,$transaction,$attachment,$date,0,0));
     msgAlert($alert = "Issue sent successfully!");
-    openWindow($goto = "../create.php");
+    openWindow($goto = "../view_tickets.php?name=$companyname");
 }
 ?>

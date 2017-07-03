@@ -99,18 +99,20 @@ CREATE TABLE `ticket` (
   `Reporter` varchar(255) NOT NULL,
   `email_add` varchar(255) NOT NULL,
   `cnum` varchar(255) NOT NULL,
-  `problem_sum` char(1) NOT NULL,
+  `problem_sum` varchar(255) NOT NULL,
   `ticketstatus_id` varchar(255) DEFAULT NULL,
   `transactionID` varchar(100) NOT NULL DEFAULT '',
   `Attachment` varchar(100) DEFAULT NULL,
   `date_created` varchar(255) NOT NULL DEFAULT '',
   `problem_desc` varchar(255) NOT NULL,
+  `severity_id` tinyint(4) DEFAULT NULL,
+  `issue_type_id` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `ticket` */
 
-insert  into `ticket`(`ID`,`CompanyName`,`Reporter`,`email_add`,`cnum`,`problem_sum`,`ticketstatus_id`,`transactionID`,`Attachment`,`date_created`,`problem_desc`) values (1,'Gicha\'s Night Club','Nigel Kim Gocila','nigel@gmail.com','09090909','t','5','#45456',NULL,'0000-00-00',''),(2,'Andanar\'s Spa','Mary','@mail.com','34596','t','5','34534',NULL,'234324',''),(3,'Robe\'s Tribe Weapons','Alyssa','@bundok.com','345','t','4','345345',NULL,'453545',''),(6,'INS corp','Lorenz John Ensomo','09124759121','kurth@mail.com','t','1','#23424098','g.txt','2017-2-21','asdasdasdasdasd'),(7,'Nigel\'s Footspa','Jason Gicha','09124759121','J@fortis.com','C','1','#0909999','g.txt','2017-2-24','We cannot login in the system');
+insert  into `ticket`(`ID`,`CompanyName`,`Reporter`,`email_add`,`cnum`,`problem_sum`,`ticketstatus_id`,`transactionID`,`Attachment`,`date_created`,`problem_desc`,`severity_id`,`issue_type_id`) values (1,'Gicha\'s Night Club','Nigel Kim Gocila','nigel@gmail.com','09090909','t','5','#45456',NULL,'0000-00-00','',NULL,NULL),(2,'Andanar\'s Spa','Mary','@mail.com','34596','t','5','34534',NULL,'234324','',NULL,NULL),(3,'Robe\'s Tribe Weapons','Alyssa','@bundok.com','345','t','4','345345',NULL,'453545','',NULL,NULL),(6,'INS corp','Lorenz John Ensomo','09124759121','kurth@mail.com','t','1','#23424098','g.txt','2017-2-21','asdasdasdasdasd',NULL,NULL),(7,'Nigel\'s Footspa','Jason Gicha','09124759121','J@fortis.com','C','1','#0909999','g.txt','2017-2-24','We cannot login in the system',NULL,NULL),(8,'Kurth Spa','kurth morato','09124759121','k@fortis.com','N','1','#343434','g.txt','2017-3-1','I don\'t know how to use the system.',0,0),(9,'asdas`dtd`gdgd','hghj','hjfhj','hjfhj@mail.com','h','1','jhfhjfjfj','g.txt','2017-3-7','hjf',0,0),(10,'Globalport Batang Pier','Terrence Romeo','7','terrence@yahoo.com','Unfinished Championship','1','#07','daps.jpg','2017-3-7','Bad blood, because of the selfishness of terrence romeo on court.',0,0);
 
 /*Table structure for table `ticket_progress` */
 
@@ -119,17 +121,16 @@ DROP TABLE IF EXISTS `ticket_progress`;
 CREATE TABLE `ticket_progress` (
   `Ticketid` bigint(20) NOT NULL AUTO_INCREMENT,
   `DateReceived` varchar(255) NOT NULL,
-  `dev_id` tinyint(4) NOT NULL,
+  `assignto_id` tinyint(4) NOT NULL,
   `resolution_id` tinyint(4) NOT NULL,
   `comment_id` tinyint(4) NOT NULL,
-  `issue_type_id` tinyint(4) NOT NULL,
-  `severity_id` tinyint(4) NOT NULL,
+  `assign_from_id` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`Ticketid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `ticket_progress` */
 
-insert  into `ticket_progress`(`Ticketid`,`DateReceived`,`dev_id`,`resolution_id`,`comment_id`,`issue_type_id`,`severity_id`) values (1,'just now',1,1,1,1,1);
+insert  into `ticket_progress`(`Ticketid`,`DateReceived`,`assignto_id`,`resolution_id`,`comment_id`,`assign_from_id`) values (1,'just now',1,1,1,NULL);
 
 /*Table structure for table `user_level` */
 
@@ -164,37 +165,6 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`userId`,`username`,`password`,`fname`,`mname`,`lname`,`userlevel_id`,`is_active`) values (1,'jason','$2y$11$.uQNK3axHeJxBmjGmjxaCennpbsqc5.L5kfJ8T5OaI9n69qFsv0ZK','Jason','L','Gicha',1,1),(4,'Helterbran@gmail.com','$2y$11$IJ9g1/g0RVLpGj1G2jt6YOjdwP7K5wT/.n05zgXtepNudIzzYokKq','Andrian','G','Andanar',1,1),(5,'pringle@yahoo.com','$2y$11$Z5fI7s.bXcCgwQBgtb5yCuljcYZnJ.jQEhGM4U2sfP5.qr9RqCPQy','Lorenz','John','Ensomo',2,0),(6,'bryantpascual@yahoo.com','$2y$11$nBepjmLRKTa9eIU2GgQep.2xcdeHhn.lSlxoP7G6oGU0g.QIMgutK','Bryant','b','Pascual',1,1),(8,'lj@fortis.com','$2y$11$Mm6AYbrIMcL6/iJa/u5sQ.rpU6h7lrFo5ZniLGdJl3sOnNczAZz4O','LJ','','Ensomo',2,1);
-
-/*Table structure for table `ticket_details` */
-
-DROP TABLE IF EXISTS `ticket_details`;
-
-/*!50001 DROP VIEW IF EXISTS `ticket_details` */;
-/*!50001 DROP TABLE IF EXISTS `ticket_details` */;
-
-/*!50001 CREATE TABLE  `ticket_details`(
- `ID` bigint(20) ,
- `CompanyName` varchar(255) ,
- `Reporter` varchar(255) ,
- `email_add` varchar(255) ,
- `cnum` varchar(255) ,
- `problem_desc` varchar(255) ,
- `Attachment` varchar(100) ,
- `date_created` varchar(255) ,
- `fname` varchar(255) ,
- `mname` varchar(255) ,
- `lname` varchar(255) ,
- `severity` varchar(255) ,
- `resolution` varchar(255) ,
- `Issue_desc` varchar(255) 
-)*/;
-
-/*View structure for view ticket_details */
-
-/*!50001 DROP TABLE IF EXISTS `ticket_details` */;
-/*!50001 DROP VIEW IF EXISTS `ticket_details` */;
-
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ticket_details` AS select `b`.`ID` AS `ID`,`b`.`CompanyName` AS `CompanyName`,`b`.`Reporter` AS `Reporter`,`b`.`email_add` AS `email_add`,`b`.`cnum` AS `cnum`,`b`.`problem_desc` AS `problem_desc`,`b`.`Attachment` AS `Attachment`,`b`.`date_created` AS `date_created`,`c`.`fname` AS `fname`,`c`.`mname` AS `mname`,`c`.`lname` AS `lname`,`d`.`severity` AS `severity`,`e`.`resolution` AS `resolution`,`f`.`Issue_desc` AS `Issue_desc` from (((((`ticket_progress` `a` join `ticket` `b` on((`a`.`Ticketid` = `b`.`ID`))) join `users` `c` on((`a`.`dev_id` = `c`.`userId`))) join `severity` `d` on((`a`.`severity_id` = `d`.`severity_id`))) join `resolution` `e` on((`a`.`resolution_id` = `e`.`resolution_id`))) join `issue` `f` on((`a`.`issue_type_id` = `f`.`issue_id`))) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

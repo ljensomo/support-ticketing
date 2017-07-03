@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sweet Alert</title>
+	<link rel="stylesheet" type="text/css" href="js/sweetalert.css">
+</head>
+<body>
+	<h1><?php echo "Sweet Alert"; ?></h1>
+
+	<script src="js/sweetalert.min.js"></script>
+	<script type="text/javascript">
+	
+		function validation()
+		{
+		
+		<?php 
+			$username = $_POST['username'];
+			$pass = $_POST['password'];
+
+			if((username == 'kurth') && (password == 'pass')) {
+				swal("Good job!", "You success to Login!", "success");
+			}  
+			else {
+				sweetAlert("Oops...", "username or password was wrong!", "error");
+			}
+
+		?>
+			
+		}
+	</script>	
+</body>
+</html>

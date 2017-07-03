@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include 'connection.php';
@@ -6,7 +7,7 @@ include 'functions.php';
 $user = $_POST['username'];
 $pw = $_POST['password'];
 
-$sql = "SELECT * FROM users WHERE username = ?";
+$sql = "SELECT * FROM user_info WHERE username = ?";
 $res = $db->prepare($sql);
 $res->execute(array($user));
 $row = $res->fetch(PDO::FETCH_ASSOC);
@@ -24,7 +25,6 @@ if ($error) {
 
     openWindow($goto = "../login.html");
 } else if ($row == "") {
-
     msgAlert($alert = "The username and password you entered did not match our records. Please double-check and try again.");
     openWindow($goto = "../login.html");
 } else if ($row['is_active'] == 0) {
@@ -33,7 +33,14 @@ if ($error) {
     openWindow($goto = "../login.html");
 } else if (password_verify($pw, $row['password'])) {
     $_SESSION['admin'] = $row['username'];
+    if($row['user_desc']== "Client"){
+         openWindow($goto = "../create.php");
+
+    } else{
+
     openWindow($goto = "../index.php");
+}
+
     /*if ($row['userlevel_id'] == '1') {
         $_SESSION['admin'] = $row['username'];
         msgAlert($alert = "Login Successful");

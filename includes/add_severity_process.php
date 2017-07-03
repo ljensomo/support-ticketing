@@ -15,9 +15,9 @@ foreach ($required as $fields) {
     }
 }
 
-$sql = "SELECT COUNT(*) FROM severity WHERE severity =?";
-$qry = $db->prepare($sql);
-$qry->execute(array($name));
+    $sql = "SELECT COUNT(*) FROM severity WHERE severity =?";
+    $qry = $db->prepare($sql);
+    $qry->execute(array($name));
 
 if ($error) {
 

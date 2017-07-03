@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="images/favicon.png">
+        
 
         <title>Fortis Ticketing System</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
@@ -33,25 +33,18 @@
                 <h3 class="text-center">Fortis Technologies Corp.</h3>
             </div>
             <div>
-                <form style="margin-bottom: 0px !important;" class="form-horizontal" action="view_tickets.php" method="POST">
+                <form method="POST" action="view_tickets.php" style="margin-bottom: 0px !important;" class="form-horizontal">
                     <div class="content">
                        
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <div class="input-group">
-                                        <span class="input-group-addon">Ticket No.</span>
-                                        <input type="text"  id="username" class="form-control" name="txtusername">
+                                        <span class="input-group-addon">Company Name</span>
+                                        <input type="text"  id="name" class="form-control" name="name" required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Email</span>
-                                        <input type="email"  id="password" class="form-control" name="txtpass">
-                                    </div>
-                                </div>
-                            </div>
+                            
                     </div>
                     <div class="foot">
                        

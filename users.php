@@ -6,8 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="images/favicon.png">
-
+        
         <title>Fortis Ticketing System</title>
         <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
@@ -60,12 +59,13 @@
                     </ol>
                 </div>	
                 <div class="cl-mcont">
-
+                        
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
                                     <a class="btn btn-primary" href="add_user.php">Add User</a>
+
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
@@ -75,6 +75,7 @@
                                                     <th>User ID</th>
                                                     <th>Username</th>
                                                     <th>First Name</th>
+                                                    <th>MI</th>
                                                     <th>Last Name</th>
                                                     <th>Role</th>
                                                     <th>Action</th>
@@ -82,27 +83,28 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * FROM users a INNER JOIN user_level b ON a.userlevel_id=b.userlevel_id";
+                                                $sql = "SELECT * FROM user_info WHERE user_desc = 'Administrator' OR user_desc = 'User' OR user_desc = 'Watcher'";
                                                 $res = $db->prepare($sql);
                                                 $res->execute();
                                                 while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                                                     ?>
                                                     <tr class="odd gradeX">
-                                                        <td><?php echo $row['userId']; ?></td>
+                                                        <td><?php echo $row['user_id']; ?></td>
                                                         <td><?php echo $row['username']; ?></td>
                                                         <td><?php echo $row['fname']; ?></td>
+                                                        <td><?php echo $row['mname']; ?></td>
                                                         <td><?php echo $row['lname']; ?></td>
                                                         <td><?php echo $row['user_desc']; ?></td>
                                                         <td class="center">
                                                 <center>
                                                     <?php if ($row['is_active'] == 1) { ?>
-                                                        <a class="btn btn-default btn-sm" href="deactivate_user.php?cid=<?php echo $row['userId']; ?>" type="button"p><i class="fa fa-lock"></i></a>
+                                                        <a class="btn btn-default btn-sm" href="deactivate_user.php?cid=<?php echo $row['user_id']; ?>" type="button"p><i class="fa fa-unlock"></i></a>
                                                     <?php } else { ?>
-                                                        <a class="btn btn-default btn-sm" href="activate_user.php?cid=<?php echo $row['userId']; ?>"><i class="fa fa-unlock"></i></a>
+                                                        <a class="btn btn-default btn-sm" href="activate_user.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-lock"></i></a>
                                                     <?php } ?>
-                                                    <a class="btn btn-info btn-sm" href="view_user.php?cid=<?php echo $row['userId']; ?>"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="#" data-toggle="modal"><i class="fa fa-pencil"></i></a>
-                                                    <a class="btn btn-danger btn-sm" href="delete_user.php?cid=<?php echo $row['userId']; ?>" type="button"p><i class="fa fa-trash-o"></i></a> 
+                                                    <a class="btn btn-info btn-sm" href="view_user.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-warning btn-sm" href="edit_user.php?cid=<?php echo $row['user_id']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+                                                    
                                                 </center>        
                                                 </td>
                                                 </tr>
@@ -121,6 +123,38 @@
             </div> 
 
         </div>
+         <div class="modal fade" id="add-user-modal" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="text-center">
+                                                        <div class="i-circle danger"><i class="fa fa-users"></i></div>
+                                                         <form method="POST" action="includes/validation_process.php" class="form-horizontal group-border-dashed">
+                                                            <select class="form-control" id="sel_issue_type" name="sel_issue_type">
+                                                        <option value="1">User</option>
+                                                        <option value="2">Client</option>
+                                                            </select>
+                                                        
+                                                        <h1>User Level</h1>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                               
+
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
+
+                    
+                                                    <button class="btn btn-primary" type="submit">Proceed</button>
+
+                                                  </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
       
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
