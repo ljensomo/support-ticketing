@@ -138,7 +138,21 @@ require_once('connection.php');
                 </div>
             </div>
             <script type="text/javascript">
-            function delete()
+            function delete(){
+            	swal({
+            		title: "Are you sure?",
+            		text: "You will not be able to recover this imaginary file!",
+            		type: "Warning",
+            		showCancelButton: true,
+            		confirmButtonColor: "#DD6B55",
+            		confirmButtonText: "Yes, Delete it!",
+            		closeOnConfirm: false
+            	}),
+            		$.ajax({
+            			url:	
+            
+            }
+            
             
             
             
