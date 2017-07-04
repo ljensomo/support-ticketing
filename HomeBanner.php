@@ -58,9 +58,9 @@
                                 <ul style="list-style: none;" class="nav nav-pills nav-stacked">
                                 <h4 style="background-color: #C94848; color:white; padding: 8px;">Menu</h4>
                                     <li  class="active" style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Home</a></li>
-                                    <li  style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" style="color:black; font-size: 140%">Tickets</a></li>
+                                    <li  style=" padding: 6px"><a style="color:black; font-size: 140%">Tickets</a></li>
                                     <li  style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Projects</a></li>
-                                    <li style=" padding: 6px"><a href="create.php" style="color:black; font-size: 140%">Create Ticket</a></li>
+                                    <li style=" padding: 6px"><a  data-toggle="modal" data-target="#select-modal" style="color:black; font-size: 140%">Create Ticket</a></li>
                                     <li style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Users</a></li>
 
                                 </ul>
@@ -130,8 +130,8 @@
                                  </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Proceed</button>
-                                                    <a class="btn btn-danger" href="includes/delete_user_process.php?id=<?php echo $id; ?>">Cancel</a>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <a class="btn btn-danger" href="add_tickets.php">Proceed</a>
                                                 </div>
                                             </div>
                                         </div>
