@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="images/fortisICO.png">
+        <link rel="shortcut icon" href="images/fb-art1.png">
 
         
 
@@ -58,11 +58,11 @@
                             
                                 <ul style="list-style: none;" class="nav nav-pills nav-stacked">
                                 <h4 style="background-color: #C94848; color:white; padding: 8px;">Menu</h4>
-                                    <li   style=" padding: 6px"><a href="homebanner.php" style="color:black; font-size: 140%">Home</a></li>
-                                    <li   class="active" style=" padding: 6px"><a href="add_tickets.php" style="color:black; font-size: 140%">Tickets</a></li>
+                                    <li  style=" padding: 6px"><a href="homebanner.php" style="color:black; font-size: 140%">Home</a></li>
+                                    <li  style=" padding: 6px"><a href="add_tickets.php" style="color:black; font-size: 140%">Tickets</a></li>
                                     <li  style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Projects</a></li>
-                                    <li style=" padding: 6px"><a href="create.php" style="color:black; font-size: 140%">Create Ticket</a></li>
-                                    <li style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Users</a></li>
+                                    <li  class="active" style=" padding: 6px"><a href="create.php" style="color:black; font-size: 140%">Create Ticket</a></li>
+                                    <li  style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Users</a></li>
 
                                 </ul>
                             </div>
