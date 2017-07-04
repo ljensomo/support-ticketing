@@ -60,7 +60,7 @@
                                     <li  class="active" style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Home</a></li>
                                     <li  style=" padding: 6px"><a style="color:black; font-size: 140%">Tickets</a></li>
                                     <li  style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Projects</a></li>
-                                    <li style=" padding: 6px"><a  data-toggle="modal" data-target="#select-modal" style="color:black; font-size: 140%">Create Ticket</a></li>
+                                    <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" style="color:black; font-size: 140%">Create Ticket</a></li>
                                     <li style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Users</a></li>
 
                                 </ul>
@@ -114,8 +114,8 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="text-center">
-                                                        <div class="i-circle danger"><i class="fa fa-times"></i></div>
-                                                        <h4>Warning</h4>
+                                                        <div class="i-circle danger"><i class="fa fa-folder"></i></div>
+                                                        <h4>Select Project</h4>
                                                        <div class="form-group">
                                     <label class="col-sm-3 control-label">Projects</label>
                                     <div class="col-sm-6">

@@ -53,9 +53,11 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                <header>
-                    <h2>Client</h2>
-                   </header>
+                    <h2>Clients</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="clients.php">Clients</a></li>
+                        <li class="active">Add Clients</li>
+                    </ol>
                 </div>	
                 <div class="cl-mcont">
 
