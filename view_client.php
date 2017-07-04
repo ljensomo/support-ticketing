@@ -42,6 +42,8 @@
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
         <script type="text/javascript" src="script/jquery-3.2.1.js"></script>
+	 <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+	 <script src="sweetalert-master/dist/sweetalert.min.js"></script>
 
     </head>
     <body>
@@ -160,20 +162,18 @@
         <script type="text/javascript">
        function savedata(){
           var id = $('#id').val();
-          var name = $('#name ').val();
+          var name = $('#name').val();
           $.ajax({
 
             type:"POST",
             url:"includes/add_project_process.php",
             data: "id="+id+"&name="+name,
             success : function(msg){
-            
-                  
-                  var name = $('#name').val('');
-                  //alert('hoooray!');
-                  location.reload();
+                  swal({ title : "Saved!", text : "Saved Successfully!", type : "success"},
+                  function(){
+                                   location.reload();
+                                   });
                                 }
-
           })
        }
 

@@ -10,17 +10,30 @@ if (!isset($_SESSION['admin'])) {
 
 require_once 'connection.php';
 ?> 
-<div id="head-nav" class="navbar navbar-inverse navbar-fixed-top">
+<div id="head-nav" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="fa fa-gear"></span>
             </button>
-            <a class="navbar-brand" href="#"><span>Fortis Ticketing System</span></a>
+            <a class="navbar-brand" href="#"><span>FORTIS</span></a>
         </div>
         <div class="navbar-collapse collapse">
+
+            <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="dropdown-submenu"><a href="#">Sub menu</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                    </ul>
+                </li>              
+            </ul>
             <ul class="nav navbar-nav navbar-right user-nav">
-            <li class="dropdown profile_menu">
+                <li class="dropdown profile_menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="images/avatar2.jpg" />
 
                         <?php
@@ -34,13 +47,13 @@ require_once 'connection.php';
                     <ul class="dropdown-menu">
                         <li><a href="representatives.php">Representatives</a></li>
                         <li><a href="#">Notifications</a></li>
-                        <li class="divider"></li>
-                        <li><a href="includes/logout.php"></i><span>Sign Out</span></a></li>
+			   <li class="divider"></li>
+                        <li><a href="includes/logout.php">Sign Out</a></li>
                     </ul>
                 </li>
-                
-            </ul>			
-        </div><!--/.nav-collapse animate-collapse -->
+            </ul>           
+
+
+        </div>
     </div>
-</div>
 </div>

@@ -120,7 +120,7 @@ require_once('connection.php');
                                                     <?php } ?>
                                                         <a class="btn btn-info btn-sm" href="#.php?id=<?php echo $row2[0]; ?>"><i class="fa fa-pencil">
                                             </i></a>
-                                            <a class="btn btn-danger btn-sm" type =" button" onclick="delete()"><i class="fa fa-trash-o"></i></a></center>
+                                            <button class="btn btn-danger btn-sm" type =" button" onclick="deletedata()"><i class="fa fa-trash-o"></i></button>
                                                     </td>
                                                     
                                                 </tr>
@@ -137,24 +137,16 @@ require_once('connection.php');
                     </div>              
                 </div>
             </div>
+            
             <script type="text/javascript">
-            function delete(){
-            	swal({
-            		title: "Are you sure?",
-            		text: "You will not be able to recover this imaginary file!",
-            		type: "Warning",
-            		showCancelButton: true,
-            		confirmButtonColor: "#DD6B55",
-            		confirmButtonText: "Yes, Delete it!",
-            		closeOnConfirm: false
-            	}),
-            		$.ajax({
-            			url:	
-            
+            function deletedata() {
+            	swal({title: "test", text : "pwede",
+            		 type : "warning", 
+            		 showCancelButton : true, 
+            		 confirmButtonColor : "#dd6b55",
+            		  confirmButtonText : "Yes, Delete it!", 
+            		  closeOnConfirm : false });
             }
-            
-            
-            
             
             </script>
             

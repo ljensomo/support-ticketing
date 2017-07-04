@@ -1,4 +1,4 @@
-/*CONFIG AND GENERAL STYLE*/
+﻿/*CONFIG AND GENERAL STYLE*/
 /*General colors palette*/
 /*General elements*/
 /*colors palette*/
@@ -719,7 +719,7 @@ body.modal-open,
     -moz-transition: width 300ms linear;
     /* Firefox 4-15 */
     -o-transition: width 300ms linear;
-    /* Opera 10.50�12.00 */
+    /* Opera 10.50ï¿½12.00 */
     transition: width 500ms linear;
 }
 #cl-wrapper.animate-collapse #pcont {
@@ -811,7 +811,7 @@ body.modal-open,
     -moz-transition: width 300ms linear;
     /* Firefox 4-15 */
     -o-transition: width 300ms linear;
-    /* Opera 10.50�12.00 */
+    /* Opera 10.50ï¿½12.00 */
     transition: width 500ms linear;
 }
 .sb-collapsed .cl-sidebar .collapse-button .search {
@@ -1550,14 +1550,12 @@ body.texture {
     font-weight: 300;
     font-size: 16px;
 }
-.mail-inbox .head input[type="text"],
-.main-app .head input[type="text"] {
+.mail-inbox .head input[type=text], .main-app .head input[type=text] {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.01) inset;
     border: 1px solid #D8D8D8;
     border-radius: 3px;
 }
-.mail-inbox .head input[type="text"]:focus,
-.main-app .head input[type="text"]:focus {
+.mail-inbox .head input[type=text]:focus, .main-app .head input[type=text]:focus {
     border-color: #43b6ff;
 }
 .mail-inbox .filters,
@@ -2209,24 +2207,20 @@ div.dataTables_length label select {
     vertical-align: top;
 }
 .butstyle {
-    -moz-border-bottom-colors: none;
+    border-left: 1px solid #C8C8C8;
+	border-top: 1px solid #DEDFE0;
+	border-bottom: 1px solid #C8C8C8;
+	-moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
     background-color: #f8f8f8;
-    background-image: -moz-linear-gradient(center top, #ffffff 50%, #f8f8f8 100%);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f8f8f8));
-    /* Chrome, Safari 4+ */
-    background-image: -webkit-linear-gradient(top, #ffffff, #f8f8f8);
-    /* Chrome 10-25, iOS 5+, Safari 5.1+ */
-    background-image: -o-linear-gradient(top, #ffffff, #f8f8f8);
-    /* Opera 11.10-12.00 */
     background-image: linear-gradient(to bottom, #ffffff 50%, #f8f8f8 100%);
-    border-color: #DEDFE0 #C8C8C8 #C8C8C8;
-    border-image: none;
+    /* Chrome, Safari 4+ */
+    /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+    /* Opera 11.10-12.00 */
+    border-image: url('') none;
     border-right: 1px solid #C8C8C8;
-    border-style: solid;
-    border-width: 1px;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
     color: #333333;
     cursor: pointer;
@@ -2986,7 +2980,7 @@ div.dataTables_length label select {
 .ui-datepicker .ui-datepicker-prev span:after,
 .ui-datepicker .ui-datepicker-next span:after {
     cursor: pointer;
-    content: "";
+    content: "ï„„";
     font-family: FontAwesome;
     display: block;
     position: absolute;
@@ -2999,7 +2993,7 @@ div.dataTables_length label select {
     right: 2px;
 }
 .ui-datepicker .ui-datepicker-next span:after {
-    content: "";
+    content: "ï„…";
     right: 0;
 }
 .ui-datepicker table th {
@@ -3440,15 +3434,15 @@ h1:first-child {
     text-align: center;
 }
 .dd-item > button:before {
-    content: '';
+    content: 'ï§';
     display: block;
     position: absolute;
     width: 100%;
     text-align: center;
     text-indent: 0;
 }
-.dd-item > button[data-action="collapse"]:before {
-    content: '';
+.dd-item > button[data-action=collapse]:before {
+    content: 'ï¨';
 }
 .dd-placeholder,
 .dd-empty {
@@ -3869,7 +3863,7 @@ h1:first-child {
     border-top: 1px solid #DADADA;
     background: #F6F8FB;
 }
-.chat-wi .chat-in input[type="text"] {
+.chat-wi .chat-in input[type=text] {
     width: 100%;
     border: 0;
     height: 47px;
@@ -3894,8 +3888,7 @@ h1:first-child {
 .chat-wi .chat-tools i:hover {
     background: #e5e7ea;
 }
-.chat-wi .chat-in button,
-.chat-wi .chat-in input[type="submit"] {
+.chat-wi .chat-in button, .chat-wi .chat-in input[type=submit] {
     box-shadow: none;
     background: #E5E7EA;
     border: 1px solid  #E5E7EA;
@@ -4115,7 +4108,7 @@ h1:first-child {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-    background-color: #4D90FD;
+    background-color: #D98880;
 }
 /*List Group*/
 .list-group-item:first-child {
@@ -4129,7 +4122,7 @@ h1:first-child {
 .list-group-item.active,
 .list-group-item.active:hover,
 .list-group-item.active:focus {
-    background-color: #4D90FD;
+    background-color:#D98880;
 }
 .list-group-item i {
     min-width: 15px;
@@ -4504,7 +4497,7 @@ button::-moz-focus-inner {
 .btn-group .dropdown-menu {
     border-radius: 1px;
 }
-.input-group-btn .btn[type="submit"] {
+.input-group-btn .btn[type=submit] {
     padding-bottom: 7px 10px;
 }
 .btn-link {
@@ -4713,7 +4706,7 @@ button::-moz-focus-inner {
     text-indent: inherit;
 }
 .gritter-close:after {
-    content: '×';
+    content: 'Ã—';
     position: absolute;
     color: #FFF;
     left: 10px;
@@ -4753,7 +4746,7 @@ button::-moz-focus-inner {
     text-indent: inherit;
 }
 .gritter-item-wrapper.clean .gritter-close:after {
-    content: '×';
+    content: 'Ã—';
     position: absolute;
     color: #FFF;
     top: 50%;

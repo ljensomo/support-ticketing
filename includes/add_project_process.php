@@ -21,18 +21,17 @@ $qry->execute(array($project_description));
 
 if ($error) {
 
-    openWindow($goto = "../view_client.php");
+    echo "null";
 } else if ($row = ($qry->fetchColumn() > 0)) {
-    msgAlert($alert = "Invalid");
-    openWindow($goto = "../view_client.php");
+    echo "Invalid";
+   
 } else {
     $sqlAdd = "INSERT INTO company_proj(company_id,project_desc) VALUES (?,?)";
     $qryAdd = $db->prepare($sqlAdd);
     $qryAdd->execute(array($id,$project_description));
 
-    echo $id;
-    echo $project_description;
-    //msgAlert($alert = "Successfully Saved");
+    echo "success";  
+     //msgAlert($alert = "Successfully Saved");
     //openWindow($goto = "../clients.php");
 }
 ?>

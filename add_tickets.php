@@ -7,6 +7,8 @@
         <meta name="author" content="">
         <link rel="shortcut icon" href="images/fortisICO.png">
 
+        
+
         <title>Fortis Ticketing System</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
@@ -45,20 +47,19 @@
         <?php include 'includes/portal_topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
-
             <div class="container-fluid" id="pcont">
                 <div class="container">
                     
                     <br>
-
-                     
+                    
                         <div class="row">
                         <div class="col-md-3">
-                            <div class="block-flat">
+                           <div class="block-flat">
+                            
                                 <ul style="list-style: none;" class="nav nav-pills nav-stacked">
                                 <h4 style="background-color: #C94848; color:white; padding: 8px;">Menu</h4>
-                                    <li  class="active" style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Home</a></li>
-                                    <li  style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" style="color:black; font-size: 140%">Tickets</a></li>
+                                    <li   style=" padding: 6px"><a href="homebanner.php" style="color:black; font-size: 140%">Home</a></li>
+                                    <li   class="active" style=" padding: 6px"><a href="add_tickets.php" style="color:black; font-size: 140%">Tickets</a></li>
                                     <li  style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Projects</a></li>
                                     <li style=" padding: 6px"><a href="create.php" style="color:black; font-size: 140%">Create Ticket</a></li>
                                     <li style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Users</a></li>
@@ -66,8 +67,9 @@
                                 </ul>
                             </div>
                             </div>
+
                             <div class="col-md-9">
-                                <div class="block-flat">
+                                <!--<div class="block-flat">
                             
                                     <div class="header">
                                         <h1> Welcome to Fortis </h1>
@@ -76,66 +78,94 @@
                                         <div class="content">
                                             <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
                                                 <small> - Some historic guy</small></center>
-                                            
-                                        </div>
-                                </div>
-                                
-                                <div class="block-flat">
-                            
-                                    <div class="header">
-                                        <h1> Ticket Issue</h1>
-                                    </div>
-                                    
-                                        <div class="content">
-                                            <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
-                                                <small> - Some historic guy</small></center>
                                             <br>
                                            
                                         </div>
-                                    
+                                </div>-->
+                                
+                                <div class="block-flat">
+                                <div class="head">  
 
+                                    <h3>Ticket Informations</h3>
+                                    <hr>
                                 </div>
+                                <?php
+                                            $loggeduser = $_SESSION['admin'];
+                                            $sql = "SELECT * FROM user_info WHERE username = ?";
+                                            $res = $db->prepare($sql);
+                                            $res->execute(array($loggeduser));
+                                            $row = $res->fetch(PDO::FETCH_NUM);
+                                ?>                               
+                                <div class="content">
+                                    <form method="POST" action="includes\create_ticket_process.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
+                                        <input type="hidden" name="company_name" value="<?php echo $row[1]; ?>"/>   
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Reporter</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="Reporter" name="txtReporter" type="text" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Contact Number</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="Contact Number" name="txtCnum" type="text" maxlength="11">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">E-mail</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="email" placeholder="E-mail" name="txtEmail" type="email" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Problem Summary</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="Summary" name="txtPsummary" type="text" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Description</label>
+                                            <div class="col-sm-6">
+                                                <textarea class="form-control" placeholder="Problem Description" name="txtArea" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Transaction #</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="Transaction #" name="txtNO" type="text" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                                                                
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Attachment</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" name="txtAttach" type="file"  placeholder="Drop files here to attach" required>
+                                            </div>
+	                                        </div>
+	                                        
+                                </div>
+                                <div class="spacer text-center">
+                                    <button type="submit" class="btn btn-danger btn-lg">Create Ticket</button>
+                                        <button type="reset" class="btn btn-default btn-lg">Cancel</button>
+                                </div>
+
+                            </div>
+                            </form>
+                        </div>
+                                
                             </div>
                             
                         </div>
 
                         
+
+                        
                 </div>
 
-            </div>
-        </div>
-        </div>
-        
-        <div class="modal fade" id="select-modal" tabindex="-1" role="dialog">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="text-center">
-                                                        <div class="i-circle danger"><i class="fa fa-times"></i></div>
-                                                        <h4>Warning</h4>
-                                                       <div class="form-group">
-                                    <label class="col-sm-3 control-label">Projects</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" name="role">
-                                            <option></option>
-                                            <option value="1">Administrator</option>
-                                            <option value="2">User</option>
-                                            <option value="3">Watcher</option>
-                                        </select>                                 
-                                    </div>
-                                </div>                                                   
-                                 </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Proceed</button>
-                                                    <a class="btn btn-danger" href="includes/delete_user_process.php?id=<?php echo $id; ?>">Cancel</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+           
 
 
 
