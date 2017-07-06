@@ -2745,9 +2745,10 @@ div.dataTables_length label select {
 .block .dropdown-menu,
 .widget-block .dropdown-menu,
 .block-flat .dropdown-menu {
-    margin: -1px 0 0 0;
-    border-radius: 1px;
-    -webkit-border-radius: 1px;
+	margin: -1px 0 0 0;
+	border-radius: 1px;
+	-webkit-border-radius: 1px;
+	text-align: left;
 }
 .btn-group .dropdown-menu {
     margin-top: -6px;

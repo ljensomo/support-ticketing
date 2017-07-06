@@ -55,9 +55,9 @@
                         <div class="row">
                         <div class="col-md-3">
                             <div class="block-flat">
-                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">                             
-                                    <li  class="active" style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Home</a></li>
-                                    <li  style=" padding: 6px"><a href="homebanner_tickets.php" style="color:black; font-size: 140%">Tickets</a></li>
+                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">
+                                    <li   style=" padding: 6px"><a href="homebanner.php" style="color:black; font-size: 140%">Home</a></li>
+                                    <li  class="active"  style=" padding: 6px"><a style="color:black; font-size: 140%">Tickets</a></li>
                                     <li  style=" padding: 6px"><a href="project.php" style="color:black; font-size: 140%">Projects</a></li>
                                     <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" style="color:black; font-size: 140%">Create Ticket</a></li>
                                     <li style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Users</a></li>
@@ -65,57 +65,31 @@
                                 </ul>
                             </div>
                             </div>
-                            <div class="col-md-9">
-                                <div class="block-flat">
-                            
-                                    <div class="header">
-                                        <h1> Welcome to Fortis </h1>
-                                    </div>
-                                    
-                                        <div class="content">
-                                            <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
-                                                <small> - Some historic guy</small></center>
-                                            
-                                        </div>
-                                </div>
-                                
-                                <div class="block-flat">
-                            
-                                    <div class="header">
-                                        <h1> Ticket Issue</h1>
-                                    </div>
-                                    
-                                        <div class="content">
-                                            <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
-                                                <small> - Some historic guy</small></center>
-                                            <br>
-                                           
-                                        </div>
-                                        
-                                         
-                                         
-         
-        </div>
+		                            <div class="col-md-9">
+		                                <div class="block-flat">                            
+		                                    <div class="header">
+		                                        <h1> Ticket</h1>
+		                                    </div> 
+		                                </div>
+		                                
+		                                
+		                                <div class="block-flat">                            
+		                                   <h3>Ticket #</h3>
+		                                   <h4>Date Created</h4>
+		                                   <h4>Issue</h4>
+		                                   <h4>Assigned</h4>
+		                                   <br/>
+		                                   
+		                                   <div class="thumbnail">
+					        <img class="img-responsive" src="images/1.png" alt="error">
+						 </div>
+							 
+							  </div>
+		                                </div>                   
+		                                </div>
 
-        <div class="gallery-cont">
-                                         <div class="item w2" style="width: 100%">
-          <div class="photo">
-            <div class="head">
-              <span class="pull-right"> <i class="fa fa-heart"></i> </span><h4>Road</h4>
-              <span class="desc">My Trips</span>
-            </div>
-         
-            <div class="img">
-              <img src="images/gallery/img4.jpg" />
-              <div class="over">
-                <div class="func"><a href="#"><i class="fa fa-link"></i></a><a class="image-zoom" href="images/gallery/img4.jpg"><i class="fa fa-search"></i></a></div>
-              </div>            
-            </div>
-            </div>
-          </div>
-        </div>
-        
-      
+                                
+                                
                             </div>
                             
                         </div>
@@ -125,7 +99,7 @@
 
             </div>
         </div>
-      
+        </div>
         
         <div class="modal fade" id="select-modal" tabindex="-1" role="dialog">
                                         <div class="modal-dialog">
@@ -159,6 +133,7 @@
                                             </div>
                                         </div>
                                     </div>
+        
 
 
 
