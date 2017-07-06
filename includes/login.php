@@ -4,8 +4,8 @@ session_start();
 include 'connection.php';
 include 'functions.php';
 
-$user = $_POST['username'];
-$pw = $_POST['password'];
+$user = $_POST['user'];
+$pw = $_POST['pw'];
 
 $sql = "SELECT * FROM user_info WHERE username = ?";
 $res = $db->prepare($sql);
@@ -25,20 +25,21 @@ if ($error) {
 
     openWindow($goto = "../login.html");
 } else if ($row == "") {
-    msgAlert($alert = "The username and password you entered did not match our records. Please double-check and try again.");
-    openWindow($goto = "../login.html");
+    echo "none";
+    //msgAlert($alert = "The username and password you entered did not match our records. Please double-check and try again.");
+    //openWindow($goto = "../login.html");
 } else if ($row['is_active'] == 0) {
-
-    msgAlert($alert = "The user you entered is not yet activated. Please contact your administrator to activate your account.");
-    openWindow($goto = "../login.html");
+	echo "not active";
+    //msgAlert($alert = "The user you entered is not yet activated. Please contact your administrator to activate your account.");
+    //openWindow($goto = "../login.html");
 } else if (password_verify($pw, $row['password'])) {
     $_SESSION['admin'] = $row['username'];
     if($row['user_desc']== "Client"){
-         openWindow($goto = "../create.php");
-
+         //openWindow($goto = "../homebanner.php");
+		 echo "client";
     } else{
-
-    openWindow($goto = "../index.php");
+	     echo "admin";
+    //openWindow($goto = "../index.php");
 }
 
     /*if ($row['userlevel_id'] == '1') {
@@ -50,7 +51,8 @@ if ($error) {
         openWindow($goto = "../login.html");
     }*/
 } else if (!password_verify($pw, $row['password'])) {
-    msgAlert($alert = "The password you entered is incorrect. Please try again");
-    openWindow($goto = "../login.html");
+    echo "incorrect";
+    //msgAlert($alert = "The password you entered is incorrect. Please try again");
+    //openWindow($goto = "../login.html");
 }
 ?>

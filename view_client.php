@@ -59,7 +59,7 @@
                     <h2>Clients</h2>
                     <ol class="breadcrumb">
                         <li><a href="users.php">Client</a></li>
-                        <li class="active">View Client</a></li>
+                        <li class="active">View Client</li>
                     </ol>
                 </div>	
                 <div class="cl-mcont">
@@ -168,12 +168,20 @@
             type:"POST",
             url:"includes/add_project_process.php",
             data: "id="+id+"&name="+name,
-            success : function(msg){
+            complete : function(request){
+            
+            
+            if(request.responseText.trim() === "success"){
                   swal({ title : "Saved!", text : "Saved Successfully!", type : "success"},
                   function(){
                                    location.reload();
                                    });
-                                }
+                                
+           }else{
+           		  swal({ title : "Ooops!", text : "Please input data!", type : "warning"});
+				}      
+			}               
+                                
           })
        }
 
