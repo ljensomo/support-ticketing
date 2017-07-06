@@ -138,17 +138,18 @@
                                                         <div class="i-circle danger"><i class="fa fa-folder"></i></div>
                                                        <h2>Select Project</h2>
                                                        <br/>
-						       <div class="input-group">
-						      <input type="text" class="form-control">
-						      <div class="input-group-btn">
-						        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project <span class="caret"></span></button>
-						        <ul class="dropdown-menu dropdown-menu-right">
-						          <li><a href="#">Administrator</a></li>
-						          <li><a href="#">User</a></li>
-						          <li><a href="#">Watcher</a></li>
-						        </ul>
-						      </div><!-- /btn-group -->
-						    </div><!-- /input-group -->
+                                                       <div class="form-group">
+                                    <label class="col-sm-3 control-label">Project</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="role">
+                                            <option></option>
+                                            <option value="1">Administrator</option>
+                                            <option value="2">User</option>
+                                            <option value="3">Watcher</option>
+                                        </select>                                 
+                                    </div>
+                                </div>	
+						       <!-- /input-group -->
 						  </div><!-- /.col-lg-6 -->                                    
 					             </div>
                                             
