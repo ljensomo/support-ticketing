@@ -87,7 +87,7 @@
                                <div class="form-group">
                                 <label class="col-sm-3 control-label">Description</label>
                                 <div class="col-sm-6">
-                                  <input class="form-control" id="decription" name="description" type="text">                               
+                                  <input class="form-control" id="description" name="description" type="text">                               
                                 
                                 </div>
                               </div>
@@ -124,6 +124,8 @@
                    swal({ title : "Ooops!", text : "Please input data!", type : "warning" });
         } else{
                     swal({ title : "Saved!", text : "Saved Successfully", type : "success" });
+                    var name = $('#name').val('');
+                     var description = $('#description').val('');
         }
                               
             }               

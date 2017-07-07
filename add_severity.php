@@ -117,6 +117,8 @@
                    swal({ title : "Ooops!", text : "Please input data!", type : "warning" });
 		} else{
             		swal({ title : "Saved!", text : "Saved Successfully", type : "success" });
+                     var name = $('#name').val('');
+               var description = $('#description').val('');
 		}
             			      
 			}               
