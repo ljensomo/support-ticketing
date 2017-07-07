@@ -847,6 +847,7 @@ body.modal-open,
 #sub-menu-nav ul li.dropdown-header {
     padding: 1px 11px;
     padding-bottom: 6px;
+    color:  #9a0201;
 }
 #sub-menu-nav ul {
     padding: 5px 0;
@@ -866,7 +867,7 @@ body.modal-open,
     padding: 6px 20px 6px 31px;
 }
 #sub-menu-nav ul li a:hover {
-    background-color: #2391ED;
+    background-color: #9a0201;
     color: #FFF;
 }
 #sub-menu-nav ul:after {
@@ -909,6 +910,7 @@ body.modal-open,
 }
 .cl-vnavigation .parent ul li.dropdown-header {
     display: none;
+    
 }
 .cl-vnavigation .parent ul li a {
     font-size: 11px;
@@ -4038,7 +4040,7 @@ h1:first-child {
     background-color: #60C060;
 }
 .label-primary {
-    background-color: #4D90FD;
+    background-color: #9a0201;
 }
 .label-warning {
     background-color: #fcad37;

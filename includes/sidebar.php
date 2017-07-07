@@ -21,7 +21,7 @@
                     <li><a href="index.php"><i class="fa fa-home"></i><span>Home</span></a>
                     <li><a href="#"><i class="fa fa-envelope nav-icon"></i><span>Support</span></a>
                         <ul class="sub-menu">
-                            <li><a href="create.php"><span class="label label-primary pull-right">New</span>Add Ticket</a></li>
+                            <li><a href="create.php"><span class="label label-danger pull-right">New</span>Add Ticket</a></li>
                         </ul>
                     </li>
                     <?php if ($row[10] == "Administrator") { ?>
@@ -32,8 +32,7 @@
                         </ul>
                     </li>
                     <?php } ?>
-
-                    </li>
+                   
                     <li><a href="tickets.php"><i class="fa fa-ticket"></i><span>Tickets</span></a>
                        
                     <?php if ($row[10] == "Administrator") { ?>

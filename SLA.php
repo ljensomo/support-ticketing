@@ -69,7 +69,8 @@
                             <h4>Time will be measured between the Start and Stop conditions below.</h4>
                                 </div>
                                   <div class="content">
-                                    
+                                    <div class="row">
+                                    <div class="col-md-4">
                             <table>
                                     <h3>Start</h3>
                                     <h4>Begin counting time when.</h4>
@@ -100,6 +101,8 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
+                            <div class="col-md-4">
                             <table>
                                     <h3>Pause on</h3>
                                     <h4>Time is not counting during.</h4>
@@ -132,7 +135,9 @@
                                     <td style="width:30%;"><input type="checkbox"> Resolution: Not Set</td>
                                     </tr>
                                 </tbody>
-                            </table>   
+                            </table> 
+                            </div>  
+                            <div class="col-md-4">
                             <table>
                                     <h3>Stop</h3>
                                     <h4>Finish counting time when.</h4>
@@ -172,7 +177,9 @@
                                     <td style="width:30%;"><input type="checkbox"> Resolution: Cleared</td>
                                     </tr>
                                 </tbody>
-                            </table>                     
+                            </table> 
+                            </div>     
+                            </div>               
                         </div>
                      
 

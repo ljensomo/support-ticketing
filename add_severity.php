@@ -41,6 +41,9 @@
 
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
+        <script type="text/javascript" src="script/jquery-3.2.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+	<script src="sweetalert-master/dist/sweetalert.min.js"></script>
 
     </head>
     <body>
@@ -68,7 +71,7 @@
                                     <h3>Add Severity</h3>
                                 </div>
                                 <div class="content">
-                                    <form method="POST" action="includes/add_severity_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                                    <form method="POST" action="" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Name</label>
                                             <div class="col-sm-6">
@@ -84,7 +87,7 @@
                                         </div>
 
                                         <div class="spacer text-center">
-                                            <button type="submit" class="btn btn-danger btn-md">Save</button>
+                                            <button type="button" onclick="severity()" class="btn btn-danger btn-md">Save</button>
                                             <button type="reset" class="btn btn-default btn-md">Cancel</button>
                                         </div>
                                     </form>
@@ -97,6 +100,32 @@
 
             </div>
         </div>
+        
+        <script>
+        function severity(){
+        	 
+        	 var name = $('#name').val();
+               var description = $('#description').val();
+          $.ajax({
+
+            type:"POST",
+            url:"includes/add_severity_process.php",
+            data: "name="+name+"&description="+description,
+            complete : function(request){
+             
+             if(request.responseText.trim() === "none"){
+                   swal({ title : "Ooops!", text : "Please input data!", type : "warning" });
+		} else{
+            		swal({ title : "Saved!", text : "Saved Successfully", type : "success" });
+		}
+            			      
+			}               
+                                
+          })
+       
+
+                }
+        </script>
 
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
