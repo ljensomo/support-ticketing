@@ -7,7 +7,7 @@ $id = $_POST['id'];
 $name = $_POST['name'];
 $description = $_POST['description'];
 
-$required = array($name);
+$required = array($id,$name,$description);
 $error = false;
 
 foreach ($required as $fields) {
@@ -17,8 +17,8 @@ foreach ($required as $fields) {
 }
 
 if ($error) {
-
-    openWindow($goto = "../status.php");
+	echo "none";
+    //openWindow($goto = "../status.php");
 } else {
     $sql = "UPDATE status SET status_desc =?, description=? WHERE status_id =?";
     $qry = $db->prepare($sql);

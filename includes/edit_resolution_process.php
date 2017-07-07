@@ -7,7 +7,7 @@ $id = $_POST['id'];
 $name = $_POST['name'];
 $description = $_POST['description'];
 
-$required = array($name);
+$required = array($id,$name,$description);
 $error = false;
 
 foreach ($required as $fields) {
@@ -17,8 +17,8 @@ foreach ($required as $fields) {
 }
 
 if ($error) {
-
-    openWindow($goto = "../resolution.php");
+	echo "none";
+    //openWindow($goto = "../resolution.php");
 } else {
     $sql = "UPDATE resolution SET resolution =?, description=? WHERE resolution_id =?";
     $qry = $db->prepare($sql);

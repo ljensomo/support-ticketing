@@ -41,6 +41,9 @@
 
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
+        <script type="text/javascript" src="script/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+    <script src="sweetalert-master/dist/sweetalert.min.js"></script>
 
     </head>
     <body>
@@ -53,10 +56,10 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Severity</h2>
-                    <ol class="breadcrumb">
-                        <li class="active">Severity</li>
-                        <li><a href="add_severity.php">Add Severity</a></li>
+                    <h2>Status</h2>
+                    <ol class="breadcrumb"> 
+                        <li class="active">Status</li>
+                        <li><a href="add_status.php">Add Status</a></li>
                     </ol>
                 </div>	
                 <div class="cl-mcont">
@@ -65,7 +68,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
-                                    <h3>Add Severity</h3>
+                                    <h3>Edit Status</h3>
                                 </div>
                                 <div class="content">
                                     <?php
@@ -85,7 +88,7 @@
                                     }
                                     ?>
                                     <form method="POST" action="includes/edit_status_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
-                                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+                                         <input type="hidden" name="id" id="id" value="<?php echo $id; ?>"/>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Name</label>
                                             <div class="col-sm-6">
@@ -101,8 +104,8 @@
                                         </div>
 
                                         <div class="spacer text-center">
-                                            <button type="submit" class="btn btn-danger btn-md">Update</button>
-                                            <button type="reset" class="btn btn-default btn-md">Cancel</button>
+                                            <button type="button" onclick="editstatus()" class="btn btn-danger btn-md">Update</button>
+                                            <a href="status.php" type="reset" class="btn btn-default btn-md">Cancel</a>
                                         </div>
                                     </form>
                                 </div>
@@ -114,6 +117,33 @@
 
             </div>
         </div>
+        <script>
+        function editstatus(){
+             
+             var id = $('#id').val();
+               var name = $('#name').val();
+                var description = $('#description').val();
+                
+          $.ajax({
+
+            type:"POST",
+            url:"includes/edit_status_process.php",
+            data: "id="+id+"&name="+name+"&description="+description,
+            complete : function(request){
+             
+             if(request.responseText.trim() === "none"){
+                   swal({ title : "Ooops!", text : "Please input data!", type : "warning" });
+        } else{
+                    swal({ title : "Saved!", text : "Saved Successfully", type : "success" });
+        }
+                              
+            }               
+                                
+          })
+       
+
+                }
+        </script>
 
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>

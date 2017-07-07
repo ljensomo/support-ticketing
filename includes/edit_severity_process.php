@@ -7,7 +7,7 @@ $id = $_POST['id'];
 $name = $_POST['name'];
 $description = $_POST['description'];
 
-$required = array($name);
+$required = array($id,$name,$description);
 $error = false;
 
 foreach ($required as $fields) {
@@ -17,8 +17,8 @@ foreach ($required as $fields) {
 }
 
 if ($error) {
-
-    openWindow($goto = "../severity.php");
+	echo "none";
+    //openWindow($goto = "../severity.php");
 } else {
     $sql = "UPDATE severity SET severity =?, description=? WHERE severity_id =?";
     $qry = $db->prepare($sql);

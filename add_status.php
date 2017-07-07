@@ -95,7 +95,7 @@
                               
                             <div class="spacer text-center">
                                 <button type="button" onclick="status()" class="btn btn-danger btn-lg">Save</button>
-                                <button type="reset" class="btn btn-default btn-lg">Cancel</button>
+                                <a href="status.php" type="reset" class="btn btn-default btn-lg">Cancel</a>
                             </div>
                                     
                            

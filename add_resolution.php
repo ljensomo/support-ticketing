@@ -91,7 +91,7 @@
 
                                         <div class="spacer text-center">
                                             <button type="button" onclick="resolution()" class="btn btn-danger btn-md">Save</button>
-                                            <button type="reset" class="btn btn-default btn-md">Cancel</button>
+                                            <a href="resolution.php" type="reset" class="btn btn-default btn-md">Cancel</a>
                                         </div>
                                     </form>
                                 </div>
