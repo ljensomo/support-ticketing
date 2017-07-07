@@ -8,7 +8,7 @@ $company_name = $_POST['company_name'];
 $username = $_POST['username'];
 
 
-$required = array($company_name);
+$required = array($id,$company_name,$username);
 $error = false;
 
 foreach ($required as $fields) {
@@ -18,8 +18,8 @@ foreach ($required as $fields) {
 }
 
 if ($error) {
-
-    openWindow($goto = "../clients.php");
+	echo "none";
+    //openWindow($goto = "../clients.php");
 } else {
     $sql = "UPDATE users SET company_name =?, username=? WHERE userId =?";
     $qry = $db->prepare($sql);
