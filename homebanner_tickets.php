@@ -56,11 +56,11 @@
                         <div class="col-md-3">
                             <div class="block-flat">
                                 <ul style="list-style: none;" class="nav nav-pills nav-stacked">
-                                    <li   style=" padding: 6px"><a href="homebanner.php" style="color:black; font-size: 140%">Home</a></li>
-                                    <li  class="active"  style=" padding: 6px"><a style="color:black; font-size: 140%">Tickets</a></li>
-                                    <li  style=" padding: 6px"><a href="project.php" style="color:black; font-size: 140%">Projects</a></li>
+                                    <li style=" padding: 6px"><a href="homebanner.php" style="color:black; font-size: 140%">Home</a></li>
+                                    <li class="active" style=" padding: 6px"><a style="color:black; font-size: 140%">Tickets</a></li>
+                                    <li style=" padding: 6px"><a href="project.php" style="color:black; font-size: 140%">Projects</a></li>
                                     <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" style="color:black; font-size: 140%">Create Ticket</a></li>
-                                    <li style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Users</a></li>
+                                    <li style=" padding: 6px"><a href="homebanner_users.php" style="color:black; font-size: 140%">Users</a></li>
 
                                 </ul>
                             </div>
@@ -112,13 +112,10 @@
                                                         <div class="i-circle danger"><i class="fa fa-folder"></i></div>
                                                        <h2>Select Project</h2>
                                                        <br/>
-
-                                <form method="POST" action="includes\create_ticket_process.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >                      
-                                <div class="form-group">
+                                                       <div class="form-group">
                                     <label class="col-sm-3 control-label">Project</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="role">
-
                                             <option></option>
                                             
                                             <?php 
@@ -140,58 +137,10 @@
                                             <option value="1"><?php echo $option_row[2]; ?></option>
                                             
                                             <?php } ?>
-
                                             
-                                        </select>   
-
-
+                                        </select>                                 
                                     </div>
                                 </div>	
-                                       <div class="form-group">
-                                    <label class="col-sm-3 control-label">Project</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" name="role">
-
-                                            <option></option>
-                                            
-                                            <?php 
-
-                                               
-                                            $option_load = "SELECT 
-
-                                                 a.user_id,
-                                                a.fname,
-                                                a.mname,
-                                                a.lname,
-                                                a.cnum,
-                                                a.email,
-                                                a.company_id,
-                                                R.user_desc
-
-
-                                            FROM users AS a
-                                            JOIN users_roles AS ur 
-                                            ON a.user_id=ur.user_id
-                                            JOIN roles AS r
-                                            ON r.userlevel_id=ur.user_role
-                                            WHERE company_id = ? AND user_desc = 'reporter'";
-                                            $option_ress = $db->prepare($option_load);
-                                            $option_ress->execute(array($row[4]));
-                                            while($option_roww = $option_ress->fetch(PDO::FETCH_NUM)) {
-                                            ?>
-                                            
-                                            <option value="1"><?php echo $option_roww[0]. " " .$option_roww[1]. " " .$option_roww[2]; ?></option>
-                                            
-                                            <?php } ?>
-
-                                            
-                                        </select>   
-
-
-                                    </div>
-                                </div>  
-                                </form>
-                                
 						       <!-- /input-group -->
 						  </div><!-- /.col-lg-6 -->                                    
 					             </div>

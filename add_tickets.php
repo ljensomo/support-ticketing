@@ -62,7 +62,7 @@
                                     <li  style=" padding: 6px"><a href="homebanner_tickets.php" style="color:black; font-size: 140%">Tickets</a></li>
                                     <li  style=" padding: 6px"><a href="project.php" style="color:black; font-size: 140%">Projects</a></li>
                                     <li  class="active" style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Create Ticket</a></li>
-                                    <li  style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Users</a></li>
+                                    <li  style=" padding: 6px"><a href="homebanner_users.php" style="color:black; font-size: 140%">Users</a></li>
                                 </ul>
                             </div>
                             </div>

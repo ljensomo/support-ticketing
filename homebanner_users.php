@@ -55,67 +55,99 @@
                         <div class="row">
                         <div class="col-md-3">
                             <div class="block-flat">
-                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">                             
-                                    <li  class="active" style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Home</a></li>
+                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">
+                                    <li  style=" padding: 6px"><a href="homebanner.php" style="color:black; font-size: 140%">Home</a></li>
                                     <li  style=" padding: 6px"><a href="homebanner_tickets.php" style="color:black; font-size: 140%">Tickets</a></li>
                                     <li  style=" padding: 6px"><a href="project.php" style="color:black; font-size: 140%">Projects</a></li>
                                     <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" style="color:black; font-size: 140%">Create Ticket</a></li>
-                                    <li style=" padding: 6px"><a href="homebanner_users.php" style="color:black; font-size: 140%">Users</a></li>
+                                    <li class="active" style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Users</a></li>
 
                                 </ul>
                             </div>
                             </div>
-                            <div class="col-md-9">
-                                <div class="block-flat">
-                            
-                                    <div class="header">
-                                        <h1> Welcome to Fortis </h1>
-                                    </div>
-                                    
-                                        <div class="content">
-                                            <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
-                                                <small> - Some historic guy</small></center>
+		                            <div class="col-md-9">
+		                                <div class="block-flat">                            
+		                                    <div class="head">
+		                                        <h1> Users</h1>
+		                                    </div> 
+		                                </div>
+		                                </div>
+		                                
+		                                <div class="col-md-9">
+                     <div class="spacer"></div>
+                    <div class="block-flat">
+                 
+                            <div class="header">
+                                <a class="btn btn-danger" href="homebanner_add_reporters.php">New +</a>
+                            </div>
+                            <div class="pull-right">                           
+                             <label><input aria-controls="datatable" class="form-control" placeholder="Search" type="text"></label>
+                            </div>
+             
+                        <div class="content">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>First Name</th>
+                                            <th>MI</th>
+                                            <th>Last Name</th>
                                             
-                                        </div>
-                                </div>
-                                
-                                <div class="block-flat">
-                            
-                                    <div class="header">
-                                        <h1> Ticket Issue</h1>
-                                    </div>
-                                    
-                                        <div class="content">
-                                            <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
-                                                <small> - Some historic guy</small></center>
-                                            <br>
-                                           
-                                        </div>
-                                        
-                                         
-                                         
-         
-        </div>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                                $loggeduser = $_SESSION['admin'];
+                                                $sql = "SELECT * FROM user_info WHERE username = ?";
+                                                $res = $db->prepare($sql);
+                                                $res->execute(array($loggeduser));
+                                                $row = $res->fetch(PDO::FETCH_ASSOC);
 
-        <div class="gallery-cont">
-                                         <div class="item w2" style="width: 100%">
-          <div class="photo">
-            <div class="head">
-              <span class="pull-right"> <i class="fa fa-heart"></i> </span><h4>Road</h4>
-              <span class="desc">My Trips</span>
-            </div>
-         
-            <div class="img">
-              <img src="images/gallery/img4.jpg" />
-              <div class="over">
-                <div class="func"><a href="#"><i class="fa fa-link"></i></a><a class="image-zoom" href="images/gallery/img4.jpg"><i class="fa fa-search"></i></a></div>
-              </div>            
-            </div>
-            </div>
-          </div>
-        </div>
-        
-      
+                                                $cid = $row['company_id'];
+
+                                                $sql2 = "SELECT * FROM user_info WHERE company_id = ? AND user_desc = ?";
+                                                $res2 = $db->prepare($sql2);
+                                                $res2->execute(array($cid,'Reporter'));
+                                                while ($row2 = $res2->fetch(PDO::FETCH_NUM)) {
+                                                    ?>
+                                      
+                                                <tr class="odd gradex">
+                                                    <td><?php echo $row2[0]; ?></td>
+                                                    <td><?php echo $row2[1]; ?></td>
+                                                    <td><?php echo $row2[2]; ?></td>
+                                                    <td><?php echo $row2[3]; ?></td>
+                                                    
+                                                    <td><center>
+                                                        <?php if ($row['is_active'] == 1) { ?>
+                                                        <a class="btn btn-default btn-sm" href="deactivate_user.php?cid=<?php echo $row2[0]; ?>" type="button"p><i class="fa fa-unlock"></i></a>
+                                                    <?php } else { ?>
+                                                        <a class="btn btn-default btn-sm" href="activate_user.php?cid=<?php echo $row2[0]; ?>"><i class="fa fa-lock"></i></a>
+                                                    <?php } ?>
+                                                        <a class="btn btn-info btn-sm" href="#.php?id=<?php echo $row2[0]; ?>"><i class="fa fa-pencil">
+                                            </i></a>
+                                            <button class="btn btn-danger btn-sm" type =" button" onclick="deletedata()"><i class="fa fa-trash-o"></i></button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                    
+                                        <?php } ?>
+                                    </tbody>
+                                </table> 
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+		                                
+		                                
+		                                
+		                                </div>                   
+		                                </div>
+
+                                
+                                
                             </div>
                             
                         </div>
@@ -125,7 +157,7 @@
 
             </div>
         </div>
-      
+        </div>
         
         <div class="modal fade" id="select-modal" tabindex="-1" role="dialog">
                                         <div class="modal-dialog">
@@ -178,6 +210,7 @@
                                             </div>
                                         </div>
                                     </div>
+        
 
 
 
@@ -215,6 +248,8 @@
         <!-- Placed at the end of the document so the pages load faster -->
         
         <script type="text/javascript" src="js/jquery.magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+
+        
 
         <script src="js/behaviour/voice-commands.js"></script>
         <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
