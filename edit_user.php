@@ -41,6 +41,9 @@
 
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
+        <script type="text/javascript" src="script/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+    <script src="sweetalert-master/dist/sweetalert.min.js"></script>
 
     </head>
     <body>
@@ -101,8 +104,8 @@
 	                                        
                                     }
                                     ?>
-                                    <form method="POST" action="includes/edit_user_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
-                                        <input type="hidden" name="id" value="<?php echo $rowLoader[0]; ?>"/>
+                                    <form method="POST" action="" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                                        <input type="hidden" name="id" id="id" value="<?php echo $rowLoader[0]; ?>"/>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">First Name</label>
                                             <div class="col-sm-6">
@@ -146,7 +149,7 @@
 
                                          <div class="spacer text-center">
                                         <a href="users.php" class="btn btn-default btn-md">Back</a>
-                                        <button class="btn btn-danger btn-md" type="submit">Save</button>
+                                        <button class="btn btn-danger btn-md" type="button" onclick="edituser()">Save</button>
                                          </div>
                                     </div>
                                     </form>
@@ -159,6 +162,35 @@
 
             </div>
         </div>
+            <script>
+        function edituser(){
+             
+             var id = $('#id').val();
+               var fname = $('#fname').val();
+                var mname = $('#mname').val();
+                var lname = $('#lname').val();
+                var username = $('#username').val();
+                var role = $('#role').val();
+          $.ajax({
+
+            type:"POST",
+            url:"includes/edit_user_process.php",
+            data: "id="+id+"&fname="+fname+"&mname="+mname+"&lname="+lname+"&username="+username+"&role="+role,
+            complete : function(request){
+             
+             if(request.responseText.trim() === "none"){
+                   swal({ title : "Ooops!", text : "Please input data!", type : "warning" });
+        } else{
+                    swal({ title : "Saved!", text : "Saved Successfully", type : "success" });
+        }
+                              
+            }               
+                                
+          })
+       
+
+                }
+        </script>
 
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>

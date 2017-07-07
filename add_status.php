@@ -41,6 +41,10 @@
 
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
+        <script type="text/javascript" src="script/jquery-3.2.1.js"></script>
+         <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+             <script src="sweetalert-master/dist/sweetalert.min.js"></script>
+
 
     </head>
     <body>
@@ -71,11 +75,11 @@
                             <hr>
                           </div>
                           <div class="content">
-                             <form method="POST" action="includes/add_status_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
+                             <form method="POST" action="" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
                               <div class="form-group">
                                 <label class="col-sm-3 control-label">Name</label>
                                 <div class="col-sm-6">
-                                  <input class="form-control"  name="name" type="text">                               
+                                  <input class="form-control" id="name"  name="name" type="text">                               
                                 
                                 </div>
                               </div>
@@ -83,14 +87,14 @@
                                <div class="form-group">
                                 <label class="col-sm-3 control-label">Description</label>
                                 <div class="col-sm-6">
-                                  <input class="form-control"  name="description" type="text">                               
+                                  <input class="form-control" id="description" name="description" type="text">                               
                                 
                                 </div>
                               </div>
                               
                               
                             <div class="spacer text-center">
-                                <button type="submit" class="btn btn-danger btn-lg">Save</button>
+                                <button type="button" onclick="status()" class="btn btn-danger btn-lg">Save</button>
                                 <button type="reset" class="btn btn-default btn-lg">Cancel</button>
                             </div>
                                     
@@ -103,6 +107,34 @@
             </div>
             </div>
             </div>
+
+             <script>
+        function status(){
+             
+             var name = $('#name').val();
+               var description = $('#description').val();
+          $.ajax({
+
+            type:"POST",
+            url:"includes/add_status_process.php",
+            data: "name="+name+"&description="+description,
+            complete : function(request){
+             
+             if(request.responseText.trim() === "none"){
+                   swal({ title : "Ooops!", text : "Please input data!", type : "warning" });
+        } else{
+                    swal({ title : "Saved!", text : "Saved Successfully", type : "success" });
+                    var name = $('#name').val('');
+                     var description = $('#description').val('');
+        }
+                              
+            }               
+                                
+          })
+       
+
+                }
+        </script>
 
 
 
