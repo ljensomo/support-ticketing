@@ -58,8 +58,8 @@
                 <div class="page-head">
                     <h2>Severity</h2>
                     <ol class="breadcrumb">
-                        <li class="active">Severity</li>
-                        <li><a href="add_severity.php">Add Severity</a></li>
+                        <li><a href="severity.php">Severity</a></li>
+                        <li class = "active"> Add Severity</li>
                     </ol>
                 </div>	
                 <div class="cl-mcont">
