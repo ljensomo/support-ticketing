@@ -58,8 +58,8 @@
                 <div class="page-head">
                     <h2>Resolutions</h2>
                     <ol class="breadcrumb">
-                        <li class="active">Resolutions</li>
-                        <li><a href="add_resolution.php">Add Resolutions</a></li>
+                        <li><a href="resolution.php">Resolution</a></li>
+                        <li class="active">Edit Resolution</li>
                     </ol>
                 </div>	
                 <div class="cl-mcont">

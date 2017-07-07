@@ -138,10 +138,11 @@
                                                         <div class="i-circle danger"><i class="fa fa-folder"></i></div>
                                                        <h2>Select Project</h2>
                                                        <br/>
+					<form method="POST" action="add_tickets.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
                                                        <div class="form-group">
                                     <label class="col-sm-3 control-label">Project</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="role">
+                                        <select class="form-control" name="project" id="project" required>
                                             <option></option>
                                             
                                             <?php 
@@ -160,20 +161,32 @@
                                             while($option_row = $option_res->fetch(PDO::FETCH_NUM)) {
                                             ?>
                                             
-                                            <option value="1"><?php echo $option_row[2]; ?></option>
+                                            <option value="<?php echo $option_row[0]; ?>"><?php echo $option_row[2]; ?></option>
                                             
                                             <?php } ?>
                                             
                                         </select>                                 
                                     </div>
-                                </div>	
+                                </div>
+                                <div class="form-group">
+                                            <label class="col-sm-3 control-label">Transaction #</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="Transaction #" name="no" id="no" type="text" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                        	<div class="center">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <button class="btn btn-danger" type="submit">Proceed</button>
+
+                                        	</div>
+                                        </div>
+                                </form>
 						       <!-- /input-group -->
 						  </div><!-- /.col-lg-6 -->                                    
 					             </div>
                                             
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a class="btn btn-danger" href="add_tickets.php">Proceed</a>
                                                 </div>
                                             </div>
                                         </div>

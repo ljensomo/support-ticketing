@@ -57,9 +57,10 @@
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
                     <h2>Status</h2>
-                    <ol class="breadcrumb"> 
-                        <li class="active">Status</li>
-                        <li><a href="add_status.php">Add Status</a></li>
+                    <ol class="breadcrumb">
+                        <li><a href="status.php">Status</a></li> 
+                        <li class="active">Edit Status</li>
+                        
                     </ol>
                 </div>	
                 <div class="cl-mcont">
