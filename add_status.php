@@ -79,7 +79,7 @@
                               <div class="form-group">
                                 <label class="col-sm-3 control-label">Name</label>
                                 <div class="col-sm-6">
-                                  <input class="form-control" id="name"  name="name" type="text">                               
+                                  <input class="form-control"  placeholder="Name" id="name"  name="name" type="text">                               
                                 
                                 </div>
                               </div>
@@ -87,7 +87,7 @@
                                <div class="form-group">
                                 <label class="col-sm-3 control-label">Description</label>
                                 <div class="col-sm-6">
-                                  <input class="form-control" id="description" name="description" type="text">                               
+                                  <input class="form-control"  placeholder="Description" id="description" name="description" type="text">                               
                                 
                                 </div>
                               </div>

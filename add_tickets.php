@@ -98,24 +98,7 @@
                                 <div class="content">
                                     <form method="POST" action="includes\create_ticket_process.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
                                         <input type="hidden" name="company_name" value="<?php echo $row[1]; ?>"/>   
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Reporter</label>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="text" placeholder="Reporter" name="txtReporter" type="text" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Contact Number</label>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="text" placeholder="Contact Number" name="txtCnum" type="text" maxlength="11">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">E-mail</label>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="email" placeholder="E-mail" name="txtEmail" type="email" required>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Problem Summary</label>
                                             <div class="col-sm-6">
