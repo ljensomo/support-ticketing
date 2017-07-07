@@ -78,48 +78,56 @@
                                     
                                     if (isset($_GET['cid'])) {
                                         $id = $_GET['cid'];
-                                        $sqlLoader = "SELECT * FROM user_info where id=?";
+                                        $sqlLoader = "SELECT 
+										a.user_id,	
+										a.fname,
+										a.mname,
+										a.lname,
+										a.company_id,
+										a.cnum,
+										a.email,
+										a.is_active,
+										b.username,
+										b.password,
+										d.user_desc
+										
+										FROM users AS a INNER JOIN
+										user_accounts AS b ON a.user_id=b.user_id
+										JOIN users_roles AS c ON a.user_id=c.user_id
+										JOIN roles AS d ON c.user_role=d.userlevel_id where a.user_id=?";
                                         $resLoader = $db->prepare($sqlLoader);
                                         $resLoader->execute(array($id));
-                                        while ($rowLoader = $resLoader->fetch(PDO::FETCH_ASSOC)) {
-                                            $id = $rowLoader['id'];
-                                            $fname = $rowLoader['fname'];
-                                            $mname = $rowLoader['mname'];
-                                            $lname = $rowLoader['lname'];
-                                            $username = $rowLoader['username'];
-                                            $role = $rowLoader['user_desc'];
-
-                                        }
-                                        
+										$rowLoader = $resLoader->fetch(PDO::FETCH_NUM);
+	                                        
                                     }
                                     ?>
                                     <form method="POST" action="includes/edit_user_process.php" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
-                                        <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+                                        <input type="hidden" name="id" value="<?php echo $rowLoader[0]; ?>"/>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">First Name</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" name="fname" id="fname" type="text" value="<?php echo $fname; ?>">                               
+                                                <input class="form-control" name="fname" id="fname" type="text" value="<?php echo $rowLoader[1]; ?>">                               
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">MI</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" name="mname" id="mname" value="<?php echo $mname; ?>" type="text">                               
+                                                <input class="form-control" name="mname" id="mname" value="<?php echo $rowLoader[2]; ?>" type="text">                               
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Last Name</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" name="lname" id="lname" value="<?php echo $lname; ?>" type="text" >                               
+                                                <input class="form-control" name="lname" id="lname" value="<?php echo $rowLoader[3]; ?>" type="text" >                               
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Username</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" name="username" id="username" value="<?php echo $username; ?>" type="text" >
+                                                <input class="form-control" name="username" id="username" value="<?php echo $rowLoader[8]; ?>" type="text" >
                                             </div>
                                         </div>
 
@@ -127,8 +135,8 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Role</label>
                                             <div class="col-sm-6">
-                                            <select class="form-control" name="role">
-                                                <option><?php echo $role; ?></option>
+                                            <select class="form-control" name="role" required>
+                                                <option></option>
                                                 <option value="1">Administrator</option>
                                                 <option value="2">User</option>
                                                 <option value="3">Watcher</option>

@@ -23,10 +23,10 @@ if ($error) {
 
     openWindow($goto = "../users.php");
 } else {
-    $sql = "UPDATE users SET fname =?, mname=?, lname=?, username=?, userlevel_id=? WHERE userId =?";
+    $sql = "UPDATE users SET fname =?, mname=?, lname=? WHERE user_id =?";
     $qry = $db->prepare($sql);
-    $qry->execute(array($fname,$mname,$lname,$username,$role,$id));
+    $qry->execute(array($fname,$mname,$lname,$id));
     msgAlert($alert = "Successfully Saved");
-    openWindow($goto = "../users.php");
+   openWindow($goto = "../users.php");
 }
 ?>
