@@ -112,7 +112,7 @@ require_once 'connection.php';
           </li>
         </ul>
       </li>
-      <li class="button"><a href="javascript:;" class="speech-button"><i class="fa fa-microphone"></i></a></li>				
+     				
     </ul>        
 
 

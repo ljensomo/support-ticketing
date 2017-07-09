@@ -55,12 +55,12 @@
                         <div class="row">
                         <div class="col-md-3">
                             <div class="block-flat">
-                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">
-                                    <li   style=" padding: 6px"><a href="homebanner.php" style="color:black; font-size: 140%">Home</a></li>
-                                    <li  style=" padding: 6px"><a href="homebanner_tickets.php" style="color:black; font-size: 140%">Tickets</a></li>
-                                    <li  class="active" style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Projects</a></li>
-                                    <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" style="color:black; font-size: 140%">Create Ticket</a></li>
-                                    <li style=" padding: 6px"><a href="homebanner_users.php" style="color:black; font-size: 140%">Users</a></li>
+                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">                             
+                                    <li  style=" padding: 6px"><a href="homebanner.php" class="btn" style="color:black"><i class="fa fa-home" style="padding-right:5px"></i>Home</a></li>
+                                    <li  style=" padding: 6px"><a href="homebanner_tickets.php" class="btn" style="color:black"><i class="fa fa-ticket" style="padding-right:5px"></i>Tickets</a></li>
+                                    <li class="active"  style=" padding: 6px"><a href="#" class="btn"><i class="fa fa-folder" style="padding-right:5px"></i>Projects</a></li>
+                                    <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" class="btn" style="color:black"><i class="fa fa-tag" style="padding-right:5px"></i>Create New Ticket</a></li>
+                                    <li style=" padding: 6px"><a href="homebanner_users.php" class="btn" style="color:black"><i class="fa fa-users" style="padding-right:5px"></i>Users</a></li>
 
                                 </ul>
                             </div>
@@ -79,8 +79,8 @@
                                         <h4> Representative</h4>
                                         
                                         <div class="modal-footer">
-                                           <button type="button" class="btn btn-default" data-dismiss="modal">Create Ticket</button>
- 						 <a class="btn btn-danger" href="#">Details</a>
+                                           <button type="button" class="btn btn-default" data-dismiss="modal">Add Ticket</button>
+ 						 <a class="btn btn-danger" href="#"> View Details</a>
                                                 </div>
                                     </div> 
                                 </div>
@@ -137,6 +137,44 @@
                                         </select>                                 
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Reporter</label>
+                                                            <div class="col-sm-6">
+                                                                <select class="form-control" name="reporter" id="reporter" required>
+                                                                    <option></option>
+                                                                    
+                                                                    <?php 
+                                                                    
+                                                                    
+                                                                    
+                                                                    $reporter_loader = "SELECT
+                                                                    a.user_id,
+                                                                    a.fname,
+                                                                    a.mname,
+                                                                    a.lname,
+                                                                    a.company_id,
+                                                                    a.cnum, 
+                                                                    a.email,
+                                                                    a.is_active,
+                                                                    c.user_desc
+                                                                     FROM users AS a JOIN 
+                                                                     users_roles AS b ON a.user_id=b.user_id
+                                                                     JOIN roles AS c ON b.user_role=c.userlevel_id
+                                                                     WHERE company_id = ? AND user_desc = ?";
+                                                                 
+                                                                    $rep_res = $db->prepare($reporter_loader);
+                                                                    $rep_res->execute(array($id_row[0],'reporter'));
+                                                                    while($rep_row = $rep_res->fetch(PDO::FETCH_NUM)) {
+                                                                    ?>
+                                                                    
+                                                                    <option value="<?php echo $rep_row[0] ; ?>"><?php echo $rep_row[1] . " " . $rep_row[2] . " " . $rep_row[3]; ?></option>
+                                                                    
+                                                                    <?php } ?>
+                                                                    
+                                                                </select>                                 
+                                                            </div>
+                                                        </div>
+                                                        
                                 <div class="form-group">
                                             <label class="col-sm-3 control-label">Transaction #</label>
                                             <div class="col-sm-6">

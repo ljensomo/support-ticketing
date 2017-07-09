@@ -56,7 +56,7 @@
                     <h2>Clients</h2>
                     <ol class="breadcrumb">
                         <li class="active">Clients</li>
-                        <li><a href="add_user.php">Add Clients</a></li>
+                        <li><a href="add_client.php">Add Clients</a></li>
                     </ol>
                 </div>  
                 <div class="cl-mcont">

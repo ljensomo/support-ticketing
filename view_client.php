@@ -58,7 +58,7 @@
                 <div class="page-head">
                     <h2>Clients</h2>
                     <ol class="breadcrumb">
-                        <li><a href="users.php">Client</a></li>
+                        <li><a href="clients.php">Client</a></li>
                         <li class="active">View Client</li>
                     </ol>
                 </div>	
@@ -153,12 +153,7 @@
                                         </div>
                                     </div>
                                 </div>                      
-                            </div>
-
-
-            </div>
-        </div>
-
+   
         <script type="text/javascript">
        function savedata(){
           var id = $('#id').val();

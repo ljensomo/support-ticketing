@@ -55,14 +55,13 @@
                         <div class="row">
                         <div class="col-md-3">
                            <div class="block-flat">
-                            
-                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">
+                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">                             
+                                    <li style=" padding: 6px"><a href="homebanner.php" class="btn" style="color:black"><i class="fa fa-home" style="padding-right:5px"></i>Home</a></li>
+                                    <li style=" padding: 6px"><a href="homebanner_tickets.php" class="btn" style="color:black"><i class="fa fa-ticket" style="padding-right:5px"></i>Tickets</a></li>
+                                    <li style=" padding: 6px"><a href="project.php" class="btn" style="color:black"><i class="fa fa-folder" style="padding-right:5px"></i>Projects</a></li>
+                                    <li class="active" style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" class="btn"><i class="fa fa-tag" style="padding-right:5px"></i>Create New Ticket</a></li>
+                                    <li style=" padding: 6px"><a href="homebanner_users.php" class="btn" style="color:black"><i class="fa fa-users" style="padding-right:5px"></i>Users</a></li>
 
-                                    <li  style=" padding: 6px"><a href="homebanner.php" style="color:black; font-size: 140%">Home</a></li>
-                                    <li  style=" padding: 6px"><a href="homebanner_tickets.php" style="color:black; font-size: 140%">Tickets</a></li>
-                                    <li  style=" padding: 6px"><a href="project.php" style="color:black; font-size: 140%">Projects</a></li>
-                                    <li  class="active" style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Create Ticket</a></li>
-                                    <li  style=" padding: 6px"><a href="homebanner_users.php" style="color:black; font-size: 140%">Users</a></li>
                                 </ul>
                             </div>
                             </div>
