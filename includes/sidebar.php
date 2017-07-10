@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <ul class="cl-vnavigation">
-                    <li><a href="index.php"><i class="fa fa-home"></i><span>Home</span></a>
+                    <li><a href="index.php"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
                     <li><a href="#"><i class="fa fa-envelope nav-icon"></i><span>Support</span></a>
                         <ul class="sub-menu">
                             <li><a href="#"><span class="label label-danger pull-right">New</span>Add Ticket</a></li>
