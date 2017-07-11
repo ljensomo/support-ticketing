@@ -46,11 +46,10 @@
     <body>
 
         <!-- Fixed navbar -->
-        <?php include 'includes/topbar.php'; ?>
+          <?php include 'includes/topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
             <?php include 'includes/sidebar.php'; ?>
-
             <div class="container-fluid" id="pcont">
                 <div class="block-flat">
 
@@ -113,42 +112,32 @@
 
 
 
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/jquery.gritter/js/jquery.gritter.js"></script>
-
+       <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
-        <script type="text/javascript" src="js/behaviour/general.js"></script>
-        <script src="js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/jquery.sparkline/jquery.sparkline.min.js"></script>
         <script type="text/javascript" src="js/jquery.easypiechart/jquery.easy-pie-chart.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+        <script type="text/javascript" src="js/behaviour/general.js"></script>
+        <script src="js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/jquery.nestable/jquery.nestable.js"></script>
         <script type="text/javascript" src="js/bootstrap.switch/bootstrap-switch.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
         <script src="js/jquery.select2/select2.min.js" type="text/javascript"></script>
-        <script src="js/skycons/skycons.js" type="text/javascript"></script>
         <script src="js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
-        <script type="text/javascript" src="js/jquery.niftymodals/js/jquery.modalEffects.js"></script>   
-        <script type="text/javascript" src="js/bootstrap.summernote/dist/summernote.min.js"></script>
-
-        <script src="js/jquery.vectormaps/jquery-jvectormap-1.2.2.min.js"></script>
-        <script src="js/jquery.vectormaps/maps/jquery-jvectormap-us-merc-en.js"></script>
-        <script src="js/jquery.vectormaps/maps/jquery-jvectormap-world-mill-en.js"></script>
-        <script src="js/jquery.vectormaps/maps/jquery-jvectormap-fr-merc-en.js"></script>
-        <script src="js/jquery.vectormaps/maps/jquery-jvectormap-uk-mill-en.js"></script>
-        <script src="js/jquery.vectormaps/maps/jquery-jvectormap-us-il-chicago-mill-en.js"></script>
-        <script src="js/jquery.vectormaps/maps/jquery-jvectormap-au-mill-en.js"></script>
-        <script src="js/jquery.vectormaps/maps/jquery-jvectormap-in-mill-en.js"></script>
-        <script src="js/jquery.vectormaps/maps/jquery-jvectormap-map.js"></script>
-        <script src="js/jquery.vectormaps/maps/jquery-jvectormap-ca-lcc-en.js"></script>
+        <script type="text/javascript" src="js/jquery.gritter/js/jquery.gritter.js"></script>
+        <script type="text/javascript" src="js/jquery.datatables/jquery.datatables.min.js"></script>
+        <script type="text/javascript" src="js/jquery.datatables/bootstrap-adapter/js/datatables.js"></script>
 
 
-
+        <script type="text/javascript" src="js/table.js"></script>
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
         <script src="js/behaviour/voice-commands.js"></script>
         <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/jquery.flot/jquery.flot.js"></script>
         <script type="text/javascript" src="js/jquery.flot/jquery.flot.pie.js"></script>
         <script type="text/javascript" src="js/jquery.flot/jquery.flot.resize.js"></script>
         <script type="text/javascript" src="js/jquery.flot/jquery.flot.labels.js"></script>
-
     </body>
-</html>
+    </html>
