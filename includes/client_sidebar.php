@@ -39,7 +39,7 @@
                     <li><a href="#"><i class="fa fa-list"></i><span>New Ticket</span></a>
                     </li>
                     
-                        <li><a href="users.php"><i class="fa fa-bug"></i><span>New Bug Report</span></a>
+                        <li><a href="#"><i class="fa fa-bug"></i><span>New Bug Report</span></a>
                     </li>
                     
                    

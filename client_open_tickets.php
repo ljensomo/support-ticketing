@@ -70,61 +70,94 @@
                                         <table class="table table-bordered" id="datatable" >
                                             <thead>
                                                 <tr>
-                                                    <th>User ID</th>
-                                                    <th>Username</th>
-                                                    <th>First Name</th>
-                                                    <th>MI</th>
-                                                    <th>Last Name</th>
-                                                    <th>Role</th>
+                                                    <th>ID</th>
+                                                    <th>Subject</th>
+                                                    <th>Description</th>
+                                                    <th>Project</th>
+                                                    <th>Status</th>
+                                                    <th>Assignee</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
-                                                $sql = "SELECT 
-                                                a.user_id,  
-                                                a.fname,
-                                                a.mname,
-                                                a.lname,
-                                                a.company_id,
-                                                a.cnum,
-                                                a.email,
-                                                a.is_active,
-                                                b.username,
-                                                b.password,
-                                                d.user_desc
-                                                
-                                                FROM users AS a INNER JOIN
-                                                user_accounts AS b ON a.user_id=b.user_id
-                                                JOIN users_roles AS c ON a.user_id=c.user_id
-                                                JOIN roles AS d ON c.user_role=d.userlevel_id WHERE user_desc = 'Administrator' OR user_desc = 'User' OR user_desc = 'Watcher'";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>
-                                                    <tr class="odd gradeX">
-                                                        <td><?php echo $row['user_id']; ?></td>
-                                                        <td><?php echo $row['username']; ?></td>
-                                                        <td><?php echo $row['fname']; ?></td>
-                                                        <td><?php echo $row['mname']; ?></td>
-                                                        <td><?php echo $row['lname']; ?></td>
-                                                        <td><?php echo $row['user_desc']; ?></td>
-                                                        <td class="center">
-                                                <center>
-                                                    <?php if ($row['is_active'] == 1) { ?>
-                                                        <a class="btn btn-default btn-sm" href="deactivate_user.php?cid=<?php echo $row['user_id']; ?>" type="button"p><i class="fa fa-unlock"></i></a>
-                                                    <?php } else { ?>
-                                                        <a class="btn btn-default btn-sm" href="activate_user.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-lock"></i></a>
-                                                    <?php } ?>
-                                                    <a class="btn btn-info btn-sm" href="view_user.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="edit_user.php?cid=<?php echo $row['user_id']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
-                                                    
-                                                </center>        
-                                                </td>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Log-in Failure!</td>
+                                                    <td>I cannot use the system.</td>
+                                                    <td>Ticketing System</td>
+                                                    <td><center><label class="label label-primary">Closed</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
                                                 </tr>
-                                                <?php
-                                            }
-                                            ?>
+
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>System Error!</td>
+                                                    <td>I dont know what happen.</td>
+                                                    <td>Payroll System</td>
+                                                    <td><center><label class="label label-warning">Unresolved</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Database Failure!</td>
+                                                    <td>I cannot access the system.</td>
+                                                    <td>Inventory System</td>
+                                                    <td><center><label class="label label-info">In Progress</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>Message Errors!</td>
+                                                    <td>I cannot message the clients.</td>
+                                                    <td>Helpdesk System</td>
+                                                    <td><center><label class="label label-danger">Pending</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
+
+                                                  <tr>
+                                                    <td>5</td>
+                                                    <td>Notification Failure!</td>
+                                                    <td>I cannot see the notification at the system.</td>
+                                                    <td>None</td>
+                                                    <td><center><label class="label label-default">Open</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td>6</td>
+                                                    <td>Computing Failure!</td>
+                                                    <td>I cannot use the system to compute grades.</td>
+                                                    <td>Grading System</td>
+                                                    <td><center><label class="label label-success">Resolved</label></center></td>
+                                                    <td>Lorenz John Ensomo</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
+
                                             </tbody>
                                         </table>                            
                                     </div>

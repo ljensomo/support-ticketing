@@ -23,7 +23,7 @@ $sql = "SELECT
 FROM users AS a INNER JOIN
 user_accounts AS b ON a.user_id=b.user_id
 JOIN users_roles AS c ON a.user_id=c.user_id
-JOIN roles AS d ON c.user_role=d.userlevel_id WHERE username = ?";
+JOIN roles AS d ON c.user_role=d.userlevel_id WHERE username = BINARY ?";
 
 $res = $db->prepare($sql);
 $res->execute(array($user));

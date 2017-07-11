@@ -81,9 +81,9 @@
                                             </thead>
                                             <tbody>
                                                 
-                                                    <tr>
+                                                <tr>
                                                 	<td>1</td>
-                                                	<td>System Failure!</td>
+                                                	<td>Log-in Failure!</td>
                                                 	<td>I cannot use the system.</td>
                                                 	<td>Ticketing System</td>
                                                 	<td><center><label class="label label-primary">Closed</label></center></td>
@@ -93,70 +93,70 @@
                                                			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
                                                 	</center></td>
                                                 </tr>
-                                                
+
                                                 <tr>
-                                                	<td>1</td>
-                                                	<td>System Failure!</td>
-                                                	<td>I cannot use the system.</td>
-                                                	<td>Ticketing System</td>
-                                                	<td><center><label class="label label-warning">Unresolved</label></center></td>
-                                                	<td>None</td>
-                                                	<td><center>
-                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                	</center></td>
+                                                    <td>2</td>
+                                                    <td>System Error!</td>
+                                                    <td>I dont know what happen.</td>
+                                                    <td>Payroll System</td>
+                                                    <td><center><label class="label label-warning">Unresolved</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Database Failure!</td>
+                                                    <td>I cannot access the system.</td>
+                                                    <td>Inventory System</td>
+                                                    <td><center><label class="label label-info">In Progress</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>Message Errors!</td>
+                                                    <td>I cannot message the clients.</td>
+                                                    <td>Helpdesk System</td>
+                                                    <td><center><label class="label label-danger">Pending</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
+
+                                                  <tr>
+                                                    <td>5</td>
+                                                    <td>Notification Failure!</td>
+                                                    <td>I cannot see the notification at the system.</td>
+                                                    <td>Ticketing System</td>
+                                                    <td><center><label class="label label-default">Open</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                	<td>1</td>
-                                                	<td>System Failure!</td>
-                                                	<td>I cannot use the system.</td>
-                                                	<td>Ticketing System</td>
-                                                	<td><center><label class="label label-info">In Progress</label></center></td>
-                                                	<td>None</td>
-                                                	<td><center>
-                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                	</center></td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                	<td>1</td>
-                                                	<td>System Failure!</td>
-                                                	<td>I cannot use the system.</td>
-                                                	<td>Ticketing System</td>
-                                                	<td><center><label class="label label-danger">Pending</label></center></td>
-                                                	<td>None</td>
-                                                	<td><center>
-                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                	</center></td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                	<td>1</td>
-                                                	<td>System Failure!</td>
-                                                	<td>I cannot use the system.</td>
-                                                	<td>Ticketing System</td>
-                                                	<td><center><label class="label label-success">Resolved</label></center></td>
-                                                	<td>None</td>
-                                                	<td><center>
-                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                	</center></td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                	<td>1</td>
-                                                	<td>System Failure!</td>
-                                                	<td>I cannot use the system.</td>
-                                                	<td>Ticketing System</td>
-                                                	<td><center><label class="label label-default">Open</label></center></td>
-                                                	<td>None</td>
-                                                	<td><center>
-                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                	</center></td>
+                                                    <td>6</td>
+                                                    <td>Computing Failure!</td>
+                                                    <td>I cannot use the system to compute grades.</td>
+                                                    <td>Grading System</td>
+                                                    <td><center><label class="label label-success">Resolved</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
                                                 </tr>
                                             </tbody>
                                         </table>                            
