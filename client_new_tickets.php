@@ -62,7 +62,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">                            
-                                    <h3>New Tickets</h3>
+                                    <h3><i class="fa fa-list" style="padding-right:10px;"></i>New Tickets</h3>
 
                                 </div>
                                 <div class="content">
@@ -71,9 +71,10 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Subject</th>
-                                                    <th>Description</th>
                                                     <th>Project</th>
+                                                    <th>Transaction</th>
+                                                    <th>Reporter</th>
+                                                    <th>Date Created</th>
                                                     <th>Status</th>
                                                     <th>Assignee</th>
                                                     <th>Action</th>
@@ -81,82 +82,51 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Log-in Failure!</td>
-                                                    <td>I cannot use the system.</td>
-                                                    <td>Ticketing System</td>
-                                                    <td><center><label class="label label-primary">Closed</label></center></td>
-                                                    <td>None</td>
+                                                
+                                                <?php 
+                                                	$new_tickets = "SELECT 
+													a.id,
+													a.company_id,
+													b.project_desc,
+													a.transaction_no,
+													c.fname,
+													a.date_created,
+													d.status_desc,
+													a.assign_to,
+													a.assign_from,
+													a.after_status,
+													c.mname,
+													c.lname
+													
+													FROM tickets AS a JOIN company_proj AS b 
+													ON a.project_id=b.id
+													JOIN users AS c 
+													ON a.reporter=c.user_id
+													JOIN STATUS AS d 
+													ON a.before_status=d.status_id
+													
+													WHERE a.company_id = ? ORDER BY id DESC";
+                                                	$res_ticket = $db->prepare($new_tickets);
+                                                	$res_ticket->execute(array($row[4]));
+                                                	while($row_tickets = $res_ticket->fetch(PDO::FETCH_NUM)){
+                                                ?>
+                                                
+                                                    <td><?php echo $row_tickets[0] ?></td>
+                                                    <td><?php echo $row_tickets[2] ?></td>
+                                                    <td><?php echo $row_tickets[3] ?></td>
+                                                    <td><?php echo $row_tickets[4] . " " . $row_tickets[10] . " " . $row_tickets[11] ?></td>
+                                                    <td><?php echo $row_tickets[5] ?></td>
+                                                    <td><center><label class="label label-primary"><?php echo $row_tickets[6] ?></label></center></td>
+                                                    <td><?php if($row_tickets[8] == "" ){ echo "Free"; }else{ echo $row_tickets[8]; } ?></td>
                                                     <td><center>
                                                         <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
                                                         <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                    </center></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>System Error!</td>
-                                                    <td>I dont know what happen.</td>
-                                                    <td>Payroll System</td>
-                                                    <td><center><label class="label label-warning">Unresolved</label></center></td>
-                                                    <td>None</td>
-                                                    <td><center>
-                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                    </center></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Database Failure!</td>
-                                                    <td>I cannot access the system.</td>
-                                                    <td>Inventory System</td>
-                                                    <td><center><label class="label label-info">In Progress</label></center></td>
-                                                    <td>None</td>
-                                                    <td><center>
-                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                    </center></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Message Errors!</td>
-                                                    <td>I cannot message the clients.</td>
-                                                    <td>Helpdesk System</td>
-                                                    <td><center><label class="label label-danger">Pending</label></center></td>
-                                                    <td>None</td>
-                                                    <td><center>
-                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                    </center></td>
-                                                </tr>
-
-                                                  <tr>
-                                                    <td>5</td>
-                                                    <td>Notification Failure!</td>
-                                                    <td>I cannot see the notification at the system.</td>
-                                                    <td>None</td>
-                                                    <td><center><label class="label label-default">Open</label></center></td>
-                                                    <td>None</td>
-                                                    <td><center>
-                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-bug"></i></a>
                                                     </center></td>
                                                 </tr>
                                                 
-                                                <tr>
-                                                    <td>6</td>
-                                                    <td>Computing Failure!</td>
-                                                    <td>I cannot use the system to compute grades.</td>
-                                                    <td>Grading System</td>
-                                                    <td><center><label class="label label-success">Resolved</label></center></td>
-                                                    <td>Lorenz John Ensomo</td>
-                                                    <td><center>
-                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                    </center></td>
-                                                </tr>
+												<?php } ?>
+												
                                             </tbody>
                                         </table>                            
                                     </div>

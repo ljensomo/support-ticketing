@@ -6,30 +6,6 @@
                 <div class="side-user">
                     <div class="avatar"><img src="images/avatar1_50.jpg" alt="Avatar" /></div>
                     <div class="info">
-                    <?php
-                        $loggeduser = $_SESSION['admin'];
-                        $sql = "SELECT 
-						a.user_id,	
-						a.fname,
-						a.mname,
-						a.lname,
-						a.company_id,
-						a.cnum,
-						a.email,
-						a.is_active,
-						b.username,
-						b.password,
-						d.user_desc
-						
-						FROM users AS a INNER JOIN
-						user_accounts AS b ON a.user_id=b.user_id
-						JOIN users_roles AS c ON a.user_id=c.user_id
-						JOIN roles AS d ON c.user_role=d.userlevel_id WHERE username = ?";
-
-                        $res = $db->prepare($sql);
-                        $res->execute(array($loggeduser));
-                        $row = $res->fetch(PDO::FETCH_NUM);
-                        ?>
                         <a href="#"><?php echo $row[1] . " " . $row[3]; ?></a>
                         <img src="images/state_online.png" alt="Status" /> <span>Online</span>
                     </div>

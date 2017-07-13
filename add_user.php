@@ -43,11 +43,11 @@
         <link href="css/style.css" rel="stylesheet" />
 
     </head>
-    <body>
+    <body
 
         <!-- Fixed navbar -->
         <?php include 'includes/topbar.php'; ?>
-
+        
         <div id="cl-wrapper" class="fixed-menu">
             <?php include 'includes/sidebar.php'; ?>
 
@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">First Name</label>
                                     <div class="col-sm-6">
-                                        <input class="form-control" placeholder="First Name" name="firstname" type="text" required onkeypress="return blockSpecialChar(event)">                               
+                                        <input class="form-control" placeholder="First Name" name="firstname" type="text" onkeypress="return blockSpecialChar(event)" >                               
 
                                     </div>
                                 </div>
