@@ -48,14 +48,13 @@
         <?php include 'includes/portal_topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
-
             <div class="container-fluid" id="pcont">
                 <div class="container">
                     
                     <br>
 
                      
-                        <div class="row">
+                    <div class="row">
                             <div class="col-md-3">
                                 <div class="block-flat">
                                     <ul style="list-style: none;" class="nav nav-pills nav-stacked">                             
@@ -67,7 +66,7 @@
 
                                     </ul>
                                 </div>
-                                </div>
+                            </div>
                                 <div class="col-md-9">
                                     <div class="block-flat">
                                 
@@ -111,38 +110,36 @@
                                                       <div class="img">
                                                            <img src="images/gallery/img4.jpg" />
                                                                 <div class="over">
-                                                                    <div class="func"><a href="#"><i class="fa fa-link"></i></a><a class="image-zoom" href="images/gallery/img4.jpg"><i class="fa fa-search"></i></a></div>
+                                                                    <div class="func"><a href="#"><i class="fa fa-link"></i></a><a class="image-zoom" href="images/gallery/img4.jpg"><i class="fa fa-search"></i></a>
+                                                                    </div>
                                                                 </div>            
                                                        </div>
                                                  </div>
                                             </div>
                                         </div>
-        
-      
                             </div>
-                            
-                        </div>
-
-                        
+                        </div>     
                 </div>
-
             </div>
         </div>
       
         
         <div class="modal fade" id="select-modal" tabindex="-1" role="dialog">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                </div>
-                                                     <div class="modal-body">
-                                                            <div class="text-center">
-                                                                 <div class="i-circle danger"><i class="fa fa-folder"></i></div>
-                                                                    <h2>Select Project</h2>
-                                                                               <br/>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">
+                                                     <div class="i-circle danger"><i class="fa fa-folder"></i>
+                                                        </div>
+                                                                    
+                                                        <h2>Select Project</h2>
+                                                                <br/>
+
                         					<form method="POST" action="add_tickets.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
-                                                                               <div class="form-group">
+                                                    <div class="form-group">
                                                             <label class="col-sm-3 control-label">Project</label>
                                                             <div class="col-sm-6">
                                                                 <select class="form-control" name="project" id="project" required>
@@ -172,65 +169,63 @@
                                                                 </select>                                 
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Reporter</label>
-                                                            <div class="col-sm-6">
-                                                                <select class="form-control" name="reporter" id="reporter" required>
-                                                                    <option></option>
-                                                                    
-                                                                    <?php 
-                                                                    
-                                                                    
-                                                                    
-                                                                    $reporter_loader = "SELECT
-                        											a.user_id,
-                        											a.fname,
-                        											a.mname,
-                        											a.lname,
-                        											a.company_id,
-                        											a.cnum,	
-                        											a.email,
-                        											a.is_active,
-                        											c.user_desc
-                        											 FROM users AS a JOIN 
-                        											 users_roles AS b ON a.user_id=b.user_id
-                        											 JOIN roles AS c ON b.user_role=c.userlevel_id
-                        											 WHERE company_id = ? AND user_desc = ?";
-                        										 
-                                                                    $rep_res = $db->prepare($reporter_loader);
-                                                                    $rep_res->execute(array($id_row[0],'reporter'));
-                                                                    while($rep_row = $rep_res->fetch(PDO::FETCH_NUM)) {
-                                                                    ?>
-                                                                    
-                                                                    <option value="<?php echo $rep_row[0] ; ?>"><?php echo $rep_row[1] . " " . $rep_row[2] . " " . $rep_row[3]; ?></option>
-                                                                    
-                                                                    <?php } ?>
-                                                                    
-                                                                </select>                                 
-                                                            </div>
-                                                        </div>
-                                                                 <div class="form-group">
-                                                                    <label class="col-sm-3 control-label">Transaction #</label>
-                                                                            <div class="col-sm-6">
-                                                                                <input class="form-control" type="text" placeholder="Transaction #" name="no" id="no" type="text" required>
-                                                                    </div>
-                                                                </div>
-                                                                        <div class="form-group">
-                                                                	           <div class="center">
-                        													       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                                                 <button class="btn btn-danger" type="submit">Proceed</button>
-
-                                                                            	</div>
-                                                                        </div>
-                                                        </form>
-						       <!-- /input-group -->
-						                 
-                                <!-- /.col-lg-6 -->   
-
-                                                         </div>                                 
-                                					</div>                    
-                                                </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Reporter</label>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" name="reporter" id="reporter" required>
+                                                    <option></option>
+                                                    
+                                                    <?php 
+                                                    
+                                                    
+                                                    
+                                                    $reporter_loader = "SELECT
+        											a.user_id,
+        											a.fname,
+        											a.mname,
+        											a.lname,
+        											a.company_id,
+        											a.cnum,	
+        											a.email,
+        											a.is_active,
+        											c.user_desc
+        											 FROM users AS a JOIN 
+        											 users_roles AS b ON a.user_id=b.user_id
+        											 JOIN roles AS c ON b.user_role=c.userlevel_id
+        											 WHERE company_id = ? AND user_desc = ?";
+        										 
+                                                    $rep_res = $db->prepare($reporter_loader);
+                                                    $rep_res->execute(array($id_row[0],'reporter'));
+                                                    while($rep_row = $rep_res->fetch(PDO::FETCH_NUM)) {
+                                                    ?>
+                                                    
+                                                    <option value="<?php echo $rep_row[0] ; ?>"><?php echo $rep_row[1] . " " . $rep_row[2] . " " . $rep_row[3]; ?></option>
+                                                    
+                                                    <?php } ?>
+                                                    
+                                                </select>                                 
                                             </div>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="col-sm-3 control-label">Transaction #</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" type="text" placeholder="Transaction #" name="no" id="no" type="text" required>
+                                                    </div>
+                                        </div>
+                                        <div class="form-group">
+                                	           <div class="center">
+                							       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                 <button class="btn btn-danger" type="submit">Proceed</button>
+
+                                            	</div>
+                                        </div>
+                                </form>
+						       <!-- /input-group -->
+						      <!-- /.col-lg-6 -->   
+                        </div>                                 
+                    </div>                    
+                </div>
+            </div>
         </div>
 
 
