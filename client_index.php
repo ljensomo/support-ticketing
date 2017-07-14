@@ -46,66 +46,123 @@
     <body>
 
         <!-- Fixed navbar -->
-        <?php include 'includes/topbar.php'; ?>
+        <?php include 'includes/portal_topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
-            <?php include 'includes/sidebar.php'; ?>
+            <?php include 'includes/client_sidebar.php'; ?>
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Clients</h2>
-                    <ol class="breadcrumb">
-                        <li class="active">Clients</li>
-                        <li><a href="add_client.php">Add Clients</a></li>
-                    </ol>
-                </div>  
+                    <h2><i style="padding-right:5px" class="fa fa-dashboard"></i>DASHBOARD</h2>
+                    
+                    </div>  
                 <div class="cl-mcont">
+                <div class="stats_bar">
+                <div class="col-md-4">
+                	<div class="panel panel-primary">
+                	    <div class="panel-heading" style="height:100px">
+                	    <div class="fixed">
+                	       <h5 style="margin-top:-2px; margin-bottom:-45px; font-size:20px; padding-left: 150px;">CLIENTS</h5>
+                	       <h3 class="pull-left"><i class="fa fa-users" style="font-size:55px; padding-right:130px"></i><span style="font-size:40px"> 44 </span></h3>
+					    </div>								
+                	    </div>
+
+                		<div class="panel-footer">
+                		  <a href="#"> View Details</a>
+                		</div>
+                	</div> 
+                </div>
+                
+                <div class="col-md-4">
+                	<div class="panel panel-danger">
+                	    <div class="panel-heading" style="height:100px">
+                	    <div class="fixed">
+                	       <h5 style="margin-top:-2px; margin-bottom:-45px; font-size:20px; padding-left: 150px;">TICKETS</h5>
+                	       <h3 class="pull-left"><i class="fa fa-list" style="font-size:55px; padding-right:130px"></i><span style="font-size:40px"> 44 </span></h3>
+					    </div>								
+                	    </div>
+
+                		<div class="panel-footer">
+                		  <a href="#"> View Details</a>
+                		</div>
+                	</div> 
+                </div>
+                
+                <div class="col-md-4">
+                	<div class="panel panel-info">
+                	    <div class="panel-heading" style="height:100px">
+                	    <div class="fixed">
+                	       <h5 style="margin-top:-2px; margin-bottom:-45px; font-size:20px; padding-left: 150px;">DEVELOPERS</h5>
+                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:55px; padding-right:130px"></i><span style="font-size:40px"> 44 </span></h3>
+					    </div>								
+                	    </div>
+
+                		<div class="panel-footer">
+                		  <a href="#"> View Details</a>
+                		</div>
+                	</div> 
+                </div>
+                </div>
                         
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block-flat">
-                                <div class="header">                            
-                                    <a class="btn btn-primary" href="add_client.php">Add Clients</a>
-
-                                </div>
                                 <div class="content">
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="datatable" >
                                             <thead>
+                                            	<tr>
+                                            		<th colspan="8">Recent Tickets</th>
+                                            	</tr>
                                                 <tr>
-                                                    <th>User ID</th>
-                                                    <th>Company Name</th>
-                                                    <th>E-mail address</th>
+                                                    <th>ID</th>
+                                                    <th>Subject</th>
+                                                    <th>Description</th>
+                                                    <th>Project</th>
+                                                    <th>Status</th>
+                                                    <th>Assignee</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
-                                                $sql = "SELECT * FROM client_info";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>
-                                                    <tr class="odd gradeX">
-                                                        <td><?php echo $row['id']; ?></td>
-                                                        <td><?php echo $row['company_name']; ?></td>
-                                                        <td><?php echo $row['email_address']; ?></td>
-                                                        <td class="center">
-                                                <center>
-                                                    <?php if ($row['is_active'] == 1) { ?>
-                                                        <a class="btn btn-default btn-sm" href="de_activate_client.php?cid=<?php echo $row['user_id']; ?>" type="button"p><i class="fa fa-unlock"></i></a>
-                                                    <?php } else { ?>
-                                                        <a class="btn btn-default btn-sm" href="activate_client.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-lock"></i></a>
-                                                    <?php } ?>
-                                                    <a class="btn btn-info btn-sm" href="view_client.php?cid=<?php echo $row['id']; ?>"><i class="fa fa-folder"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="edit_client.php?cid=<?php echo $row['user_id']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
-                                                    
-                                                </center>        
-                                                </td>
+                                                <tr>
+                                                	<td>1</td>
+                                                	<td>System Failure!</td>
+                                                	<td>I cannot use the system.</td>
+                                                	<td>Ticketing System</td>
+                                                	<td><center><label class="label label-warning">In Progress</label></center></td>
+                                                	<td>None</td>
+                                                	<td><center>
+                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                	</center></td>
                                                 </tr>
-                                                <?php
-                                            }
-                                            ?>
+                                                
+                                                <tr>
+                                                	<td>2</td>
+                                                	<td>System Failure!</td>
+                                                	<td>I cannot use the system.</td>
+                                                	<td>Ticketing System</td>
+                                                	<td><center><label class="label label-success">Resolved</label></center></td>
+                                                	<td>None</td>
+                                                	<td><center>
+                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                	</center></td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                	<td>3</td>
+                                                	<td>System Failure!</td>
+                                                	<td>I cannot use the system.</td>
+                                                	<td>Ticketing System</td>
+                                                	<td><center><label class="label label-danger">Unresolved</label></center></td>
+                                                	<td>None</td>
+                                                	<td><center>
+                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                	</center></td>
+                                                </tr>
                                             </tbody>
                                         </table>                            
                                     </div>
@@ -118,38 +175,7 @@
             </div> 
 
         </div>
-         <div class="modal fade" id="add-user-modal" tabindex="-1" role="dialog">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="text-center">
-                                                        <div class="i-circle danger"><i class="fa fa-users"></i></div>
-                                                         <form method="POST" action="includes/validation_process.php" class="form-horizontal group-border-dashed">
-                                                            <select class="form-control" id="sel_issue_type" name="sel_issue_type">
-                                                        <option value="1">User</option>
-                                                        <option value="2">Client</option>
-                                                            </select>
-                                                        
-                                                        <h1>User Level</h1>
-                                                    </div>
-                                                </div>
-
-                                                <div class="modal-footer">
-                                               
-
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
-
-                    
-                                                    <button class="btn btn-primary" type="submit">Proceed</button>
-
-                                                  </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+         
       
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>

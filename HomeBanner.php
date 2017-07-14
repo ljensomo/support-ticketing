@@ -37,8 +37,11 @@
 
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
+        
 
     </head>
+    
+    
     <body>
 
         <!-- Fixed navbar -->
@@ -53,67 +56,67 @@
 
                      
                         <div class="row">
-                        <div class="col-md-3">
-                            <div class="block-flat">
-                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">                             
-                                    <li  class="active" style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Home</a></li>
-                                    <li  style=" padding: 6px"><a href="homebanner_tickets.php" style="color:black; font-size: 140%">Tickets</a></li>
-                                    <li  style=" padding: 6px"><a href="project.php" style="color:black; font-size: 140%">Projects</a></li>
-                                    <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" style="color:black; font-size: 140%">Create Ticket</a></li>
-                                    <li style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Users</a></li>
+                            <div class="col-md-3">
+                                <div class="block-flat">
+                                    <ul style="list-style: none;" class="nav nav-pills nav-stacked">                             
+                                        <li class="active"><a href="#" class="btn"><i class="fa fa-home" style="padding-right:5px"></i>Home</a></li>
+                                        <li style=" padding: 6px;"><a href="homebanner_tickets.php" class="btn" style="color:black"><i class="fa fa-ticket" style="padding-right:5px"></i>Tickets</a></li>
+                                        <li  style=" padding: 6px"><a href="project.php" class="btn" style="color:black"><i class="fa fa-folder" style="padding-right:5px"></i>Projects</a></li>
+                                        <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" class="btn" style="color:black"><i class="fa fa-tag" style="padding-right:5px"></i>Create New Ticket</a></li>
+                                        <li style=" padding: 6px"><a href="homebanner_users.php" class="btn" style="color:black"><i class="fa fa-users" style="padding-right:5px"></i>Users</a></li>
 
-                                </ul>
-                            </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="block-flat">
-                            
-                                    <div class="header">
-                                        <h1> Welcome to Fortis </h1>
-                                    </div>
-                                    
-                                        <div class="content">
-                                            <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
-                                                <small> - Some historic guy</small></center>
-                                            
-                                        </div>
+                                    </ul>
                                 </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="block-flat">
                                 
-                                <div class="block-flat">
-                            
-                                    <div class="header">
-                                        <h1> Ticket Issue</h1>
+                                        <div class="header">
+                                            <h1> Welcome to Fortis </h1>
+                                        </div>
+                                    
+                                            <div class="content">
+                                                <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
+                                                    <small> - Some historic guy</small></center>
+                                                
+                                            </div>
                                     </div>
                                     
-                                        <div class="content">
-                                            <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
-                                                <small> - Some historic guy</small></center>
-                                            <br>
-                                           
+                                    <div class="block-flat">
+                                
+                                        <div class="header">
+                                            <h1> Ticket Issue</h1>
                                         </div>
+                                        
+                                            <div class="content">
+                                                <center><p>Expertise in hardware, software, and people are our value proposition. we offer end to end solutions to the entire information technology stack. You don't need to talk to different vendors regarding your hardware, software and IT people requirement.</p>
+                                                    <small> - Some historic guy</small></center>
+                                                <br>
+                                           
+                                             </div>
                                         
                                          
                                          
          
-        </div>
+                                     </div>
 
-        <div class="gallery-cont">
-                                         <div class="item w2" style="width: 100%">
-          <div class="photo">
-            <div class="head">
-              <span class="pull-right"> <i class="fa fa-heart"></i> </span><h4>Road</h4>
-              <span class="desc">My Trips</span>
-            </div>
+                                        <div class="gallery-cont">
+                                              <div class="item w2" style="width: 100%">
+                                                  <div class="photo">
+                                                      <div class="head">
+                                                          <span class="pull-right"> <i class="fa fa-heart"></i> </span><h4>Road</h4>
+                                                                <span class="desc">My Trips</span>
+                                                     </div>
          
-            <div class="img">
-              <img src="images/gallery/img4.jpg" />
-              <div class="over">
-                <div class="func"><a href="#"><i class="fa fa-link"></i></a><a class="image-zoom" href="images/gallery/img4.jpg"><i class="fa fa-search"></i></a></div>
-              </div>            
-            </div>
-            </div>
-          </div>
-        </div>
+                                                      <div class="img">
+                                                           <img src="images/gallery/img4.jpg" />
+                                                                <div class="over">
+                                                                    <div class="func"><a href="#"><i class="fa fa-link"></i></a><a class="image-zoom" href="images/gallery/img4.jpg"><i class="fa fa-search"></i></a></div>
+                                                                </div>            
+                                                       </div>
+                                                 </div>
+                                            </div>
+                                        </div>
         
       
                             </div>
@@ -133,51 +136,102 @@
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <div class="text-center">
-                                                        <div class="i-circle danger"><i class="fa fa-folder"></i></div>
-                                                       <h2>Select Project</h2>
-                                                       <br/>
-                                                       <div class="form-group">
-                                    <label class="col-sm-3 control-label">Project</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" name="role">
-                                            <option></option>
-                                            
-                                            <?php 
-                                            $id_loader = "SELECT 
-											a.company_id
-											FROM users AS a 
-											INNER JOIN companies AS b ON a.company_id=b.id WHERE user_id = ?;";
-											
-											$id_res=$db->prepare($id_loader);
-											$id_res->execute(array($row[0]));
-											$id_row = $id_res->fetch(PDO::FETCH_NUM);	
-                                            
-                                            $option_loader = "SELECT * FROM company_proj WHERE company_id = ?";
-                                            $option_res = $db->prepare($option_loader);
-                                            $option_res->execute(array($id_row[0]));
-                                            while($option_row = $option_res->fetch(PDO::FETCH_NUM)) {
-                                            ?>
-                                            
-                                            <option value="1"><?php echo $option_row[2]; ?></option>
-                                            
-                                            <?php } ?>
-                                            
-                                        </select>                                 
-                                    </div>
-                                </div>	
+                                                     <div class="modal-body">
+                                                            <div class="text-center">
+                                                                 <div class="i-circle danger"><i class="fa fa-folder"></i></div>
+                                                                    <h2>Select Project</h2>
+                                                                               <br/>
+                        					<form method="POST" action="add_tickets.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
+                                                                               <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Project</label>
+                                                            <div class="col-sm-6">
+                                                                <select class="form-control" name="project" id="project" required>
+                                                                    <option></option>
+                                                                    
+                                                                    <?php 
+                                                                    
+                                                                    $id_loader = "SELECT 
+                        											a.company_id
+                        											FROM users AS a 
+                        											INNER JOIN companies AS b ON a.company_id=b.id WHERE user_id = ?;";
+                        											
+                        											$id_res=$db->prepare($id_loader);
+                        											$id_res->execute(array($row[0]));
+                        											$id_row = $id_res->fetch(PDO::FETCH_NUM);	
+                                                                    
+                                                                    $option_loader = "SELECT * FROM company_proj WHERE company_id = ?";
+                                                                    $option_res = $db->prepare($option_loader);
+                                                                    $option_res->execute(array($id_row[0]));
+                                                                    while($option_row = $option_res->fetch(PDO::FETCH_NUM)) {
+                                                                    ?>
+                                                                    
+                                                                    <option value="<?php echo $option_row[0]; ?>"><?php echo $option_row[2]; ?></option>
+                                                                    
+                                                                    <?php } ?>
+                                                                    
+                                                                </select>                                 
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Reporter</label>
+                                                            <div class="col-sm-6">
+                                                                <select class="form-control" name="reporter" id="reporter" required>
+                                                                    <option></option>
+                                                                    
+                                                                    <?php 
+                                                                    
+                                                                    
+                                                                    
+                                                                    $reporter_loader = "SELECT
+                        											a.user_id,
+                        											a.fname,
+                        											a.mname,
+                        											a.lname,
+                        											a.company_id,
+                        											a.cnum,	
+                        											a.email,
+                        											a.is_active,
+                        											c.user_desc
+                        											 FROM users AS a JOIN 
+                        											 users_roles AS b ON a.user_id=b.user_id
+                        											 JOIN roles AS c ON b.user_role=c.userlevel_id
+                        											 WHERE company_id = ? AND user_desc = ?";
+                        										 
+                                                                    $rep_res = $db->prepare($reporter_loader);
+                                                                    $rep_res->execute(array($id_row[0],'reporter'));
+                                                                    while($rep_row = $rep_res->fetch(PDO::FETCH_NUM)) {
+                                                                    ?>
+                                                                    
+                                                                    <option value="<?php echo $rep_row[0] ; ?>"><?php echo $rep_row[1] . " " . $rep_row[2] . " " . $rep_row[3]; ?></option>
+                                                                    
+                                                                    <?php } ?>
+                                                                    
+                                                                </select>                                 
+                                                            </div>
+                                                        </div>
+                                                                 <div class="form-group">
+                                                                    <label class="col-sm-3 control-label">Transaction #</label>
+                                                                            <div class="col-sm-6">
+                                                                                <input class="form-control" type="text" placeholder="Transaction #" name="no" id="no" type="text" required>
+                                                                    </div>
+                                                                </div>
+                                                                        <div class="form-group">
+                                                                	           <div class="center">
+                        													       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                                                 <button class="btn btn-danger" type="submit">Proceed</button>
+
+                                                                            	</div>
+                                                                        </div>
+                                                        </form>
 						       <!-- /input-group -->
-						  </div><!-- /.col-lg-6 -->                                    
-					             </div>
-                                            
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a class="btn btn-danger" href="add_tickets.php">Proceed</a>
+						                 
+                                <!-- /.col-lg-6 -->   
+
+                                                         </div>                                 
+                                					</div>                    
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+        </div>
 
 
 

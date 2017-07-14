@@ -46,26 +46,23 @@
     <body>
 
         <!-- Fixed navbar -->
-        <?php include 'includes/topbar.php'; ?>
+        <?php include 'includes/portal_topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
-            <?php include 'includes/sidebar.php'; ?>
+            <?php include 'includes/client_sidebar.php'; ?>
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Clients</h2>
-                    <ol class="breadcrumb">
-                        <li class="active">Clients</li>
-                        <li><a href="add_client.php">Add Clients</a></li>
-                    </ol>
-                </div>  
+                    <h2><i style="padding-right:5px" class="fa fa-bug"></i>Bugs</h2>
+                    
+                    </div>  
                 <div class="cl-mcont">
                         
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">                            
-                                    <a class="btn btn-primary" href="add_client.php">Add Clients</a>
+                                    <h3>Solved Bugs</h3>
 
                                 </div>
                                 <div class="content">
@@ -73,41 +70,96 @@
                                         <table class="table table-bordered" id="datatable" >
                                             <thead>
                                                 <tr>
-                                                    <th>User ID</th>
-                                                    <th>Company Name</th>
-                                                    <th>E-mail address</th>
+                                                    <th>ID</th>
+                                                    <th>Subject</th>
+                                                    <th>Description</th>
+                                                    <th>Project</th>
+                                                    <th>Status</th>
+                                                    <th>Assignee</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
-                                                $sql = "SELECT * FROM client_info";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>
-                                                    <tr class="odd gradeX">
-                                                        <td><?php echo $row['id']; ?></td>
-                                                        <td><?php echo $row['company_name']; ?></td>
-                                                        <td><?php echo $row['email_address']; ?></td>
-                                                        <td class="center">
-                                                <center>
-                                                    <?php if ($row['is_active'] == 1) { ?>
-                                                        <a class="btn btn-default btn-sm" href="de_activate_client.php?cid=<?php echo $row['user_id']; ?>" type="button"p><i class="fa fa-unlock"></i></a>
-                                                    <?php } else { ?>
-                                                        <a class="btn btn-default btn-sm" href="activate_client.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-lock"></i></a>
-                                                    <?php } ?>
-                                                    <a class="btn btn-info btn-sm" href="view_client.php?cid=<?php echo $row['id']; ?>"><i class="fa fa-folder"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="edit_client.php?cid=<?php echo $row['user_id']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
-                                                    
-                                                </center>        
-                                                </td>
+                                                
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Log-in Failure!</td>
+                                                    <td>I cannot use the system.</td>
+                                                    <td>Ticketing System</td>
+                                                    <td><center><label class="label label-primary">Closed</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
                                                 </tr>
-                                                <?php
-                                            }
-                                            ?>
+
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>System Error!</td>
+                                                    <td>I dont know what happen.</td>
+                                                    <td>Payroll System</td>
+                                                    <td><center><label class="label label-warning">Unresolved</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Database Failure!</td>
+                                                    <td>I cannot access the system.</td>
+                                                    <td>Inventory System</td>
+                                                    <td><center><label class="label label-info">In Progress</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>Message Errors!</td>
+                                                    <td>I cannot message the clients.</td>
+                                                    <td>Helpdesk System</td>
+                                                    <td><center><label class="label label-danger">Pending</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
+
+                                                  <tr>
+                                                    <td>5</td>
+                                                    <td>Notification Failure!</td>
+                                                    <td>I cannot see the notification at the system.</td>
+                                                    <td>None</td>
+                                                    <td><center><label class="label label-default">Open</label></center></td>
+                                                    <td>None</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td>6</td>
+                                                    <td>Computing Failure!</td>
+                                                    <td>I cannot use the system to compute grades.</td>
+                                                    <td>Grading System</td>
+                                                    <td><center><label class="label label-success">Resolved</label></center></td>
+                                                    <td>Lorenz John Ensomo</td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                    </center></td>
+                                                </tr>
                                             </tbody>
-                                        </table>                            
+                                        </table>                      
                                     </div>
                                 </div>
                             </div>              

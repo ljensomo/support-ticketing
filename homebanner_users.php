@@ -58,32 +58,88 @@
                                 <ul style="list-style: none;" class="nav nav-pills nav-stacked">                             
                                     <li  style=" padding: 6px"><a href="homebanner.php" class="btn" style="color:black"><i class="fa fa-home" style="padding-right:5px"></i>Home</a></li>
                                     <li  style=" padding: 6px"><a href="homebanner_tickets.php" class="btn" style="color:black"><i class="fa fa-ticket" style="padding-right:5px"></i>Tickets</a></li>
-                                    <li class="active"  style=" padding: 6px"><a href="#" class="btn"><i class="fa fa-folder" style="padding-right:5px"></i>Projects</a></li>
+                                    <li  style=" padding: 6px"><a href="project.php" class="btn" style="color:black"><i class="fa fa-folder" style="padding-right:5px"></i>Projects</a></li>
                                     <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" class="btn" style="color:black"><i class="fa fa-tag" style="padding-right:5px"></i>Create New Ticket</a></li>
-                                    <li style=" padding: 6px"><a href="homebanner_users.php" class="btn" style="color:black"><i class="fa fa-users" style="padding-right:5px"></i>Users</a></li>
+                                    <li class="active" style=" padding: 6px"><a href="#" class="btn"><i class="fa fa-users" style="padding-right:5px"></i>Users</a></li>
 
                                 </ul>
                             </div>
                             </div>
-                            <div class="col-md-9">
-                                <div class="block-flat">                            
-                                    <div class="header">
-                                        <h1> Projects</h1>
-                                    </div> 
-                                </div>
-                                
-                                 <div class="block-flat">                            
-                                  
-                                        <h3> Project Name</h3>                                      
-                                        <h4> Date Created</h4>                                        
-                                        <h4> Representative</h4>
-                                        
-                                        <div class="modal-footer">
-                                           <button type="button" class="btn btn-default" data-dismiss="modal">Add Ticket</button>
- 						 <a class="btn btn-danger" href="#"> View Details</a>
-                                                </div>
-                                    </div> 
-                                </div>
+		                            <div class="col-md-9">
+		                                <div class="block-flat">                            
+		                                    <div class="head">
+		                                        <h1> Users</h1>
+		                                    </div> 
+		                                </div>
+		                                </div>
+		                                
+		                                <div class="col-md-9">
+                     <div class="spacer"></div>
+                    <div class="block-flat">
+                 
+                            <div class="header">
+                                <a class="btn btn-danger" href="homebanner_add_reporters.php">New +</a>
+                            </div>
+                            <div class="pull-right">                           
+                             <label><input aria-controls="datatable" class="form-control" placeholder="Search" type="text"></label>
+                            </div>
+             
+                        <div class="content">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>First Name</th>
+                                            <th>MI</th>
+                                            <th>Last Name</th>
+                                            
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                               
+                                                $cid = $row['4'];
+
+                                                $sql2 = "SELECT * FROM user_info WHERE company_id = ? AND user_desc = ?";
+                                                $res2 = $db->prepare($sql2);
+                                                $res2->execute(array($cid,'Reporter'));
+                                                while ($row2 = $res2->fetch(PDO::FETCH_NUM)) {
+                                                    ?>
+                                      
+                                                <tr class="odd gradex">
+                                                    <td><?php echo $row2[0]; ?></td>
+                                                    <td><?php echo $row2[1]; ?></td>
+                                                    <td><?php echo $row2[2]; ?></td>
+                                                    <td><?php echo $row2[3]; ?></td>
+                                                    
+                                                    <td>
+                                                        <?php if ($row[7] == 1) { ?>
+                                                        <a class="btn btn-default btn-sm" href="deactivate_user.php?cid=<?php echo $row2[0]; ?>" type="button"p><i class="fa fa-unlock"></i></a>
+                                                    <?php } else { ?>
+                                                        <a class="btn btn-default btn-sm" href="activate_user.php?cid=<?php echo $row2[0]; ?>"><i class="fa fa-lock"></i></a>
+                                                    <?php } ?>
+                                                        <a class="btn btn-info btn-sm" href="#.php?id=<?php echo $row2[0]; ?>"><i class="fa fa-pencil">
+                                            </i></a>
+                                            <button class="btn btn-danger btn-sm" type =" button" onclick="deletedata()"><i class="fa fa-trash-o"></i></button>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                    
+                                        <?php } ?>
+                                    </tbody>
+                                </table> 
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+		                                
+		                                
+		                                
+		                                </div>                   
+		                                </div>
 
                                 
                                 
@@ -92,10 +148,7 @@
                         </div>
 
                         
-                </div>
-
-            </div>
-               
+                
         <div class="modal fade" id="select-modal" tabindex="-1" role="dialog">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -198,9 +251,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-        
         
 
 
@@ -239,6 +289,8 @@
         <!-- Placed at the end of the document so the pages load faster -->
         
         <script type="text/javascript" src="js/jquery.magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+
+        
 
         <script src="js/behaviour/voice-commands.js"></script>
         <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>

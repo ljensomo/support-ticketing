@@ -20,8 +20,8 @@ foreach ($required as $fields) {
     $qry->execute(array($name));
 
 if ($error) {
-
-    openWindow($goto = "../add_severity.php");
+	echo "none";
+    //openWindow($goto = "../add_severity.php");
 } else if ($row = ($qry->fetchColumn() > 0)) {
     msgAlert($alert = "Invalid");
     openWindow($goto = "../add_severity.php");

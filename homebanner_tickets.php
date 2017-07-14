@@ -55,12 +55,12 @@
                         <div class="row">
                         <div class="col-md-3">
                             <div class="block-flat">
-                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">
-                                    <li   style=" padding: 6px"><a href="homebanner.php" style="color:black; font-size: 140%">Home</a></li>
-                                    <li  class="active"  style=" padding: 6px"><a style="color:black; font-size: 140%">Tickets</a></li>
-                                    <li  style=" padding: 6px"><a href="project.php" style="color:black; font-size: 140%">Projects</a></li>
-                                    <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" style="color:black; font-size: 140%">Create Ticket</a></li>
-                                    <li style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Users</a></li>
+                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">                             
+                                    <li  style=" padding: 6px"><a href="homebanner.php" class="btn" style="color:black"><i class="fa fa-home" style="padding-right:5px"></i>Home</a></li>
+                                    <li class="active" style=" padding: 6px"><a href="#" class="btn"><i class="fa fa-ticket" style="padding-right:5px"></i>Tickets</a></li>
+                                    <li  style=" padding: 6px"><a href="project.php" class="btn" style="color:black"><i class="fa fa-folder" style="padding-right:5px"></i>Projects</a></li>
+                                    <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" class="btn" style="color:black"><i class="fa fa-tag" style="padding-right:5px"></i>Create New Ticket</a></li>
+                                    <li style=" padding: 6px"><a href="homebanner_users.php" class="btn" style="color:black"><i class="fa fa-users" style="padding-right:5px"></i>Users</a></li>
 
                                 </ul>
                             </div>
@@ -100,10 +100,7 @@
                         
                 </div>
 
-            </div>
-        </div>
-        </div>
-        
+               
         <div class="modal fade" id="select-modal" tabindex="-1" role="dialog">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -115,10 +112,11 @@
                                                         <div class="i-circle danger"><i class="fa fa-folder"></i></div>
                                                        <h2>Select Project</h2>
                                                        <br/>
+					<form method="POST" action="add_tickets.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
                                                        <div class="form-group">
                                     <label class="col-sm-3 control-label">Project</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="role">
+                                        <select class="form-control" name="project" id="project" required>
                                             <option></option>
                                             
                                             <?php 
@@ -137,20 +135,70 @@
                                             while($option_row = $option_res->fetch(PDO::FETCH_NUM)) {
                                             ?>
                                             
-                                            <option value="1"><?php echo $option_row[2]; ?></option>
+                                            <option value="<?php echo $option_row[0]; ?>"><?php echo $option_row[2]; ?></option>
                                             
                                             <?php } ?>
                                             
                                         </select>                                 
                                     </div>
-                                </div>	
+                                </div>
+                                <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Reporter</label>
+                                                            <div class="col-sm-6">
+                                                                <select class="form-control" name="reporter" id="reporter" required>
+                                                                    <option></option>
+                                                                    
+                                                                    <?php 
+                                                                    
+                                                                    
+                                                                    
+                                                                    $reporter_loader = "SELECT
+                                                                    a.user_id,
+                                                                    a.fname,
+                                                                    a.mname,
+                                                                    a.lname,
+                                                                    a.company_id,
+                                                                    a.cnum, 
+                                                                    a.email,
+                                                                    a.is_active,
+                                                                    c.user_desc
+                                                                     FROM users AS a JOIN 
+                                                                     users_roles AS b ON a.user_id=b.user_id
+                                                                     JOIN roles AS c ON b.user_role=c.userlevel_id
+                                                                     WHERE company_id = ? AND user_desc = ?";
+                                                                 
+                                                                    $rep_res = $db->prepare($reporter_loader);
+                                                                    $rep_res->execute(array($id_row[0],'reporter'));
+                                                                    while($rep_row = $rep_res->fetch(PDO::FETCH_NUM)) {
+                                                                    ?>
+                                                                    
+                                                                    <option value="<?php echo $rep_row[0] ; ?>"><?php echo $rep_row[1] . " " . $rep_row[2] . " " . $rep_row[3]; ?></option>
+                                                                    
+                                                                    <?php } ?>
+                                                                    
+                                                                </select>                                 
+                                                            </div>
+                                                        </div>
+                                                        
+                                <div class="form-group">
+                                            <label class="col-sm-3 control-label">Transaction #</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="Transaction #" name="no" id="no" type="text" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                        	<div class="center">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <button class="btn btn-danger" type="submit">Proceed</button>
+
+                                        	</div>
+                                        </div>
+                                </form>
 						       <!-- /input-group -->
 						  </div><!-- /.col-lg-6 -->                                    
 					             </div>
                                             
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a class="btn btn-danger" href="add_tickets.php">Proceed</a>
                                                 </div>
                                             </div>
                                         </div>

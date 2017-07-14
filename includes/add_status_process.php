@@ -20,8 +20,8 @@ $qry = $db->prepare($sql);
 $qry->execute(array($name));
 
 if ($error) {
-
-    openWindow($goto = "../add_status.php");
+    echo "none";
+    //openWindow($goto = "../add_status.php");
 } else if ($row = ($qry->fetchColumn() > 0)) {
     msgAlert($alert = "Invalid");
     openWindow($goto = "../add_status.php");
@@ -29,7 +29,7 @@ if ($error) {
     $sqlAdd = "INSERT INTO status(status_desc,description) VALUES (?,?);";
     $qryAdd = $db->prepare($sqlAdd);
     $qryAdd->execute(array($name,$description));
-    msgAlert($alert = "Successfully Saved");`
-    openWindow($goto = "../status.php");
+    //msgAlert($alert = "Successfully Saved");
+    //openWindow($goto = "../status.php");
 }
 ?>

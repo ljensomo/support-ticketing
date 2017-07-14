@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 
 <html lang="en">
     <head>
@@ -85,7 +85,7 @@
 							<table class="no-border">
 								<thead class="no-border">
 									<tr>
-										<th style="width:4s0%;">Subject</th>
+										<th style="width:40%;">Subject</th>
 										<th>Company Name</th>
 										<th>Requester</th>
 										<th>Date Created</th>

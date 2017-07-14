@@ -46,26 +46,23 @@
     <body>
 
         <!-- Fixed navbar -->
-        <?php include 'includes/topbar.php'; ?>
+        <?php include 'includes/portal_topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
-            <?php include 'includes/sidebar.php'; ?>
+            <?php include 'includes/client_sidebar.php'; ?>
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Clients</h2>
-                    <ol class="breadcrumb">
-                        <li class="active">Clients</li>
-                        <li><a href="add_client.php">Add Clients</a></li>
-                    </ol>
-                </div>  
+                    <h2><i style="padding-right:5px" class="fa fa-ticket"></i>Tickets</h2>
+                    
+                    </div>  
                 <div class="cl-mcont">
                         
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">                            
-                                    <a class="btn btn-primary" href="add_client.php">Add Clients</a>
+                                    <h3><i class="fa fa-list" style="padding-right:10px;"></i>New Tickets</h3>
 
                                 </div>
                                 <div class="content">
@@ -73,39 +70,63 @@
                                         <table class="table table-bordered" id="datatable" >
                                             <thead>
                                                 <tr>
-                                                    <th>User ID</th>
-                                                    <th>Company Name</th>
-                                                    <th>E-mail address</th>
+                                                    <th>ID</th>
+                                                    <th>Project</th>
+                                                    <th>Transaction</th>
+                                                    <th>Reporter</th>
+                                                    <th>Date Created</th>
+                                                    <th>Status</th>
+                                                    <th>Assignee</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
-                                                $sql = "SELECT * FROM client_info";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>
-                                                    <tr class="odd gradeX">
-                                                        <td><?php echo $row['id']; ?></td>
-                                                        <td><?php echo $row['company_name']; ?></td>
-                                                        <td><?php echo $row['email_address']; ?></td>
-                                                        <td class="center">
-                                                <center>
-                                                    <?php if ($row['is_active'] == 1) { ?>
-                                                        <a class="btn btn-default btn-sm" href="de_activate_client.php?cid=<?php echo $row['user_id']; ?>" type="button"p><i class="fa fa-unlock"></i></a>
-                                                    <?php } else { ?>
-                                                        <a class="btn btn-default btn-sm" href="activate_client.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-lock"></i></a>
-                                                    <?php } ?>
-                                                    <a class="btn btn-info btn-sm" href="view_client.php?cid=<?php echo $row['id']; ?>"><i class="fa fa-folder"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="edit_client.php?cid=<?php echo $row['user_id']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
-                                                    
-                                                </center>        
-                                                </td>
+                                                <tr>
+                                                
+                                                <?php 
+                                                	$new_tickets = "SELECT 
+													a.id,
+													a.company_id,
+													b.project_desc,
+													a.transaction_no,
+													c.fname,
+													a.date_created,
+													d.status_desc,
+													a.assign_to,
+													a.assign_from,
+													a.after_status,
+													c.mname,
+													c.lname
+													
+													FROM tickets AS a JOIN company_proj AS b 
+													ON a.project_id=b.id
+													JOIN users AS c 
+													ON a.reporter=c.user_id
+													JOIN STATUS AS d 
+													ON a.before_status=d.status_id
+													
+													WHERE a.company_id = ? ORDER BY id DESC";
+                                                	$res_ticket = $db->prepare($new_tickets);
+                                                	$res_ticket->execute(array($row[4]));
+                                                	while($row_tickets = $res_ticket->fetch(PDO::FETCH_NUM)){
+                                                ?>
+                                                
+                                                    <td><?php echo $row_tickets[0] ?></td>
+                                                    <td><?php echo $row_tickets[2] ?></td>
+                                                    <td><?php echo $row_tickets[3] ?></td>
+                                                    <td><?php echo $row_tickets[4] . " " . $row_tickets[10] . " " . $row_tickets[11] ?></td>
+                                                    <td><?php echo $row_tickets[5] ?></td>
+                                                    <td><center><label class="label label-primary"><?php echo $row_tickets[6] ?></label></center></td>
+                                                    <td><?php if($row_tickets[8] == "" ){ echo "Free"; }else{ echo $row_tickets[8]; } ?></td>
+                                                    <td><center>
+                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                        <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-bug"></i></a>
+                                                    </center></td>
                                                 </tr>
-                                                <?php
-                                            }
-                                            ?>
+                                                
+												<?php } ?>
+												
                                             </tbody>
                                         </table>                            
                                     </div>

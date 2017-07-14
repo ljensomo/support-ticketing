@@ -46,17 +46,17 @@
     <body>
 
         <!-- Fixed navbar -->
-        <?php include 'includes/topbar.php'; ?>
+        <?php include 'includes/portal_topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
-            <?php include 'includes/sidebar.php'; ?>
+            <?php include 'includes/client_sidebar.php'; ?>
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Clients</h2>
+                    <h2>Users</h2>
                     <ol class="breadcrumb">
-                        <li class="active">Clients</li>
-                        <li><a href="add_client.php">Add Clients</a></li>
+                        <li class="active">Users</li>
+                        <li><a href="add_user.php">Add Users</a></li>
                     </ol>
                 </div>  
                 <div class="cl-mcont">
@@ -65,7 +65,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">                            
-                                    <a class="btn btn-primary" href="add_client.php">Add Clients</a>
+                                    <a class="btn btn-primary" href="add_user.php">Add User</a>
 
                                 </div>
                                 <div class="content">
@@ -74,31 +74,53 @@
                                             <thead>
                                                 <tr>
                                                     <th>User ID</th>
-                                                    <th>Company Name</th>
-                                                    <th>E-mail address</th>
+                                                    <th>Username</th>
+                                                    <th>First Name</th>
+                                                    <th>MI</th>
+                                                    <th>Last Name</th>
+                                                    <th>Role</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * FROM client_info";
+                                                $sql = "SELECT 
+                                                a.user_id,  
+                                                a.fname,
+                                                a.mname,
+                                                a.lname,
+                                                a.company_id,
+                                                a.cnum,
+                                                a.email,
+                                                a.is_active,
+                                                b.username,
+                                                b.password,
+                                                d.user_desc
+                                                
+                                                FROM users AS a INNER JOIN
+                                                user_accounts AS b ON a.user_id=b.user_id
+                                                JOIN users_roles AS c ON a.user_id=c.user_id
+                                                JOIN roles AS d ON c.user_role=d.userlevel_id WHERE user_desc = 'Administrator' OR user_desc = 'User' OR user_desc = 'Watcher'";
                                                 $res = $db->prepare($sql);
                                                 $res->execute();
                                                 while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                                                     ?>
                                                     <tr class="odd gradeX">
-                                                        <td><?php echo $row['id']; ?></td>
-                                                        <td><?php echo $row['company_name']; ?></td>
-                                                        <td><?php echo $row['email_address']; ?></td>
+                                                        <td><?php echo $row['user_id']; ?></td>
+                                                        <td><?php echo $row['username']; ?></td>
+                                                        <td><?php echo $row['fname']; ?></td>
+                                                        <td><?php echo $row['mname']; ?></td>
+                                                        <td><?php echo $row['lname']; ?></td>
+                                                        <td><?php echo $row['user_desc']; ?></td>
                                                         <td class="center">
                                                 <center>
                                                     <?php if ($row['is_active'] == 1) { ?>
-                                                        <a class="btn btn-default btn-sm" href="de_activate_client.php?cid=<?php echo $row['user_id']; ?>" type="button"p><i class="fa fa-unlock"></i></a>
+                                                        <a class="btn btn-default btn-sm" href="deactivate_user.php?cid=<?php echo $row['user_id']; ?>" type="button"p><i class="fa fa-unlock"></i></a>
                                                     <?php } else { ?>
-                                                        <a class="btn btn-default btn-sm" href="activate_client.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-lock"></i></a>
+                                                        <a class="btn btn-default btn-sm" href="activate_user.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-lock"></i></a>
                                                     <?php } ?>
-                                                    <a class="btn btn-info btn-sm" href="view_client.php?cid=<?php echo $row['id']; ?>"><i class="fa fa-folder"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="edit_client.php?cid=<?php echo $row['user_id']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-info btn-sm" href="view_user.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-warning btn-sm" href="edit_user.php?cid=<?php echo $row['user_id']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
                                                     
                                                 </center>        
                                                 </td>

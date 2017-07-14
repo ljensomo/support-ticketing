@@ -20,8 +20,8 @@ $qry = $db->prepare($sql);
 $qry->execute(array($name));
 
 if ($error) {
-
-    openWindow($goto = "../add_resolution.php");
+    echo "none";
+    //openWindow($goto = "../add_resolution.php");
 } else if ($row = ($qry->fetchColumn() > 0)) {
     msgAlert($alert = "Invalid");
     openWindow($goto = "../add_resolution.php");

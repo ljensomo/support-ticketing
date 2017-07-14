@@ -55,35 +55,128 @@
                         <div class="row">
                         <div class="col-md-3">
                             <div class="block-flat">
-                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">                             
-                                    <li  style=" padding: 6px"><a href="homebanner.php" class="btn" style="color:black"><i class="fa fa-home" style="padding-right:5px"></i>Home</a></li>
-                                    <li  style=" padding: 6px"><a href="homebanner_tickets.php" class="btn" style="color:black"><i class="fa fa-ticket" style="padding-right:5px"></i>Tickets</a></li>
-                                    <li class="active"  style=" padding: 6px"><a href="#" class="btn"><i class="fa fa-folder" style="padding-right:5px"></i>Projects</a></li>
-                                    <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" class="btn" style="color:black"><i class="fa fa-tag" style="padding-right:5px"></i>Create New Ticket</a></li>
-                                    <li style=" padding: 6px"><a href="homebanner_users.php" class="btn" style="color:black"><i class="fa fa-users" style="padding-right:5px"></i>Users</a></li>
+                                <ul style="list-style: none;" class="nav nav-pills nav-stacked">
+                                    <li  style=" padding: 6px"><a href="homebanner.php" style="color:black; font-size: 140%">Home</a></li>
+                                    <li  style=" padding: 6px"><a style="color:black; font-size: 140%">Tickets</a></li>
+                                    <li  style=" padding: 6px"><a href="project.php" style="color:black; font-size: 140%">Projects</a></li>
+                                    <li style=" padding: 6px"><a data-toggle="modal" data-target="#select-modal" alt="button" style="color:black; font-size: 140%">Create Ticket</a></li>
+                                    <li class="active" style=" padding: 6px"><a href="#" style="color:black; font-size: 140%">Users</a></li>
 
                                 </ul>
                             </div>
                             </div>
-                            <div class="col-md-9">
-                                <div class="block-flat">                            
-                                    <div class="header">
-                                        <h1> Projects</h1>
-                                    </div> 
+		                            <div class="col-md-9">
+		                                <div class="block-flat">                            
+		                                    <div class="head">
+		                                        <h1> Users</h1>
+		                                    </div> 
+		                                </div>
+		                                </div>
+		                                
+		                                <div class="col-md-9">
+                            <div class="spacer"></div>
+                            <div class="block-flat">
+                                <div class="head">  
+
+                                    <h3>Input Details</h3>
+                                    <hr>
                                 </div>
-                                
-                                 <div class="block-flat">                            
-                                  
-                                        <h3> Project Name</h3>                                      
-                                        <h4> Date Created</h4>                                        
-                                        <h4> Representative</h4>
-                                        
-                                        <div class="modal-footer">
-                                           <button type="button" class="btn btn-default" data-dismiss="modal">Add Ticket</button>
- 						 <a class="btn btn-danger" href="#"> View Details</a>
-                                                </div>
-                                    </div> 
+                                <?php
+                                            $loggeduser = $_SESSION['admin'];
+                                            $sql = "SELECT * FROM user_info WHERE username = ?";
+                                            $res = $db->prepare($sql);
+                                            $res->execute(array($loggeduser));
+                                            $row = $res->fetch(PDO::FETCH_NUM);
+
+                                            
+                                ?>                               
+                                <div class="content">
+                                    <form method="POST" action="includes\add_reporter_process.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
+                                        <input type="hidden" name="company_id" value="<?php echo $row[4]; ?>"/>   
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">First Name</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="First Name" name="fname" type="text" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">MI</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="Middle Initial" name="mname" type="text" maxlength="11">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Last Name</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="Last Name" name="lname" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                        <label class="col-sm-3 control-label">Assigned Project</label>
+                                            <div class="col-sm-6">
+                                               
+                                                <select class="form-control" name="project_id">
+                                                    <option></option>
+                                            <?php
+                                            $sql2 = "SELECT * FROM company_proj WHERE company_id = ?";
+                                            $res2 = $db->prepare($sql2);
+                                            $res2->execute(array($row[4]));
+                                            while($row2 = $res2->fetch(PDO::FETCH_NUM)) {
+                                            ?>
+                                                    <option value="<?php echo $row2[0]; ?>"><?php echo $row2[2]; ?></option>
+                                                    <?php } ?> 
+                                                </select>                                
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Contact #</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="Contact Number" name="contact_no" type="text" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Email Address</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" type="text" placeholder="Email Address" name="email_add" type="text" required>
+                                            </div>
+                                        </div>
+                                    <div class="form-group">
+                                    <label class="col-sm-3 control-label">Username</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" placeholder="Username" name="username" type="text" required>
+                                    </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Password</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" placeholder="Password" id="password" name="password" type="password" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Confirm Password</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" placeholder="Confirm Password" name="confirm_password" id="confirm_password" type="password" required parsley-equalto="#password">
+                                    </div>
+                                </div>
+                                <div class="spacer text-center">
+                                    <a class="btn btn-default btn-md" href="representatives.php">Back</a>
+                                        <button type="submit" class="btn btn-danger btn-md">Save</button>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+		                                
+		                                
+		                                
+		                                </div>                   
+		                                </div>
 
                                 
                                 
@@ -95,7 +188,9 @@
                 </div>
 
             </div>
-               
+        </div>
+        </div>
+        
         <div class="modal fade" id="select-modal" tabindex="-1" role="dialog">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -107,11 +202,10 @@
                                                         <div class="i-circle danger"><i class="fa fa-folder"></i></div>
                                                        <h2>Select Project</h2>
                                                        <br/>
-					<form method="POST" action="add_tickets.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
                                                        <div class="form-group">
                                     <label class="col-sm-3 control-label">Project</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="project" id="project" required>
+                                        <select class="form-control" name="role">
                                             <option></option>
                                             
                                             <?php 
@@ -130,77 +224,24 @@
                                             while($option_row = $option_res->fetch(PDO::FETCH_NUM)) {
                                             ?>
                                             
-                                            <option value="<?php echo $option_row[0]; ?>"><?php echo $option_row[2]; ?></option>
+                                            <option value="1"><?php echo $option_row[2]; ?></option>
                                             
                                             <?php } ?>
                                             
                                         </select>                                 
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Reporter</label>
-                                                            <div class="col-sm-6">
-                                                                <select class="form-control" name="reporter" id="reporter" required>
-                                                                    <option></option>
-                                                                    
-                                                                    <?php 
-                                                                    
-                                                                    
-                                                                    
-                                                                    $reporter_loader = "SELECT
-                                                                    a.user_id,
-                                                                    a.fname,
-                                                                    a.mname,
-                                                                    a.lname,
-                                                                    a.company_id,
-                                                                    a.cnum, 
-                                                                    a.email,
-                                                                    a.is_active,
-                                                                    c.user_desc
-                                                                     FROM users AS a JOIN 
-                                                                     users_roles AS b ON a.user_id=b.user_id
-                                                                     JOIN roles AS c ON b.user_role=c.userlevel_id
-                                                                     WHERE company_id = ? AND user_desc = ?";
-                                                                 
-                                                                    $rep_res = $db->prepare($reporter_loader);
-                                                                    $rep_res->execute(array($id_row[0],'reporter'));
-                                                                    while($rep_row = $rep_res->fetch(PDO::FETCH_NUM)) {
-                                                                    ?>
-                                                                    
-                                                                    <option value="<?php echo $rep_row[0] ; ?>"><?php echo $rep_row[1] . " " . $rep_row[2] . " " . $rep_row[3]; ?></option>
-                                                                    
-                                                                    <?php } ?>
-                                                                    
-                                                                </select>                                 
-                                                            </div>
-                                                        </div>
-                                                        
-                                <div class="form-group">
-                                            <label class="col-sm-3 control-label">Transaction #</label>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" type="text" placeholder="Transaction #" name="no" id="no" type="text" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                        	<div class="center">
-													<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <button class="btn btn-danger" type="submit">Proceed</button>
-
-                                        	</div>
-                                        </div>
-                                </form>
+                                </div>	
 						       <!-- /input-group -->
 						  </div><!-- /.col-lg-6 -->                                    
 					             </div>
                                             
                                                 <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <a class="btn btn-danger" href="add_tickets.php">Proceed</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
-        
         
 
 
@@ -239,6 +280,8 @@
         <!-- Placed at the end of the document so the pages load faster -->
         
         <script type="text/javascript" src="js/jquery.magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+
+        
 
         <script src="js/behaviour/voice-commands.js"></script>
         <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>

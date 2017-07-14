@@ -10,7 +10,7 @@ $lname = $_POST['lname'];
 $username = $_POST['username'];
 $role = $_POST['role'];
 
-$required = array($fname);
+$required = array($fname,$mname,$lname,$username,$role);
 $error = false;
 
 foreach ($required as $fields) {
@@ -20,8 +20,8 @@ foreach ($required as $fields) {
 }
 
 if ($error) {
-
-    openWindow($goto = "../users.php");
+	echo "none";
+    //openWindow($goto = "../users.php");
 } else {
     $sql = "UPDATE users SET fname =?, mname=?, lname=? WHERE user_id =?";
     $qry = $db->prepare($sql);

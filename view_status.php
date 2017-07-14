@@ -53,10 +53,10 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Severity</h2>
+                    <h2>Status</h2>
                     <ol class="breadcrumb">
-                        <li class="active">Severity</li>
-                        <li><a href="add_severity.php">Add Severity</a></li>
+                        <li class="active">Status</li>
+                        <li><a href="add_severity.php">Add Status</a></li>
                     </ol>
                 </div>	
                 <div class="cl-mcont">
@@ -65,7 +65,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
-                                    <h3>Add Severity</h3>
+                                    <h3>Add Status</h3>
                                 </div>
                                 <div class="content">
                                     <?php
