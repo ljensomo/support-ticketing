@@ -124,6 +124,7 @@
         </div>
       
         
+<<<<<<< HEAD
         <div class="modal fade" id="select-modal" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -138,6 +139,19 @@
                                                         <h2>Select Project</h2>
                                                                 <br/>
 
+=======
+        				<div class="modal fade" id="select-modal" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                </div>
+                                                     <div class="modal-body">
+                                                            <div class="text-center">
+                                                                 <div class="i-circle danger"><i class="fa fa-folder"></i></div>
+                                                                    <h2>Select Project</h2>
+                                                                               <br/>
+>>>>>>> c18e4b01a41bae6433ef6ee1e5743d4043f2b9f7
                         					<form method="POST" action="add_tickets.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
                                                     <div class="form-group">
                                                             <label class="col-sm-3 control-label">Project</label>

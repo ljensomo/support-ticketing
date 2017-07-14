@@ -74,17 +74,20 @@
 		                                
 		                                
 		                                <div class="block-flat">                            
-		                                   <h3>Ticket #</h3>
-		                                   <h4>Date Created</h4>
+		                                   
+		                                   
 		                                   <h4>Issue</h4>
-		                                   <h4>Assigned</h4>
+                                           <h4>Date Created</h4>
+		                                   <h4 align="center">Status</h4>
+                                           <h4 align="center">Assigned</h4>
+
 		                                   <br/>
 		                                   
 		                                   <div class="thumbnail">
 					        <img class="img-responsive" src="images/1.png" alt="error">
 						 </div>
 							 
-							  </div>
+							  </div> 
 		                                </div>                   
 		                                </div>
 
