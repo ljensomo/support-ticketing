@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-      <link rel="shortcut icon" href="images/fb-art1.png">
-
+        <link rel="shortcut icon" href="images/fb-art1.png">
+        
         <title>Fortis Ticketing System</title>
         <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
@@ -46,73 +46,153 @@
     <body>
 
         <!-- Fixed navbar -->
-          <?php include 'includes/topbar.php'; ?>
+        <?php include 'includes/portal_topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
-            <?php include 'includes/sidebar.php'; ?>
+            <?php include 'includes/client_sidebar.php'; ?>
+
             <div class="container-fluid" id="pcont">
-                <div class="block-flat">
+                <div class="page-head">
+                    <h2><i style="padding-right:5px" class="fa fa-dashboard"></i>DASHBOARD</h2>
+                    
+                    </div>  
+                <div class="cl-mcont">
+                
+                <div class="col-md-3">
+                	<div class="panel panel-default">
+                	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #ed5b56;">
+                	    <div class="fixed">
+                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left:100px;">OPEN TICKETS</h5>
+                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+					    </div>								
+                	    </div>
 
-                    <div class="stats_bar">
-                        <div class="butpro butstyle" data-step="2" data-intro="<strong>Beautiful Elements</strong> <br/> If you are looking for a different UI, this is for you!.">
-                            <?php
-                                                $sql = "SELECT COUNT(*) FROM ticket";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>                        
-                            <div class="sub"><a href="clients.php"><h3>FORTIS CLIENTS</h3></a><span id="total_clientes"><?php echo $row['COUNT(*)']; ?></span></div>
-                            <div class="stat btn-danger btn-lg"><i class="fa fa-users"></i></div>
-                            <?php } ?>
+                		<div class="panel-footer" style="background-color: #ffffff;">
+                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                		  </div>
+                	</div> 
+                </div>
+                
+               <div class="col-md-3">
+                	<div class="panel panel-default">
+                	    <div class="panel-heading" style="height:100px;  color: #ffffff; background-color:#428bca;">
+                	    <div class="fixed">
+                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 90px;">CLOSED TICKETS</h5>
+                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+					    </div>								
+                	    </div>
+
+                		<div class="panel-footer" style="background-color: #ffffff;">
+                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                		  </div>
+                	</div> 
+                </div>      
+                          
+                <div class="col-md-3">
+                	<div class="panel panel-default">
+                	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #60c060;">
+                	    <div class="fixed">
+                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 40px;">TICKETS PER COMPANY</h5>
+                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+					    </div>								
+                	    </div>
+
+                		<div class="panel-footer" style="background-color: #ffffff;">
+                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                		  </div>
+                	</div> 
+                </div>
+                
+                <div class="col-md-3">
+                	<div class="panel panel-default">
+                	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #fcad37;">
+                	    <div class="fixed">
+                	       <h5 style="margin-top:5px; margin-bottom:-50px; font-size:15px; padding-left: 30px;">CLOSED TICKETS PER DAY</h5>
+                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+					    </div>								
+                	    </div>
+
+                	<div class="panel-footer" style="background-color: #ffffff;">
+                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                		  </div>
+                	</div> 
+                </div>
+                
+                        
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="block-flat">
+                                <div class="content">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="datatable" >
+                                            <thead>
+                                            	<tr>
+                                            		<th colspan="8">Recent Tickets</th>
+                                            	</tr>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Subject</th>
+                                                    <th>Description</th>
+                                                    <th>Project</th>
+                                                    <th>Status</th>
+                                                    <th>Assignee</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                	<td>1</td>
+                                                	<td>System Failure!</td>
+                                                	<td>I cannot use the system.</td>
+                                                	<td>Ticketing System</td>
+                                                	<td><center><label class="label label-warning">In Progress</label></center></td>
+                                                	<td>None</td>
+                                                	<td><center>
+                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                	</center></td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                	<td>2</td>
+                                                	<td>System Failure!</td>
+                                                	<td>I cannot use the system.</td>
+                                                	<td>Ticketing System</td>
+                                                	<td><center><label class="label label-success">Resolved</label></center></td>
+                                                	<td>None</td>
+                                                	<td><center>
+                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                	</center></td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                	<td>3</td>
+                                                	<td>System Failure!</td>
+                                                	<td>I cannot use the system.</td>
+                                                	<td>Ticketing System</td>
+                                                	<td><center><label class="label label-danger">Unresolved</label></center></td>
+                                                	<td>None</td>
+                                                	<td><center>
+                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
+                                                	</center></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>                            
+                                    </div>
+                                </div>
+                            </div>              
                         </div>
+                    </div>
 
+                </div>
+            </div> 
 
-                        <div class="butpro butstyle">
-                        <?php
-                                                $sql = "SELECT COUNT(*) FROM ticket WHERE ticketstatus_id=1";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>
-
-                            <div class="sub"><a href="tickets.php"><h3>OPEN TICKETS</h3></a><span><?php echo $row['COUNT(*)']; ?></span></div>
-                            <div class="stat btn-info btn-lg"><i class="fa fa-ticket"></i></div>
-                            <?php } ?>
-                        </div>
-                        <div class="butpro butstyle">
-                        <?php
-                                                $sql = "SELECT COUNT(*) FROM ticket WHERE ticketstatus_id=3";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>                        
-                            <div class="sub"><a href="clients.php"><h3>RESOLVED TICKETS</h3></a><span><?php echo $row['COUNT(*)']; ?></span></div>
-                            <div class="stat btn-warning btn-lg"><i class="fa fa-tags"></i></div>
-                            <?php } ?>
-                        </div>  
-                        <div class="butpro butstyle">
-                        <?php
-                                                $sql = "SELECT COUNT(*) FROM ticket WHERE ticketstatus_id=2";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>                        
-                            <div class="sub"><a href="pending_tickets.php"><h3>PENDING TICKETS</h3></a><span><?php echo $row['COUNT(*)']; ?></span></div>
-                            <div class="stat btn-success btn-lg"><i class="fa fa-edit"></i></div>
-                            <?php } ?>
-
-
-                        </div>
-                        </div>
-                       
-                      
-
-
-
-
-
-
-       <script src="js/jquery.js"></script>
+        </div>
+         
+      
+        <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
         <script type="text/javascript" src="js/jquery.sparkline/jquery.sparkline.min.js"></script>
         <script type="text/javascript" src="js/jquery.easypiechart/jquery.easy-pie-chart.js"></script>
