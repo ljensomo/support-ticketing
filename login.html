@@ -84,7 +84,7 @@
            }else if(request.responseText.trim() === "client"){
            		 swal({ title : "Success!", text : "Successfully Login!", type : "success"},
                   function(){
-                                   window.location.href="homebanner.php";
+                                   window.location.href="client_create_ticket.php#select-modal";
                                    });
 
 			}else if(request.responseText.trim() === "incorrect"){
@@ -97,8 +97,7 @@
 				swal({ title : "Ooops!", text : "The user you entered is not yet activated. Please contact your administrator to activate your account.", type : "error"});
 			}else{
 				swal({ title : "Ooops!", text : "Please input data!", type : "error"});
-			}
-			      
+			}    
 			}               
                                 
           })

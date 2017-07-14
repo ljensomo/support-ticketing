@@ -4,8 +4,8 @@ require_once 'connection.php';
 include 'functions.php';
 
 $id = $_POST['id'];
-$company_name = $_POST['company_name'];
-$username = $_POST['username'];
+$company_name = htmlspecialchars($_POST['company_name']);
+$username = htmlspecialchars($_POST['username']);
 
 
 $required = array($id,$company_name,$username);

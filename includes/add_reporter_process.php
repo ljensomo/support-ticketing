@@ -4,17 +4,17 @@ require_once './connection.php';
 include './hashgenerator.php';
 include './functions.php';
 
-$firstname = $_POST['fname'];
-$middlename = $_POST['mname'];
-$lastname = $_POST['lname'];
-$company_id = $_POST['company_id'];
-$project_id = $_POST['project_id'];
-$username = $_POST['username'];
-$cnum = $_POST['contact_no'];
-$email = $_POST['email_add'];
+$firstname = htmlspecialchars($_POST['fname']);
+$middlename = htmlspecialchars($_POST['mname']);
+$lastname = htmlspecialchars($_POST['lname']);
+$company_id = htmlspecialchars($_POST['company_id']);
+$project_id = htmlspecialchars($_POST['project_id']);
+$username = htmlspecialchars($_POST['username']);
+$cnum = htmlspecialchars($_POST['contact_no']);
+$email = htmlspecialchars($_POST['email_add']);
 $role = 5;
 $options = array('cost' => 11);
-$password = password_hash($_POST['confirm_password'], PASSWORD_BCRYPT, $options);
+$password = htmlspecialchars(password_hash($_POST['confirm_password'], PASSWORD_BCRYPT, $options));
 $token = $hasher->generateToken($username);
 
 $required = array($firstname, $lastname, $username, $password);

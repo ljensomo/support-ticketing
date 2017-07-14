@@ -8,7 +8,7 @@ include 'functions.php';
 $project = htmlspecialchars($_POST['project']);
 $trans_no = htmlspecialchars($_POST['trans_no']);
 $reporter = htmlspecialchars($_POST['reporter']);	
-$company_id = $_POST['company_id'];
+$company_id = htmlspecialchars($_POST['company_id']);
 $before_status = 1;
 
  $time_loader="SELECT NOW()";

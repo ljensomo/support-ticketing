@@ -4,18 +4,18 @@ require_once './connection.php';
 include './hashgenerator.php';
 include './functions.php';
 
-$firstname = $_POST['firstname'];
-$middlename = $_POST['middlename'];
-$lastname = $_POST['lastname'];
-$username = $_POST['username'];
-$cnum = $_POST['contact'];
-$email = $_POST['mail'];
-$role = $_POST['role'];
+$firstname = htmlspecialchars($_POST['firstname']);
+$middlename = htmlspecialchars($_POST['middlename']);
+$lastname = htmlspecialchars($_POST['lastname']);
+$username = htmlspecialchars($_POST['username']);
+$cnum = htmlspecialchars($_POST['contact']);
+$email = htmlspecialchars($_POST['email']);
+$role = htmlspecialchars($_POST['role']);
 $options = array('cost' => 11);
-$password = password_hash($_POST['confirm_password'], PASSWORD_BCRYPT, $options);
+$password = htmlspecialchars(password_hash($_POST['password'], PASSWORD_BCRYPT, $options));
 $token = $hasher->generateToken($username);
 
-$required = array($firstname, $lastname, $username, $password);
+$required = array($firstname, $lastname,$cnum,$email, $username, $password);
 $error = false;
 
 foreach ($required as $fields) {
@@ -24,21 +24,23 @@ foreach ($required as $fields) {
     }
 }
 
-$sqlUser = "Select COUNT(*) from users where username=?";
+$sqlUser = "SELECT COUNT(*) FROM user_accounts WHERE username=?";
 $resUser = $db->prepare($sqlUser);
 $resUser->execute(array($username));
 
 
 
 if ($error) {
-    openWindow($goto = "../login.php");
+    //openWindow($goto = "../login.html");
+    echo "none";
 } else if ($rowUser = ($resUser->fetchColumn() > 0)) {
-    msgAlert($alert = "Username already used, Please try using another username!");
-    openWindow($goto = "../add_user.php");
+    //msgAlert($alert = "Username already used, Please try using another username!");
+    //openWindow($goto = "../add_user.php");
+    echo "exist";
 } else {
     $sqlAdd = "INSERT INTO users(fname,mname,lname,email,cnum,is_active)VALUES(?,?,?,?,?,?)";
     $qryAdd = $db->prepare($sqlAdd);
-    $qryAdd->execute(array($firstname, $middlename, $lastname, $email, $cnum, 0));
+    $qryAdd->execute(array($firstname, $middlename, $lastname, $email, $cnum, 1));
 
     
     $sqlUser2 = "SELECT user_id FROM users WHERE fname = ? AND mname = ? AND lname = ? ";
@@ -54,7 +56,9 @@ if ($error) {
     $qryAdd3 = $db->prepare($sqlAdd3);
     $qryAdd3->execute(array($rowUser2[0], $role));        
 
-    msgAlert($alert = "Registration Successful!");
-    openWindow($goto = "../users.php");
+    //msgAlert($alert = "Registration Successful!");
+    //openWindow($goto = "../users.php");
+    
+    echo "success";
 }
 ?>

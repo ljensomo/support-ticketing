@@ -59,24 +59,81 @@
                     <h2>Clients</h2>
                     <ol class="breadcrumb">
                         <li><a href="clients.php">Client</a></li>
-                        <li class="active">View Client</li>
+                        <li class="active">Company Details</li>
                     </ol>
                 </div>	
                 <div class="cl-mcont">
 
-                    
-    <div class="block-flat">
+                    <div class="col-md-7">
+    				<div class="block-flat">
                         <div class="head">
                             <?php
-                                            if (isset($_GET['cid'])) {
+                                            
                                                 $id = $_GET['cid'];
-                                            }else{
-                                                $sqlSel = "SELECT MAX(id) FROM companies ";
-                                                $resSel = $db->prepare($sqlSel);
-                                                $resSel->execute();
-                                                $rowSel = $resSel->fetch(PDO::FETCH_NUM);
-                                                $id = $rowSel[0];
+
+                                            $sqlName = "SELECT * FROM users WHERE company_id=?";
+                                            $resName = $db->prepare($sqlName);
+                                            $resName->execute(array($id));
+                                            $rowName = $resName->fetch(PDO::FETCH_NUM);
+
+                                            ?>
+							
+                            <h3 class="container-fluid"><a class="btn btn-danger" data-toggle="modal" data-target="#add-user"><i class="fa fa-plus" style="padding-right:10px"></i>New</a><span style="padding-left:15px"><?php echo $rowName[1]; ?> Users</span> </h3>                            <hr/>
+                        </div>
+                        <div class="content">
+                            <table class="no-border">
+                                <thead class="no-border">
+                                    <tr>
+                                        <th style="width:15%;">User ID</th>
+                                        <th>Full Name</th>
+                                        <th>Action</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody class="no-border-y">
+                                
+                                            <?php                                            
+
+                                            $sql_User = "SELECT * FROM users WHERE company_id=?";
+                                            $res_User = $db->prepare($sql_User);
+                                            $res_User->execute(array($id));
+                                                while ($row_user = $res_User->fetch(PDO::FETCH_NUM)) {                                                
+                                            ?>
+                                
+                                    <tr>
+                                        <td><?php echo $row_user[0]; ?></td>
+                                        
+                                        <td><strong><?php echo $row_user[1] . " " . $row_user[2] . " " . $row_user[3]; ?></strong></td>
+                                        
+                                            <td class="center">
+                                        			<?php if ($row_user[7] == 1) { ?>
+                                                        <a class="btn btn-default btn-sm" href="deactivate_user.php?cid=<?php echo $row_user[0]; ?>" type="button"p><i class="fa fa-unlock"></i></a>
+                                                    <?php } else { ?>
+                                                        <a class="btn btn-default btn-sm" href="activate_user.php?cid=<?php echo $row_user[0]; ?>"><i class="fa fa-lock"></i></a>
+                                                    <?php } ?>
+
+                                             <a class="btn btn-info btn-sm" href="#.php?id=<?php echo $row_user[0]; ?>"><i class="fa fa-pencil">
+                                            </i></a>
+                                            <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#assign-modal"><i class="fa fa-trash-o"></i></a>
+                                        
+                                        </td>
+                                    </tr>
+                                      <?php
                                             }
+                                            ?>
+                                </tbody>
+                            </table>
+                            
+                                                                                    
+                                                     
+                                                </div>
+                                            </div>
+                                            
+                                            </div>
+                                            <div class="col-md-5">
+    				<div class="block-flat">
+                        <div class="head">
+                            <?php
 
                                             $sqlName = "SELECT * FROM companies WHERE id=?";
                                             $resName = $db->prepare($sqlName);
@@ -86,14 +143,14 @@
                                             ?>
                             
 
-                            <h3 class="container-fluid"><?php echo $rowName[1]; ?> Projects</h3>
+                            <h3 class="container-fluid"><a class="btn btn-danger"><i class="fa fa-plus"></i></a><span style="padding-left:15px"><?php echo $rowName[1]; ?> Projects</span></h3>
                             <hr/>
                         </div>
                         <div class="content">
                             <table class="no-border">
                                 <thead class="no-border">
                                     <tr>
-                                        <th style="width:4s0%;">Company ID</th>
+                                        <th style="width:40%;" class="hidden">Company ID</th>
                                         <th>Project Description</th>
                                         <th>Action</th>
                                         
@@ -110,7 +167,7 @@
                                             ?>
                                 
                                     <tr>
-                                        <td><?php echo $row['company_id']; ?></td>
+                                        <td class="hidden"><?php echo $row['company_id']; ?></td>
                                         
                                         <td><strong><?php echo $row['project_desc']; ?></strong></td>
                                         
@@ -132,6 +189,9 @@
                                                      
                                                 </div>
                                             </div>
+                                            
+                                            </div>
+                                            <div class="col-md-6">
                                             <div class="block-flat">
                                                     <h3>Input Details</h3>
                             <form method="POST" action="" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
@@ -150,9 +210,82 @@
                                     </div>
                                     </form>                    
                                             </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>                      
+                                </div> 
+                                <div class="modal fade" id="add-user" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h3><i class="fa fa-info-circle" style="padding-right:10px;"></i>User Informations</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                                        <form method="POST" action="#" class="form-horizontal" style="border-radius: 0px;" parsley-validate novalidate>
+                                                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">First Name :</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" placeholder="First Name" name="firstname" id="firstname"type="text" required>                               
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Middle Name :</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" placeholder="Middle Name" name="middlename" id="middlename" type="text">                               
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Last Name :</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" placeholder="Last Name" name="lastname" id="lastname" type="text" required>                               
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Email :</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" placeholder="Email" name="email" id="email" type="email" required>                               
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Contact :</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" placeholder="Contact" name="contact" id="conctact" type="email" required>                               
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Username :</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" placeholder="Username" name="username" id="username" type="text" required>                              
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Password :</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" placeholder="Password" name="password" id="password" type="password" required>                              
+                                    </div>
+                                </div>
+                                
+                                <div class="spacer text-center" style="padding-left:30px">
+                                    <button type="reset" class="btn btn-default btn-lg" style="width:150px;"><i class="fa fa-ban" style="padding-right:10px;"></i>Cancel</button>
+                                    <button type="button" onclick="adduser()" class="btn btn-danger btn-lg" style="width:150px;"><i class="fa fa-save" style="padding-right:10px;"></i>Save</button>
+                                </div>
+
+                            </form>   
+                                                    </div>
+                                                </div>
+
+                                                                                            </div>
+                                        </div>
+                                                        
    
         <script type="text/javascript">
        function savedata(){
@@ -178,6 +311,38 @@
 			}               
                                 
           })
+       }
+       
+       function adduser(){
+       			
+       		var firstname = $('#firstname').val();
+       		var middlename = $('#middlename').val();
+       		var lastname = $('#lastname').val();
+       		var email = $('#email').val();
+       		var contact = $('#contact').val();
+       		var username = $('#username').val();
+       		var password = $('#password').val();
+       		var role = 4;
+       		
+       		$.ajax({
+
+            type:"POST",
+            url:"includes/add_users_process.php",
+            data: "firstname="+firstname+"&middlename="+middlename+"&lastname="+lastname+"&email="+email+"&contact="+contact+"&username="+username+"&password="+password+"&role="+role,
+            complete : function(request){
+                  
+            if(request.responseText.trim() === "success"){
+                  swal({ title : "Saved!", text : "Saved Successfully!", type : "success"});
+            }else if(request.responseText.trim() === "exist"){
+           		  swal({ title : "Ooops!", text : "Username already used!", type : "info"});   
+			}else if(request.responseText.trim() === "none"){
+				  swal({ title: "Ooops", text : "Please complete all fields!", type: "warning"});
+			}
+			}              
+                                
+          })
+
+       		       		       		       		       		
        }
 
      </script>

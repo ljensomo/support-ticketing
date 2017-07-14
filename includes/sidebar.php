@@ -18,7 +18,7 @@
                         </ul>
                     </li>
                     <?php if ($row[10] == "Administrator") { ?>
-                        <li><a href="users.php"><i class="fa fa-user"></i><span>Users</span></a>
+                        <li><a href="#"><i class="fa fa-user"></i><span>Users</span></a>
                         <ul class="sub-menu">    
                             <li><a href="users.php">System Users</a></li>
                             <li><a href="clients.php">Clients</a></li>

@@ -41,6 +41,9 @@
 
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+		<script src="sweetalert-master/dist/sweetalert.min.js"></script>
+
 
     </head>
     <body>
@@ -65,12 +68,12 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">                            
-                                    <a class="btn btn-primary" href="add_client.php">Add Clients</a>
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#add-company"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Add Clients</a>
 
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="datatable" >
+                                        <table class="table table-bordered" id="datatable">
                                             <thead>
                                                 <tr>
                                                     <th>User ID</th>
@@ -92,12 +95,7 @@
                                                         <td><?php echo $row['email_address']; ?></td>
                                                         <td class="center">
                                                 <center>
-                                                    <?php if ($row['is_active'] == 1) { ?>
-                                                        <a class="btn btn-default btn-sm" href="de_activate_client.php?cid=<?php echo $row['user_id']; ?>" type="button"p><i class="fa fa-unlock"></i></a>
-                                                    <?php } else { ?>
-                                                        <a class="btn btn-default btn-sm" href="activate_client.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-lock"></i></a>
-                                                    <?php } ?>
-                                                    <a class="btn btn-info btn-sm" href="view_client.php?cid=<?php echo $row['id']; ?>"><i class="fa fa-folder"></i></a>
+                                                    <a class="btn btn-info btn-sm" href="view_client.php?cid=<?php echo $row['id']; ?>"><i class="fa fa-search"></i></a>
                                                     <a class="btn btn-warning btn-sm" href="edit_client.php?cid=<?php echo $row['user_id']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
                                                     
                                                 </center>        
@@ -118,7 +116,7 @@
             </div> 
 
         </div>
-         <div class="modal fade" id="add-user-modal" tabindex="-1" role="dialog">
+         <div class="modal fade" id="add-company" tabindex="-1" role="dialog">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -126,30 +124,89 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="text-center">
-                                                        <div class="i-circle danger"><i class="fa fa-users"></i></div>
-                                                         <form method="POST" action="includes/validation_process.php" class="form-horizontal group-border-dashed">
-                                                            <select class="form-control" id="sel_issue_type" name="sel_issue_type">
-                                                        <option value="1">User</option>
-                                                        <option value="2">Client</option>
-                                                            </select>
-                                                        
-                                                        <h1>User Level</h1>
+                                                        <div class="i-circle danger"><i class="fa fa-user"></i>
+                                                     </div>
+                               <form method="POST" action="#" class="form-horizontal group-border" style="border-radius: 0px;" parsley-validate novalidate>
+                                 <div class="form-group">
+                                 <h4><i class="fa fa-info-circle" style="padding-right:10px;"></i>Company Informations</h4>
+                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Company name</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" placeholder="Company Name" name="company_name" id="company_name"type="text" required>                               
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Contact No.</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" placeholder="Number" name="contact_no" id="contact_no" type="text">                               
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Email address</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" placeholder="Email" name="email" id="email" type="text" required>                               
+
+                                    </div>
+                                </div>
+
+                                <div class="spacer text-center" style="padding-left:30px">
+                                    <button type="reset" class="btn btn-default btn-lg" style="width:150px;"><i class="fa fa-ban" style="padding-right:10px;"></i>Cancel</button>
+                                    <button type="button" onclick="client()" class="btn btn-danger btn-lg" style="width:150px;"><i class="fa fa-save" style="padding-right:10px;"></i>Save</button>
+                                </div>
+
+                            </form>   
                                                     </div>
                                                 </div>
 
                                                 <div class="modal-footer">
-                                               
 
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
-
-                    
-                                                    <button class="btn btn-primary" type="submit">Proceed</button>
-
-                                                  </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    
+        <script type="text/javascript">
+        	function client(){
+        	//alert("asdas");
+        		var company_name = $('#company_name').val();
+        		var contact_no = $('#contact_no').val();
+        		var email = $('#email').val();				
+        		var id = 0;
+        		$.ajax({
+
+		            type:"POST",
+		            url:"includes/add_client_process.php",
+		            data: "company_name="+company_name+"&contact_no="+contact_no+"&email="+email,
+		            complete : function(request){
+            
+	            	
+					if(request.responseText.trim() === "exist"){
+	           		  swal({ title : "Ooops!", text : "Company Name alredy exist!", type : "error"});
+	           		}else if(request.responseText.trim() === "none"){
+	           		 swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
+	           		}else{
+	                  swal({ title : "Submitted!", text : "Successfully Created!", type : "success"},
+	                  		function(){
+	                  			id = request.responseText.trim();
+	                  			window.location.href = "view_client.php?cid="+id;
+	                  		}
+	                  );
+	                  
+	                }
+	           	
+	           		}
+           		 
+            });
+            
+            
+        	}
+        </script>
+
       
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>

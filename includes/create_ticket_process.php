@@ -5,14 +5,14 @@ include 'functions.php';
 
 
 
-$companyname = $_POST['company_name'];
-$reporter = $_POST['txtReporter'];
-$email = $_POST['txtCnum'];	
-$cnum = $_POST['txtEmail'];
-$subject = $_POST['txtPsummary'];
-$problem = $_POST['txtArea'];
-$transaction  = $_POST['txtNO'];
-$attachment = $_POST['txtAttach'];
+$companyname = htmlspecialchars($_POST['company_name']);
+$reporter = htmlspecialchars($_POST['txtReporter']);
+$email = htmlspecialchars($_POST['txtCnum']);	
+$cnum = htmlspecialchars($_POST['txtEmail']);
+$subject = htmlspecialchars($_POST['txtPsummary']);
+$problem = htmlspecialchars($_POST['txtArea']);
+$transaction  = htmlspecialchars($_POST['txtNO']);
+$attachment = htmlspecialchars($_POST['txtAttach']);
 $date = date("Y-n-j");
 
 

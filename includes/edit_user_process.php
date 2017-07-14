@@ -4,11 +4,11 @@ require_once 'connection.php';
 include 'functions.php';
 
 $id = $_POST['id'];
-$fname = $_POST['fname'];
-$mname = $_POST['mname'];
-$lname = $_POST['lname'];
-$username = $_POST['username'];
-$role = $_POST['role'];
+$fname = htmlspecialchars($_POST['fname']);
+$mname = htmlspecialchars($_POST['mname']);
+$lname = htmlspecialchars($_POST['lname']);
+$username = htmlspecialchars($_POST['username']);
+$role = htmlspecialchars($_POST['role']);
 
 $required = array($fname,$mname,$lname,$username,$role);
 $error = false;

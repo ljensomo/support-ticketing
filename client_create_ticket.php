@@ -228,12 +228,8 @@
 	            	if(request.responseText.trim() === "success"){
 	                  swal({ title : "Submitted!", text : "Successfully Created!", type : "success"},
 	                       function(){
-					            var project = $('#project').val('');
-				        		var trans_no = $('#trans_no').val('');
-				        		var reporter = $('#reporter').val('');
-
-	                       		window.location.href="client_new_tickets.php";
-	                       }
+					           
+	                       			                       }
 	                  );
 					}else if(request.responseText.trim() === "error"){
 	           		 swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
