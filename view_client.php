@@ -81,7 +81,7 @@
                             <h3 class="container-fluid"><a class="btn btn-danger" data-toggle="modal" data-target="#add-user"><i class="fa fa-plus" style="padding-right:10px"></i>New</a><span style="padding-left:15px"><?php echo $rowName[1]; ?> Users</span> </h3>                            <hr/>
                         </div>
                         <div class="content">
-                            <table class="no-border">
+                            <table class="no-border" id="datatable">
                                 <thead class="no-border">
                                     <tr>
                                         <th style="width:15%;">User ID</th>
@@ -143,11 +143,11 @@
                                             ?>
                             
 
-                            <h3 class="container-fluid"><a class="btn btn-danger"><i class="fa fa-plus"></i></a><span style="padding-left:15px"><?php echo $rowName[1]; ?> Projects</span></h3>
+                            <h3 class="container-fluid"><a class="btn btn-danger" data-toggle="modal" data-target="#add-project"><i class="fa fa-plus"></i></a><span style="padding-left:15px"><?php echo $rowName[1]; ?> Projects</span></h3>
                             <hr/>
                         </div>
                         <div class="content">
-                            <table class="no-border">
+                            <table class="no-border" id="datatable2">
                                 <thead class="no-border">
                                     <tr>
                                         <th style="width:40%;" class="hidden">Company ID</th>
@@ -191,26 +191,7 @@
                                             </div>
                                             
                                             </div>
-                                            <div class="col-md-6">
-                                            <div class="block-flat">
-                                                    <h3>Input Details</h3>
-                            <form method="POST" action="" class="form-horizontal group-border-dashed" style="border-radius: 0px;">
-                                        <input type="hidden" id="id" name="id" value="<?php echo $id ?>"/>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Project Description</label>
-                                            <div class="col-sm-6">
-                                                <input class="form-control" name="name" id="name" type="text">
-                                            </div>
-                                        </div>
-
-                                        
-                                         <div class="spacer text-center">
-                                        <a href="clients.php" class="btn btn-default btn-md">Back</a>
-                                        <button class="btn btn-info btn-md" type="button" onclick="savedata()">Add Project</button>
-                                    </div>
-                                    </form>                    
-                                            </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div> 
@@ -224,10 +205,11 @@
                                                 <div class="modal-body">
                                                         <form method="POST" action="#" class="form-horizontal" style="border-radius: 0px;" parsley-validate novalidate>
                                                                 <div class="form-group">
+                                             <input name="id" id="id" type="hidden" value="<?php echo $id; ?>">
                                     <label class="col-sm-3 control-label">First Name :</label>
                                     <div class="col-sm-7">
                                         <input class="form-control" placeholder="First Name" name="firstname" id="firstname"type="text" required>                               
-
+									
                                     </div>
                                 </div>
 
@@ -285,19 +267,46 @@
 
                                                                                             </div>
                                         </div>
+                                        <div class="modal fade" id="add-project" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    
+                                                </div>
+                                                <div class="modal-body">
+                                                <h3><i class="fa fa-plus-circle" style="padding-right:10px;"></i>New Project</h3>
+                                     <form method="POST" action="" class="form-horizontal" style="border-radius: 0px;">
+                                                                                <div class="form-group">
+                                            <label class="col-sm-3 control-label">Project Description :</label>
+                                            <div class="col-sm-7">
+                                                <input class="form-control" name="project_desc" id="project" type="text">
+                                            </div>
+                                        </div>
+
+                                        
+                                         <div class="spacer text-center" style="padding-left:50px">
+                                        <a data-dismiss="modal" class="btn btn-default btn-md" style="width:150px"><i class="fa fa-ban" style="padding-right:10px"></i>Cancel</a>
+                                        <button class="btn btn-info btn-md" type="button" onclick="savedata()" style="width:150px"><i class="fa fa-plus" style="padding-right:10px"></i>Add Project</button>
+                                    </div>
+                                    </form>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                        </div>
                                                         
    
         <script type="text/javascript">
        function savedata(){
           var id = $('#id').val();
-          var name = $('#name').val();
+          var project = $('#project').val();
           $.ajax({
 
             type:"POST",
             url:"includes/add_project_process.php",
-            data: "id="+id+"&name="+name,
+            data: "id="+id+"&project="+project,
             complete : function(request){
-            
+
             
             if(request.responseText.trim() === "success"){
                   swal({ title : "Saved!", text : "Saved Successfully!", type : "success"},
@@ -305,10 +314,11 @@
                                    location.reload();
                                    });
                                 
-           }else{
+           }else if(request.responseText.trim() === "null"){
            		  swal({ title : "Ooops!", text : "Please input data!", type : "warning"});
-				}      
-			}               
+				}
+			}
+			               
                                 
           })
        }
@@ -323,16 +333,21 @@
        		var username = $('#username').val();
        		var password = $('#password').val();
        		var role = 4;
+       		var id = $('#id').val();
        		
        		$.ajax({
 
             type:"POST",
             url:"includes/add_users_process.php",
-            data: "firstname="+firstname+"&middlename="+middlename+"&lastname="+lastname+"&email="+email+"&contact="+contact+"&username="+username+"&password="+password+"&role="+role,
+            data: "firstname="+firstname+"&middlename="+middlename+"&lastname="+lastname+"&email="+email+"&contact="+contact+"&username="+username+"&password="+password+"&role="+role+"&id="+id,
             complete : function(request){
                   
             if(request.responseText.trim() === "success"){
-                  swal({ title : "Saved!", text : "Saved Successfully!", type : "success"});
+                  swal({ title : "Saved!", text : "Saved Successfully!", type : "success"},
+                  		function(){
+                  			location.reload();
+                  		}
+                  );
             }else if(request.responseText.trim() === "exist"){
            		  swal({ title : "Ooops!", text : "Username already used!", type : "info"});   
 			}else if(request.responseText.trim() === "none"){

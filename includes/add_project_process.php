@@ -4,7 +4,7 @@ require_once 'connection.php';
 include 'functions.php';
 
 $id = $_POST['id'];
-$project_description = htmlspecialchars($_POST['name']);
+$project_description = htmlspecialchars($_POST['project']);
 
 $required = array($project_description,$id);
 $error = false;

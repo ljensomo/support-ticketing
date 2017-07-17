@@ -3,7 +3,7 @@
 require_once './connection.php';
 include './hashgenerator.php';
 include './functions.php';
-
+$id = $_POST['id'];
 $firstname = htmlspecialchars($_POST['firstname']);
 $middlename = htmlspecialchars($_POST['middlename']);
 $lastname = htmlspecialchars($_POST['lastname']);
@@ -38,9 +38,9 @@ if ($error) {
     //openWindow($goto = "../add_user.php");
     echo "exist";
 } else {
-    $sqlAdd = "INSERT INTO users(fname,mname,lname,email,cnum,is_active)VALUES(?,?,?,?,?,?)";
+    $sqlAdd = "INSERT INTO users(fname,mname,lname,email,cnum,is_active,company_id)VALUES(?,?,?,?,?,?,?)";
     $qryAdd = $db->prepare($sqlAdd);
-    $qryAdd->execute(array($firstname, $middlename, $lastname, $email, $cnum, 1));
+    $qryAdd->execute(array($firstname, $middlename, $lastname, $email, $cnum, 1,$id));
 
     
     $sqlUser2 = "SELECT user_id FROM users WHERE fname = ? AND mname = ? AND lname = ? ";

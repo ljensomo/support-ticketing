@@ -49,13 +49,13 @@
         <?php include 'includes/portal_topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
-            <?php include 'includes/client_sidebar.php'; ?>
+            <?php include 'includes/sidebar.php'; ?>
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
                     <h2><i style="padding-right:5px" class="fa fa-dashboard"></i>DASHBOARD</h2>
                     
-                    </div>  
+                </div>  
                 <div class="cl-mcont">
                 
                 <div class="col-md-3">
@@ -68,7 +68,7 @@
                 	    </div>
 
                 		<div class="panel-footer" style="background-color: #ffffff;">
-                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                		  <a href="tickets.php"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
                 		  </div>
                 	</div> 
                 </div>
@@ -83,7 +83,7 @@
                 	    </div>
 
                 		<div class="panel-footer" style="background-color: #ffffff;">
-                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                		  <a href="close_tickets.php"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
                 		  </div>
                 	</div> 
                 </div>      
@@ -107,7 +107,7 @@
                 	<div class="panel panel-default">
                 	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #fcad37;">
                 	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-50px; font-size:15px; padding-left: 30px;">CLOSED TICKETS PER DAY</h5>
+                	       <h5 style="margin-top:5px; margin-bottom:-50px; font-size:17px; padding-left: 60px;">Daily Closed Ticket</h5>
                 	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
 					    </div>								
                 	    </div>
@@ -119,7 +119,7 @@
                 </div>
                 
                         
-                    <div class="row">
+           <!--       <div class="row">
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="content">
@@ -185,7 +185,7 @@
                             </div>              
                         </div>
                     </div>
-
+                    -->
                 </div>
             </div> 
 
