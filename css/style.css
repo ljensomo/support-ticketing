@@ -1232,8 +1232,8 @@ input::-webkit-input-speech-button {
     margin: 0;
 }
 .sign-up-container .middle-sign-up {
-    width: 470px;
-    left: 50%;
+    width: 700px;
+    left: 40%;
     top: 50%;
     position: absolute;
     margin-top: -282px;
@@ -1256,7 +1256,7 @@ input::-webkit-input-speech-button {
 .sign-up-container .block-flat .header,
 .forgotpassword-container .block-flat .header {
     padding: 9px 20px;
-    background: #2494f2;
+    background: #9a0201;
     border-bottom: 1px solid #2494f2;
 }
 .sign-up-container .block-flat .header h3,
