@@ -46,7 +46,7 @@
     <body>
 
         <!-- Fixed navbar -->
-        <?php include 'includes/portal_topbar.php'; ?>
+        <?php include 'includes/topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
             <?php include 'includes/sidebar.php'; ?>

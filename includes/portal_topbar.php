@@ -43,7 +43,7 @@ require_once 'connection.php';
 						a.fname,
 						a.mname,
 						a.lname,
-						a.company_id,
+						a.company_name,
 						a.cnum,
 						a.email,
 						a.is_active,

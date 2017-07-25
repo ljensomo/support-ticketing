@@ -12,7 +12,12 @@
 	<title>Fortis Ticketing System</title>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
-
+	
+	  <link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="js/bootstrap.switch/bootstrap-switch.css" />
+	<link rel="stylesheet" type="text/css" href="js/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" type="text/css" href="js/jquery.select2/select2.css" />
+	<link rel="stylesheet" type="text/css" href="js/bootstrap.slider/css/slider.css" />
 	<!-- Bootstrap core CSS -->
 	<link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 
@@ -20,7 +25,10 @@
 
 
 	<!-- Custom styles for this template -->
-	<link href="css/style.css" rel="stylesheet" />	
+	<link href="css/style.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+	<script src="sweetalert-master/dist/sweetalert.min.js"></script>
+	
 
 </head>
 
@@ -31,121 +39,230 @@
 	<div class="middle-sign-up">
 		<div class="block-flat">
 			<div class="header">							
-				<h3 class="text-center"><img class="logo-img" src="images/fb-art1.jpg" alt="logo" style="width:30px; height:30px"/><span style="padding-left:10px">Fortis Technologies</span></h3>
+				<h3 class="text-center"><img class="logo-img" src="images/fb-art.jpg" alt="logo" style="width:30px; height:30px"/><span style="padding-left:10px">Fortis Technologies Corp | <small style="color:white">Sign-Up</small></span></h3>
 			</div>
 			<div>
-				<form style="margin-bottom: 0px !important;" class="form-horizontal" action="index.html" parsley-validate novalidate>
+			<div id="loading" style="display:none">
+				<center><img src="images/loader.gif"/ style="width:50%;height:50%">
+					<p>Submitting...</p>
+				</center>
+			</div>
+				<form style="margin-bottom: 0px !important;" class="form-horizontal" id="SignUpForm" method="POST" action="" novalidate>
 					<div class="content">
-						<h5 class="title text-center"><strong>Sign Up</strong></h5>
-              <hr/>
-               
+               				<div class="row">
+							<div class="col-md-6">
 							<div class="form-group">
-								<div class="col-sm-6">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-user"></i></span>
-										<input type="text" name="nick" parsley-trigger="change" parsley-error-container="#nick-error" required placeholder="First Name" class="form-control">
-									</div>
-                  <div id="nick-error"></div>
-								</div>
-								
-								<div class="col-sm-6">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-building-o"></i></span>
-										<input type="text" name="nick" parsley-trigger="change" parsley-error-container="#nick-error" required placeholder="Company" class="form-control">
-									</div>
-                  <div id="nick-error"></div>
-								</div>
-								
-								<div class="col-sm-6">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-user"></i></span>
-										<input type="text" name="nick" parsley-trigger="change" parsley-error-container="#nick-error" required placeholder="Middle name" class="form-control">
-									</div>
-                  <div id="nick-error"></div>
-								</div>
-								
-								<div class="col-sm-6">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-laptop"></i></span>
-										<input type="text" name="nick" parsley-trigger="change" parsley-error-container="#nick-error" required placeholder="Middle name" class="form-control">
-									</div>
-                  <div id="nick-error"></div>
-								</div>
-								
-								<div class="col-sm-6">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-user"></i></span>
-										<input type="text" name="nick" parsley-trigger="change" parsley-error-container="#nick-error" required placeholder="Last Name" class="form-control">
-									</div>
-                  <div id="nick-error"></div>
-								</div>
-								
-								<div class="col-sm-6">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-user"></i></span>
-										<input type="text" name="nick" parsley-trigger="change" parsley-error-container="#nick-error" required placeholder="Username" class="form-control">
-									</div>
-                  <div id="nick-error"></div>
-								</div>
-								
-								<div class="col-sm-6">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-										<input type="email" name="email" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="Contact #" class="form-control">
-									</div><div id="email-error"></div>
-								</div>
-								
-								
-								<div class="col-sm-6">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-										<input type="email" name="email" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="Password" class="form-control">
-									</div><div id="email-error"></div>
-								</div>
-								
-								<div class="col-sm-6">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-										<input type="email" name="email" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="Email" class="form-control">
-									</div><div id="email-error"></div>
-								</div>
-								
-								<div class="col-sm-6">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-										<input type="email" name="email" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="Confirm Password" class="form-control">
-									</div><div id="email-error"></div>
-								</div>
-								
-							</div>
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            <input type="text" placeholder="First Name" id="fname" class="form-control" name="fname" required>
+                                        </div>
+                                    </div>
+                                </div>
 							
+							<div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            <input type="text" placeholder="Middle Name" id="mname" class="form-control" name="mname" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+								<div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            <input type="text" placeholder="Last Name" id="lname" class="form-control" name="lname" required>
+                                        </div>
+                                    </div>
+                                </div>
+								
+								<div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                            <input type="email" placeholder="Email" id="email" class="form-control" name="email" required>
+                                        </div>
+                                    </div>
+                                </div>
+								
+								<div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                            <input type="text" data-mask="phone" name="contact" id="contact" class="form-control" placeholder="(999) 999-9999" />
+                                        </div>
+                                    </div>
+                                </div>
+								</div>
+								
+								<div class="col-md-6">
+								
+									<div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+                                            <input type="text" placeholder="Company" id="company" class="form-control" name="company" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-folder"></i></span>
+                                            <input type="text" placeholder="Application" id="app" class="form-control" name="app" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            <input type="text" placeholder="Username" id="username" class="form-control" name="username" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                            <input type="password" placeholder="Password" id="pass" class="form-control" name="pass" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                            <input type="password" placeholder="Confirm Password" id="confirm_pass" class="form-control" name="confirm_pass" parsley-equalto="#pass" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+								</div>
+								</div>
 							
-							
-             <p class="spacer">By creating an account, you agree with the <a href="#">Terms</a> and <a href="#">Conditions</a>.</p>
-            <button class="btn btn-block btn-danger btn-rad btn-lg" type="submit">Sign Up</button>
+            <center>
+            <button class="btn btn-default btn-rad btn-lg" type="reset" style="width:250px;"><i class="fa fa-ban" style="padding-right:10px"></i>Cancel</button>
+            <button class="btn btn-danger btn-rad btn-lg" type="button" onclick="validate()" style="width:300px;"><i class="fa fa-mail-forward" style="padding-right:10px"></i>Submit</button>
+            </center>
+             <center><p class="spacer">By creating an account, you agree with the <a href="#">Terms</a> and <a href="#">Conditions</a>.</p></center>
+
 							
 					</div>
 			  </form>
+			  
 			</div>
 		</div>
-		<div class="text-center out-links"><a href="#">&copy; 2014 Your Company</a></div>
+		<div class="text-center out-links"><a href="#">&copy; 2014 Fortis Technologies Corp</a></div>
 	</div> 
 	
 </div>
 
+<script type="text/javascript">
+	function validate(){
+		 var fname = $('#fname').val();
+		 var mname = $('#mname').val();
+		 var lname = $('#lname').val();
+		 var email = $('#email').val();
+		 var contact = $('#contact').val();
+		 var company = $('#company').val();
+ 		 var app = $('#app').val();
+ 		 var username = $('#username').val();
+ 		 var pass = $('#pass').val();
+ 		 var confirm_pass = $('#confirm_pass').val();
+		 var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+		if(fname == "" || lname == "" || email == "" || contact == "" || company == "" || app == "" || username == "" || pass == "" || confirm_pass == ""){
+				swal({ title : "Ooops!", text : "Please complete all information!", type : "warning"});    
+		}else{
+				if(!emailReg.test(email)){
+					swal({ title : "Ooops!", text : "Please enter valid email!", type : "warning"},
+								function(){
+									$('#email').focus();
+								}
+					);
+				}else if(confirm_pass !== pass){
+					swal({ title: "Ooops!", text: "The password must be the same!", type: "warning"},
+								function(){
+									$('#pass').focus();
+								}
+					);
+				}else{
+							 $('#loading').show();
+							 $('#SignUpForm').hide();
+					$.ajax({
+			
+			            type:"POST",
+			            url:"includes/add_user_process.php",
+			            data: "fname="+fname+"&mname="+mname+"&lname="+lname+"&email="+email+"&contact="+contact+"&company="+company+"&app="+app+"&username="+username+"&pass="+pass,
+			            complete : function(request){
+			             $('#loading').hide();
+						 var fname = $('#fname').val('');
+						 var mname = $('#mname').val('');
+						 var lname = $('#lname').val('');
+						 var email = $('#email').val('');
+						 var contact = $('#contact').val('');
+						 var company = $('#company').val('');
+				 		 var app = $('#app').val('');
+				 		 var username = $('#username').val('');
+				 		 var pass = $('#pass').val('');
+				 		 var confirm_pass = $('#confirm_pass').val('');
+
+						 $('#SignUpForm').show();
+			        if(request.responseText.trim() === "none"){
+			                   swal({ title : "Ooops!", text : "Please input data!", type : "warning" });
+					}else if(request.responseText.trim() === "exist"){
+							   swal({ title : "Ooops!", text : "Username already exist!", type : "warning" },
+							   		function(){
+							   			var username = $('#username').val('');
+
+							   		}
+							   );
+					}else if(request.responseText.trim() === "success"){
+			            	   swal({ title : "Saved!", text : "Successfully Submitted", type : "success" });
+					}else{
+							   swal({ title : "Ooops!", text : "email was not successfuly sent!", type : "error" });
+					}
+			            			      
+						}               
+			                                
+			        })
+
+				}
+		}
+		 
+	}
+</script>
+
+
 
   <script src="js/jquery.js"></script>
+  <script src="js/jquery.select2/select2.min.js" type="text/javascript"></script>
   <script src="js/jquery.parsley/parsley.js" type="text/javascript"></script>
-  <script src="js/behaviour/general.js" type="text/javascript"></script>
+  <script src="js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
+  <script src="js/jquery.maskedinput/jquery.maskedinput.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
+	<script type="text/javascript" src="js/jquery.nestable/jquery.nestable.js"></script>
+	<script type="text/javascript" src="js/behaviour/general.js"></script>
+  <script src="js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/bootstrap.switch/bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="js/behaviour/voice-commands.js"></script>
-<script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery.flot/jquery.flot.js"></script>
-<script type="text/javascript" src="js/jquery.flot/jquery.flot.pie.js"></script>
-<script type="text/javascript" src="js/jquery.flot/jquery.flot.resize.js"></script>
-<script type="text/javascript" src="js/jquery.flot/jquery.flot.labels.js"></script>
-</body>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        //initialize the javascript
+        App.init();
+        App.masks();
+      });
+    </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+      <script src="js/behaviour/voice-commands.js"></script>
+  <script src="js/bootstrap/dist/js/bootstrap.min.js"></script></body>
 </html>
