@@ -41,6 +41,8 @@
 
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
+		 <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+		<script src="sweetalert-master/dist/sweetalert.min.js"></script>
 
     </head>
     <body>
@@ -53,10 +55,10 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Users</h2>
+                    <h2><i class="fa fa-users" style="padding-right:10px"></i>Users</h2>
                     <ol class="breadcrumb">
-                      	<li class="active">Users</li>
-                        <li><a href="add_user.php">Add Users</a></li>
+                      	<li class="active">Users List	</li>
+     
                     </ol>
                 </div>	
                 <div class="cl-mcont">
@@ -65,8 +67,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
-                                    <a class="btn btn-primary" href="add_user.php">Add User</a>
-
+                                    <a class="btn btn-primary" data-toggle="modal" data-target="#add-user-modal">Add User</a>
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
@@ -74,10 +75,10 @@
                                             <thead>
                                                 <tr>
                                                     <th>User ID</th>
+                                                    <th>Full Name</th>
+                                                    <th>Contact No.</th>
+                                                    <th>E-mail</th>
                                                     <th>Username</th>
-                                                    <th>First Name</th>
-                                                    <th>MI</th>
-                                                    <th>Last Name</th>
                                                     <th>Role</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -85,42 +86,42 @@
                                             <tbody>
                                                 <?php
                                                 $sql = "SELECT 
-												a.user_id,	
-												a.fname,
-												a.mname,
-												a.lname,
-												a.company_id,
-												a.cnum,
-												a.email,
-												a.is_active,
-												b.username,
-												b.password,
-												d.user_desc
+													a.user_id,	
+													a.fname,
+													a.mname,
+													a.lname,
+													a.company_name,
+													a.cnum,
+													a.email,
+													a.is_active,
+													b.username,
+													b.password,
+													d.user_desc
 												
 												FROM users AS a INNER JOIN
 												user_accounts AS b ON a.user_id=b.user_id
 												JOIN users_roles AS c ON a.user_id=c.user_id
-												JOIN roles AS d ON c.user_role=d.userlevel_id WHERE user_desc = 'Administrator' OR user_desc = 'User' OR user_desc = 'Watcher'";
+												JOIN roles AS d ON c.user_role=d.userlevel_id WHERE user_desc = 'Administrator' OR user_desc = 'User' OR user_desc = 'Watcher';";
                                                 $res = $db->prepare($sql);
                                                 $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                while ($row = $res->fetch(PDO::FETCH_NUM)) {
                                                     ?>
                                                     <tr class="odd gradeX">
-                                                        <td><?php echo $row['user_id']; ?></td>
-                                                        <td><?php echo $row['username']; ?></td>
-                                                        <td><?php echo $row['fname']; ?></td>
-                                                        <td><?php echo $row['mname']; ?></td>
-                                                        <td><?php echo $row['lname']; ?></td>
-                                                        <td><?php echo $row['user_desc']; ?></td>
+                                                        <td><?php echo $row[0]; ?></td>
+                                                        <td><?php echo $row[1] . " " . $row[2] . " " . $row[3] ?></td>
+                                                        <td><?php echo $row[5]; ?></td>
+                                                        <td><?php echo $row[6]; ?></td>
+                                                        <td><?php echo $row[8]; ?></td>
+                                                        <td><?php echo $row[10]; ?></td>
                                                         <td class="center">
                                                 <center>
-                                                    <?php if ($row['is_active'] == 1) { ?>
+                                                    <?php if ($row[7] == 1) { ?>
                                                         <a class="btn btn-default btn-sm" href="deactivate_user.php?cid=<?php echo $row['user_id']; ?>" type="button"p><i class="fa fa-unlock"></i></a>
                                                     <?php } else { ?>
                                                         <a class="btn btn-default btn-sm" href="activate_user.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-lock"></i></a>
                                                     <?php } ?>
-                                                    <a class="btn btn-info btn-sm" href="view_user.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="edit_user.php?cid=<?php echo $row['user_id']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
                                                     
                                                 </center>        
                                                 </td>
@@ -145,33 +146,130 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                	<h3 align="center"><i class="fa fa-plus-circle" style="padding-right:10px"></i>User Informations</h3>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="text-center">
-                                                        <div class="i-circle danger"><i class="fa fa-users"></i></div>
-                                                         <form method="POST" action="includes/validation_process.php" class="form-horizontal group-border-dashed">
-                                                            <select class="form-control" id="sel_issue_type" name="sel_issue_type">
-                                                        <option value="1">User</option>
-                                                        <option value="2">Client</option>
-                                                            </select>
-                                                        
-                                                        <h1>User Level</h1>
-                                                    </div>
+                                           <form method="POST" action="#" class="form-horizontal" style="border-radius: 0px; padding-left: 50px" parsley-validate novalidate>
+							                               	 <div class="form-group">
+							                                    <label class="col-sm-3 control-label">First Name</label>
+							                                    <div class="col-sm-6">
+							                                        <input class="form-control" placeholder="First Name" id="firstname" name="firstname" type="text" onkeypress="return blockSpecialChar(event)" >                               
+							
+							                                    </div>
+							                                </div>
+							                                <div class="form-group">
+							                                    <label class="col-sm-3 control-label">Middle Name</label>
+							                                    <div class="col-sm-6">
+							                                        <input class="form-control" placeholder="M.I." id="middlename" name="middlename" type="text">
+							
+							                                    </div>
+							                                </div>
+							                                <div class="form-group">
+							                                    <label class="col-sm-3 control-label">Last Name</label>
+							                                    <div class="col-sm-6">
+							                                        <input class="form-control" placeholder="Last Name" id="lastname" name="lastname" type="text" required>
+							                                    </div>
+							                                </div>
+							                                <div class="form-group">
+							                                    <label class="col-sm-3 control-label">Contact Number</label>
+							                                    <div class="col-sm-6">
+							                                        <input class="form-control" placeholder="Contact Number" id="contact" name="contact" type="text" required>
+							                                    </div>
+							                                </div>
+							                                <div class="form-group">
+							                                    <label class="col-sm-3 control-label">E-mail</label>
+							                                    <div class="col-sm-6">
+							                                        <input class="form-control" placeholder="E-mail address" id="email" name="email" type="text" required>
+							                                    </div>
+							                                </div>
+													        <div class="form-group">
+						                                    	<label class="col-sm-3 control-label">Role</label>
+						                                    	<div class="col-sm-6">
+						                                        <select class="form-control" name="role" id="role">
+						                                            <option></option>
+						                                            <option value="1">Administrator</option>
+						                                            <option value="2">Support</option>
+						                                            <option value="3">Watcher</option>
+						                                        </select>                                 
+						                                    </div>
+						                                </div>
+							                                <div class="form-group">
+							                                    <label class="col-sm-3 control-label">Username</label>
+							                                    <div class="col-sm-6">
+							                                        <input class="form-control" placeholder="Username" id="username" name="username" type="text" required>
+							                                    </div>
+							                                </div>
+															<div class="form-group">
+							                                    <label class="col-sm-3 control-label">Password</label>
+							                                    <div class="col-sm-6">
+							                                        <input class="form-control" placeholder="Password" id="pw" name="pw" type="password" required>
+							                                    </div>
+							                                </div>
+							                                	<div class="form-group">
+							                                    <label class="col-sm-3 control-label">Confirm Password</label>
+							                                    <div class="col-sm-6">
+							                                        <input class="form-control" placeholder="Confirm Password" id="confirm_pw" name="confirm_pw" type="password" required>
+							                                    </div>
+							                                </div>
+
+							                            
+
+							                                
+							                                <div class="spacer text-center">
+							                                    <button type="reset" class="btn btn-default btn-lg" style="width:20%"><i class="fa fa-ban" style="padding-right:10px"></i> Cancel</button>
+							                                     <button type="button" onclick="add_developer()" class="btn btn-danger btn-lg" style="width:20%"><i class="fa fa-plus" style="padding-right:10px"></i>Add</button>
+							                                </div>
+							
+                            			</form>
                                                 </div>
 
                                                 <div class="modal-footer">
                                                
 
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
 
-                    
-                                                    <button class="btn btn-primary" type="submit">Proceed</button>
-
-                                                  </form>
+                                                  
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <script>
+                                    	function add_developer(){
+                                    	  	var fname = $('#firstname').val();
+                                    	  	var mname = $('#middlename').val();
+                                    		var lname = $('#lastname').val();
+                                    		var contact = $('#contact').val();
+                                    		var email = $('#email').val();
+                                    		var role = $('#role').val();
+                                    		var username = $('#username').val();
+                                    		var pw = $('#pw').val();
+                                    		var confirm_pw = $('#confirm_pw').val();
+                                    		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+                                    
+                                    		if(fname == "" || lname == "" || contact == "" || email == "" || role == "" || username == "" || pw == "" || confirm_pw == ""){
+                                    			swal({title:"Ooops", text:"Please complete all necessary informations", type:"warning"});
+                                    		}else{ 
+                                    			if(!emailReg.test(email)){
+												swal({ title : "Ooops!", text : "Please enter valid email!", type : "warning"},
+															function(){
+																$('#email').focus();
+															}
+												
+												);
+							
+                                    			}else if(confirm_pw == pw){
+                                    				swal({title:"Success", text:"EQAUL", type:"success"});
+                                    			}else{
+                                    				swal({title:"Ooops", text:"NOT EQUAL", type:"warning"});
+                                    				$('#confirm_pw').val('');
+                                    				$('#confirm_pw').focus();
+                                    			}
+                                    		}//condition
+                                    	
+                                    	}//function add_developer
+                                    	
+  
+                                    </script>
       
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>

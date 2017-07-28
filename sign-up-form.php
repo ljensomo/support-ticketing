@@ -47,6 +47,19 @@
 					<p>Submitting...</p>
 				</center>
 			</div>
+			<div id="message" style="display:none;padding-top:20px;">
+				<center>
+				<h4><strong>Information was successfully submitted.</strong></h4><br>
+				<h5>Please check your email for verification of your account.</h5>
+				</center>
+			</div>
+			<div id="message2" style="display:none;padding-top:20px;padding-bottom:20px">
+				<center>
+				<h4><strong>Information was not submitted.</strong></h4><br>
+				<h5>There was an error encountered during the process, please try again.</h5>
+				<a class="btn btn-md btn-danger" onclick="add_user()">Try Again</a>
+				</center>
+			</div>
 				<form style="margin-bottom: 0px !important;" class="form-horizontal" id="SignUpForm" method="POST" action="" novalidate>
 					<div class="content">
                				<div class="row">
@@ -103,7 +116,7 @@
                                     <div class="col-sm-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
-                                            <input type="text" placeholder="Company" id="company" class="form-control" name="company" required>
+                                            <input type="text" placeholder="Company TIN Code" id="company" class="form-control" name="company" required>
                                         </div>
                                     </div>
                                 </div>
@@ -149,7 +162,7 @@
 							
             <center>
             <button class="btn btn-default btn-rad btn-lg" type="reset" style="width:250px;"><i class="fa fa-ban" style="padding-right:10px"></i>Cancel</button>
-            <button class="btn btn-danger btn-rad btn-lg" type="button" onclick="validate()" style="width:300px;"><i class="fa fa-mail-forward" style="padding-right:10px"></i>Submit</button>
+            <button class="btn btn-danger btn-rad btn-lg" type="button" onclick="add_user()" style="width:300px;"><i class="fa fa-mail-forward" style="padding-right:10px"></i>Submit</button>
             </center>
              <center><p class="spacer">By creating an account, you agree with the <a href="#">Terms</a> and <a href="#">Conditions</a>.</p></center>
 
@@ -165,7 +178,7 @@
 </div>
 
 <script type="text/javascript">
-	function validate(){
+	function add_user(){
 		 var fname = $('#fname').val();
 		 var mname = $('#mname').val();
 		 var lname = $('#lname').val();
@@ -177,6 +190,7 @@
  		 var pass = $('#pass').val();
  		 var confirm_pass = $('#confirm_pass').val();
 		 var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+		 
 		if(fname == "" || lname == "" || email == "" || contact == "" || company == "" || app == "" || username == "" || pass == "" || confirm_pass == ""){
 				swal({ title : "Ooops!", text : "Please complete all information!", type : "warning"});    
 		}else{
@@ -193,46 +207,44 @@
 								}
 					);
 				}else{
-							 $('#loading').show();
-							 $('#SignUpForm').hide();
+					
 					$.ajax({
-			
-			            type:"POST",
-			            url:"includes/add_user_process.php",
-			            data: "fname="+fname+"&mname="+mname+"&lname="+lname+"&email="+email+"&contact="+contact+"&company="+company+"&app="+app+"&username="+username+"&pass="+pass,
-			            complete : function(request){
-			             $('#loading').hide();
-						 var fname = $('#fname').val('');
-						 var mname = $('#mname').val('');
-						 var lname = $('#lname').val('');
-						 var email = $('#email').val('');
-						 var contact = $('#contact').val('');
-						 var company = $('#company').val('');
-				 		 var app = $('#app').val('');
-				 		 var username = $('#username').val('');
-				 		 var pass = $('#pass').val('');
-				 		 var confirm_pass = $('#confirm_pass').val('');
-
-						 $('#SignUpForm').show();
-			        if(request.responseText.trim() === "none"){
-			                   swal({ title : "Ooops!", text : "Please input data!", type : "warning" });
-					}else if(request.responseText.trim() === "exist"){
-							   swal({ title : "Ooops!", text : "Username already exist!", type : "warning" },
-							   		function(){
-							   			var username = $('#username').val('');
-
-							   		}
-							   );
-					}else if(request.responseText.trim() === "success"){
-			            	   swal({ title : "Saved!", text : "Successfully Submitted", type : "success" });
-					}else{
-							   swal({ title : "Ooops!", text : "email was not successfuly sent!", type : "error" });
-					}
-			            			      
-						}               
-			                                
-			        })
-
+						 type:"POST",
+						 url:"includes/tincode_validation_process.php",
+						 data: "company="+company,
+						 complete : function(r){
+						 	if(r.responseText.trim() === "valid"){
+						 			$('#loading').show();
+							 		$('#SignUpForm').hide();
+								$.ajax({
+						            type:"POST",
+						            url:"includes/add_user_process.php",
+						            data: "fname="+fname+"&mname="+mname+"&lname="+lname+"&email="+email+"&contact="+contact+"&company="+company+"&app="+app+"&username="+username+"&pass="+pass,
+						            complete : function(request){
+						             $('#loading').hide();
+									 //$('#SignUpForm').show();
+						        if(request.responseText.trim() === "none"){
+						                   swal({ title : "Ooops!", text : "Please input data!", type : "warning" });
+								}else if(request.responseText.trim() === "exist"){
+										   swal({ title : "Ooops!", text : "Username already exist!", type : "warning" },
+										   		function(){
+										   			var username = $('#username').val('');
+										   		}
+										   );
+								}else if(request.responseText.trim() === "success"){
+						            	   $('#message').show();
+						            	   //swal({ title : "Saved!", text : "Successfully Submitted", type : "success" });
+								}else{
+										  $('#message2').show();
+										  //swal({ title : "Ooops!", text : "email was not successfuly sent!", type : "error" });
+								} // condition end
+									}  // function add end                          
+						        }) // add ajax	end
+						 	}else if(r.responseText.trim() === "invalid"){
+						 		swal({ title : "Ooops!", text : "Specified company not recognized!", type : "error" });
+						 	} // validation end
+						 } //  tincode function end
+						 }); // tin code ajax end
 				}
 		}
 		 

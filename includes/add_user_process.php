@@ -55,13 +55,7 @@ if ($error) {
     $link = 'localhost/new folder/includes/activate_user_account_process.php?cid='."".$number;
     $message =  'click here to activate your account.';
 
-    $sqlAdd2 = "INSERT INTO user_accounts(user_id,username,password)VALUES(?,?,?)";
-    $qryAdd2 = $db->prepare($sqlAdd2);
-    $qryAdd2->execute(array($rowUser2[0], $username, $password));        
-
-    $sqlAdd3 = "INSERT INTO users_roles(user_id,user_role)VALUES(?,?)";
-    $qryAdd3 = $db->prepare($sqlAdd3);
-    $qryAdd3->execute(array($rowUser2[0], $role)); 
+     
         	
     //msgAlert($alert = "Registration Successful!");
     //openWindow($goto = "../users.php");
@@ -103,6 +97,13 @@ if ($error) {
     // echo 'Message could not be sent.';
     	echo 'error';
 	}else{
+			$sqlAdd2 = "INSERT INTO user_accounts(user_id,username,password)VALUES(?,?,?)";
+		    $qryAdd2 = $db->prepare($sqlAdd2);
+		    $qryAdd2->execute(array($rowUser2[0], $username, $password));        
+		
+		    $sqlAdd3 = "INSERT INTO users_roles(user_id,user_role)VALUES(?,?)";
+		    $qryAdd3 = $db->prepare($sqlAdd3);
+		    $qryAdd3->execute(array($rowUser2[0], $role));
     	echo "success";
     }
 }

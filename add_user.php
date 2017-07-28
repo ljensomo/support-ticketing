@@ -53,7 +53,7 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Users</h2>
+                    <h2><i class="fa fa-users" style="padding-right:10px"></i>Users</h2>
                     <ol class="breadcrumb">
 
                         <li><a href="users.php">Users</a></li>

@@ -8,7 +8,7 @@ $company_name = htmlspecialchars($_POST['company_name']);
 $email = htmlspecialchars($_POST['email']);
 
 
-$contact_no = htmlspecialchars($_POST['contact_no']);
+$company_tin_code = htmlspecialchars($_POST['company_tin_code']);
 $options = array('cost' => 11);
 //$role = 4;
 //$username = htmlspecialchars($_POST['username']);
@@ -36,16 +36,11 @@ if ($error) {
     //openWindow($goto = "../add_user.php");
     echo "exist";
 } else {
-    $sqlAdd = "INSERT INTO companies(company_name,contact_no,email_address)VALUES(?,?,?)";
+    $sqlAdd = "INSERT INTO companies(company_name,company_tin_code,email_address)VALUES(?,?,?)";
     $qryAdd = $db->prepare($sqlAdd);
-    $qryAdd->execute(array($company_name,$contact_no,$email));
-
-    $sqlUser2 = "SELECT id FROM companies WHERE company_name = ?";
-    $resUser2 = $db->prepare($sqlUser2);
-    $resUser2->execute(array($company_name));
-    $rowUser2 = $resUser2->fetch(PDO::FETCH_NUM);
+    $qryAdd->execute(array($company_name,$company_tin_code,$email));
 	
-	echo $rowUser2[0];
+	echo "success";
 	
     }
 ?>

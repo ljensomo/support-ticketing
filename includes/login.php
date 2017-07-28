@@ -57,7 +57,7 @@ if ($error) {
     } else{
 	     echo "admin";
     //openWindow($goto = "../index.php");
-}
+	}
 
     /*if ($row['userlevel_id'] == '1') {
         $_SESSION['admin'] = $row['username'];
@@ -67,7 +67,7 @@ if ($error) {
         msgAlert($alert = "Access Denied");
         openWindow($goto = "../login.html");
     }*/
-} else if (!password_verify($pw, $row['password'])) {
+} else if (!password_verify($pw, $row[9])) {
     echo "incorrect";
     //msgAlert($alert = "The password you entered is incorrect. Please try again");
     //openWindow($goto = "../login.html");

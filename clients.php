@@ -56,11 +56,10 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Clients</h2>
+                    <h2><i class="fa fa-building-o" style="padding-right:10px"></i>Companies</h2>
                     <ol class="breadcrumb">
-                        <li class="active">Clients</li>
-                        <li><a href="add_client.php">Add Clients</a></li>
-                    </ol>
+                        <li class="active">Client Records</li>
+                      </ol>
                 </div>  
                 <div class="cl-mcont">
                         
@@ -76,27 +75,29 @@
                                         <table class="table table-bordered" id="datatable">
                                             <thead>
                                                 <tr>
-                                                    <th>User ID</th>
+                                                    <th>Company ID</th>
                                                     <th>Company Name</th>
-                                                    <th>E-mail address</th>
+                                                    <th>Company TIN code</th>
+                                                    <th>E-mail Address</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * FROM client_info";
+                                                $sql = "SELECT * FROM companies";
                                                 $res = $db->prepare($sql);
                                                 $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                while ($row = $res->fetch(PDO::FETCH_NUM)) {
                                                     ?>
                                                     <tr class="odd gradeX">
-                                                        <td><?php echo $row['id']; ?></td>
-                                                        <td><?php echo $row['company_name']; ?></td>
-                                                        <td><?php echo $row['email_address']; ?></td>
+                                                        <td><?php echo $row[0]; ?></td>
+                                                        <td><?php echo $row[1]; ?></td>
+                                                        <td><?php echo $row[2]; ?></td>
+                                                        <td><?php echo $row[3]; ?></td>
                                                         <td class="center">
                                                 <center>
-                                                    <a class="btn btn-info btn-sm" href="view_client.php?cid=<?php echo $row['id']; ?>"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="edit_client.php?cid=<?php echo $row['user_id']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
                                                     
                                                 </center>        
                                                 </td>
@@ -139,9 +140,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Contact No.</label>
+                                    <label class="col-sm-3 control-label">Company TIN code</label>
                                     <div class="col-sm-7">
-                                        <input class="form-control" placeholder="Number" name="contact_no" id="contact_no" type="text">                               
+                                        <input class="form-control" placeholder="Number" name="company_tin_code" id="company_tin_code" type="text">                               
 
                                     </div>
                                 </div>
@@ -174,14 +175,14 @@
         	function client(){
         	//alert("asdas");
         		var company_name = $('#company_name').val();
-        		var contact_no = $('#contact_no').val();
+        		var company_tin_code = $('#company_tin_code').val();
         		var email = $('#email').val();				
         		var id = 0;
         		$.ajax({
 
 		            type:"POST",
 		            url:"includes/add_client_process.php",
-		            data: "company_name="+company_name+"&contact_no="+contact_no+"&email="+email,
+		            data: "company_name="+company_name+"&company_tin_code="+company_tin_code+"&email="+email,
 		            complete : function(request){
             
 	            	
@@ -189,12 +190,10 @@
 	           		  swal({ title : "Ooops!", text : "Company Name alredy exist!", type : "error"});
 	           		}else if(request.responseText.trim() === "none"){
 	           		 swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
-	           		}else{
+	           		}else if(request.responseText.trim() === "success"){
 	                  swal({ title : "Submitted!", text : "Successfully Created!", type : "success"},
 	                  		function(){
-	                  			id = request.responseText.trim();
-	                  			window.location.href = "view_client.php?cid="+id;
-	                  		}
+	                  			location.reload();	                  		}
 	                  );
 	                  
 	                }
