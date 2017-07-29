@@ -6,7 +6,7 @@ include './functions.php';
 
 
 $fname = htmlspecialchars($_POST['fname']);
-$mname = htmlspecialchars($_POST['mname']);
+
 $lname = htmlspecialchars($_POST['lname']);
 $email = htmlspecialchars($_POST['email']);
 $cnum = htmlspecialchars($_POST['contact']);
@@ -41,13 +41,13 @@ if ($error) {
     //openWindow($goto = "../add_user.php");
     echo "exist";
 } else {
-    $sqlAdd = "INSERT INTO users(fname,mname,lname,company_name,app,cnum,email,is_active)VALUES(?,?,?,?,?,?,?,?)";
+    $sqlAdd = "INSERT INTO users(fname,lname,company_name,app,cnum,email,is_active)VALUES(?,?,?,?,?,?,?)";
     $qryAdd = $db->prepare($sqlAdd);
-    $qryAdd->execute(array($fname, $mname, $lname, $company,$app, $cnum, $email, 0));
+    $qryAdd->execute(array($fname, $lname, $company,$app, $cnum, $email, 0));
 
-    $sqlUser2 = "SELECT user_id FROM users WHERE fname = ? and mname = ? and lname = ? and email = ? and cnum = ? and is_active = ?";
+    $sqlUser2 = "SELECT user_id FROM users WHERE fname = ? and lname = ? and email = ? and cnum = ? and is_active = ?";
     $resUser2 = $db->prepare($sqlUser2);
-    $resUser2->execute(array($fname,$mname,$lname,$email,$cnum,0));
+    $resUser2->execute(array($fname,$lname,$email,$cnum,0));
     $rowUser2 = $resUser2->fetch(PDO::FETCH_NUM);
     
     $number = $rowUser2[0];
@@ -93,8 +93,12 @@ if ($error) {
 	//$mail->Body    = 'this is a test number 4!';
 	$mail->Body = "<h3>HI!" . " " . $fname ." ". $lname ." "."</h3><br/>Please go to this link to activate your account" . " " ."<a href='". $link ."'>" .$message. "</a>\n\n";
 	
-    if(!$mail->send()) {
+    if(!$mail->send()){
     // echo 'Message could not be sent.';
+    	$sql_del = "DELETE FROM users WHERE user_id = ?";
+    	$del_res = $db->prepare($sql_del);
+    	$del_res->execute(array($rowUser2[0]));
+    	
     	echo 'error';
 	}else{
 			$sqlAdd2 = "INSERT INTO user_accounts(user_id,username,password)VALUES(?,?,?)";

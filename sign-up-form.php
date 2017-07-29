@@ -1,3 +1,18 @@
+<?php 
+require 'includes/connection.php';
+
+session_start();
+?><!--
+
+	if(isset($_POST['Submit'])){
+	// code for check server side validation
+	if(empty($_SESSION['captcha_code'] ) || strcasecmp($_SESSION['captcha_code'], $_POST['captcha_code']) != 0){  
+		$msg="<span style='color:red'>The Validation code does not match!</span>";// Captcha verification is incorrect.		
+	}else{// Captcha verification is Correct. Final Code Execute here!		
+		$msg="<span style='color:green'>The Validation code has been matched.</span>";		
+	}
+}	
+?>-->
 <!DOCTYPE html>
 
 <html lang="en">
@@ -31,7 +46,13 @@
 	
 
 </head>
-
+<script type='text/javascript'>
+function refreshCaptcha(){
+	var img = document.images['captchaimg'];
+	img.src = img.src.substring(0,img.src.lastIndexOf("?"))+"?rand="+Math.random()*1000;
+}
+</script>
+	
 <body class="texture">
 
 <div id="cl-wrapper" class="sign-up-container">
@@ -49,7 +70,7 @@
 			</div>
 			<div id="message" style="display:none;padding-top:20px;">
 				<center>
-				<h4><strong>Information was successfully submitted.</strong></h4><br>
+				<h4><strong>Registration was successfully submitted.</strong></h4><br>
 				<h5>Please check your email for verification of your account.</h5>
 				</center>
 			</div>
@@ -57,7 +78,7 @@
 				<center>
 				<h4><strong>Information was not submitted.</strong></h4><br>
 				<h5>There was an error encountered during the process, please try again.</h5>
-				<a class="btn btn-md btn-danger" onclick="add_user()">Try Again</a>
+				<a class="btn btn-md btn-danger" onclick="captcha_verify()">Try Again</a>
 				</center>
 			</div>
 				<form style="margin-bottom: 0px !important;" class="form-horizontal" id="SignUpForm" method="POST" action="" novalidate>
@@ -73,14 +94,7 @@
                                     </div>
                                 </div>
 							
-							<div class="form-group">
-                                    <div class="col-sm-12">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                            <input type="text" placeholder="Middle Name" id="mname" class="form-control" name="mname" required>
-                                        </div>
-                                    </div>
-                                </div>
+
 
 								<div class="form-group">
                                     <div class="col-sm-12">
@@ -99,6 +113,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+
 								
 								<div class="form-group">
                                     <div class="col-sm-12">
@@ -108,7 +124,28 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                 <div class="form-group">
+                                     <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+                                            <select class="form-control" name="company_name" id="company_name">
+                                            <option value="">Select Company</option>
+                                            <?php  
+                                            	$query_com = "SELECT * FROM companies";
+                                            	$res_com = $db->prepare($query_com);
+                                            	$res_com->execute();
+                                            	while($row_com=$res_com->fetch(PDO::FETCH_NUM)){
+                                            ?>
+                                            	<option value="<?php echo $row_com[0] ?>"><?php echo $row_com[1] ?></option>
+                                            <?php } ?>
+                                            </select>
+                                        </div>
+                                     </div>
+                                </div>	
 								</div>
+
+
 								
 								<div class="col-md-6">
 								
@@ -159,8 +196,8 @@
 
 								</div>
 								</div>
-							
             <center>
+            
             <button class="btn btn-default btn-rad btn-lg" type="reset" style="width:250px;"><i class="fa fa-ban" style="padding-right:10px"></i>Cancel</button>
             <button class="btn btn-danger btn-rad btn-lg" type="button" onclick="add_user()" style="width:300px;"><i class="fa fa-mail-forward" style="padding-right:10px"></i>Submit</button>
             </center>
@@ -169,6 +206,56 @@
 							
 					</div>
 			  </form>
+			  <!-- captcha -->
+			  <form action="" method="POST" name="captcha-form" id="captcha-form" class="form-horizontal" style="margin-left:25%;margin-top:5%;display:none">
+			  
+			  			 	<div class="container">
+                                <h4 class="title"><strong>Validation Code:</strong></h4>
+                                <img src="phpcaptcha/captcha.php?rand=<?php echo rand();?>" style="width:20%" id='captchaimg'><br>
+                                <div class="form-group">
+                                	<?php if(isset($msg)){?> 
+                                	<div style="padding-left:1.5%"><label></label></div>
+                                	<?php } ?>
+                                	<label class="col-sm-7">Enter the code above here.</label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="captcha_code" name="captcha_code" style="width:200%">
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-7">Can't read the image? click <a href="javascript: refreshCaptcha();">here</a> to refresh.</label>
+                                </div>
+                                <div class="form-group">
+                                
+                                    <div class="col-sm-7">
+                                        <div class="input-group">
+                                            <button type="button" onclick="captcha_verify()"  class="btn btn-danger btn-block btn-md" id="Submit" name="Submit" class="form-control" style="width:470%">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+				<!--	<table>
+				    <?php if(isset($msg)){?>
+				    <tr>
+				      <td colspan="2" align="center" valign="top"><?php echo $msg;?></td>
+				    </tr>
+				    <?php } ?>
+				    <tr>
+				      <td align="right" valign="top"> Validation code:</td>
+				      <td><img src="phpcaptcha/captcha.php?rand=<?php echo rand();?>" id='captchaimg'><br>
+				        <label for='message'>Enter the code above here :</label>
+				        <br>
+				        <input id="captcha_code" name="captcha_code" type="text">
+				        <br>
+				        Can't read the image? click <a href='javascript: refreshCaptcha();'>here</a> to refresh.</td>
+				    </tr>
+				    <tr>
+				      <td>&nbsp;</td>
+				      <td><input name="Submit" type="submit"  value="Submit" class="button1"></td>
+				    </tr>
+				  </table> -->
+			</form>
+
 			  
 			</div>
 		</div>
@@ -176,22 +263,84 @@
 	</div> 
 	
 </div>
+<script type="text/javascript">
+	function captcha_verify(){
+	 var captcha_code = $('#captcha_code').val();
+	 	 var fname = $('#fname').val();
+		 var lname = $('#lname').val();
+		 var email = $('#email').val();
+		 var contact = $('#contact').val();
+		 var company_name = $('#company_name').val();
+		 var company = $('#company').val();
+ 		 var app = $('#app').val();
+ 		 var username = $('#username').val();
+ 		 var pass = $('#pass').val();
+ 		 
+	 		$.ajax({
+						 type:"POST",
+						 url:"includes/captcha_verification.php",
+						 data: "captcha_code="+captcha_code,
+						 complete : function(r){
+						 
+						 			if(r.responseText.trim() === "not match"){
+						 				swal({ title : "Ooops!", text : "The Validation code does not match!", type : "error" },
+						 						function(){
+						 							refreshCaptcha();
+						 							$('#captcha_code').val('');
+						 						}
+						 				);
+						 			}else if(r.responseText.trim() === "matched"){
+						 				$('#captcha-form').hide();
+						 				$('#loading').show();
+						 					$.ajax({
+										            type:"POST",
+										            url:"includes/add_user_process.php",
+										            data: "&fname="+fname+"&lname="+lname+"&email="+email+"&contact="+contact+"&company_name"+company_name+"&company="+company+"&app="+app+"&username="+username+"&pass="+pass,
+										            complete : function(request){
+										             $('#loading').hide();
+										             
+													 //$('#SignUpForm').show();
+										        if(request.responseText.trim() === "none"){
+										                   swal({ title : "Ooops!", text : "Please input data!", type : "warning" });
+												}else if(request.responseText.trim() === "exist"){
+														   swal({ title : "Ooops!", text : "Username already exist!", type : "warning" },
+														   		function(){
+														   			var username = $('#username').val('');
+														   		}
+														   );
+												}else if(request.responseText.trim() === "success"){
+										            	   $('#message').show();
+										            	   //swal({ title : "Saved!", text : "Successfully Submitted", type : "success" });
+												}else{
+														  $('#message2').show();
+														  //swal({ title : "Ooops!", text : "email was not successfuly sent!", type : "error" });
+												} // condition end
+													}  // function add end                          
+										     }) // add ajax	end
+						 			}
+						 	}
+			   });
+
+	}
+</script>
+
 
 <script type="text/javascript">
 	function add_user(){
+		
 		 var fname = $('#fname').val();
-		 var mname = $('#mname').val();
 		 var lname = $('#lname').val();
 		 var email = $('#email').val();
 		 var contact = $('#contact').val();
 		 var company = $('#company').val();
+		 var company_name = $('#company_name').val();
  		 var app = $('#app').val();
  		 var username = $('#username').val();
  		 var pass = $('#pass').val();
  		 var confirm_pass = $('#confirm_pass').val();
 		 var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 		 
-		if(fname == "" || lname == "" || email == "" || contact == "" || company == "" || app == "" || username == "" || pass == "" || confirm_pass == ""){
+		if(fname == "" || lname == "" || email == "" || contact == "" || company == "" || app == "" || username == "" || pass == "" || confirm_pass == "" || company_name == ""){
 				swal({ title : "Ooops!", text : "Please complete all information!", type : "warning"});    
 		}else{
 				if(!emailReg.test(email)){
@@ -211,17 +360,19 @@
 					$.ajax({
 						 type:"POST",
 						 url:"includes/tincode_validation_process.php",
-						 data: "company="+company,
+						 data: "company="+company+"&company_name="+company_name,
 						 complete : function(r){
 						 	if(r.responseText.trim() === "valid"){
-						 			$('#loading').show();
+						 			$('#captcha-form').show();
+						 			//$('#loading').show();
 							 		$('#SignUpForm').hide();
-								$.ajax({
+								/*$.ajax({
 						            type:"POST",
 						            url:"includes/add_user_process.php",
 						            data: "fname="+fname+"&mname="+mname+"&lname="+lname+"&email="+email+"&contact="+contact+"&company="+company+"&app="+app+"&username="+username+"&pass="+pass,
 						            complete : function(request){
 						             $('#loading').hide();
+						             
 									 //$('#SignUpForm').show();
 						        if(request.responseText.trim() === "none"){
 						                   swal({ title : "Ooops!", text : "Please input data!", type : "warning" });
@@ -239,9 +390,9 @@
 										  //swal({ title : "Ooops!", text : "email was not successfuly sent!", type : "error" });
 								} // condition end
 									}  // function add end                          
-						        }) // add ajax	end
+						        }) // add ajax	end */
 						 	}else if(r.responseText.trim() === "invalid"){
-						 		swal({ title : "Ooops!", text : "Specified company not recognized!", type : "error" });
+						 		swal({ title : "Ooops!", text : "The TIN code you did not match in the specified company!", type : "error" });
 						 	} // validation end
 						 } //  tincode function end
 						 }); // tin code ajax end
