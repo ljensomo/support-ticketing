@@ -67,7 +67,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">                            
-                                    <a class="btn btn-danger" data-toggle="modal" data-target="#add-company"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Add Clients</a>
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#add-company"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Add Companies</a>
 
                                 </div>
                                 <div class="content">

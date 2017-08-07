@@ -63,7 +63,7 @@
                 	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #ed5b56;">
                 	    <div class="fixed">
                 	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left:100px;">OPEN TICKETS</h5>
-                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+                	       <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
 					    </div>								
                 	    </div>
 
@@ -78,7 +78,7 @@
                 	    <div class="panel-heading" style="height:100px;  color: #ffffff; background-color:#428bca;">
                 	    <div class="fixed">
                 	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 90px;">CLOSED TICKETS</h5>
-                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+                	       <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
 					    </div>								
                 	    </div>
 

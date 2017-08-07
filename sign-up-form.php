@@ -68,7 +68,7 @@ function refreshCaptcha(){
 					<p>Submitting...</p>
 				</center>
 			</div>
-			<div id="message" style="display:none;padding-top:20px;">
+			<div id="message" style="padding-top:20px; display:none;">
 				<center>
 				<h4><strong>Registration was successfully submitted.</strong></h4><br>
 				<h5>Please check your email for verification of your account.</h5>
@@ -80,6 +80,7 @@ function refreshCaptcha(){
 				<h5>There was an error encountered during the process, please try again.</h5>
 				<a class="btn btn-md btn-danger" onclick="captcha_verify()">Try Again</a>
 				</center>
+			
 			</div>
 				<form style="margin-bottom: 0px !important;" class="form-horizontal" id="SignUpForm" method="POST" action="" novalidate>
 					<div class="content">

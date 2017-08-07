@@ -67,7 +67,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
-                                    <a class="btn btn-primary" data-toggle="modal" data-target="#add-user-modal">Add User</a>
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#add-user-modal"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Add User</a>
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
@@ -258,7 +258,7 @@
 												);
 							
                                     			}else if(confirm_pw == pw){
-                                    				swal({title:"Success", text:"EQAUL", type:"success"});
+                                    				swal({title:"Success", text:"EQUAL", type:"success"});
                                     			}else{
                                     				swal({title:"Ooops", text:"NOT EQUAL", type:"warning"});
                                     				$('#confirm_pw').val('');
