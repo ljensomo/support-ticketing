@@ -58,7 +58,8 @@
                       	<li class="active">Developers</li>
                     </ol>
                 </div>	
-                <div class="cl-mcont">
+                
+                <div class="cl-pcont">
                         
                     <div class="row">
                         <div class="col-md-12">

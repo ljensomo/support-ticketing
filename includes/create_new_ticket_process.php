@@ -1,25 +1,22 @@
+<html>
+<a href="../attachment/asd.txt"></a>
+</html>
 <?php
 
 require_once 'connection.php';
 include 'functions.php';
 
 
-
+$reporter = $_POST['id'];
 $project = htmlspecialchars($_POST['project']);
 $trans_no = htmlspecialchars($_POST['trans_no']);
-$reporter = htmlspecialchars($_POST['reporter']);	
-$company_id = htmlspecialchars($_POST['company_id']);
+$type = htmlspecialchars($_POST['type']);
+$subject = htmlspecialchars($_POST['subject']);
+$desc = htmlspecialchars($_POST['desc']);
+$file = $_FILES['file']['name'];
 $before_status = 1;
 
- $time_loader="SELECT NOW()";
- $time_res=$db->prepare($time_loader);
- $time_res->execute();
- $time_row=$time_res->fetch(PDO::FETCH_NUM);
-
-$date = $time_row[0];;
-
-
-$required = array($project,$trans_no,$reporter,$date);
+$required = array($project,$trans_no,$reporter);
 $error = false;
 
 foreach ($required as $fields) {
@@ -28,14 +25,40 @@ foreach ($required as $fields) {
     }
 }
 
+if ($file) {
+
+    if (!$_FILES['file']['error']) {
+
+        $currentdir = getcwd();
+        $target = $currentdir . '../../attachment/' . basename($_FILES['file']['name']);
+
+        if ($_FILES['file']['size'] > (40024000)) {
+
+            $valid_file = false;
+           // msgAlert($alert = "File too large. Upload image not exceeding 1mb in size.");
+           echo "File too large.";
+        } else {
+            $valid_file = true;
+        }
+
+        if ($valid_file) {
+
+            move_uploaded_file($_FILES['file']['tmp_name'], $target);
+        }
+    } else {
+       // msgAlert($alert = "Invalid");
+       echo "Invalid";
+
+    }
+}
 
 if ($error) {
 	echo "error";
    // openWindow($goto = "../client.php");
 } else {
-    $sqlAdd = "INSERT INTO tickets(company_id,project_id,transaction_no,date_created,reporter,before_status) VALUES(?,?,?,?,?,?);";
+    $sqlAdd = "INSERT INTO tickets(project,transaction_no,issue_subject,issue_desc,reporter_id,attchment,before_status) VALUES(?,?,?,?,?,?,?);";
     $qryAdd = $db->prepare($sqlAdd);
-    $qryAdd->execute(array($company_id,$project,$trans_no,$date,$reporter,$before_status));
+    $qryAdd->execute(array($project,$trans_no,$subject,$desc,$reporter,$file,$before_status));
         
     echo "success";
 

@@ -45,112 +45,122 @@
 		<script src="sweetalert-master/dist/sweetalert.min.js"></script>
 
 
-    </head>
-    <body>
+	  
+	
+	
+	    </head>
+	    <body>
+	
 
-        <!-- Fixed navbar -->
-        <?php include 'includes/portal_topbar.php'; ?>
+	
+	        <!-- Fixed navbar -->
+	        <?php include 'includes/portal_topbar.php'; ?>
+	
+	
+	
+	        <div id="cl-wrapper" class="fixed-menu">
+	            <?php include 'includes/client_sidebar.php'; ?>
+	
+	            <div class="container-fluid" id="pcont">
+	                <div class="page-head">
+	                    <h2><i style="padding-right:5px" class="fa fa-ticket"></i>New Ticket</h2>
+	                    
+	                    </div>  
+	                <div class="cl-mcont">
+	                
+	                        
+	
+	                        <div class="col-md-12">
+	                            <div class="block-flat">
+	                          
+	                            <div class="header">                            
+	                                    <h3><i class="fa fa-plus-circle" style="padding-right:10px;"></i><strong>Create New Tickets</strong></h3>
+	                                </div>
+	                            	<div class="content">
+	
+	                            	<!--<h3><i class="fa fa-plus-circle" style="padding-right:10px;"></i>Create New Ticket</h3><hr>-->
+	                            		<form method="POST" action="includes/create_new_ticket_process.php" class="form-horizontal" style="border-radius: 0px;" parsley-validate novalidate enctype="multipart/form-data">
+	
+	                        <div class="row">
+	                            <div class="col-lg-12">
+	                            <input type="hidden" name="id" id="id" value="<?php echo $row[0] ?>">
+	                                <div class="form-group">
+	                                    <label class="col-sm-3 control-label">
+										<span>Issue Type :</span></label>
+	                                    <div class="col-sm-6">
+	                                        <select class="form-control" name="type" id="type" required>
+	                                            <option>-- Type</option>
+	                                            <option value="1">Bug</option>
+	                                            <option value="2">Error</option>
+	                                        </select>                                 
+	                                    </div>
+	                                </div><hr>
+	                                <div class="form-group">
+	                                  
+	                                    <label class="col-sm-3 control-label">
+										<span>Project :</span></label>
+	                                    <div class="col-sm-6">
+	                                        <select class="form-control" name="project" id="project" required>
+	                                            <option>-- Select Project</option>
+	                                            <option value="1">POS</option>
+	                                            <option value="2">MIS</option>
+	                                        </select>                                 
+	                                    </div>
+	                                </div>
+	
+	              
+	
+	                                <div class="form-group">
+	                                    <label class="col-sm-3 control-label">
+										<span class="auto-style3">Reporter :</span></label>
+	                                        <div class="col-sm-6">
+	                                            <input class="form-control" name="name" id="name" type="text"   readonly value="<?php echo $row[1] . " " . $row[3] ?>">
+	                                         </div>
+	                                </div>
+	
+	                
+	
+	                                <div class="form-group">
+	                                    <label class="col-sm-3 control-label">
+										<span class="auto-style3">Transaction No      :</span></label>
+	                                        <div class="col-sm-6">
+	                                            <input class="form-control" placeholder="Number" name="trans_no" id="trans_no" type="text" required="">                               
+	                                        </div>
+	                                </div>
+	
+	                           
+	                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">
+									<span>Subject     :</span></label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" placeholder="Enter issue summary" name="subject" id="subject" type="text" required="">                             
+                                        </div>
+                                </div>
 
-        <div id="cl-wrapper" class="fixed-menu">
-            <?php include 'includes/client_sidebar.php'; ?>
+                      
 
-            <div class="container-fluid" id="pcont">
-                <div class="page-head">
-                    <h2><i style="padding-right:5px" class="fa fa-ticket"></i>New Ticket</h2>
-                    
-                    </div>  
-                <div class="cl-mcont">
-                
-                        
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-flat">
-                            	<div class="content">
-                            	<h1><i class="fa fa-plus-circle" style="padding-right:10px;"></i>Create New Ticket</h1>
-                            		<form method="POST" action="" class="form-horizontal group-border-dashed" style="border-radius: 0px;" parsley-validate novalidate>
-
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">
+									<span>Issue Description     :</span></label>
+                                        <div class="col-sm-6">
+                                            <textarea class="form-control" placeholder="Enter issue description" rows="3" name="desc" id="desc" type="text" required=""></textarea>
+                                        </div>
+                                </div>
                             
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Project :</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" name="project" id="project" required>
-                                            <option></option>
-                                            
-                                            <?php 
-                                            $id_loader = "SELECT 
-											a.company_id
-											FROM users AS a 
-											INNER JOIN companies AS b ON a.company_id=b.id WHERE user_id = ?;";
-											
-											$id_res=$db->prepare($id_loader);
-											$id_res->execute(array($row[0]));
-											$id_row = $id_res->fetch(PDO::FETCH_NUM);	
-                                            
-                                            $option_loader = "SELECT * FROM company_proj WHERE company_id = ?";
-                                            $option_res = $db->prepare($option_loader);
-                                            $option_res->execute(array($id_row[0]));
-                                            while($option_row = $option_res->fetch(PDO::FETCH_NUM)) {
-                                            ?>
-                                            
-                                            <option value="<?php echo $option_row[0]; ?>"><?php echo $option_row[2]; ?></option>
-                                            
-                                            <?php } ?>
-                                            
-                                        </select>                                 
-                                    </div>
+                                    <label class="col-sm-3 control-label">
+									<span>Attachment     :</span></label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" name="file" id="file" type="file">
+					     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Transaction No      :</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" placeholder="Number" name="trans_no" id="trans_no" type="text" required="">                               
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Reporter :</label>
-                                                            <div class="col-sm-6">
-                                                                <select class="form-control" name="reporter" id="reporter" required>
-                                                                    <option></option>
-                                                                    
-                                                                    <?php 
-                                                                    
-                                                                    
-                                                                    
-                                                                    $reporter_loader = "SELECT
-                                                                    a.user_id,
-                                                                    a.fname,
-                                                                    a.mname,
-                                                                    a.lname,
-                                                                    a.company_id,
-                                                                    a.cnum, 
-                                                                    a.email,
-                                                                    a.is_active,
-                                                                    c.user_desc
-                                                                     FROM users AS a JOIN 
-                                                                     users_roles AS b ON a.user_id=b.user_id
-                                                                     JOIN roles AS c ON b.user_role=c.userlevel_id
-                                                                     WHERE company_id = ? AND user_desc = ?";
-                                                                 
-                                                                    $rep_res = $db->prepare($reporter_loader);
-                                                                    $rep_res->execute(array($id_row[0],'reporter'));
-                                                                    while($rep_row = $rep_res->fetch(PDO::FETCH_NUM)) {
-                                                                    ?>
-                                                                    
-                                                                    <option value="<?php echo $rep_row[0] ; ?>"><?php echo $rep_row[1] . " " . $rep_row[2] . " " . $rep_row[3]; ?></option>
-                                                                    
-                                                                    <?php } ?>
-                                                                    
-                                                                </select>                                 
-                                                            </div>
-                                                        </div>
 
                                 <div class="spacer text-center">
                                     <button type="reset" class="btn btn-default btn-lg" style="width:150px;"><i class="fa fa-ban" style="padding-right:10px;"></i>Cancel</button>
                                     <button class="btn btn-primary btn-lg" type="button" onclick="create()" style="width:150px;"><i class="fa fa-mail-forward" style="padding-right:10px;"></i>Create</button>
                                 </div>
-
+                    </div>
+                </div>  <!-- row end -->            
                             </form>
                             	</div>
                             </div>              
@@ -160,93 +170,53 @@
                 </div>
             </div> 
 
-        </div>
         
-        <div class="modal fade" id="select-modal" tabindex="-1" role="dialog">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                	<h2 class="pull-left"><i class="fa fa-bug" style="padding-right:10px;"></i>Ticket Issue</h2>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                       
-                                                       <br/>
-					<form method="POST" action="add_tickets.php" class="form-horizontal group-border-dashed"  style="border-radius: 0px;" >
-                                   <input class="form-control" type="hidden" name="company_id" id="company_id" value="<?php echo $row[4]; ?>">                                 
-                                   <div class="form-group">
-                                    <label class="col-sm-3 control-label">Subject :</label>
-                                    <div class="col-sm-8">
-                                        <input class="form-control" type="text" placeholder="Subject" name="subject" id="subject" type="text" required>                                 
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Description :</label>
-                                                            <div class="col-sm-8">
-                                                                    <input class="form-control" type="text" placeholder="Issue description" name="desc" id="desc" type="text" required>                             
-                                                            </div>
-                                                        </div>
-                                                        
-                                <div class="form-group">
-                                            <label class="col-sm-3 control-label">Attachment :</label>
-                                            <div class="col-sm-8">
-                                                <input class="form-control" type="file" accept="image/*" placeholder="" name="file" id="file" required>
-                                            </div>
-                                        </div>
 
-                                        	<div class="spacer text-center" style="padding-left:80px">
-													<button type="button" class="btn btn-default" data-dismiss="modal" style="width:150px"><i class="fa fa-ban" style="padding-right:10px;"></i>Cancel</button>
-                                                    <button class="btn btn-danger" type="submit" style="width:150px"><i class="fa fa-plus-circle" style="padding-right:10px;"></i>Add</button>
-
-                                        	</div>
-                                </form>
-						       <!-- /input-group -->
-								<!-- /.col-lg-6 -->                                    
-					             </div>
-                                            
-                                                <div class="modal-footer">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
         
         <script type="text/javascript">
         	function create(){
         	//alert("asdas");
-        		var project = $('#project').val();
-        		var trans_no = $('#trans_no').val();
-        		var reporter = $('#reporter').val();
-				var company_id = $('#company_id').val();				
+	                var id = $('#id').val();
+	                var type = $('#type').val();
+        		  var project = $('#project').val();
+        		  var trans_no = $('#trans_no').val();
+	                var subject = $('#subject').val();
+	                var desc = $('#desc').val();
+	                var file = $('#file').val();
         		
-        		$.ajax({
+				
 
+        		if(type = "" || project == "" || trans_no == "" || subject == "" || desc == "" || file == ""){
+                    swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
+                }else{
+        		    $.ajax({
 		            type:"POST",
 		            url:"includes/create_new_ticket_process.php",
-		            data: "project="+project+"&trans_no="+trans_no+"&reporter="+reporter+"&company_id="+company_id,
+		            data: "project="+project+"&trans_no="+trans_no+"&id="+id+"&subject="+subject+"&desc="+desc+"&type="+type+"&file="+file,
 		            complete : function(request){
             
-	            	if(request.responseText.trim() === "success"){
-	                  swal({ title : "Submitted!", text : "Successfully Created!", type : "success"},
-	                       function(){
-					           
-	                       			                       }
-	                  );
-					}else if(request.responseText.trim() === "error"){
-	           		 swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
-	           		}
-	           		}
+    	            	if(request.responseText.trim() === "success"){
+    	                    swal({ title : "Submitted!", text : "Successfully Created!", type : "success"},
+    	                       function(){
+    					           location.reload();
+    	                       			                       }
+    	                  );
+    					}else if(request.responseText.trim() === "error"){
+    	           		    swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
+    	           		}
+	           		                          }
            		 
-            });
+                    }); // ajax closing
+                }
             
             
         	}
         </script>
          
       
-                    <script src="js/jquery.js"></script>
+           <script src="js/jquery.js"></script>
             <script src="js/jquery.select2/select2.min.js" type="text/javascript"></script>
             <script src="js/jquery.parsley/parsley.js" type="text/javascript"></script>
-       
             <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
             <script type="text/javascript" src="js/jquery.nestable/jquery.nestable.js"></script>
             <script type="text/javascript" src="js/behaviour/general.js"></script>
@@ -265,6 +235,8 @@
             <!-- Placed at the end of the document so the pages load faster -->
             <script src="js/behaviour/voice-commands.js"></script>
             <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
 
     </body>
     </html>

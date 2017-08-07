@@ -57,52 +57,67 @@
                     
                     </div>  
                 <div class="cl-mcont">
-                <div class="stats_bar">
-                <div class="col-md-4">
-                	<div class="panel panel-primary">
-                	    <div class="panel-heading" style="height:100px">
+                
+                <div class="col-md-3">
+                	<div class="panel panel-default">
+                	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #ed5b56;">
                 	    <div class="fixed">
-                	       <h5 style="margin-top:-2px; margin-bottom:-45px; font-size:20px; padding-left: 150px;">CLIENTS</h5>
-                	       <h3 class="pull-left"><i class="fa fa-users" style="font-size:55px; padding-right:130px"></i><span style="font-size:40px"> 44 </span></h3>
+                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left:100px;">OPEN TICKETS</h5>
+                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
 					    </div>								
                 	    </div>
 
-                		<div class="panel-footer">
-                		  <a href="#"> View Details</a>
-                		</div>
+                		<div class="panel-footer" style="background-color: #ffffff;">
+                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                		  </div>
                 	</div> 
                 </div>
                 
-                <div class="col-md-4">
-                	<div class="panel panel-danger">
-                	    <div class="panel-heading" style="height:100px">
+               <div class="col-md-3">
+                	<div class="panel panel-default">
+                	    <div class="panel-heading" style="height:100px;  color: #ffffff; background-color:#428bca;">
                 	    <div class="fixed">
-                	       <h5 style="margin-top:-2px; margin-bottom:-45px; font-size:20px; padding-left: 150px;">TICKETS</h5>
-                	       <h3 class="pull-left"><i class="fa fa-list" style="font-size:55px; padding-right:130px"></i><span style="font-size:40px"> 44 </span></h3>
+                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 90px;">CLOSED TICKETS</h5>
+                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
 					    </div>								
                 	    </div>
 
-                		<div class="panel-footer">
-                		  <a href="#"> View Details</a>
-                		</div>
+                		<div class="panel-footer" style="background-color: #ffffff;">
+                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                		  </div>
+                	</div> 
+                </div>      
+                          
+                <div class="col-md-3">
+                	<div class="panel panel-default">
+                	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #2f2828;">
+                	    <div class="fixed">
+                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 40px;">TICKETS PER COMPANY</h5>
+                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+					    </div>								
+                	    </div>
+
+                		<div class="panel-footer" style="background-color: #ffffff;">
+                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                		  </div>
                 	</div> 
                 </div>
                 
-                <div class="col-md-4">
-                	<div class="panel panel-info">
-                	    <div class="panel-heading" style="height:100px">
+                <div class="col-md-3">
+                	<div class="panel panel-default">
+                	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #fcad37;">
                 	    <div class="fixed">
-                	       <h5 style="margin-top:-2px; margin-bottom:-45px; font-size:20px; padding-left: 150px;">DEVELOPERS</h5>
-                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:55px; padding-right:130px"></i><span style="font-size:40px"> 44 </span></h3>
+                	       <h5 style="margin-top:5px; margin-bottom:-50px; font-size:15px; padding-left: 30px;">CLOSED TICKETS PER DAY</h5>
+                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
 					    </div>								
                 	    </div>
 
-                		<div class="panel-footer">
-                		  <a href="#"> View Details</a>
-                		</div>
+                	<div class="panel-footer" style="background-color: #ffffff;">
+                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                		  </div>
                 	</div> 
                 </div>
-                </div>
+                
                         
                     <div class="row">
                         <div class="col-md-12">
