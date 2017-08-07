@@ -257,7 +257,8 @@
 												
 												);
 							
-                                    			}else if(confirm_pw == pw){
+                                    			
+                                                }else if(confirm_pw == pw){
                                     				swal({title:"Success", text:"EQUAL", type:"success"});
                                     			}else{
                                     				swal({title:"Ooops", text:"NOT EQUAL", type:"warning"});

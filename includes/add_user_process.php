@@ -101,7 +101,7 @@ if ($error) {
     	
     	echo 'error';
 	}else{
-			$sqlAdd2 = "INSERT INTO user_accounts(user_id,username,password)VALUES(?,?,?)";
+			$sqlAdd2 = "INSERT INTO user_accounts(user_id,us--ername,password)VALUES(?,?,?)";
 		    $qryAdd2 = $db->prepare($sqlAdd2);
 		    $qryAdd2->execute(array($rowUser2[0], $username, $password));        
 		
