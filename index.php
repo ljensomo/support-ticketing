@@ -118,6 +118,62 @@
                 	</div> 
                 </div>
                 
+                <div class="col-md-12">
+					<div class="block">
+						<div class="header no-border">
+							<h2>Sales</h2>
+						</div>
+						<div class="content blue-chart"  data-step="3" data-intro="<strong>Unique Styled Plugins</strong> <br/> We put love in every detail to give a great user experience!.">
+							<div id="site_statistics" style="height:180px;"></div>
+						</div>
+						<div class="content">
+							<div class="stat-data">
+								<div class="stat-blue">
+									<h2>1,254</h2>
+									<span>Total Sales</span>
+								</div>
+							</div>
+							<div class="stat-data">
+								<div class="stat-number">
+									<div><h2>83</h2></div>
+									<div>Total hits<br /><span>(Daily)</span></div>
+								</div>
+								<div class="stat-number">
+									<div><h2>57</h2></div>
+									<div>Views<br /><span>(Daily)</span></div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>	
+				
+				<div class="col-sm-6 col-md-6">
+						<ul class="nav nav-tabs">
+						  <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+						  <li><a href="#profile" data-toggle="tab">Profile</a></li>
+						  <li><a href="#messages" data-toggle="tab">Messages</a></li>
+						</ul>
+						<div class="tab-content">
+						  <div class="tab-pane active cont" id="home">
+								<h2 class="text-center">Our Experience</h2>
+								<div id="piec" style="height:300px;margin-top:25px;"></div>
+						  </div>
+						  <div class="tab-pane cont" id="profile">
+						  		<h2>Typography</h2>
+								<p>Pellentesque ac quam hendrerit, viverra leo eu, <b>dapibus mi</b>. In at luctus massa. Morbi semper nulla eu velit facilisis pellentesque. Mauris adipiscing turpis in bibendum tempus. <i>Donec viverra</i>, lacus ac mollis rhoncus, libero risus placerat nisi, et viverra justo eros eget dui. Mauris convallis et tellus non <a href="#">placerat</a>.</p>
+                <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce gravida est eros, eget porta leo fringilla et. </p>
+                <a href="#">Read more</a>
+						  </div>
+						  <div class="tab-pane" id="messages">
+                <h2 class="hthin">A Lorem Ipsum Story</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a metus pulvinar turpis porttitor imperdiet vel nec justo. Nam id orci purus. Mauris arcu velit, auctor et aliquam quis, rhoncus a velit. Sed laoreet ultrices dolor eget vehicula. Morbi adipiscing euismod nisi, eget tincidunt arcu laoreet at.</p>
+                <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam et tortor ultricies, mollis nunc eget, gravida sapien.</p>
+              </div>
+						</div>
+				</div>
+                
+                
                         
            <!--       <div class="row">
                         <div class="col-md-12">
@@ -207,12 +263,26 @@
         <script type="text/javascript" src="js/jquery.gritter/js/jquery.gritter.js"></script>
         <script type="text/javascript" src="js/jquery.datatables/jquery.datatables.min.js"></script>
         <script type="text/javascript" src="js/jquery.datatables/bootstrap-adapter/js/datatables.js"></script>
+        <script src="js/skycons/skycons.js" type="text/javascript"></script>
+  <script src="js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
+  <script src="js/intro.js/intro.js" type="text/javascript"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
 
 
         <script type="text/javascript" src="js/table.js"></script>
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/javascript">
+      $(document).ready(function(){
+        //initialize the javascript
+        App.init();
+        App.dashBoard();        
+        
+          introJs().setOption('showBullets', false).start();
+
+      });
+    </script>
         <script src="js/behaviour/voice-commands.js"></script>
         <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/jquery.flot/jquery.flot.js"></script>
