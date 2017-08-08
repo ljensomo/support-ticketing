@@ -57,7 +57,7 @@
                 <div class="page-head">
                     <h2><i class="fa fa-users" style="padding-right:10px"></i>Users</h2>
                     <ol class="breadcrumb">
-                      	<li class="active">Users List	</li>
+                      	<li class="active">Users List</li>
      
                     </ol>
                 </div>	

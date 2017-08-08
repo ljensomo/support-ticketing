@@ -1,6 +1,3 @@
-<html>
-<a href="../attachment/asd.txt"></a>
-</html>
 <?php
 
 require_once 'connection.php';
@@ -13,7 +10,7 @@ $trans_no = htmlspecialchars($_POST['trans_no']);
 $type = htmlspecialchars($_POST['type']);
 $subject = htmlspecialchars($_POST['subject']);
 $desc = htmlspecialchars($_POST['desc']);
-$file = $_FILES['file']['name'];
+$file = $_FILES['attachment']['name'];
 $before_status = 1;
 
 $required = array($project,$trans_no,$reporter);
@@ -27,12 +24,12 @@ foreach ($required as $fields) {
 
 if ($file) {
 
-    if (!$_FILES['file']['error']) {
+    if (!$_FILES['attachment']['error']) {
 
         $currentdir = getcwd();
-        $target = $currentdir . '../../attachment/' . basename($_FILES['file']['name']);
+        $target = $currentdir . '../../attachment/' . basename($_FILES['attachment']['name']);
 
-        if ($_FILES['file']['size'] > (40024000)) {
+        if ($_FILES['attachment']['size'] > (40024000)) {
 
             $valid_file = false;
            // msgAlert($alert = "File too large. Upload image not exceeding 1mb in size.");
@@ -43,7 +40,7 @@ if ($file) {
 
         if ($valid_file) {
 
-            move_uploaded_file($_FILES['file']['tmp_name'], $target);
+            move_uploaded_file($_FILES['attachment']['tmp_name'], $target);
         }
     } else {
        // msgAlert($alert = "Invalid");
@@ -59,8 +56,9 @@ if ($error) {
     $sqlAdd = "INSERT INTO tickets(project,transaction_no,issue_subject,issue_desc,reporter_id,attchment,before_status) VALUES(?,?,?,?,?,?,?);";
     $qryAdd = $db->prepare($sqlAdd);
     $qryAdd->execute(array($project,$trans_no,$subject,$desc,$reporter,$file,$before_status));
-        
-    echo "success";
+      
+    //echo "success";
+    header("location:../client_all_tickets.php");
 
   //  msgAlert($alert = "Issue sent successfully!");
 //    openWindow($goto = "../view_tickets.php?name=$companyname");

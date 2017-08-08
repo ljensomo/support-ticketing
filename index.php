@@ -274,15 +274,15 @@
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script type="text/javascript">
-      $(document).ready(function(){
-        //initialize the javascript
-        App.init();
-        App.dashBoard();        
-        
-          introJs().setOption('showBullets', false).start();
-
-      });
-    </script>
+		      $(document).ready(function(){
+		        //initialize the javascript
+		        //App.init();
+		 	  	App.dashBoard();        
+		        
+		          introJs().setOption('showBullets', false).start();
+		
+		      });
+    	</script>
         <script src="js/behaviour/voice-commands.js"></script>
         <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/jquery.flot/jquery.flot.js"></script>

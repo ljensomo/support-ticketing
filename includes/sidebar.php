@@ -1,3 +1,4 @@
+<?php include'count_unassigned_tickets.php'; ?>
 <div class="cl-sidebar">
     <div class="cl-toggle"><i class="fa fa-bars"></i></div>
     <div class="cl-navblock">
@@ -24,6 +25,16 @@
                     <?php } ?>
                    
                     <li><a href="tickets.php"><i class="fa fa-ticket"></i><span>Tickets</span></a>
+                    	<ul class="sub-menu">
+                    		
+                    		
+                    		
+                    		<li><a href="tickets.php"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i>Open Tickets</a></li>
+                    		<li><a href=""><i class="fa fa-envelope"></i>Closed Tickets</a></li>
+							<li><a href=""><i class="fa fa-suitcase"></i>Assigned Tickets</a></li>
+							<li><a href=""><span class="label label-default pull-right">3</span><i class="fa fa-file-o"></i>Pending Tickets</a></li>					
+                    	</ul>
+                    </li>
                        
                     <?php if ($row[10] == "Administrator") { ?>
                        <li><a href="#"><i class="fa fa-gear nav-icon"></i><span>Settings</span></a>

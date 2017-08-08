@@ -88,7 +88,7 @@
 	                                    <label class="col-sm-3 control-label">
 										<span>Issue Type :</span></label>
 	                                    <div class="col-sm-6">
-	                                        <select class="form-control" name="type" id="type" required>
+	                                        <select class="form-control" name="type" id="type" required="">
 	                                            <option>-- Type</option>
 	                                            <option value="1">Bug</option>
 	                                            <option value="2">Error</option>
@@ -100,7 +100,7 @@
 	                                    <label class="col-sm-3 control-label">
 										<span>Project :</span></label>
 	                                    <div class="col-sm-6">
-	                                        <select class="form-control" name="project" id="project" required>
+	                                        <select class="form-control" name="project" id="project" required="">
 	                                            <option>-- Select Project</option>
 	                                            <option value="1">POS</option>
 	                                            <option value="2">MIS</option>
@@ -151,13 +151,13 @@
                                     <label class="col-sm-3 control-label">
 									<span>Attachment     :</span></label>
                                         <div class="col-sm-6">
-                                            <input class="form-control" name="file" id="file" type="file">
-					     </div>
+                                            <input class="form-control" type="file" name="attachment" id="attachment"  required="">
+					     				</div>
                                 </div>
 
                                 <div class="spacer text-center">
                                     <button type="reset" class="btn btn-default btn-lg" style="width:150px;"><i class="fa fa-ban" style="padding-right:10px;"></i>Cancel</button>
-                                    <button class="btn btn-primary btn-lg" type="button" onclick="create()" style="width:150px;"><i class="fa fa-mail-forward" style="padding-right:10px;"></i>Create</button>
+                                    <button class="btn btn-primary btn-lg" type="submit" style="width:150px;"><i class="fa fa-mail-forward" style="padding-right:10px;"></i>Create</button>
                                 </div>
                     </div>
                 </div>  <!-- row end -->            
@@ -178,23 +178,25 @@
         	//alert("asdas");
 	                var id = $('#id').val();
 	                var type = $('#type').val();
-        		  var project = $('#project').val();
-        		  var trans_no = $('#trans_no').val();
+        		  	var project = $('#project').val();
+        		  	var trans_no = $('#trans_no').val();
 	                var subject = $('#subject').val();
 	                var desc = $('#desc').val();
-	                var file = $('#file').val();
-        		
-				
-
-        		if(type = "" || project == "" || trans_no == "" || subject == "" || desc == "" || file == ""){
+	                
+	               // alert(document.getElementByID('attachment').value());
+	               	               	     
+	                //var attachment = $('#attachment[type="file"].filename').val(file_name);
+        						
+/*
+        		if(type = "" || project == "" || trans_no == "" || subject == "" || desc == "" || attachment == ""){
                     swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
                 }else{
         		    $.ajax({
 		            type:"POST",
 		            url:"includes/create_new_ticket_process.php",
-		            data: "project="+project+"&trans_no="+trans_no+"&id="+id+"&subject="+subject+"&desc="+desc+"&type="+type+"&file="+file,
+		            data: "project="+project+"&trans_no="+trans_no+"&id="+id+"&subject="+subject+"&desc="+desc+"&type="+type+"&attachment="+attachment,
 		            complete : function(request){
-            
+            			alert(request.responseText.trim());
     	            	if(request.responseText.trim() === "success"){
     	                    swal({ title : "Submitted!", text : "Successfully Created!", type : "success"},
     	                       function(){
@@ -207,7 +209,7 @@
 	           		                          }
            		 
                     }); // ajax closing
-                }
+                } */
             
             
         	}

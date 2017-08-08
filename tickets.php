@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
     <head>
@@ -48,135 +48,98 @@
         <!-- Fixed navbar -->
         <?php include 'includes/topbar.php'; ?>
 
-        <div class="fixed-menu sb-collapsed" id="cl-wrapper">
+        <div class="fixed-menu" id="cl-wrapper">
 		<?php include 'includes/sidebar.php'; ?>
-		<div class="page-aside email">
-      <div class="fixed nano nscroller">
-        <div class="content">
-          <div class="header">
-            <button class="navbar-toggle" data-target=".mail-nav" data-toggle="collapse" type="button">
-              <span class="fa fa-chevron-down"></span>
-            </button>          
-            <h2 class="page-title">Categories</h2>
-            <p class="description">Ticket description</p>
-          </div>        
-          <div class="mail-nav collapse">
-            <ul class="nav nav-pills nav-stacked ">
-              <li class="active"><a href="#"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i> Open Tickets</a></li>
-              <li><a href="close_tickets.php"><i class="fa fa-envelope"></i> Closed Tickets</a></li>
-              <li><a href="all_unsolved_tickets.php"><i class="fa fa-suitcase"></i> Assigned Tickets</a></li>
-              <li><a href="pending_tickets.php"><span class="label label-default pull-right">3</span><i class="fa fa-file-o"></i> Pending Tickets</a></li>
-
-            </ul>
-            
-
-          </div>
-        </div>
-      </div>
-
-
-		</div>		
+		
 	<div class="container-fluid" id="pcont">
-    <div class="block-flat">
-						<div class="header">							
-							<h3>Tickets</h3>
-						</div>
-						<div class="content">
-							<table class="no-border">
-								<thead class="no-border">
-									<tr>
-										<th style="width:40%;">Subject</th>
-										<th>Company Name</th>
-										<th>Requester</th>
-										<th>Date Created</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody class="no-border-y">
-								<?php
-                                                $sql = "SELECT * FROM ticket WHERE ticketstatus_id=1";
+                <div class="page-head">
+                    <h2><i class="fa fa-ticket" style="padding-right:10px"></i>Tickets</h2>
+                    <ol class="breadcrumb">
+                      	<li class="active"><i class="fa fa-inbox" style="padding-right:10px;"></i>Open Tickets (Unassigned Tickets)</li>
+                    </ol>
+                </div>	
+                <div class="cl-mcont">
+                        
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="block-flat">
+                                <div class="header">							
+                                    <h2>Recent Tickets</h2>
+                                </div>
+                                <div class="content">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="datatable" >
+                                            <thead>
+                                                <tr>
+                                                    <th>Ticket #</th>
+                                                    <th>Project</th>
+                                                    <th>Issue</th>
+                                                    <th>Date Created</th>
+                                                    <th>Reporter</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sql = "SELECT 
+														a.ticket_id,
+														b.project_desc,
+														a.transaction_no,
+														a.issue_subject,
+														a.issue_desc,
+														c.fname,
+														c.mname,
+														c.lname,
+														a.attchment,
+														a.date_created,
+														d.status_desc
+													
+														FROM tickets AS a JOIN company_proj AS b
+														ON a.project=b.id
+														JOIN users AS c 
+														ON a.reporter_id=c.user_id
+														JOIN STATUS AS d
+														ON a.before_status=d.status_id ORDER BY a.ticket_id DESC";
                                                 $res = $db->prepare($sql);
                                                 $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                ?>
-									<tr>
-										<td><strong><?php echo $row['problem_sum']; ?></strong><br><?php echo $row['problem_desc']; ?></td>
-										<td><?php echo $row['CompanyName']; ?></td>
-										<td><?php echo $row['Reporter']; ?></td>
-										<td><?php echo $row['date_created']; ?></td>
-										<td class="center">
-										
-											 <a class="btn btn-info btn-sm" href="#.php?id=<?php echo $row['ID']; ?>"><i class="fa fa-search">
-											</i></a>
-											<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#assign-modal"><i class="fa fa-pencil"></i></a>
-										
-										</td>
-									</tr>
-									  <?php
+                                                while ($row = $res->fetch(PDO::FETCH_NUM)) {
+                                                    ?>
+                                                    <tr class="odd gradeX">
+                                                        <td><?php echo $row[0]; ?></td>
+                                                        <td style="width:200px"><?php echo $row[1]; ?></td>
+                                                        <td style="width:300px;"><strong><?php echo $row[3]; ?></strong><br><small><?php echo $row[4]; ?></small></td>
+                                                        <td><?php echo $row[9] ?></td>
+                                                        <td><?php echo $row[5] . " " . $row[6] . " " . $row[7] ?></td>
+                                                        <td><center>
+                                                        
+                                                        <?php if ($row[10] == "Open") { ?>
+                                                        	<label class="label label-default"><?php echo $row[10]; ?></label>
+                                                        <?php } else if ($row[10] == "Reopened") { ?>
+                                                        	<label class="label label-warning"><?php echo $row[10]; ?></label>
+                                                        <?php } ?>
+                                                        
+                                                        </center></td>
+                                                        <td class="center">
+                                                <center>
+                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
+                                                </center>        
+                                                </td>
+                                                </tr>
+                                                <?php
                                             }
                                             ?>
-								</tbody>
-							</table>
-                            <div class="modal fade" id="assign-modal" tabindex="-1" role="dialog">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="text-center">
-                                                        <div class="i-circle info"><i class="fa fa-users"></i></div>
-                                                        
-                                                     
-                                            <?php
-                        $loggeduser = $_SESSION['admin'];
-                        $sql = "SELECT * FROM users WHERE username = ?";
-                        $res = $db->prepare($sql);
-                        $res->execute(array($loggeduser));
-                        $row = $res->fetch(PDO::FETCH_NUM);
-                        ?>
-                        <?php if ($row[6] == 1) { ?>
-                                        <h4>Assign to :</h4>
-                                                <select class="form-control" name="assignee">
-                                            
-                                             <option></option>
-                                             <?php
-                                                $sql = "SELECT * FROM users";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                    ?>
-                                           
-                                            <option class="text-center" value="<?php echo $row['userId']?>"><?php echo $row['fname'] . " " . $row['mname'] . " " . $row['lname'] ?></option>
-                                      
-                                            <?php 
-                                                }
-                                                ?>
-                                                
-                                            </select>                                 
-                                                  
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a class="btn btn-danger" href="edit_ticket.php?id=<?php echo $row[0]; ?>">Assign</a>
-                                                    <div class="pull-left">
-                                                    <a class="btn btn-info btn-md" href="edit_ticket.php?id=<?php echo $row[0]; ?>">Assign to me</a>
-                                                    </div>
-                                                </div>
-                                                <?php }else{ ?>
-                                                <h4>Ticket</h4>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                    <a class="btn btn-info btn-md" href="edit_ticket.php?id=<?php echo $row[0]; ?>">Assign to me</a>
-                                                    </div>
-                                                 </div>
-                                                 <?php } ?>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            </tbody>
+                                        </table>							
                                     </div>
-                                </div>						
-						</div>
-					</div>
+                                </div>
+                            </div>				
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 	
 </div>
 
