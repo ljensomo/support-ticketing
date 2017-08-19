@@ -62,7 +62,7 @@
                 	<div class="panel panel-default">
                 	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #ed5b56;">
                 	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left:100px;">OPEN TICKETS</h5>
+                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left:120px;">OPEN TICKETS</h5>
                 	       <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
 					    </div>								
                 	    </div>
@@ -77,7 +77,7 @@
                 	<div class="panel panel-default">
                 	    <div class="panel-heading" style="height:100px;  color: #ffffff; background-color:#428bca;">
                 	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 90px;">CLOSED TICKETS</h5>
+                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 120px;">CLOSED TICKETS</h5>
                 	       <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
 					    </div>								
                 	    </div>
@@ -92,8 +92,8 @@
                 	<div class="panel panel-default">
                 	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #60c060;">
                 	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 40px;">TICKETS PER COMPANY</h5>
-                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 90px;">TICKETS PER COMPANY</h5>
+                	       <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
 					    </div>								
                 	    </div>
 
@@ -107,8 +107,8 @@
                 	<div class="panel panel-default">
                 	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #fcad37;">
                 	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-50px; font-size:17px; padding-left: 60px;">Daily Closed Ticket</h5>
-                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+                	       <h5 style="margin-top:5px; margin-bottom:-50px; font-size:17px; padding-left: 70px;">DAILY CLOSED TICKETS</h5>
+                	       <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
 					    </div>								
                 	    </div>
 
@@ -148,30 +148,7 @@
 					</div>
 				</div>	
 				
-				<div class="col-sm-6 col-md-6">
-						<ul class="nav nav-tabs">
-						  <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
-						  <li><a href="#profile" data-toggle="tab">Profile</a></li>
-						  <li><a href="#messages" data-toggle="tab">Messages</a></li>
-						</ul>
-						<div class="tab-content">
-						  <div class="tab-pane active cont" id="home">
-								<h2 class="text-center">Our Experience</h2>
-								<div id="piec" style="height:300px;margin-top:25px;"></div>
-						  </div>
-						  <div class="tab-pane cont" id="profile">
-						  		<h2>Typography</h2>
-								<p>Pellentesque ac quam hendrerit, viverra leo eu, <b>dapibus mi</b>. In at luctus massa. Morbi semper nulla eu velit facilisis pellentesque. Mauris adipiscing turpis in bibendum tempus. <i>Donec viverra</i>, lacus ac mollis rhoncus, libero risus placerat nisi, et viverra justo eros eget dui. Mauris convallis et tellus non <a href="#">placerat</a>.</p>
-                <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce gravida est eros, eget porta leo fringilla et. </p>
-                <a href="#">Read more</a>
-						  </div>
-						  <div class="tab-pane" id="messages">
-                <h2 class="hthin">A Lorem Ipsum Story</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a metus pulvinar turpis porttitor imperdiet vel nec justo. Nam id orci purus. Mauris arcu velit, auctor et aliquam quis, rhoncus a velit. Sed laoreet ultrices dolor eget vehicula. Morbi adipiscing euismod nisi, eget tincidunt arcu laoreet at.</p>
-                <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam et tortor ultricies, mollis nunc eget, gravida sapien.</p>
-              </div>
-						</div>
-				</div>
+			
                 
                 
                         

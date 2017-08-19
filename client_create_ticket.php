@@ -73,8 +73,9 @@
 	                        <div class="col-md-12">
 	                            <div class="block-flat">
 	                          
-	                            <div class="header">                            
-	                                    <h3><i class="fa fa-plus-circle" style="padding-right:10px;"></i><strong>Create New Tickets</strong></h3>
+	                            <div class="header">
+                           
+	                                    <h3><i class="fa fa-building-o" style="padding-right:10px;"></i><strong><?php echo $row[4] ?></strong><small> | Create New Ticket/s</small></h3>
 	                                </div>
 	                            	<div class="content">
 	
@@ -175,6 +176,7 @@
         
         <script type="text/javascript">
         	function create(){
+
         	//alert("asdas");
 	                var id = $('#id').val();
 	                var type = $('#type').val();
@@ -182,12 +184,14 @@
         		  	var trans_no = $('#trans_no').val();
 	                var subject = $('#subject').val();
 	                var desc = $('#desc').val();
+	                var attachment = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
+	               // alert(attachment);
 	                
 	               // alert(document.getElementByID('attachment').value());
 	               	               	     
 	                //var attachment = $('#attachment[type="file"].filename').val(file_name);
         						
-/*
+
         		if(type = "" || project == "" || trans_no == "" || subject == "" || desc == "" || attachment == ""){
                     swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
                 }else{
@@ -201,7 +205,7 @@
     	                    swal({ title : "Submitted!", text : "Successfully Created!", type : "success"},
     	                       function(){
     					           location.reload();
-    	                       			                       }
+    	                       			  }
     	                  );
     					}else if(request.responseText.trim() === "error"){
     	           		    swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
@@ -209,7 +213,7 @@
 	           		                          }
            		 
                     }); // ajax closing
-                } */
+                }
             
             
         	}

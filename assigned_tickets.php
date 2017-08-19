@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="images/fb-art1.png">
-        
+       <link rel="shortcut icon" href="images/fb-art1.png">
+
         <title>Fortis Ticketing System</title>
         <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
@@ -23,7 +23,7 @@
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="html5shiv.js"></script>
         <![endif]-->
         <link rel="stylesheet" type="text/css" href="js/jquery.gritter/css/jquery.gritter.css" />
 
@@ -41,9 +41,6 @@
 
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
-		<script src="sweetalert-master/dist/sweetalert.min.js"></script>
-
 
     </head>
     <body>
@@ -51,54 +48,80 @@
         <!-- Fixed navbar -->
         <?php include 'includes/topbar.php'; ?>
 
-        <div id="cl-wrapper" class="fixed-menu">
-            <?php include 'includes/sidebar.php'; ?>
-
-            <div class="container-fluid" id="pcont">
+        <div class="fixed-menu" id="cl-wrapper">
+		<?php include 'includes/sidebar.php'; ?>
+		
+	<div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2><i class="fa fa-building-o" style="padding-right:10px"></i>Companies</h2>
+                    <h2><i class="fa fa-ticket" style="padding-right:10px"></i>Tickets</h2>
                     <ol class="breadcrumb">
-                        <li class="active">Client Records</li>
-                      </ol>
-                </div>  
+                      	<li class="active"><i class="fa fa-inbox" style="padding-right:10px;"></i>Open Tickets (Unassigned Tickets)</li>
+                    </ol>
+                </div>	
                 <div class="cl-mcont">
                         
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block-flat">
-                                <div class="header">                            
-                                    <a class="btn btn-danger" data-toggle="modal" data-target="#add-company"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Add Companies</a>
-
+                                <div class="header">							
+                                    <h2>Recent Tickets</h2>
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="datatable">
+                                    	<div id="resultas"></div>
+                                        <table class="table table-bordered" id="datatable" >
                                             <thead>
                                                 <tr>
-                                                    <th>Company ID</th>
-                                                    <th>Company Name</th>
-                                                    <th>Company TIN code</th>
-                                                    <th>E-mail Address</th>
+                                                    <th>Ticket #</th>
+                                                    <th>Project</th>
+                                                    <th>Issue</th>
+                                                    <th>Date Created</th>
+                                                    <th>Reporter</th>
+                                                    <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * FROM companies";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_NUM)) {
+                                                $ticket_loader = "SELECT 
+														a.ticket_id,
+														b.project_desc,
+														a.transaction_no,
+														a.issue_subject,
+														a.issue_desc,
+														a.assign_to,
+														a.assign_from,
+														c.fname,
+														c.mname,
+														c.lname,
+														a.attchment,
+														a.date_created,
+														d.status_desc
+													
+														FROM tickets AS a JOIN company_proj AS b
+														ON a.project=b.id
+														JOIN users AS c 
+														ON a.reporter_id=c.user_id
+														JOIN STATUS AS d
+														ON a.before_status=d.status_id WHERE assign_to = ? ORDER BY a.ticket_id DESC";
+														
+                                                $res_tickets = $db->prepare( $ticket_loader);
+                                                 $res_tickets->execute(array($row[0]));
+                                                while ($row_tickets =  $res_tickets->fetch(PDO::FETCH_NUM)) {
                                                     ?>
                                                     <tr class="odd gradeX">
-                                                        <td><?php echo $row[0]; ?></td>
-                                                        <td><?php echo $row[1]; ?></td>
-                                                        <td><?php echo $row[2]; ?></td>
-                                                        <td><?php echo $row[3]; ?></td>
+                                                        <td class="id"><?php echo $row_tickets[0]; ?></td>
+                                                        <td class="tester"><?php echo $row_tickets[1]; ?></td>
+                                                        <td><strong><?php echo $row_tickets[3]; ?></strong><br><small><?php echo $row[4]; ?></small></td>
+                                                        <td><?php echo $row_tickets[11] ?></td>
+                                                        <td><?php echo $row_tickets[7] . " " . $row_tickets[8] . " " . $row_tickets[9] ?></td>
+                                                        <td><center>
+                                                        	<label class="label label-info"><?php echo $row_tickets[12]; ?></label>
+                                                        </center></td>
                                                         <td class="center">
                                                 <center>
                                                     <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
-                                                    
+                                                    <a class="btn btn-warning btn-sm" href="includes/get_ticket_process.php?id=<?php echo $row_tickets[0] ?>&sid=<?php echo $row[0] ?>"><i class="fa fa-pencil"></i></a>
                                                 </center>        
                                                 </td>
                                                 </tr>
@@ -106,57 +129,18 @@
                                             }
                                             ?>
                                             </tbody>
-                                        </table>                            
+                                        </table>							
                                     </div>
                                 </div>
-                            </div>              
+                            </div>				
                         </div>
                     </div>
 
                 </div>
-            </div> 
-
-        </div>
-         
-         <?php include_once 'modals.php'; ?>
-                                    
-        <script type="text/javascript">
-        	function client(){
-        	//alert("asdas");
-        		var company_name = $('#company_name').val();
-        		var company_tin_code = $('#company_tin_code').val();
-        		var email = $('#email').val();				
-        		var id = 0;
-        		$.ajax({
-
-		            type:"POST",
-		            url:"includes/add_client_process.php",
-		            data: "company_name="+company_name+"&company_tin_code="+company_tin_code+"&email="+email,
-		            complete : function(request){
-            
-	            	
-					if(request.responseText.trim() === "exist"){
-	           		  swal({ title : "Ooops!", text : "Company Name alredy exist!", type : "error"});
-	           		}else if(request.responseText.trim() === "none"){
-	           		 swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
-	           		}else if(request.responseText.trim() === "success"){
-	                  swal({ title : "Submitted!", text : "Successfully Created!", type : "success"},
-	                  		function(){
-	                  			location.reload();	                  		}
-	                  );
-	                  
-	                }
-	           	
-	           		}
-           		 
-            });
-            
-            
-        	}
-        </script>
-
-      
-        <script src="js/jquery.js"></script>
+            </div>
+	
+</div>
+		<script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
         <script type="text/javascript" src="js/jquery.sparkline/jquery.sparkline.min.js"></script>
         <script type="text/javascript" src="js/jquery.easypiechart/jquery.easy-pie-chart.js"></script>

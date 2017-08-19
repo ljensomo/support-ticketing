@@ -22,8 +22,7 @@
                    
                     <li><a href="tickets.php"><i class="fa fa-list"></i><span>Tickets</span></a>
                         <ul class="sub-menu">
-                        <li><a href="client_all_tickets.php"><i class="fa fa-list"></i>All</a></li>
-                        <li><a href="client_new_tickets.php"><i class="fa fa-exclamation-circle"></i>New</a></li>
+                        <li><a href="client_all_tickets.php"><i class="fa fa-list"></i>All</a></li>                    
                         <li><a href="client_open_tickets.php"><i class="fa fa-mail-reply"></i>Open</a></li>
                         <li><a href="client_closed_tickets.php"><i class="fa fa-lock"></i>Closed</a></li>
                         <li><a href="client_pending_tickets.php"><i class="fa fa-mail-forward"></i>Pending</a></li>
@@ -39,10 +38,9 @@
                         </ul>
                         </li>
 
-                        <li><a href="client_users.php"><i class="fa fa-users"></i><span>Users</span></a></li>
                         
                     
-                        <li><a href="#"><i class="fa fa-gear nav-icon"></i><span>Account Settings</span></a></li>   
+                      
                     
                 </ul>
             </div>

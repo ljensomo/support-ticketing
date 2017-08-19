@@ -68,95 +68,72 @@
                                 <div class="content">
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="datatable" >
-                                            <thead>
+                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>Subject</th>
-                                                    <th>Description</th>
+                                                    <th>Ticket #</th>
                                                     <th>Project</th>
+                                                    <th>Issue</th>
+                                                    <th>Date Created</th>
+                                                    <th>Reporter</th>
                                                     <th>Status</th>
-                                                    <th>Assignee</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Log-in Failure!</td>
-                                                    <td>I cannot use the system.</td>
-                                                    <td>Ticketing System</td>
-                                                    <td><center><label class="label label-primary">Closed</label></center></td>
-                                                    <td>None</td>
-                                                    <td><center>
-                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                    </center></td>
+                                                <?php
+                                                $ticket_loader = "SELECT 
+                                                        a.ticket_id,
+                                                        b.project_desc,
+                                                        a.transaction_no,
+                                                        a.issue_subject,
+                                                        a.issue_desc,
+                                                        a.assign_to,
+                                                        a.assign_from,
+                                                        c.fname,
+                                                        c.mname,
+                                                        c.lname,
+                                                        c.user_id,
+                                                        a.attchment,
+                                                        a.date_created,
+                                                        d.status_desc
+                                                    
+                                                        FROM tickets AS a JOIN company_proj AS b
+                                                        ON a.project=b.id
+                                                        JOIN users AS c 
+                                                        ON a.reporter_id=c.user_id
+                                                        JOIN STATUS AS d
+                                                        ON a.before_status=d.status_id WHERE c.user_id = ? and before_status=5 ORDER BY a.ticket_id DESC";
+                                                        
+                                                $res_tickets = $db->prepare( $ticket_loader);
+                                                 $res_tickets->execute(array($row[0]));
+                                                while ($row_tickets =  $res_tickets->fetch(PDO::FETCH_NUM)) {
+                                                    ?>
+                                                    <tr class="odd gradeX">
+                                                        <td class="id"><?php echo $row_tickets[0]; ?></td>
+                                                        <td class="tester"><?php echo $row_tickets[1]; ?></td>
+                                                        <td><strong><?php echo $row_tickets[3]; ?></strong><br><small><?php echo substr($row_tickets[4],0,50); ?>..</small></td>
+                                                        <td><?php echo $row_tickets[12] ?></td>
+                                                        <td><?php echo $row_tickets[7] . " " . $row_tickets[8] . " " . $row_tickets[9] ?></td>
+                                                        <td><center>
+                                                        
+                                                        <?php if ($row_tickets[13] == "Open") { ?>
+                                                            <label class="label label-default"><?php echo $row_tickets[13]; ?></label>
+                                                        <?php } else if ($row_tickets[13] == "In Progress") { ?>
+                                                            <label class="label label-info"><?php echo $row_tickets[13]; ?></label>
+                                                        <?php } ?>
+                                                        
+                                                        </center></td>
+                                                        <td class="center">
+                                                <center>
+                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-warning btn-sm"   data-id="<?php echo $row_tickets[0] ?>" onclick="val_id()"><i class="fa fa-pencil"></i></a>
+                                                </center>        
+                                                </td>
                                                 </tr>
+                                                <?php
+                                            }
+                                            ?>
 
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>System Error!</td>
-                                                    <td>I dont know what happen.</td>
-                                                    <td>Payroll System</td>
-                                                    <td><center><label class="label label-warning">Unresolved</label></center></td>
-                                                    <td>None</td>
-                                                    <td><center>
-                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                    </center></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Database Failure!</td>
-                                                    <td>I cannot access the system.</td>
-                                                    <td>Inventory System</td>
-                                                    <td><center><label class="label label-info">In Progress</label></center></td>
-                                                    <td>None</td>
-                                                    <td><center>
-                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                    </center></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Message Errors!</td>
-                                                    <td>I cannot message the clients.</td>
-                                                    <td>Helpdesk System</td>
-                                                    <td><center><label class="label label-danger">Pending</label></center></td>
-                                                    <td>None</td>
-                                                    <td><center>
-                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                    </center></td>
-                                                </tr>
-
-                                                  <tr>
-                                                    <td>5</td>
-                                                    <td>Notification Failure!</td>
-                                                    <td>I cannot see the notification at the system.</td>
-                                                    <td>None</td>
-                                                    <td><center><label class="label label-default">Open</label></center></td>
-                                                    <td>None</td>
-                                                    <td><center>
-                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                    </center></td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                    <td>6</td>
-                                                    <td>Computing Failure!</td>
-                                                    <td>I cannot use the system to compute grades.</td>
-                                                    <td>Grading System</td>
-                                                    <td><center><label class="label label-success">Resolved</label></center></td>
-                                                    <td>Lorenz John Ensomo</td>
-                                                    <td><center>
-                                                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                    </center></td>
-                                                </tr>
                                             </tbody>
                                         </table>                            
                                     </div>

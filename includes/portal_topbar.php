@@ -1,14 +1,45 @@
 <?php
+
+require_once 'connection.php';
+include 'functions.php';
+
+
 session_start();
 $loggeduser = $_SESSION['admin'];
 
-include 'functions.php';
+                        $loggeduser = $_SESSION['admin'];
+                        $sql = "SELECT 
+						a.user_id,	
+						a.fname,
+						a.mname,
+						a.lname,
+						a.company_name,
+						a.cnum,
+						a.email,
+						a.is_active,
+						b.username,
+						b.password,
+						d.user_desc
+					
+						FROM users AS a INNER JOIN
+						user_accounts AS b ON a.user_id=b.user_id
+						JOIN users_roles AS c ON a.user_id=c.user_id
+						JOIN roles AS d ON c.user_role=d.userlevel_id WHERE username = ?";
+
+                        $res = $db->prepare($sql);
+                        $res->execute(array($loggeduser));
+                        $row = $res->fetch(PDO::FETCH_NUM);
+                     
+
+
 
 if (!isset($_SESSION['admin'])) {
     redirect_to('login.html');
+}else if($row[10]!="Client"){
+	redirect_to('login.html');
 }
 
-require_once 'connection.php';
+
 ?> 
 <div id="head-nav" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -36,30 +67,6 @@ require_once 'connection.php';
                 <li class="dropdown profile_menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="images/avatar2.jpg" />
 
-                        <?php
-                        $loggeduser = $_SESSION['admin'];
-                        $sql = "SELECT 
-						a.user_id,	
-						a.fname,
-						a.mname,
-						a.lname,
-						a.company_name,
-						a.cnum,
-						a.email,
-						a.is_active,
-						b.username,
-						b.password,
-						d.user_desc
-					
-						FROM users AS a INNER JOIN
-						user_accounts AS b ON a.user_id=b.user_id
-						JOIN users_roles AS c ON a.user_id=c.user_id
-						JOIN roles AS d ON c.user_role=d.userlevel_id WHERE username = ?";
-
-                        $res = $db->prepare($sql);
-                        $res->execute(array($loggeduser));
-                        $row = $res->fetch(PDO::FETCH_NUM);
-                        ?>
                         <span><?php echo $row[1] . " " . $row[3]; ?></span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="representatives.php">Representatives</a></li>

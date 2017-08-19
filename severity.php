@@ -41,6 +41,8 @@
 
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+		<script src="sweetalert-master/dist/sweetalert.min.js"></script>
 
     </head>
     <body>
@@ -53,10 +55,10 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Severity</h2>
+                    <h2><i class="fa fa-gear" style="padding-right:10px"></i>Severity</h2>
                     <ol class="breadcrumb">
-                        <li class="active">Severity</li>
-                        <li><a href="add_severity.php">Add Severity</a></li>
+                        <li class="active">Ticket Severity</li>
+                
                     </ol>
                 </div>	
                 <div class="cl-mcont">
@@ -65,7 +67,7 @@
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="header">							
-                                    <a class="btn btn-primary" href="add_severity.php">Add Severity</a>
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#add-severity-modal"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Add Severity</a>
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
@@ -110,6 +112,37 @@
 
             </div>
         </div>
+        <?php include_once 'modals.php'; ?>
+                                    <script>
+                                    	function add_severity(){
+                                    	  	var name = $('#name').val();
+                                    	  	var description = $('#description').val();
+                                    		
+                                    
+                                    		if(name == "" || description == ""){
+                                    			swal({title:"Ooops", text:"Please complete all necessary informations", type:"warning"});
+                                    		}else{ 
+                                    			$.ajax({
+                                                    type:"POST",
+                                                    url:"includes/add_severity_process.php",
+                                                    data:"name="+name+"&description="+description,
+                                                    success:function(){
+                                                        swal({title:"Saved!",text:"Successfully Added",type:"success"},
+                                                            function(){
+                                                                location.reload();
+                                                            }
+                                                            );
+                                                    }
+
+                                                })
+                                    		}
+                                    			
+                                                                                  	
+                                    	}//function add_severity
+                                    	
+  										
+                                    </script>
+
 
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>

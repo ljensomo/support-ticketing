@@ -33,6 +33,7 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="js/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
 	<link rel="stylesheet" type="text/css" href="js/jquery.select2/select2.css" />
 	<link rel="stylesheet" type="text/css" href="js/bootstrap.slider/css/slider.css" />
+	<link rel="stylesheet" type="text/css" href="js/jquery.select2/select2.css" />
 	<!-- Bootstrap core CSS -->
 	<link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 
@@ -78,7 +79,7 @@ function refreshCaptcha(){
 				<center>
 				<h4><strong>Information was not submitted.</strong></h4><br>
 				<h5>There was an error encountered during the process, please try again.</h5>
-				<a class="btn btn-md btn-danger" onclick="captcha_verify()">Try Again</a>
+				<a class="btn btn-md btn-danger" onclick="captcha_verify()"><i class="fa fa-refresh" style="padding-right:10px"></i>Try Again</a>
 				</center>
 			
 			</div>
@@ -130,7 +131,7 @@ function refreshCaptcha(){
                                      <div class="col-sm-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
-                                            <select class="form-control" name="company_name" id="company_name">
+                                            <select class="select2" name="company_name" id="company_name">
                                             <option value="">Select Company</option>
                                             <?php  
                                             	$query_com = "SELECT * FROM companies";
@@ -276,6 +277,7 @@ function refreshCaptcha(){
  		 var app = $('#app').val();
  		 var username = $('#username').val();
  		 var pass = $('#pass').val();
+ 		  
  		 
 	 		$.ajax({
 						 type:"POST",
@@ -293,6 +295,7 @@ function refreshCaptcha(){
 						 			}else if(r.responseText.trim() === "matched"){
 						 				$('#captcha-form').hide();
 						 				$('#loading').show();
+						 				$('#message2').hide();
 						 					$.ajax({
 										            type:"POST",
 										            url:"includes/add_user_process.php",
@@ -361,12 +364,33 @@ function refreshCaptcha(){
 					$.ajax({
 						 type:"POST",
 						 url:"includes/tincode_validation_process.php",
-						 data: "company="+company+"&company_name="+company_name,
+						 data:"company="+company+"&company_name="+company_name,
 						 complete : function(r){
+						 
 						 	if(r.responseText.trim() === "valid"){
-						 			$('#captcha-form').show();
+						 			
+						 			
+						 			$.ajax({
+										type:"POST",
+										url:"includes/check_username_process.php",
+										data:"uname="+username,
+										complete: function(request){
+											
+											if(request.responseText.trim() == "proceed"){
+												$('#captcha-form').show();
+						 						//$('#loading').show();
+							 					$('#SignUpForm').hide();
+											}else if(request.responseText.trim() == "existing"){
+												 swal({ title : "Ooops!", text : "The username you entered already exist!", type : "warning" });
+
+											}	 			
+						 				}
+						 				//$('#captcha-form').show();
 						 			//$('#loading').show();
-							 		$('#SignUpForm').hide();
+							 		//$('#SignUpForm').hide();							
+						 				});
+						 		
+
 								/*$.ajax({
 						            type:"POST",
 						            url:"includes/add_user_process.php",

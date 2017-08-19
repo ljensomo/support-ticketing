@@ -41,7 +41,9 @@
 
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
-    
+    	<link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+		<script src="sweetalert-master/dist/sweetalert.min.js"></script>
+
 
     </head>
     <body>
@@ -54,10 +56,10 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2>Resolution</h2>
+                    <h2><i class="fa fa-gear" style="padding-right:10px"></i>Resolution</h2>
                     <ol class="breadcrumb">
-                        <li class="active">Resolution</li>
-                        <li><a href="add_resolution.php">Add Resolution</a></li>
+                        <li class="active">Ticket Resolution</li>
+                        
                     </ol>
                 </div>  
                 <div class="cl-mcont">
@@ -65,8 +67,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block-flat">
-                                <div class="header">                            
-                                    <a class="btn btn-primary" href="add_resolution.php">Add Resolution</a>
+                                <div class="header">							
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#add-resolution-modal"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Add Resolution</a>
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
@@ -116,6 +118,40 @@
 
             </div>
         </div>
+        <?php include_once 'modals.php'; ?>
+        
+                                    <script>
+                                    	function add_resolution(){
+                                    	  	var name = $('#name').val();
+                                    	  	var description = $('#description').val();
+                                    		
+                                    
+                                    		if(name == "" || description == ""){
+                                    			swal({title:"Ooops", text:"Please complete all necessary informations", type:"warning"});
+                                    		}else{ 
+                                    			$.ajax({
+                                                    type:"POST",
+                                                    url:"includes/add_resolution_process.php",
+                                                    data:"name="+name+"&description="+description,
+                                                    success:function(){
+                                                        swal({title:"Saved!",text:"Successfully Added",type:"success"},
+                                                            function(){
+                                                                location.reload();
+                                                            }
+                                                            );
+                                                    }
+
+                                                })
+                                            }
+                                                
+                                                                                    
+                                    			
+                                                                                  	
+                                    	}//function add_resolution
+                                    	
+  
+                                    </script>
+
 
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>

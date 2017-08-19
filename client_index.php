@@ -58,68 +58,67 @@
                     </div>  
                 <div class="cl-mcont">
                 
-                <div class="col-md-3">
-                	<div class="panel panel-default">
-                	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #ed5b56;">
-                	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left:100px;">OPEN TICKETS</h5>
-                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
-					    </div>								
-                	    </div>
+                   <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #ed5b56;">
+                        <div class="fixed">
+                           <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left:120px;">OPEN TICKETS</h5>
+                           <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+                        </div>                              
+                        </div>
 
-                		<div class="panel-footer" style="background-color: #ffffff;">
-                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
-                		  </div>
-                	</div> 
+                        <div class="panel-footer" style="background-color: #ffffff;">
+                          <a href="client_open_tickets.php"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                          </div>
+                    </div> 
                 </div>
                 
                <div class="col-md-3">
-                	<div class="panel panel-default">
-                	    <div class="panel-heading" style="height:100px;  color: #ffffff; background-color:#428bca;">
-                	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 90px;">CLOSED TICKETS</h5>
-                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
-					    </div>								
-                	    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="height:100px;  color: #ffffff; background-color:#428bca;">
+                        <div class="fixed">
+                           <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 120px;">CLOSED TICKETS</h5>
+                           <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+                        </div>                              
+                        </div>
 
-                		<div class="panel-footer" style="background-color: #ffffff;">
-                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
-                		  </div>
-                	</div> 
-                </div>      
+                        <div class="panel-footer" style="background-color: #ffffff;">
+                          <a href="client_closed_tickets.php"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                          </div>
+                    </div> 
+                </div>
                           
-                <div class="col-md-3">
-                	<div class="panel panel-default">
-                	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #2f2828;">
-                	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 40px;">TICKETS PER COMPANY</h5>
-                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
-					    </div>								
-                	    </div>
+                 <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #60c060;">
+                        <div class="fixed">
+                           <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 90px;">PENDING TICKETS</h5>
+                           <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+                        </div>                              
+                        </div>
 
-                		<div class="panel-footer" style="background-color: #ffffff;">
-                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
-                		  </div>
-                	</div> 
+                        <div class="panel-footer" style="background-color: #ffffff;">
+                          <a href="client_pending_tickets.php"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                          </div>
+                    </div> 
                 </div>
                 
-                <div class="col-md-3">
-                	<div class="panel panel-default">
-                	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #fcad37;">
-                	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-50px; font-size:15px; padding-left: 30px;">CLOSED TICKETS PER DAY</h5>
-                	       <h3 class="pull-left"><i class="fa fa-user" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
-					    </div>								
-                	    </div>
+               <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #fcad37;">
+                        <div class="fixed">
+                           <h5 style="margin-top:5px; margin-bottom:-50px; font-size:17px; padding-left: 70px;">DAILY CLOSED TICKETS</h5>
+                           <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
+                        </div>                              
+                        </div>
 
-                	<div class="panel-footer" style="background-color: #ffffff;">
-                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
-                		  </div>
-                	</div> 
+                    <div class="panel-footer" style="background-color: #ffffff;">
+                          <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
+                          </div>
+                    </div> 
                 </div>
-                
                         
-                    <div class="row">
+                 <!--   <div class="row">
                         <div class="col-md-12">
                             <div class="block-flat">
                                 <div class="content">
@@ -184,7 +183,7 @@
                                 </div>
                             </div>              
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div> 

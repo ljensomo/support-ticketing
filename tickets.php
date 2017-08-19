@@ -68,6 +68,7 @@
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
+                                    	<div id="resultas"></div>
                                         <table class="table table-bordered" id="datatable" >
                                             <thead>
                                                 <tr>
@@ -82,12 +83,14 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT 
+                                                $ticket_loader = "SELECT 
 														a.ticket_id,
 														b.project_desc,
 														a.transaction_no,
 														a.issue_subject,
 														a.issue_desc,
+														a.assign_to,
+														a.assign_from,
 														c.fname,
 														c.mname,
 														c.lname,
@@ -100,34 +103,36 @@
 														JOIN users AS c 
 														ON a.reporter_id=c.user_id
 														JOIN STATUS AS d
-														ON a.before_status=d.status_id ORDER BY a.ticket_id DESC";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_NUM)) {
+														ON a.before_status=d.status_id WHERE status_id = 1 OR status_id = 4 ORDER BY a.ticket_id DESC";
+														
+                                                $res_tickets = $db->prepare( $ticket_loader);
+                                                 $res_tickets->execute();
+                                                while ($row_tickets =  $res_tickets->fetch(PDO::FETCH_NUM)) {
                                                     ?>
                                                     <tr class="odd gradeX">
-                                                        <td><?php echo $row[0]; ?></td>
-                                                        <td style="width:200px"><?php echo $row[1]; ?></td>
-                                                        <td style="width:300px;"><strong><?php echo $row[3]; ?></strong><br><small><?php echo $row[4]; ?></small></td>
-                                                        <td><?php echo $row[9] ?></td>
-                                                        <td><?php echo $row[5] . " " . $row[6] . " " . $row[7] ?></td>
+                                                    	<input type="hidden" value="<?php echo $row[0]; ?>" id="user-id" ?>
+                                                        <td class="id"><?php echo $row_tickets[0]; ?></td>
+                                                        <td class="tester"><?php echo $row_tickets[1]; ?></td>
+                                                        <td><strong><?php echo $row_tickets[3]; ?></strong><br><small><?php echo substr($row_tickets[4],0,50); ?>..</small></td>
+                                                        <td><?php echo $row_tickets[11] ?></td>
+                                                        <td><?php echo $row_tickets[7] . " " . $row_tickets[8] . " " . $row_tickets[9] ?></td>
                                                         <td><center>
                                                         
-                                                        <?php if ($row[10] == "Open") { ?>
-                                                        	<label class="label label-default"><?php echo $row[10]; ?></label>
-                                                        <?php } else if ($row[10] == "Reopened") { ?>
-                                                        	<label class="label label-warning"><?php echo $row[10]; ?></label>
+                                                        <?php if ($row_tickets[12] == "Open") { ?>
+                                                        	<label class="label label-default"><?php echo $row_tickets[12]; ?></label>
+                                                        <?php } else if ($row_tickets[12] == "Reopened") { ?>
+                                                        	<label class="label label-warning"><?php echo $row_tickets[12]; ?></label>
                                                         <?php } ?>
                                                         
                                                         </center></td>
                                                         <td class="center">
                                                 <center>
                                                     <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-warning btn-sm edit" href ="#"  onclick="sample(<?php echo $row_tickets[0]; ?>)"><i class="fa fa-pencil"></i></a>
                                                 </center>        
                                                 </td>
                                                 </tr>
-                                                <?php
+                                            z<?php
                                             }
                                             ?>
                                             </tbody>
@@ -142,8 +147,39 @@
             </div>
 	
 </div>
-
-        <script src="js/jquery.js"></script>
+<script type="text/javascript">
+	function sample(id){
+		//var id = $('.edit').attr('data-value');
+		//alert(id);
+		var user_id = $('#user-id').val();
+		
+		$.ajax({
+			type:"POST",
+			url:"includes/validate_ticket_process.php",
+			data:"id="+id,
+			complete:function(a){
+				if(a.responseText.trim() =="get"){
+					$.ajax({
+						type:"POST",
+						url:"includes/get_ticket_process.php",
+						data:"id="+id+"&sid="+user_id,
+						complete:function(b){
+							alert(b.responseText.trim());
+								location.reload()
+						}
+					});
+				}else{
+					alert("This ticket was already taken!");
+				}
+			}
+		});
+		
+	}
+	/*$('.edit').click(function(){
+		alert('asd');
+	});*/
+</script>
+		<script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
         <script type="text/javascript" src="js/jquery.sparkline/jquery.sparkline.min.js"></script>
         <script type="text/javascript" src="js/jquery.easypiechart/jquery.easy-pie-chart.js"></script>

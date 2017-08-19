@@ -3,30 +3,10 @@ session_start();
 $loggeduser = $_SESSION['admin'];
 
 include 'functions.php';
-
-if (!isset($_SESSION['admin'])) {
-    redirect_to('login.html');
-}
-
 require_once 'connection.php';
-?> 
-<div id="head-nav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="fa fa-gear"></span>
-            </button>
-            <a class="navbar-brand" href="#"><span>FORTIS</span></a>
-        </div>
-        <div class="navbar-collapse collapse">
 
-            
-            <ul class="nav navbar-nav navbar-right user-nav">
-                <li class="dropdown profile_menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="images/avatar2.jpg" />
 
-                        <?php
-                        $loggeduser = $_SESSION['admin'];
+$loggeduser = $_SESSION['admin'];
                         $sql = "SELECT 
 						a.user_id,	
 						a.fname,
@@ -48,6 +28,32 @@ require_once 'connection.php';
                         $res = $db->prepare($sql);
                         $res->execute(array($loggeduser));
                         $row = $res->fetch(PDO::FETCH_NUM);
+                        
+
+if (!isset($_SESSION['admin'])) {
+    redirect_to('login.html');
+}else if($row[10]=="Client"){
+	redirect_to('login.html');
+}
+
+?> 
+<div id="head-nav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="fa fa-gear"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span>FORTIS</span></a>
+        </div>
+        <div class="navbar-collapse collapse">
+
+            
+            <ul class="nav navbar-nav navbar-right user-nav">
+                <li class="dropdown profile_menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="images/avatar2.jpg" />
+
+                        <?php
+                        
                         ?>
                         <span><?php echo $row[1] . " " . $row[3]; ?></span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">

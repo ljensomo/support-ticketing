@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="images/fb-art1.png">
+       <link rel="shortcut icon" href="images/fb-art1.png">
 
         <title>Fortis Ticketing System</title>
         <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
@@ -48,82 +48,107 @@
         <!-- Fixed navbar -->
         <?php include 'includes/topbar.php'; ?>
 
-        <div class="fixed-menu sb-collapsed" id="cl-wrapper">
-		<?php include 'includes/sidebar.php'; ?>
-		<div class="page-aside email">
-      <div class="fixed nano nscroller">
-        <div class="content">
-          <div class="header">
-            <button class="navbar-toggle" data-target=".mail-nav" data-toggle="collapse" type="button">
-              <span class="fa fa-chevron-down"></span>
-            </button>          
-            <h2 class="page-title">Categories</h2>
-            <p class="description">Ticket description</p>
-          </div>        
-          <div class="mail-nav collapse">
-            <ul class="nav nav-pills nav-stacked ">
-              <li><a href="Tickets.php"><span class="label label-primary pull-right">6</span><i class="fa fa-inbox"></i> Open Tickets</a></li>
-              <li class="active"><a href="#"><i class="fa fa-envelope"></i> Closed Tickets</a></li>
-              <li><a href="all_unsolved_tickets.php"><i class="fa fa-suitcase"></i> Assigned Tickets</a></li>
-              <li><a href="pending_tickets.php"><span class="label label-default pull-right">3</span><i class="fa fa-file-o"></i> Pending Tickets</a></li>
-
-            </ul>
-            
-
-          </div>
-        </div>
-      </div>
-
-
-		</div>		
-	<div class="container-fluid" id="pcont">
-    <div class="block-flat">
-						<div class="header">							
-							<h3>Tickets</h3>
-						</div>
-						<div class="content">
-							<table class="no-border">
-								<thead class="no-border">
-									<tr>
-										<th style="width:4s0%;">Subject</th>
-										<th>Company Name</th>
-										<th>Requester</th>
-										<th>Date Created</th>
-                                        <th>Resolution</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody class="no-border-y">
-								<?php
-                                                $sql = "SELECT * FROM ticket WHERE ticketstatus_id=3";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+        <div class="fixed-menu" id="cl-wrapper">
+        <?php include 'includes/sidebar.php'; ?>
+        
+    <div class="container-fluid" id="pcont">
+                <div class="page-head">
+                    <h2><i class="fa fa-ticket" style="padding-right:10px"></i>Tickets</h2>
+                    <ol class="breadcrumb">
+                        <li class="active"><i class="fa fa-inbox" style="padding-right:10px;"></i>Open Tickets (Unassigned Tickets)</li>
+                    </ol>
+                </div>  
+                <div class="cl-mcont">
+                        
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="block-flat">
+                                <div class="header">                            
+                                    <h2>Recent Tickets</h2>
+                                </div>
+                                <div class="content">
+                                    <div class="table-responsive">
+                                        <div id="resultas"></div>
+                                        <table class="table table-bordered" id="datatable" >
+                                            <thead>
+                                                <tr>
+                                                    <th>Ticket #</th>
+                                                    <th>Project</th>
+                                                    <th>Issue</th>
+                                                    <th>Date Created</th>
+                                                    <th>Reporter</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $ticket_loader = "SELECT 
+                                                        a.ticket_id,
+                                                        b.project_desc,
+                                                        a.transaction_no,
+                                                        a.issue_subject,
+                                                        a.issue_desc,
+                                                        a.assign_to,
+                                                        a.assign_from,
+                                                        c.fname,
+                                                        c.mname,
+                                                        c.lname,
+                                                        a.attchment,
+                                                        a.date_created,
+                                                        d.status_desc
+                                                    
+                                                        FROM tickets AS a JOIN company_proj AS b
+                                                        ON a.project=b.id
+                                                        JOIN users AS c 
+                                                        ON a.reporter_id=c.user_id
+                                                        JOIN STATUS AS d
+                                                        ON a.before_status=d.status_id WHERE status_id = 3 ORDER BY a.ticket_id DESC";
+                                                        
+                                                $res_tickets = $db->prepare( $ticket_loader);
+                                                 $res_tickets->execute();
+                                                while ($row_tickets =  $res_tickets->fetch(PDO::FETCH_NUM)) {
                                                     ?>
-									<tr>
-										<td><strong><?php echo $row['problem_sum']; ?></strong><br><?php echo $row['problem_desc']; ?></td>
-										<td><?php echo $row['CompanyName']; ?></td>
-										<td><?php echo $row['Reporter']; ?></td>
-										<td><?php echo $row['date_created']; ?></td>
-                                        <td></td>
-										<td class="center">
-										
-											<a class="btn btn-info btn-sm" href="#.php?id=<?php echo $row['ID']; ?>"><i class="fa fa-search">
-											</i></a>
-											
-										
-										</td>
-									</tr>
-									  <?php
+                                                    <tr class="odd gradeX">
+                                                        <td class="id"><?php echo $row_tickets[0]; ?></td>
+                                                        <td class="tester"><?php echo $row_tickets[1]; ?></td>
+                                                        <td><strong><?php echo $row_tickets[3]; ?></strong><br><small><?php echo substr($row_tickets[4],0,50); ?>..</small></td>
+                                                        <td><?php echo $row_tickets[11] ?></td>
+                                                        <td><?php echo $row_tickets[7] . " " . $row_tickets[8] . " " . $row_tickets[9] ?></td>
+                                                        <td><center>
+                                                        
+                                                        <?php if ($row_tickets[12] == "Resolved") { ?>
+                                                            <label class="label label-success"><?php echo $row_tickets[12]; ?></label>
+                                                        <?php } else if ($row_tickets[12] == "Reopened") { ?>
+                                                            <label class="label label-warning"><?php echo $row_tickets[12]; ?></label>
+                                                        <?php } ?>
+                                                        
+                                                        </center></td>
+                                                        <td class="center">
+                                                <center>
+                                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-warning btn-sm"   href ="includes/get_ticket_process.php?id=<?php echo $row_tickets[0] ?> &sid= <?php echo $row[0] ?>"><i class="fa fa-pencil"></i></a>
+                                                </center>        
+                                                </td
+                                                </tr>
+                                                <?php
                                             }
                                             ?>
-								</tbody>
-							</table>						
-						</div>
-					</div>
-	
-</div>
+                                            </tbody>
+                                        </table>                            
+                                    </div>
+                                </div>
+                            </div>              
+                        </div>
+                    </div>
 
+                </div>
+            </div>
+    
+</div>
+<script type="text/javascript">
+   
+</script>
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
         <script type="text/javascript" src="js/jquery.sparkline/jquery.sparkline.min.js"></script>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 
 <html lang="en">
     <head>
@@ -78,7 +78,7 @@
                                    
                                     <tr>
 
-                                        <th> <div class="dataTables_filter" id="datatable_filter"><label><input type="text" aria-controls="datatable" class="form-control" class=" fa font-awesome" placeholder="Search"></label></div></th>                                 </tr>
+                            <th> <div class="dataTables_filter" id="datatable_filter"><label><input type="text" aria-controls="datatable" class="form-control" class=" fa font-awesome" placeholder="Search"></label></div></th>                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>

@@ -10,7 +10,7 @@ $trans_no = htmlspecialchars($_POST['trans_no']);
 $type = htmlspecialchars($_POST['type']);
 $subject = htmlspecialchars($_POST['subject']);
 $desc = htmlspecialchars($_POST['desc']);
-$file = $_FILES['attachment']['name'];
+$file = addslashes(file_get_contents($_FILES['attachment']['tmp_name']));
 $before_status = 1;
 
 $required = array($project,$trans_no,$reporter);
