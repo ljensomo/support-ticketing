@@ -1063,6 +1063,7 @@ textarea.form-control {
 }
 .input-group {
     margin-bottom: 15px;
+        margin-top: 15px;
 }
 /*Crhome Voice Recognition*/
 .speechbutton {
@@ -1356,7 +1357,8 @@ body.texture {
     margin-bottom: 20px;
     padding-right: 10px;
     padding-left: 10px;
-}
+        margin-left: 250px;
+    }
 .gallery-cont .item.w2 {
     width: 50%;
 }
@@ -1425,7 +1427,7 @@ body.texture {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: rgba(36, 148, 242, 0.8);
+    background: rgba(154, 2, 1, 0.65);
     transition: opacity 300ms ease;
     -webkit-transition: opacity 300ms ease;
 }
