@@ -1,5 +1,6 @@
 
 <?php
+
 session_start();
 include 'connection.php';
 include 'functions.php';
@@ -16,14 +17,15 @@ $sql = "SELECT
 	a.cnum,
 	a.email,
 	a.is_active,
-	b.username,
-	b.password,
-	d.user_desc
-
-FROM users AS a INNER JOIN
-user_accounts AS b ON a.user_id=b.user_id
-JOIN users_roles AS c ON a.user_id=c.user_id
-JOIN roles AS d ON c.user_role=d.userlevel_id WHERE username = BINARY ?";
+	a.uname,
+	a.pass,
+	d.user_desc,
+	d.userlevel_id
+	
+FROM users AS a JOIN users_roles AS c 
+ON a.user_id=c.user_id
+JOIN roles AS d 
+ON c.user_role=d.userlevel_id WHERE uname = BINARY ?";
 
 $res = $db->prepare($sql);
 $res->execute(array($user));
@@ -51,7 +53,7 @@ if ($error) {
     //openWindow($goto = "../login.html");
 } else if (password_verify($pw, $row[9])) {
     $_SESSION['admin'] = $row[8];
-    if($row[10]== "Client"){
+    if($row[11]== 4){
          //openWindow($goto = "../homebanner.php");
 		 echo "client";
     } else{

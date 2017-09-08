@@ -3,7 +3,7 @@
 
 
 
- <div class="modal fade" id="add-severity-modal" tabindex="-1" role="dialog">
+ 			<div class="modal fade" id="add-severity-modal" tabindex="-1" role="dialog">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -16,7 +16,7 @@
 							                                    <label class="col-sm-3 control-label">Name</label>
 							                                    <div class="col-sm-6">
 							                                        <input class="form-control" placeholder="Name" id="name" name="name" type="text" onkeypress="return blockSpecialChar(event)" >                               
-							
+						
 							                                    </div>
 							                                </div>
 							                                <div class="form-group">
@@ -61,14 +61,14 @@
 							                               	 <div class="form-group">
 							                                    <label class="col-sm-3 control-label">Name</label>
 							                                    <div class="col-sm-6">
-							                                        <input class="form-control" placeholder="Name" id="name" name="name" type="text" onkeypress="return blockSpecialChar(event)" >                               
+							                                        <input class="form-control" placeholder="Name" id="resolution_name" name="resolution_name" type="text" onkeypress="return blockSpecialChar(event)" >                               
 							
 							                                    </div>
 							                                </div>
 							                                <div class="form-group">
 							                                    <label class="col-sm-3 control-label">Description</label>
 							                                    <div class="col-sm-6">
-							                                        <input class="form-control" placeholder="Description" id="description" name="description" type="text">
+							                                        <input class="form-control" placeholder="Description" id="resolution_description" name="resolution_description" type="text">
 							
 							                                    </div>
 							                                </div>
@@ -110,14 +110,14 @@
 							                               	 <div class="form-group">
 							                                    <label class="col-sm-3 control-label">Name</label>
 							                                    <div class="col-sm-6">
-							                                        <input class="form-control" placeholder="Name" id="name" name="name" type="text" onkeypress="return blockSpecialChar(event)" >                               
+							                                        <input class="form-control" placeholder="Name" id="status_name" name="status_name" type="text" >                               
 							
 							                                    </div>
 							                                </div>
 							                                <div class="form-group">
 							                                    <label class="col-sm-3 control-label">Description</label>
 							                                    <div class="col-sm-6">
-							                                        <input class="form-control" placeholder="Description" id="description" name="description" type="text">
+							                                        <input class="form-control" placeholder="Description" id="status_description" name="status_description" type="text">
 							
 							                                    </div>
 							                                </div>
@@ -277,14 +277,14 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Email address</label>
                                     <div class="col-sm-7">
-                                        <input class="form-control" placeholder="Email" name="email" id="email" type="text" required>                               
+                                        <input class="form-control" placeholder="Email" name="email" id="company_email" type="text" required>                               
 
                                     </div>
                                 </div>
 
                                 <div class="spacer text-center" style="padding-left:30px">
                                     <button type="reset" class="btn btn-default btn-lg" style="width:150px;"><i class="fa fa-ban" style="padding-right:10px;"></i>Cancel</button>
-                                    <button type="button" onclick="client()" class="btn btn-danger btn-lg" style="width:150px;"><i class="fa fa-save" style="padding-right:10px;"></i>Save</button>
+                                    <button type="button" onclick="add_client()" class="btn btn-danger btn-lg" style="width:150px;"><i class="fa fa-save" style="padding-right:10px;"></i>Save</button>
                                 </div>
 
                             </form>   
@@ -297,3 +297,275 @@
                                             </div>
                                         </div>
                                     </div>                                    
+
+
+
+				<!--EDIT STATUS MODAL-->
+
+<div class="modal fade" id="edit_status" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h3 align="center"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Status Details</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                           <form method="POST" action="#" class="form-horizontal" style="border-radius: 0px; padding-left: 50px" parsley-validate novalidate>
+                                                             <input type="hidden" id="edit_status_id" name="edit_status_id">
+                                                             <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Status</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Name" id="edit_status_desc" name="edit_status_desc" type="text" onkeypress="return blockSpecialChar(event)" >                               
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Description</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Description" id="edit_status_description" name="edit_status_description" type="text">
+                            
+                                                                </div>
+                                                            </div>
+
+                                                            
+                                                            
+                                                            <div class="spacer text-center">
+                                                               
+                                                                 <button type="button" onclick="edit_status()" class="btn btn-danger btn-lg"><i class="fa fa-save" style="padding-right:10px"></i>Update</button>
+                                                            </div>
+                            
+                                        </form>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                               
+
+
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+<!--EDIT RESOLUTION MODAL-->
+
+ <div class="modal fade" id="edt_rsltn_mdl" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h3 align="center"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Resolution Details</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                           <form method="POST" action="includes/edit_resolution_process.php" class="form-horizontal" style="border-radius: 0px; padding-left: 50px" parsley-validate novalidate>
+                                                             <input type="hidden" id="edit_resolution_id" name="id">
+                                                             <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Resolution ID</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Name" id="edit_rsltn" name="name" type="text">                               
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Resolution</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Description" id="edit_rsltn_desc" name="description" type="text">
+                            
+                                                                </div>
+                                                            </div>
+
+                                                            
+                                                            
+                                                            <div class="spacer text-center">
+                                                                <button type="button" onclick="edit_resolution()" class="btn btn-danger btn-lg" style="width:20%"><i class="fa fa-save" style="padding-right:10px"></i>Update</button>
+                                                            </div>
+                            
+                                        </form>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                               
+
+
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <!--EDIT SEVERTITY MODALS-->
+
+<div class="modal fade" id="edit_severity" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h3 align="center"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Severity Details</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                           <form method="POST" action="#" class="form-horizontal" style="border-radius: 0px; padding-left: 50px" parsley-validate novalidate>
+                                                             <input type="hidden" id="edit_severity_id" name="edit_severity_id">
+                                                             <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Severity ID</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Name" id="edit_svrty" name="edit_svrty" type="text" onkeypress="return blockSpecialChar(event)">                               
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Severity</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Description" id="edit_svrty_desc" name="edit_svrty_desc" type="text">
+                            
+                                                                </div>
+                                                            </div>
+
+                                                            
+                                                            
+                                                            <div class="spacer text-center">
+                                                                <button type="reset" class="btn btn-default btn-lg" style="width:20%"><i class="fa fa-ban" style="padding-right:10px"></i> Cancel</button>
+                                                                 <button type="button" onclick="edit_severity()" class="btn btn-danger btn-lg" style="width:20%"><i class="fa fa-plus" style="padding-right:10px"></i>Add</button>
+                                                            </div>
+                            
+                                        </form>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                               
+
+
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <!--VIEW STATUS MODAL-->
+
+
+<div class="modal fade" id="view_status" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h3 align="center"><i class="fa fa-info" style="padding-right:10px"></i>View Details</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                           <form method="POST" action="#" class="form-horizontal" style="border-radius: 0px; padding-left: 50px" parsley-validate novalidate>
+                                                             <input type="hidden" id="view_status_id" name="view_status_id">
+                                                             <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Status</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Status" id="view_sttus" name="view_sttus" type="text" onkeypress="return blockSpecialChar(event)" readonly>                               
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Description</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Description" id="view_desc" name="view_desc" type="text" readonly>
+                            
+                                                                </div>
+                                                            </div>                                                    
+                            
+                                        </form>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                               
+
+
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+
+
+
+
+                                    <!--VIEW RESOLUTION MODAL-->
+
+
+
+<div class="modal fade" id="view_resolution" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h3 align="center"><i class="fa fa-info" style="padding-right:10px"></i>View Details</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                           <form method="POST" action="#" class="form-horizontal" style="border-radius: 0px; padding-left: 50px" parsley-validate novalidate>
+                                                             <input type="hidden" id="view_resolution_id" name="view_resolution_id">
+                                                             <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Resolution</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Status" id="view_rsltn" name="view_rsltn" type="text" onkeypress="return blockSpecialChar(event)" readonly>                               
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Description</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Description" id="view_res_desc" name="view_res_desc" type="text" readonly>
+                            
+                                                                </div>
+                                                            </div>                                                    
+                            
+                                        </form>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                               
+
+
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+
+
+<!--VIEW SEVERITY MOdAL-->
+
+ <div class="modal fade" id="view_severity" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h3 align="center"><i class="fa fa-info" style="padding-right:10px"></i>View Details</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                           <form method="POST" action="#" class="form-horizontal" style="border-radius: 0px; padding-left: 50px" parsley-validate novalidate>
+                                                             <input type="hidden" id="view_severity_id" name="view_severity_id">
+                                                             <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Severity</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Status" id="view_svrty" name="view_svrty" type="text" onkeypress="return blockSpecialChar(event)" readonly>                               
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Description</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Description" id="view_svrty_desc" name="view_svrty_desc" type="text" readonly>
+                            
+                                                                </div>
+                                                            </div>                                                    
+                            
+                                        </form>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                               
+
+
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>   

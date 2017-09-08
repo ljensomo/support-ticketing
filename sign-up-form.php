@@ -65,14 +65,14 @@ function refreshCaptcha(){
 			</div>
 			<div>
 			<div id="loading" style="display:none">
-				<center><img src="images/loader.gif"/ style="width:50%;height:50%">
+				<center><img src="images/loader.gif" style="width:50%;height:50%"/>
 					<p>Submitting...</p>
 				</center>
 			</div>
-			<div id="message" style="padding-top:20px; display:none;">
+			<div id="message" style="padding-top:20px;padding-bottom:20px;display:none;">
 				<center>
 				<h4><strong>Registration was successfully submitted.</strong></h4><br>
-				<h5>Please check your email for verification of your account.</h5>
+				<h5>Please check your email for verification of your account. <a href="login.html"><strong>Done!</strong></a></h5>
 				</center>
 			</div>
 			<div id="message2" style="display:none;padding-top:20px;padding-bottom:20px">
@@ -86,6 +86,7 @@ function refreshCaptcha(){
 				<form style="margin-bottom: 0px !important;" class="form-horizontal" id="SignUpForm" method="POST" action="" novalidate>
 					<div class="content">
                				<div class="row">
+               				<hr>
 							<div class="col-md-6">
 							<div class="form-group">
                                     <div class="col-sm-12">
@@ -96,7 +97,14 @@ function refreshCaptcha(){
                                     </div>
                                 </div>
 							
-
+								<div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            <input type="text" placeholder="MI" id="mname" class="form-control" name="mname" required>
+                                        </div>
+                                    </div>
+                                </div>
 
 								<div class="form-group">
                                     <div class="col-sm-12">
@@ -122,12 +130,18 @@ function refreshCaptcha(){
                                     <div class="col-sm-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                            <input type="text" data-mask="phone" name="contact" id="contact" class="form-control" placeholder="(999) 999-9999" />
+                                            <input type="number" name="contact" id="contact" class="form-control" placeholder="Phone" />
                                         </div>
                                     </div>
                                 </div>
 
-                                 <div class="form-group">
+                                 	
+								</div>
+
+
+								
+								<div class="col-md-6">
+								<div class="form-group">
                                      <div class="col-sm-12">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
@@ -144,12 +158,7 @@ function refreshCaptcha(){
                                             </select>
                                         </div>
                                      </div>
-                                </div>	
-								</div>
-
-
-								
-								<div class="col-md-6">
+                                </div>
 								
 									<div class="form-group">
                                     <div class="col-sm-12">
@@ -160,14 +169,7 @@ function refreshCaptcha(){
                                     </div>
                                 </div>
                                 
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-folder"></i></span>
-                                            <input type="text" placeholder="Application" id="app" class="form-control" name="app" required>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 
                                 <div class="form-group">
                                     <div class="col-sm-12">
@@ -203,7 +205,7 @@ function refreshCaptcha(){
             <button class="btn btn-default btn-rad btn-lg" type="reset" style="width:250px;"><i class="fa fa-ban" style="padding-right:10px"></i>Cancel</button>
             <button class="btn btn-danger btn-rad btn-lg" type="button" onclick="add_user()" style="width:300px;"><i class="fa fa-mail-forward" style="padding-right:10px"></i>Submit</button>
             </center>
-             <center><p class="spacer">By creating an account, you agree with the <a href="#">Terms</a> and <a href="#">Conditions</a>.</p></center>
+             <center><p class="spacer">- Already have an Account. <a href="login.html">Login - </a></p></center>
 
 							
 					</div>
@@ -236,32 +238,12 @@ function refreshCaptcha(){
                                 </div>
                             </div>
                             
-				<!--	<table>
-				    <?php if(isset($msg)){?>
-				    <tr>
-				      <td colspan="2" align="center" valign="top"><?php echo $msg;?></td>
-				    </tr>
-				    <?php } ?>
-				    <tr>
-				      <td align="right" valign="top"> Validation code:</td>
-				      <td><img src="phpcaptcha/captcha.php?rand=<?php echo rand();?>" id='captchaimg'><br>
-				        <label for='message'>Enter the code above here :</label>
-				        <br>
-				        <input id="captcha_code" name="captcha_code" type="text">
-				        <br>
-				        Can't read the image? click <a href='javascript: refreshCaptcha();'>here</a> to refresh.</td>
-				    </tr>
-				    <tr>
-				      <td>&nbsp;</td>
-				      <td><input name="Submit" type="submit"  value="Submit" class="button1"></td>
-				    </tr>
-				  </table> -->
-			</form>
+							</form>
 
 			  
 			</div>
 		</div>
-		<div class="text-center out-links"><a href="#">&copy; 2014 Fortis Technologies Corp</a></div>
+		<div class="text-center out-links"><a href="#">&copy; 2017 Fortis Technologies Corp</a></div>
 	</div> 
 	
 </div>
@@ -269,12 +251,12 @@ function refreshCaptcha(){
 	function captcha_verify(){
 	 var captcha_code = $('#captcha_code').val();
 	 	 var fname = $('#fname').val();
+	 	 var mname = $('#mname').val();
 		 var lname = $('#lname').val();
 		 var email = $('#email').val();
 		 var contact = $('#contact').val();
 		 var company_name = $('#company_name').val();
 		 var company = $('#company').val();
- 		 var app = $('#app').val();
  		 var username = $('#username').val();
  		 var pass = $('#pass').val();
  		  
@@ -299,7 +281,7 @@ function refreshCaptcha(){
 						 					$.ajax({
 										            type:"POST",
 										            url:"includes/add_user_process.php",
-										            data: "&fname="+fname+"&lname="+lname+"&email="+email+"&contact="+contact+"&company_name"+company_name+"&company="+company+"&app="+app+"&username="+username+"&pass="+pass,
+										            data: "&fname="+fname+"&mname="+mname+"&lname="+lname+"&email="+email+"&contact="+contact+"&company_name="+company_name+"&company="+company+"&username="+username+"&pass="+pass,
 										            complete : function(request){
 										             $('#loading').hide();
 										             
@@ -333,18 +315,18 @@ function refreshCaptcha(){
 	function add_user(){
 		
 		 var fname = $('#fname').val();
+		 var mname = $('#mnames').val();
 		 var lname = $('#lname').val();
 		 var email = $('#email').val();
 		 var contact = $('#contact').val();
 		 var company = $('#company').val();
 		 var company_name = $('#company_name').val();
- 		 var app = $('#app').val();
  		 var username = $('#username').val();
  		 var pass = $('#pass').val();
  		 var confirm_pass = $('#confirm_pass').val();
 		 var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 		 
-		if(fname == "" || lname == "" || email == "" || contact == "" || company == "" || app == "" || username == "" || pass == "" || confirm_pass == "" || company_name == ""){
+		if(fname == "" || lname == "" || email == "" || contact == "" || company == "" || username == "" || pass == "" || confirm_pass == "" || company_name == ""){
 				swal({ title : "Ooops!", text : "Please complete all information!", type : "warning"});    
 		}else{
 				if(!emailReg.test(email)){

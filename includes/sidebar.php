@@ -30,7 +30,7 @@
                     		
                     		
                     		<li><a href="tickets.php">
-                    		<?php if($row_count[0]!=""){ ?>
+                    		<?php if($row_count[0]>0){ ?>
                     		<span class="label label-primary pull-right"><?php echo $row_count[0] ?></span>
                     		<?php } ?>
                     		<i class="fa fa-inbox"></i>Open Tickets</a></li>
@@ -43,10 +43,10 @@
                     <?php if ($row[10] == "Administrator") { ?>
                        <li><a href="#"><i class="fa fa-gear nav-icon"></i><span>Settings</span></a>
                         <ul class="sub-menu">
-                            <li><a href="severity.php"><i class="fa fa-gear" style="padding-right:10px"></i>Severity</a></li>
+                            <li><a href="severity.php"><i class="fa fa-exclamation-triangle" style="padding-right:10px"></i>Severity</a></li>
                        
-                            <li><a href="resolution.php"><i class="fa fa-gear" style="padding-right:10px"></i>Resolution</a></li>
-                            <li><a href="status.php"><i class="fa fa-gear" style="padding-right:10px"></i>Status</a></li>
+                            <li><a href="resolution.php"><i class="fa fa-clock-o" style="padding-right:10px"></i>Resolution</a></li>
+                            <li><a href="status.php"><i class="fa fa-info-circle" style="padding-right:10px"></i>Status</a></li>
                         </ul>
                         <li><a href="sla.php"><i class="fa fa-ticket"></i><span>SLA</span></a>
                         <li><a href="reports.php"><i class="fa fa-folder"></i><span>Reports</span></a>

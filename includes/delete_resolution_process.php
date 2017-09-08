@@ -3,7 +3,7 @@
 require_once 'connection.php';
 include 'functions.php';
 
-$id = $_GET['id'];
+$id = $_POST['resolution_id'];
 
 if ($id != null) {
     $sql = "DELETE FROM resolution where resolution_id=?";

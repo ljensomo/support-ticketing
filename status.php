@@ -74,9 +74,9 @@
                                         <table class="table table-bordered" id="datatable" >
                                             <thead>
                                                 <tr>
-                                                    <th>Status ID</th>
+                                                    <th class="hidden">Status ID</th>
                                                     <th>Status</th>
-                                                    
+                                                    <th>Description</th>
                                                     <th>Action</th>
                                                     
                                                 </tr>
@@ -89,17 +89,18 @@
                                                 while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                                                     ?>
                                                     <tr class="odd gradeX">
-                                                        <td><?php echo $row['status_id']; ?></td>
+                                                        <td class="hidden"><?php echo $row['status_id']; ?></td>
                                                         <td><?php echo $row['status_desc']; ?></td>
-                                                        
+                                                        <td><?php echo $row['description']; ?></td>
                                                         <td>
+                                                    
                                                 <center>
                                                    
                                                     
                                                     
-                                                    <a class="btn btn-info btn-sm" href="view_status.php?id=<?php echo $row['status_id']; ?>"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="edit_status.php?id=<?php echo $row['status_id']; ?>"><i class="fa fa-pencil"></i></a>
-                                                    <a class="btn btn-danger btn-sm" href="delete_status.php?id=<?php echo $row['status_id']; ?>" data-toggle="modal"><i class="fa fa-trash-o"></i></a> 
+                                                    <a class="btn btn-info btn-sm" id="view"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-warning btn-sm" id="edit"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-danger btn-sm" onclick="del_status(<?php echo $row['status_id']; ?>)"><i class="fa fa-trash-o"></i></a> 
                                                 </center></td>
                                                          
                                          
@@ -121,39 +122,45 @@
         </div>
         
         <?php include_once 'modals.php'; ?>
-         
-                                    <script>
-                                    	function add_status(){
-                                    	  	var name = $('#name').val();
-                                    	  	var description = $('#description').val();
-                                    		
                                     
-                                    		if(name == "" || description == ""){
-                                    			swal({title:"Ooops", text:"Please complete all necessary informations", type:"warning"});
-                                            }else{ 
-                                    			$.ajax({
-                                                    type:"POST",
-                                                    url:"includes/add_status_process.php",
-                                                    data:"name="+name+"&description="+description,
-                                                    success:function(){
-                                                        swal({title:"Saved!",text:"Successfully Added",type:"success"},
-                                                            function(){
-                                                                location.reload();
-                                                            }
-                                                            );
-                                                    }
-
-                                                })
-                                    		}
-                                    			
-                                                                                  	
-                                    	}//function add_status
-                                    	
-  										
-                                    </script>
-
-
+        <script src="js/functions.js"></script>
         <script src="js/jquery.js"></script>
+
+        <script>
+          $('.table tbody tr').on('click','#edit',function(){
+            var currow = $(this).closest('tr');
+            var col1 = currow.find('td:eq(0)').text();
+            var col2 = currow.find('td:eq(1)').text();
+            var col3 = currow.find('td:eq(2)').text();
+            //var result = col1+'\n'+col2+'\n'+col3;
+            //alert(result);
+            $('#edit_status').modal('show');
+            $('#edit_status_id').val(col1);
+            $('#edit_status_desc').val(col2);
+            $('#edit_status_description').val(col3);
+            
+        })
+          </script>
+
+          <script>
+          $('.table tbody tr').on('click','#view',function(){
+            var currow = $(this).closest('tr');
+            var col1 = currow.find('td:eq(0)').text();
+            var col2 = currow.find('td:eq(1)').text();
+            var col3 = currow.find('td:eq(2)').text();
+            //var result = col1+'\n'+col2+'\n'+col3;
+            //alert(result);
+            $('#view_status').modal('show');
+            $('#view_status_ud').val(col1);
+            $('#view_sttus').val(col2);
+            $('#view_desc').val(col3);
+            
+        })
+          </script>
+
+         
+
+
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
         <script type="text/javascript" src="js/jquery.sparkline/jquery.sparkline.min.js"></script>
         <script type="text/javascript" src="js/jquery.easypiechart/jquery.easy-pie-chart.js"></script>

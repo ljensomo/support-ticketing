@@ -17,14 +17,15 @@ $loggeduser = $_SESSION['admin'];
 						a.cnum,
 						a.email,
 						a.is_active,
-						b.username,
-						b.password,
-						d.user_desc
+						a.uname,
+						a.pass,
+						d.user_desc,
+						d.userlevel_id
 					
-						FROM users AS a INNER JOIN
-						user_accounts AS b ON a.user_id=b.user_id
-						JOIN users_roles AS c ON a.user_id=c.user_id
-						JOIN roles AS d ON c.user_role=d.userlevel_id WHERE username = ?";
+						FROM users AS a JOIN users_roles AS c 
+						ON a.user_id=c.user_id
+						JOIN roles AS d 
+						ON c.user_role=d.userlevel_id WHERE uname =  ?";
 
                         $res = $db->prepare($sql);
                         $res->execute(array($loggeduser));
@@ -35,7 +36,7 @@ $loggeduser = $_SESSION['admin'];
 
 if (!isset($_SESSION['admin'])) {
     redirect_to('login.html');
-}else if($row[10]!="Client"){
+}else if($row[11]!=4){
 	redirect_to('login.html');
 }
 
@@ -69,9 +70,10 @@ if (!isset($_SESSION['admin'])) {
 
                         <span><?php echo $row[1] . " " . $row[3]; ?></span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="representatives.php">Representatives</a></li>
-                        <li><a href="#">Notifications</a></li>
-			   <li class="divider"></li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="users_messages.php">Messages</a></li>
+                        <li class="divider"></li>
                         <li><a href="includes/logout.php">Sign Out</a></li>
                     </ul>
                 </li>

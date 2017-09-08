@@ -75,7 +75,7 @@
                                         <table class="table table-bordered" id="datatable">
                                             <thead>
                                                 <tr>
-                                                    <th>Company ID</th>
+                                                    <th class="hidden">Company ID</th>
                                                     <th>Company Name</th>
                                                     <th>Company TIN code</th>
                                                     <th>E-mail Address</th>
@@ -90,7 +90,7 @@
                                                 while ($row = $res->fetch(PDO::FETCH_NUM)) {
                                                     ?>
                                                     <tr class="odd gradeX">
-                                                        <td><?php echo $row[0]; ?></td>
+                                                        <td class="hidden"><?php echo $row[0]; ?></td>
                                                         <td><?php echo $row[1]; ?></td>
                                                         <td><?php echo $row[2]; ?></td>
                                                         <td><?php echo $row[3]; ?></td>
@@ -120,41 +120,7 @@
          
          <?php include_once 'modals.php'; ?>
                                     
-        <script type="text/javascript">
-        	function client(){
-        	//alert("asdas");
-        		var company_name = $('#company_name').val();
-        		var company_tin_code = $('#company_tin_code').val();
-        		var email = $('#email').val();				
-        		var id = 0;
-        		$.ajax({
-
-		            type:"POST",
-		            url:"includes/add_client_process.php",
-		            data: "company_name="+company_name+"&company_tin_code="+company_tin_code+"&email="+email,
-		            complete : function(request){
-            
-	            	
-					if(request.responseText.trim() === "exist"){
-	           		  swal({ title : "Ooops!", text : "Company Name alredy exist!", type : "error"});
-	           		}else if(request.responseText.trim() === "none"){
-	           		 swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
-	           		}else if(request.responseText.trim() === "success"){
-	                  swal({ title : "Submitted!", text : "Successfully Created!", type : "success"},
-	                  		function(){
-	                  			location.reload();	                  		}
-	                  );
-	                  
-	                }
-	           	
-	           		}
-           		 
-            });
-            
-            
-        	}
-        </script>
-
+		<script src="js/functions.js"></script>
       
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>

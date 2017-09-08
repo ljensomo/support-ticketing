@@ -3,7 +3,7 @@
 require_once 'connection.php';
 include 'functions.php';
 
-$name = $_POST['name'];
+$name = htmlspecialchars($_POST['name']);
 $description = htmlspecialchars($_POST['description']);
 
 $required = array($name);

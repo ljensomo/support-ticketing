@@ -3,7 +3,7 @@
 require_once 'connection.php';
 include 'functions.php';
 
-$name = $_POST['name'];
+$name = htmlspecialchars($_POST['name']);
 $description = htmlspecialchars($_POST['description']);
 
 $required = array($name);
@@ -23,8 +23,8 @@ if ($error) {
     echo "none";
     //openWindow($goto = "../add_status.php");
 } else if ($row = ($qry->fetchColumn() > 0)) {
-    msgAlert($alert = "Invalid");
-    openWindow($goto = "../add_status.php");
+    echo "exist";
+    //openWindow($goto = "../add_status.php");
 } else {
     $sqlAdd = "INSERT INTO status(status_desc,description) VALUES (?,?);";
     $qryAdd = $db->prepare($sqlAdd);

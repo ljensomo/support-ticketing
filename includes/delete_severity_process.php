@@ -3,7 +3,7 @@
 require_once 'connection.php';
 include 'functions.php';
 
-$id = $_GET['id'];
+$id = $_POST['severity_id'];
 
 if ($id != null) {
     $sql = "DELETE FROM severity where severity_id=?";

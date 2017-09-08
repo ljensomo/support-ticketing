@@ -86,22 +86,22 @@
                                             <tbody>
                                                 <?php
                                                 $sql = "SELECT 
-													a.user_id,	
-													a.fname,
-													a.mname,
-													a.lname,
-													a.company_name,
-													a.cnum,
-													a.email,
-													a.is_active,
-													b.username,
-													b.password,
-													d.user_desc
-												
-												FROM users AS a INNER JOIN
-												user_accounts AS b ON a.user_id=b.user_id
-												JOIN users_roles AS c ON a.user_id=c.user_id
-												JOIN roles AS d ON c.user_role=d.userlevel_id WHERE user_desc = 'Administrator' OR user_desc = 'User' OR user_desc = 'Watcher';";
+                                                    a.user_id,  
+                                                    a.fname,
+                                                    a.mname,
+                                                    a.lname,
+                                                    
+                                                    a.cnum,
+                                                    a.email,
+                                                    
+                                                    a.uname,
+                                                    a.pass,
+                                                    d.user_desc
+                                                
+                                                FROM users AS a
+                                                JOIN users_roles AS c ON a.user_id=c.user_id
+                                                JOIN roles AS d ON c.user_role=d.userlevel_id WHERE user_desc = 'Administrator' OR user_desc = 'User' OR user_desc = 'Watcher'
+                                                ";
                                                 $res = $db->prepare($sql);
                                                 $res->execute();
                                                 while ($row = $res->fetch(PDO::FETCH_NUM)) {
@@ -109,16 +109,16 @@
                                                     <tr class="odd gradeX">
                                                         <td><?php echo $row[0]; ?></td>
                                                         <td><?php echo $row[1] . " " . $row[2] . " " . $row[3] ?></td>
-                                                        <td><?php echo $row[5]; ?></td>
+                                                        <td><?php echo $row[4]; ?></td>
                                                         <td><?php echo $row[6]; ?></td>
+                                                        <td><?php echo $row[5]; ?></td>
                                                         <td><?php echo $row[8]; ?></td>
-                                                        <td><?php echo $row[10]; ?></td>
                                                         <td class="center">
                                                 <center>
                                                     <?php if ($row[7] == 1) { ?>
                                                         <a class="btn btn-default btn-sm" href="deactivate_user.php?cid=<?php echo $row['user_id']; ?>" type="button"p><i class="fa fa-unlock"></i></a>
                                                     <?php } else { ?>
-                                                        <a class="btn btn-default btn-sm" href="activate_user.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-lock"></i></a>
+                                                        <a class="btn btn-default btn-sm" href="activate_user.php?cid=<?php echo $row['user_id']; ?>" type="button" p><i class="fa fa-lock"></i></a>
                                                     <?php } ?>
                                                     <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
                                                     <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
@@ -143,46 +143,8 @@
         </div>
          
          <?php include_once 'modals.php'; ?>
-                                    <script>
-                                    	function add_developer(){
-                                    	  	var fname = $('#firstname').val();
-                                    	  	var mname = $('#middlename').val();
-                                    		var lname = $('#lastname').val();
-                                    		var contact = $('#contact').val();
-                                    		var email = $('#email').val();
-                                    		var role = $('#role').val();
-                                    		var username = $('#username').val();
-                                    		var pw = $('#pw').val();
-                                    		var confirm_pw = $('#confirm_pw').val();
-                                    		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-
-                                    
-                                    		if(fname == "" || lname == "" || contact == "" || email == "" || role == "" || username == "" || pw == "" || confirm_pw == ""){
-                                    			swal({title:"Ooops", text:"Please complete all necessary informations", type:"warning"});
-                                    		}else{ 
-                                    			if(!emailReg.test(email)){
-												swal({ title : "Ooops!", text : "Please enter valid email!", type : "warning"},
-															function(){
-																$('#email').focus();
-															}
-												
-												);
-							
-                                    			
-                                                }else if(confirm_pw == pw){
-                                    				swal({title:"Success", text:"EQUAL", type:"success"});
-                                    			}else{
-                                    				swal({title:"Ooops", text:"NOT EQUAL", type:"warning"});
-                                    				$('#confirm_pw').val('');
-                                    				$('#confirm_pw').focus();
-                                    			}
-                                    		}//condition
-                                    	
-                                    	}//function add_developer
-                                    	
-  
-                                    </script>
-      
+                                  
+        <script src="js/functions.js"></script><!-- function source -->
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
         <script type="text/javascript" src="js/jquery.sparkline/jquery.sparkline.min.js"></script>

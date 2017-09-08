@@ -74,8 +74,15 @@
 	                            <div class="block-flat">
 	                          
 	                            <div class="header">
+	                            
+	                            	<?php 
+	                            		$select_company = "SELECT id,company_name,company_tin_code,email_address FROM companies WHERE id = ?";
+	                            		$stmt_comp = $db->prepare($select_company);
+	                            		$stmt_comp->execute(array($row[4]));
+	                            		$row_comp = $stmt_comp->fetch(PDO::FETCH_NUM);
+	                            	?>
                            
-	                                    <h3><i class="fa fa-building-o" style="padding-right:10px;"></i><strong><?php echo $row[4] ?></strong><small> | Create New Ticket/s</small></h3>
+	                                    <h3><i class="fa fa-building-o" style="padding-right:10px;"></i><strong><?php echo $row_comp[1] ?> </strong><small> | Create New Ticket/s</small></h3>
 	                                </div>
 	                            	<div class="content">
 	
@@ -89,22 +96,42 @@
 	                                    <label class="col-sm-3 control-label">
 										<span>Issue Type :</span></label>
 	                                    <div class="col-sm-6">
-	                                        <select class="form-control" name="type" id="type" required="">
+	                                        <select class="form-control" name="type" id="type">
 	                                            <option>-- Type</option>
 	                                            <option value="1">Bug</option>
 	                                            <option value="2">Error</option>
-	                                        </select>                                 
+	                                        </select> 
 	                                    </div>
+	                                    <a class="btn btn-primary btn-flat md-trigger" data-modal="form-primary"><i class="fa fa-plus" style="border-radius:5px;"></i></a>                             
 	                                </div><hr>
 	                                <div class="form-group">
-	                                  
 	                                    <label class="col-sm-3 control-label">
 										<span>Project :</span></label>
 	                                    <div class="col-sm-6">
-	                                        <select class="form-control" name="project" id="project" required="">
+	                                        <select class="form-control" name="project" id="project" required>
 	                                            <option>-- Select Project</option>
-	                                            <option value="1">POS</option>
-	                                            <option value="2">MIS</option>
+	                                            <?php 
+	                                            	$sel_proj = "SELECT 
+																a.id,
+																a.project_id,
+																a.company_id,
+																b.company_name,
+																b.company_tin_code,
+																b.email_address,
+																c.proj_desc
+																FROM company_proj AS a 
+																JOIN companies AS b 
+																ON a.company_id=b.id
+																JOIN projects AS c 
+																ON a.project_id=c.proj_id WHERE company_id = ?";
+													$stmt_proj = $db->prepare($sel_proj);
+													$stmt_proj->execute(array($row[4]));
+													while($row_proj = $stmt_proj->fetch(PDO::FETCH_NUM)){			
+	                                            ?>
+	                                            <option value="<?php echo $row_proj[1]; ?>"><?php echo $row_proj[6]; ?></option>
+	                                            	<?php 
+	                                            	}
+	                                            	?>
 	                                        </select>                                 
 	                                    </div>
 	                                </div>
@@ -115,7 +142,7 @@
 	                                    <label class="col-sm-3 control-label">
 										<span class="auto-style3">Reporter :</span></label>
 	                                        <div class="col-sm-6">
-	                                            <input class="form-control" name="name" id="name" type="text"   readonly value="<?php echo $row[1] . " " . $row[3] ?>">
+	                                            <input class="form-control" name="name" id="name" type="text" readonly value="<?php echo $row[1] . " " . $row[3] ?>">
 	                                         </div>
 	                                </div>
 	
@@ -170,12 +197,86 @@
 
                 </div>
             </div> 
+            
+
+
+ <div class="modal fade" id="add-issue-type-modal" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                	<h3 align="center"><i class="fa fa-plus-circle" style="padding-right:10px"></i> Issue Type</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                           <form method="POST" action="#" class="form-horizontal" style="border-radius: 0px; padding-left: 50px" parsley-validate novalidate>
+							                               	 <div class="form-group">
+							                                    <label class="col-sm-3 control-label"> Issue Type </label>
+							                                    <div class="col-sm-6">
+							                                        <input class="form-control" placeholder="Type" id="name" name="name" type="text" onkeypress="return blockSpecialChar(event)" >                               
+							
+							                                    </div>
+							                                </div>							                                
+							                                <div class="spacer text-center">
+							                                    <button type="reset" class="btn btn-default btn-lg" style="width:20%"><i class="fa fa-ban" style="padding-right:10px"></i> Cancel</button>
+							                                     <button type="button" onclick="add-issue-type()" class="btn btn-danger btn-lg" style="width:20%"><i class="fa fa-plus" style="padding-right:10px"></i>Add</button>
+							                                </div>
+							
+                            			</form>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                               
+
+
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
         
 
-        
+        <div class="md-modal colored-header custom-width md-effect-9" id="form-primary">
+                    <div class="md-content">
+                      <div class="modal-header">
+                        <h3>Form Modal</h3>
+                        <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      </div>
+                      <div class="modal-body form">
+                        <div class="form-group">
+                          <label>Email address</label> <input type="email" class="form-control" placeholder="username@example.com">
+                        </div>
+                        <div class="form-group">
+                          <label>Your name</label> <input type="name" class="form-control" placeholder="John Doe">
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-md-12 no-margin">
+                            <label>Your birth date</label>
+                          </div>
+                        </div>
+                        <div class="row no-margin-y">
+                          <div class="form-group col-md-3 col-sm-3  col-xs-3 no-margin">
+                            <input type="name" class="form-control" placeholder="DD">
+                          </div>
+                          <div class="form-group col-md-3 col-sm-3  col-xs-3 no-margin">
+                            <input type="name" class="form-control" placeholder="MM">
+                          </div>
+                          <div class="form-group col-md-3 col-sm-3  col-xs-3 no-margin">
+                            <input type="name" class="form-control" placeholder="YYYY">
+                          </div>
+                        </div>
+                        <p class="spacer2"><input type="checkbox" name="c[]" checked />  Send me notifications about new products and services.</p>
+                        
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-flat md-close" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary btn-flat md-close" data-dismiss="modal">Proceed</button>
+                      </div>
+                    </div>
+                </div>
         <script type="text/javascript">
-        	function create(){
+        	/*function create(){
 
         	//alert("asdas");
 	                var id = $('#id').val();
@@ -216,7 +317,7 @@
                 }
             
             
-        	}
+        	}*/
         </script>
          
       
@@ -229,11 +330,12 @@
             <script src="js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
             <script type="text/javascript" src="js/bootstrap.switch/bootstrap-switch.min.js"></script>
             <script type="text/javascript" src="js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-
+			<script type="text/javascript" src="js/jquery.niftymodals/js/jquery.modalEffects.js"></script>  
             <script type="text/javascript">
                 $(document).ready(function () {
                     //initialize the javascript
                     App.init();
+                    $('.md-trigger').modalEffects();
                 });
             </script>
             <!-- Bootstrap core JavaScript

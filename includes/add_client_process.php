@@ -5,16 +5,17 @@ include './hashgenerator.php';
 include './functions.php';
 
 $company_name = htmlspecialchars($_POST['company_name']);
+$company_tin_code = htmlspecialchars($_POST['company_tin_code']);
 $email = htmlspecialchars($_POST['email']);
 
 
-$company_tin_code = htmlspecialchars($_POST['company_tin_code']);
+
 $options = array('cost' => 11);
 //$role = 4;
 //$username = htmlspecialchars($_POST['username']);
 //$password = htmlspecialchars(password_hash($_POST['confirm_password'], PASSWORD_BCRYPT, $options));
 $token = $hasher->generateToken($email);
-$required = array($company_name, $email);
+$required = array($company_name,$company_tin_code,$email);
 $error = false;
 
 foreach ($required as $fields) {

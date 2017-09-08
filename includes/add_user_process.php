@@ -6,12 +6,12 @@ include './functions.php';
 
 
 $fname = htmlspecialchars($_POST['fname']);
-
+$mname = htmlspecialchars($_POST['mname']);
 $lname = htmlspecialchars($_POST['lname']);
 $email = htmlspecialchars($_POST['email']);
 $cnum = htmlspecialchars($_POST['contact']);
-$company = htmlspecialchars($_POST['company']);
-$app = htmlspecialchars($_POST['app']);
+//$company = htmlspecialchars($_POST['company']);
+$company=htmlspecialchars($_POST['company_name']);
 $username = htmlspecialchars($_POST['username']);
 $role = 4;
 $options = array('cost' => 11);
@@ -41,9 +41,9 @@ if ($error) {
     //openWindow($goto = "../add_user.php");
     echo "exist";
 } else {
-    $sqlAdd = "INSERT INTO users(fname,lname,company_name,app,cnum,email,is_active)VALUES(?,?,?,?,?,?,?)";
+    $sqlAdd = "INSERT INTO users(fname,lname,company_name,mname,cnum,email,uname,pass,is_active)VALUES(?,?,?,?,?,?,?,?,?)";
     $qryAdd = $db->prepare($sqlAdd);
-    $qryAdd->execute(array($fname, $lname, $company,$app, $cnum, $email, 0));
+    $qryAdd->execute(array($fname, $lname, $company,$mname, $cnum, $email,$username,$password, 0));
 
     $sqlUser2 = "SELECT user_id FROM users WHERE fname = ? and lname = ? and email = ? and cnum = ? and is_active = ?";
     $resUser2 = $db->prepare($sqlUser2);
@@ -59,7 +59,7 @@ if ($error) {
         	
     //msgAlert($alert = "Registration Successful!");
     //openWindow($goto = "../users.php");
-   	include '../mailer/PHPMailer/PHPMailerAutoload.php';
+   /*	include '../mailer/PHPMailer/PHPMailerAutoload.php';
    	
 	$mail = new PHPMailer;
 	
@@ -100,8 +100,8 @@ if ($error) {
     	$del_res->execute(array($rowUser2[0]));
     	
     	echo 'error';
-	}else{
-			$sqlAdd2 = "INSERT INTO user_accounts(user_id,us--ername,password)VALUES(?,?,?)";
+	}else{*/
+			$sqlAdd2 = "INSERT INTO user_accounts(user_id,username,password)VALUES(?,?,?)";
 		    $qryAdd2 = $db->prepare($sqlAdd2);
 		    $qryAdd2->execute(array($rowUser2[0], $username, $password));        
 		
@@ -109,6 +109,6 @@ if ($error) {
 		    $qryAdd3 = $db->prepare($sqlAdd3);
 		    $qryAdd3->execute(array($rowUser2[0], $role));
     	echo "success";
-    }
+   // }
 }
 ?>

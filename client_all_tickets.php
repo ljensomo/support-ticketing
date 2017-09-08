@@ -53,7 +53,14 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2><i style="padding-right:5px" class="fa fa-ticket"></i>Tickets</h2>
+                	                <?php 
+	                            		$select_company = "SELECT id,company_name,company_tin_code,email_address FROM companies WHERE id = ?";
+	                            		$stmt_comp = $db->prepare($select_company);
+	                            		$stmt_comp->execute(array($row[4]));
+	                            		$row_comp = $stmt_comp->fetch(PDO::FETCH_NUM);
+	                            	?>
+
+                    <h2><?php echo $row_comp[1]; ?> | <small><i style="padding-right:5px" class="fa fa-ticket"></i>Tickets</small></h2>
                     
                     </div>  
                 <div class="cl-mcont">
@@ -71,111 +78,195 @@
                                             <thead>
                                                 <tr>
                                                     <th class="hidden">Ticket #</th>
-                                                    <th>Project</th>
                                                     <th>Issue</th>
+                                                    <th>Project</th>
+                                                    <th>Transaction ID</th>
                                                     <th>Date Created</th>
-                                                    <th>Reporter</th>
+                                                    <th>Assignee</th>
                                                     <th>Status</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $ticket_loader = "SELECT 
-                                                        a.ticket_id,
-                                                        b.project_desc,
-                                                        a.transaction_no,
-                                                        a.issue_subject,
-                                                        a.issue_desc,
-                                                        a.assign_to,
-                                                        a.assign_from,
-                                                        c.fname,
-                                                        c.mname,
-                                                        c.lname,
-                                                        c.user_id,
-                                                        a.date_created,
-                                                        d.status_desc,
-                                                        a.before_status
-                                                    
-                                                        FROM tickets AS a JOIN company_proj AS b
-                                                        ON a.project=b.id
-                                                        JOIN users AS c 
-                                                        ON a.reporter_id=c.user_id
-                                                        JOIN STATUS AS d
-                                                        ON a.before_status=d.status_id WHERE c.user_id=? ORDER BY a.ticket_id DESC";
+                                                $ticket_loader = "SELECT
+																	a.ticket_id,
+																	d.proj_desc,
+																	a.transaction_id,
+																	a.reporter_id,
+																	a.date_created,
+																	b.before_status,
+																	b.after_status,
+																	b.assignto_id,
+																	b.assign_from_id,
+																	b.severity_id,
+																	b.resolution_id,
+																	b.date_resolved,
+																	b.date_taken,
+																	c.problem_subject,
+																	c.problem_desc,
+																	c.attachment,
+																	c.issue_status,
+																	e.status_desc
+																	
+																	FROM tickets AS a
+																	JOIN ticket_progress AS b 
+																	ON a.ticket_id=b.ticket_id
+																	JOIN ticket_details AS c
+																	ON a.ticket_id=c.ticket_id
+																	JOIN projects AS d 
+																	ON a.project=d.proj_id
+																	JOIN status AS e
+																	ON b.before_status=e.status_id ORDER BY a.ticket_id DESC";
                                                         
                                                 $res_tickets = $db->prepare( $ticket_loader);
                                                  $res_tickets->execute(array($row[0]));
                                                 while ($row_tickets =  $res_tickets->fetch(PDO::FETCH_NUM)) {
                                                     ?>
                                                     <tr class="odd gradeX">
-                                                        <td class="hidden"><?php echo $row_tickets[0]; ?></td>
+                                                    	<td class="hidden"><?php echo $row_tickets[0]; ?></td>
+                                                    	<td><strong><?php echo $row_tickets[13]; ?></strong><br><small><?php echo substr($row_tickets[14],0,50); ?>..</small></td>
                                                         <td><?php echo $row_tickets[1]; ?></td>
-                                                        <td><strong><?php echo $row_tickets[3]; ?></strong><br><small><?php echo substr($row_tickets[4],0,50); ?>..</small></td>
-                                                        <td><?php echo $row_tickets[11] ?></td>
-                                                        <td><?php echo $row_tickets[7] . " " . $row_tickets[8] . " " . $row_tickets[9] ?></td>
+                                                        <td><?php echo $row_tickets[2]; ?></td>
+                                                        <td><?php echo $row_tickets[4]; ?></td>
+                                                        <?php 
+                                                        	$sel_user = "SELECT * FROM users WHERE user_id=?";
+                                                        	$stmt_user = $db->prepare($sel_user);
+                                                        	$stmt_user->execute(array($row_tickets[7]));
+                                                        	$row_user=$stmt_user->fetch(PDO::FETCH_NUM);
+                                                        
+                                                        if ($row_user[0]>0){
+                                                        ?>
+                                                        <td><?php echo $row_user[1] . " " . $row_user[3] ?></td>
+                                                        <?php 
+														}else{
+                                                        ?>
+                                                        <td>Waiting for support...</td>
+                                                        <?php } ?>
                                                         <td><center>
                                                         
-                                                        <?php if ($row_tickets[13] == 1) { ?>
-                                                            <label class="label label-default"><?php echo $row_tickets[12]; ?></label>
-                                                        <?php } else if ($row_tickets[13] == 5) { ?>
-                                                            <label class="label label-info"><?php echo $row_tickets[12]; ?></label>
-                                                        <?php } else if ($row_tickets[13] == 3) { ?>
-                                                            <label class="label label-success"><?php echo $row_tickets[12]; ?></label>
-                                                        <?php } else if ($row_tickets[13] == 2) { ?>
-                                                            <label class="label label-default"><?php echo $row_tickets[12]; ?></label>
+                                                        <?php if ($row_tickets[5] == 1) { ?>
+                                                            <label class="label label-default"><?php echo $row_tickets[17]; ?></label>
+                                                        <?php } else if ($row_tickets[5] == 5) { ?>
+                                                            <label class="label label-info"><?php echo $row_tickets[17]; ?></label>
+                                                        <?php } else if ($row_tickets[5] == 3) { ?>
+                                                            <label class="label label-success"><?php echo $row_tickets[17]; ?></label>
+                                                        <?php } else if ($row_tickets[5] == 2) { ?>
+                                                            <label class="label label-danger"><?php echo $row_tickets[17]; ?></label>
                                                         <?php } ?>
                                                         
                                                         </center></td>
+                                                        <td><center><a class="btn btn-sm btn-info">View Details</a></center></td>
                                                 </tr>
-                                                <?php
+                                            <?php
                                             }
                                             ?>
-                                            </tbody>`
+                                            </tbody>
                                         </table>                            
                                     </div>
                                 </div>
                             </div>              
                         </div>
                     </div>
-
                 </div>
             </div> 
-
         </div>
-         <div class="modal fade" id="add-user-modal" tabindex="-1" role="dialog">
+            <div class="modal fade" id="modal1" tabindex="-1" role="dialog">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h3 align="center"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Severity Details</h3>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="text-center">
-                                                        <div class="i-circle danger"><i class="fa fa-users"></i></div>
-                                                         <form method="POST" action="includes/validation_process.php" class="form-horizontal group-border-dashed">
-                                                            <select class="form-control" id="sel_issue_type" name="sel_issue_type">
-                                                        <option value="1">User</option>
-                                                        <option value="2">Client</option>
-                                                            </select>
-                                                        
-                                                        <h1>User Level</h1>
-                                                    </div>
+                                           <form method="POST" action="#" class="form-horizontal" style="border-radius: 0px; padding-left: 50px" parsley-validate novalidate>
+                                                             <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Name</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Name" id="name" name="name" type="text" onkeypress="return blockSpecialChar(event)" >                               
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Description</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Description" id="description" name="description" type="text">
+                            
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Transaction ID</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Name" id="transaction_id" name="transaction_id" type="text" onkeypress="return blockSpecialChar(event)" >                               
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Date Created</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Name" id="date_created" name="date_created" type="text" onkeypress="return blockSpecialChar(event)" >                               
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Assignee</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Name" id="assignee" name="assignee" type="text" onkeypress="return blockSpecialChar(event)" >                               
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Status</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Name" id="status" name="status" type="text" onkeypress="return blockSpecialChar(event)" >                               
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="spacer text-center">
+                                                                <button type="reset" class="btn btn-default btn-lg" style="width:20%"><i class="fa fa-ban" style="padding-right:10px"></i> Cancel</button>
+                                                                 <button type="button" onclick="add_severity()" class="btn btn-danger btn-lg" style="width:20%"><i class="fa fa-plus" style="padding-right:10px"></i>Add</button>
+                                                            </div>
+                            
+                                        </form>
                                                 </div>
 
                                                 <div class="modal-footer">
                                                
 
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
 
-                    
-                                                    <button class="btn btn-primary" type="submit">Proceed</button>
-
-                                                  </form>
+                                                  
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
       
         <script src="js/jquery.js"></script>
+
+          <script>
+        
+        
+        $('.table tbody tr').on('click','.btn',function(){
+            var currow = $(this).closest('tr');
+            var col1 = currow.find('td:eq(0)').text();
+            var col2 = currow.find('td:eq(1)').text();
+            var col3 = currow.find('td:eq(2)').text();
+            var col4 = currow.find('td:eq(3)').text();
+            var col5 = currow.find('td:eq(4)').text();
+            var col6 = currow.find('td:eq(5)').text();
+            var col7 = currow.find('td:eq(6)').text();
+            var result = col1+'\n'+col2+'\n'+col3+'\n'+col4+'\n'+col5+'\n'+col6+'\n'+col7;
+            //alert(result);
+            $('#modal1').modal('show');
+            $('#name').val(col2);
+            $('#description').val(col3);
+            $('#transaction_id').val(col4);
+            $('#date_created').val(col5);
+            $('#assignee').val(col6);
+            $('#status').val(col7);
+        });
+        </script>
+
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
         <script type="text/javascript" src="js/jquery.sparkline/jquery.sparkline.min.js"></script>
         <script type="text/javascript" src="js/jquery.easypiechart/jquery.easy-pie-chart.js"></script>
