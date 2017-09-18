@@ -109,7 +109,7 @@
 										<span>Project :</span></label>
 	                                    <div class="col-sm-6">
 	                                        <select class="form-control" name="project" id="project" required>
-	                                            <option>-- Select Project</option>
+	                                            <option value="">-- Select Project</option>
 	                                            <?php 
 	                                            	$sel_proj = "SELECT 
 																a.id,
@@ -201,7 +201,7 @@
 
 
  <div class="modal fade" id="add-issue-type-modal" tabindex="-1" role="dialog">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog colored-header default">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -226,8 +226,6 @@
 
                                                 <div class="modal-footer">
                                                
-
-
                                                   
                                                 </div>
                                             </div>
@@ -235,91 +233,7 @@
                                     </div>
 
 
-        
-
-        <div class="md-modal colored-header custom-width md-effect-9" id="form-primary">
-                    <div class="md-content">
-                      <div class="modal-header">
-                        <h3>Form Modal</h3>
-                        <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      </div>
-                      <div class="modal-body form">
-                        <div class="form-group">
-                          <label>Email address</label> <input type="email" class="form-control" placeholder="username@example.com">
-                        </div>
-                        <div class="form-group">
-                          <label>Your name</label> <input type="name" class="form-control" placeholder="John Doe">
-                        </div>
-                        <div class="row">
-                          <div class="form-group col-md-12 no-margin">
-                            <label>Your birth date</label>
-                          </div>
-                        </div>
-                        <div class="row no-margin-y">
-                          <div class="form-group col-md-3 col-sm-3  col-xs-3 no-margin">
-                            <input type="name" class="form-control" placeholder="DD">
-                          </div>
-                          <div class="form-group col-md-3 col-sm-3  col-xs-3 no-margin">
-                            <input type="name" class="form-control" placeholder="MM">
-                          </div>
-                          <div class="form-group col-md-3 col-sm-3  col-xs-3 no-margin">
-                            <input type="name" class="form-control" placeholder="YYYY">
-                          </div>
-                        </div>
-                        <p class="spacer2"><input type="checkbox" name="c[]" checked />  Send me notifications about new products and services.</p>
-                        
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat md-close" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary btn-flat md-close" data-dismiss="modal">Proceed</button>
-                      </div>
-                    </div>
-                </div>
-        <script type="text/javascript">
-        	/*function create(){
-
-        	//alert("asdas");
-	                var id = $('#id').val();
-	                var type = $('#type').val();
-        		  	var project = $('#project').val();
-        		  	var trans_no = $('#trans_no').val();
-	                var subject = $('#subject').val();
-	                var desc = $('#desc').val();
-	                var attachment = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
-	               // alert(attachment);
-	                
-	               // alert(document.getElementByID('attachment').value());
-	               	               	     
-	                //var attachment = $('#attachment[type="file"].filename').val(file_name);
-        						
-
-        		if(type = "" || project == "" || trans_no == "" || subject == "" || desc == "" || attachment == ""){
-                    swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
-                }else{
-        		    $.ajax({
-		            type:"POST",
-		            url:"includes/create_new_ticket_process.php",
-		            data: "project="+project+"&trans_no="+trans_no+"&id="+id+"&subject="+subject+"&desc="+desc+"&type="+type+"&attachment="+attachment,
-		            complete : function(request){
-            			alert(request.responseText.trim());
-    	            	if(request.responseText.trim() === "success"){
-    	                    swal({ title : "Submitted!", text : "Successfully Created!", type : "success"},
-    	                       function(){
-    					           location.reload();
-    	                       			  }
-    	                  );
-    					}else if(request.responseText.trim() === "error"){
-    	           		    swal({ title : "Ooops!", text : "Please complete all fields!", type : "warning"});
-    	           		}
-	           		                          }
-           		 
-                    }); // ajax closing
-                }
-            
-            
-        	}*/
-        </script>
-         
+                 
       
            <script src="js/jquery.js"></script>
             <script src="js/jquery.select2/select2.min.js" type="text/javascript"></script>

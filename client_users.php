@@ -23,7 +23,7 @@
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="html5shiv.js"></script>
         <![endif]-->
         <link rel="stylesheet" type="text/css" href="js/jquery.gritter/css/jquery.gritter.css" />
 
@@ -41,6 +41,8 @@
 
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet" />
+		 <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+		<script src="sweetalert-master/dist/sweetalert.min.js"></script>
 
     </head>
     <body>
@@ -53,75 +55,73 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2><i style="padding-right:5px" class="fa fa-users"></i>Users</h2>
+                    <h2><i class="fa fa-users" style="padding-right:10px"></i>Users</h2>
                     <ol class="breadcrumb">
-                        <li class="active">Users</li>
-                        <li><a href="add_user.php">Add Users</a></li>
+                      	<li class="active">[Company Name] - Users</li>
+     
                     </ol>
-                    
-                    </div>  
+                </div>	
                 <div class="cl-mcont">
                         
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block-flat">
-                                <div class="header">                            
-                                    <a class="btn btn-primary" href="add_user.php">Add User</a>
-
+                                <div class="header">							
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#add-client-user"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Add User</a>
                                 </div>
                                 <div class="content">
                                     <div class="table-responsive">
+                                       <input type="hidden" name="n_cid" id="n_cid" value="<?php echo $row[4]; ?>">
                                         <table class="table table-bordered" id="datatable" >
                                             <thead>
                                                 <tr>
-                                                    <th>User ID</th>
+                                                    <th class="hidden">User ID</th>
+                                                    <th>Full Name</th>
+                                                    <th>Contact No.</th>
+                                                    <th>E-mail</th>
                                                     <th>Username</th>
-                                                    <th>First Name</th>
-                                                    <th>MI</th>
-                                                    <th>Last Name</th>
                                                     <th>Role</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT 
-                                                a.user_id,  
-                                                a.fname,
-                                                a.mname,
-                                                a.lname,
-                                                a.company_id,
-                                                a.cnum,
-                                                a.email,
-                                                a.is_active,
-                                                b.username,
-                                                b.password,
-                                                d.user_desc
+                                                $sql_tckts = "SELECT 
+                                                    a.user_id,  
+                                                    a.fname,
+                                                    a.mname,
+                                                    a.lname,
+                                                    a.cnum,
+                                                    a.email,
+                                                    a.uname,
+                                                    a.pass,
+						    						c.user_role,
+                                                    d.user_desc,
+                                                    a.is_active
                                                 
-                                                FROM users AS a INNER JOIN
-                                                user_accounts AS b ON a.user_id=b.user_id
+                                                FROM users AS a
                                                 JOIN users_roles AS c ON a.user_id=c.user_id
-                                                JOIN roles AS d ON c.user_role=d.userlevel_id WHERE user_desc = 'Administrator' OR user_desc = 'User' OR user_desc = 'Watcher'";
-                                                $res = $db->prepare($sql);
-                                                $res->execute();
-                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                                JOIN roles AS d ON c.user_role=d.userlevel_id WHERE company_id = ? AND a.user_id!=?";
+                                                $res_tckts = $db->prepare($sql_tckts);
+                                                $res_tckts->execute(array($row[4],$row[0]));
+                                                while ($row_tckts = $res_tckts->fetch(PDO::FETCH_NUM)) {
                                                     ?>
                                                     <tr class="odd gradeX">
-                                                        <td><?php echo $row['user_id']; ?></td>
-                                                        <td><?php echo $row['username']; ?></td>
-                                                        <td><?php echo $row['fname']; ?></td>
-                                                        <td><?php echo $row['mname']; ?></td>
-                                                        <td><?php echo $row['lname']; ?></td>
-                                                        <td><?php echo $row['user_desc']; ?></td>
+                                                        <td class="hidden"><?php echo $row_tckts[0]; ?></td>
+                                                        <td><?php echo $row_tckts[1] . " " . $row_tckts[2] . " " . $row_tckts[3] ?></td>
+                                                        <td><?php echo $row_tckts[4]; ?></td>
+                                                        <td><?php echo $row_tckts[5]; ?></td>
+                                                        <td><?php echo $row_tckts[6]; ?></td>
+                                                        <td><?php echo $row_tckts[9]; ?></td>
                                                         <td class="center">
                                                 <center>
-                                                    <?php if ($row['is_active'] == 1) { ?>
-                                                        <a class="btn btn-default btn-sm" href="deactivate_user.php?cid=<?php echo $row['user_id']; ?>" type="button"p><i class="fa fa-unlock"></i></a>
+                                                    <?php if ($row_tckts[10] == 1) { ?>
+                                                        <a class="btn btn-default btn-sm" href="#" type="button"  onclick="de_activate(<?php echo $row_tckts[0]; ?>)"><i class="fa fa-unlock"></i></a>
                                                     <?php } else { ?>
-                                                        <a class="btn btn-default btn-sm" href="activate_user.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-lock"></i></a>
+                                                        <a class="btn btn-default btn-sm" type="button" onclick="activate(<?php echo $row_tckts[0]; ?>)"><i class="fa fa-lock"></i></a>
                                                     <?php } ?>
-                                                    <a class="btn btn-info btn-sm" href="view_user.php?cid=<?php echo $row['user_id']; ?>"><i class="fa fa-search"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="edit_user.php?cid=<?php echo $row['user_id']; ?>" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-info btn-sm" id="view_user"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-warning btn-sm" id="edit_user" onclick="edit_client_user(<?php echo $row_tckts[0] ?>,'<?php echo $row_tckts[1] ?>','<?php echo $row_tckts[2] ?>','<?php echo $row_tckts[3] ?>','<?php echo $row_tckts[4] ?>','<?php echo $row_tckts[5] ?>')"><i class="fa fa-pencil"></i></a>
                                                     
                                                 </center>        
                                                 </td>
@@ -130,51 +130,68 @@
                                             }
                                             ?>
                                             </tbody>
-                                        </table>                            
+                                        </table>							
                                     </div>
                                 </div>
-                            </div>              
+                            </div>				
                         </div>
                     </div>
 
                 </div>
             </div> 
-
         </div>
-         <div class="modal fade" id="add-user-modal" tabindex="-1" role="dialog">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="text-center">
-                                                        <div class="i-circle danger"><i class="fa fa-users"></i></div>
-                                                         <form method="POST" action="includes/validation_process.php" class="form-horizontal group-border-dashed">
-                                                            <select class="form-control" id="sel_issue_type" name="sel_issue_type">
-                                                        <option value="1">User</option>
-                                                        <option value="2">Client</option>
-                                                            </select>
-                                                        
-                                                        <h1>User Level</h1>
-                                                    </div>
-                                                </div>
-
-                                                <div class="modal-footer">
-                                               
-
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
-
-                    
-                                                    <button class="btn btn-primary" type="submit">Proceed</button>
-
-                                                  </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-      
+        						
+         
+         <?php include_once 'modals.php'; ?>
+                        
+        <script src="js/functions.js"></script><!-- function source -->
         <script src="js/jquery.js"></script>
+        <script>
+        
+        
+            $('.table tbody tr').on('click','#view_user',function(){
+            var currow = $(this).closest('tr');
+            var col1 = currow.find('td:eq(0)').text();
+            var col2 = currow.find('td:eq(1)').text();
+            var col3 = currow.find('td:eq(2)').text();
+            var col4 = currow.find('td:eq(3)').text();
+            var col5 = currow.find('td:eq(4)').text();
+            var col6 = currow.find('td:eq(5)').text();
+            //var result = col1+'\n'+col2+'\n'+col3+'\n'+col4+'\n'+col5+'\n'+col6;
+            //alert(result);
+
+            $('#view_users').modal('show');
+            $('#view_users_id').val(col1);
+            $('#full_name').val(col2);
+            $('#contact_no').val(col3);
+            $('#e_mail').val(col4);
+            $('#user_name').val(col5);
+            $('#roles').val(col6);
+        });
+    
+    
+    /*        $('.table tbody tr').on('click','#edit_user',function(){
+            var currow = $(this).closest('tr');
+            var col1 = currow.find('td:eq(0)').text();
+            var col2 = currow.find('td:eq(1)').text();
+            var col3 = currow.find('td:eq(2)').text();
+            var col4 = currow.find('td:eq(3)').text();
+            var col5 = currow.find('td:eq(4)').text();
+            var col6 = currow.find('td:eq(5)').text();
+            //var result = col1+'\n'+col2+'\n'+col3+'\n'+col4+'\n'+col5+'\n'+col6;
+            //alert(result);
+
+            $('#edit_users').modal('show');
+            $('#edit_users_id').val(col1);
+            $('#edit_name').val(col2);
+            $('#edit_no').val(col3);
+            $('#edit_email').val(col4);
+            $('#edit_username').val(col5);
+            $('#edit_roles').val(col6);
+
+        })   */
+        </script>
+
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
         <script type="text/javascript" src="js/jquery.sparkline/jquery.sparkline.min.js"></script>
         <script type="text/javascript" src="js/jquery.easypiechart/jquery.easy-pie-chart.js"></script>

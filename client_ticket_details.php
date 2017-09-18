@@ -48,14 +48,14 @@
     <body>
 
         <!-- Fixed navbar -->
-        <?php include 'includes/topbar.php'; ?>
+        <?php include 'includes/portal_topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
-            <?php include 'includes/sidebar.php'; ?>
+            <?php include 'includes/client_sidebar.php'; ?>
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2><i class="fa fa-users" style="padding-right:10px"></i>Ticket Details</h2>
+                    <h2><i class="fa fa-ticket" style="padding-right:10px"></i>Ticket Details</h2>
                     <ol class="breadcrumb">
                       	<li class="active">Users List	</li>
                     </ol>
@@ -67,8 +67,8 @@
                 <div class="block-flat">
                   <div class="content">
                 <p class="pull-right"><strong>Date Created : Jun 1, 2017</strong></p><br>
-                <p><strong><i class="fa fa-folder"></i> &nbsp PAYROLL SYSTEM | <i class="fa fa-user"></i>&nbsp<small>Created by: </small> Andrian G Andanar</strong><br/><i class="fa fa-list"></i> &nbsp Problem</br>This is a message for you in your birthday.</p>
-                <p><strong>Status : Open | Severity : Severe | Resolution : None</strong></p>
+                <p><strong><i class="fa fa-folder"></i> &nbsp PAYROLL SYSTEM | <i class="fa fa-user"></i>&nbsp<small>Assignee: </small> Jason L. Gicha</strong><br/><i class="fa fa-list"></i> &nbsp Problem</br>This is a message for you in your birthday.</p>
+                <p><strong>Status : Open | Severity : Severe | Resolution : None</strong><a class="btn btn-success btn-flat pull-right"><i class="fa fa-lock"></i>Close</a></p>
                 <a class="image-zoom" href="images/gallery/img4.jpg"><center><img src="images/gallery/img4.jpg" class="img-thumbnail" style="height:400px;width:1100px;" /></center></a>
               </div>
 

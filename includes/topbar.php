@@ -12,7 +12,7 @@ $loggeduser = $_SESSION['admin'];
 						a.fname,
 						a.mname,
 						a.lname,
-						a.company_name,
+						a.company_id,
 						a.cnum,
 						a.email,
 						a.is_active,

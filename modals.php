@@ -242,22 +242,18 @@
                                     <!--COMPANY MODAL-->
 
 
-
-
 <div class="modal fade" id="add-company" tabindex="-1" role="dialog">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog colored-header danger">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h3 align="center"><i class="fa fa-plus" style="padding-right:10px"></i>Add Company</h3>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="text-center">
-                                                        <div class="i-circle danger"><i class="fa fa-user"></i>
-                                                     </div>
+                                                        
                                <form method="POST" action="#" class="form-horizontal group-border" style="border-radius: 0px;" parsley-validate novalidate>
-                                 <div class="form-group">
-                                 <h4><i class="fa fa-info-circle" style="padding-right:10px;"></i>Company Informations</h4>
-                                 </div>
+                                 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Company name</label>
                                     <div class="col-sm-7">
@@ -307,7 +303,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h3 align="center"><i class="fa fa-plus-circle" style="padding-right:10px"></i>Status Details</h3>
+                                                    <h3 align="center">asd<i class="fa fa-plus-circle" style="padding-right:10px"></i>Status Details</h3>
                                                 </div>
                                                 <div class="modal-body">
                                            <form method="POST" action="#" class="form-horizontal" style="border-radius: 0px; padding-left: 50px" parsley-validate novalidate>
@@ -329,11 +325,9 @@
                                                             
                                                             
                                                             <div class="spacer text-center">
-                                                               
                                                                  <button type="button" onclick="edit_status()" class="btn btn-danger btn-lg"><i class="fa fa-save" style="padding-right:10px"></i>Update</button>
                                                             </div>
-                            
-                                        </form>
+                                        			</form>
                                                 </div>
 
                                                 <div class="modal-footer">
@@ -569,3 +563,183 @@
                                             </div>
                                         </div>
                                     </div>   
+                                    
+                                    
+				<!-- Add Client User -->
+				<div class="modal fade" id="add-client-user" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog colored-header danger">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                	<h3 align="center"><i class="fa fa-plus-circle" style="padding-right:10px"></i>New User | Company Name</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                                	<form class="form-group" action="#" method="POST">
+                                                		<div class="row">
+                                                			<div class="col-md-6">
+	                                                			<div class="form-group">
+		                                           					<div class="input-group">
+																		<span class="input-group-addon"><i class="fa fa-user"></i></span><input class="form-control" type="text" placeholder="Firstname" name="n_fname" id="n_fname">
+																	</div>	
+		                                           				</div>
+		                                           				<div class="form-group">
+		                                           					<div class="input-group">
+		                                           						<span class="input-group-addon"><i class="fa fa-user"></i></span><input class="form-control" type="text" placeholder="MI" name="n_mname" id="n_mname">
+		                                           					</div>
+		                                           				</div>
+		                                           				<div class="form-group">
+		                                           					<div class="input-group">	
+		                                           						<span class="input-group-addon"><i class="fa fa-user"></i></span><input class="form-control" type="text" placeholder="Lastname" name="n_lname" id="n_lname">
+		                                           					</div>	
+		                                           				</div>
+		                                           				<div class="form-group">
+		                                           					<div class="input-group">
+		                                           						<span class="input-group-addon"><i class="fa fa-phone"></i></span><input class="form-control" type="number" placeholder="Contact Number" name="n_cnum" id="n_cnum">
+		                                           					</div>	
+		                                           				</div>
+	                                           				</div>
+	                                           				<div class="col-md-6">
+		                                           				<div class="form-group">
+		                                           					<div class="input-group">
+		                                           						<span class="input-group-addon"><i class="fa fa-google-plus"></i></span><input class="form-control" type="email" placeholder="E-mail" name="n_email" id="n_email">
+		                                           					</div>
+		                                           				</div>
+		                                           				<div class="form-group">
+		                                           					<div class="input-group">
+		                                           						<span class="input-group-addon"><i class="fa fa-user"></i></span><input class="form-control" type="text" placeholder="Username" name="n_uname" id="n_uname">
+		                                           					</div>
+		                                           				</div>
+		                                           				<div class="form-group">
+		                                           					<div class="input-group">	
+		                                           						<span class="input-group-addon"><i class="fa fa-lock"></i></span><input class="form-control" type="password" placeholder="Password" name="n_pass" id="n_pass">
+		                                           					</div>
+		                                           				</div>
+		                                           				<div class="form-group">
+		                                           					<div class="input-group">	
+		                                           						<span class="input-group-addon"><i class="fa fa-lock"></i></span><input class="form-control" type="password" placeholder="Confirm Password" name="n_confrm_pass" id="n_confrm_pass">
+		                                           					</div>
+		                                           				</div>
+		                                           				<div class="spacer pull-right">
+			                                           				<button class="btn btn-md btn-default" type="reset"><i class="fa fa-ban"></i>Cancel</button>	
+																	<button class="btn btn-md btn-danger" type="button" onclick="n_client_user()"><i class="fa fa-save"></i>Save</button>
+		                                           				</div>
+	                                           				</div>
+	                                           			</div>
+	                                           		</form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <!-- VIEW CLIENT USER -->
+                                    
+                                    <div class="modal fade" id="view_users" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog colored-header info">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h3 align="center"><i class="fa fa-info" style="padding-right:10px"></i>View User Information</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                           <form method="POST" action="#" class="form-horizontal" style="border-radius: 0px; padding-left: 50px" parsley-validate novalidate>
+                                                             <input type="hidden" id="view_users_id" name="view_users_id">
+                                                             <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Full Name</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Full Name" id="full_name" name="full_name" type="text" readonly>                               
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Contact No.</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Contact No." id="contact_no" name="contact_no" type="text" readonly>
+                            
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">E-mail</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="E-mail" id="e_mail" name="e_mail" type="text" readonly>
+                            
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Username</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Username" id="user_name" name="user_name" type="text" readonly>
+                            
+                                                                </div>
+                                                            </div>
+                                                             <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Role</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" placeholder="Role" id="roles" name="roles" type="text" readonly>
+                            
+                                                                </div>
+                                                            </div>                                                             
+                            
+                                        </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!--EDIT COMPANY USERS-->
+
+                                    <div class="modal fade" id="edit_users" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog colored-header default">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h3 align="center"><i class="fa fa-save" style="padding-right:10px"></i>Edit User Information</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                           			<form method="POST" action="includes/edit_user_process.php" class="form-horizontal" style="border-radius: 0px; padding-left: 50px" parsley-validate novalidate>
+                                                             <input type="hidden" id="edit_users_id" name="edit_users_id">
+                                                             <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Firstname</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" id="edit_fname" name="edit_fname" type="text">                               
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">M.I.</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" id="edit_mname" name="edit_mname" type="text">
+                            
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Lastname</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" id="edit_lname" name="edit_lname" type="text">
+                            
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">contact</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" id="edit_cntct" name="edit_cntct" type="text">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Email</label>
+                                                                <div class="col-sm-6">
+                                                                    <input class="form-control" id="edit_email" name="edit_email" type="text">
+                                                                </div>
+                                                            </div>
+                                                             
+                                                             <div class="spacer text-center">
+                                                                 <button type="button" class="btn btn-primary btn-lg" style="width:20%" onclick="save_edit_clnt_user()"><i class="fa fa-save" style="padding-right:10px"></i>Update</button>
+                                                            </div>                                                                                       
+                                        			</form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>

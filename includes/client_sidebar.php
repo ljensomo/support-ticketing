@@ -6,7 +6,6 @@
                 <div class="side-user">
                     <div class="avatar"><img src="images/avatar1_50.jpg" alt="Avatar" /></div>
                     <div class="info">
-                    
                         <a href="#"><?php echo $row[1] . " " . $row[3]; ?></a>
                         <img src="images/state_online.png" alt="Status" /> <span>Online</span>
                     </div>
@@ -15,18 +14,14 @@
                     <li><a href="client_index.php"><i class="fa fa-home"></i><span>Dashboard</span></a></li>
                     <li><a href="client_create_ticket.php"><i class="fa fa-list"></i><span>New Ticket</span></a>
                     </li>
-                    
                         <li><a href="#"><i class="fa fa-bug"></i><span>New Bug Report</span></a>
                     </li>
-                    
-                   
                     <li><a href="tickets.php"><i class="fa fa-list"></i><span>Tickets</span></a>
                         <ul class="sub-menu">
                         <li><a href="client_all_tickets.php"><i class="fa fa-list"></i>All</a></li>                    
                         <li><a href="client_open_tickets.php"><i class="fa fa-mail-reply"></i>Open</a></li>
                         <li><a href="client_closed_tickets.php"><i class="fa fa-lock"></i>Closed</a></li>
-                        <li><a href="client_pending_tickets.php"><i class="fa fa-mail-forward"></i>Pending</a></li>
-                            
+                        <li><a href="client_pending_tickets.php"><i class="fa fa-mail-forward"></i>Pending</a></li>   
                         </ul>
                        </li>
                     
@@ -37,11 +32,9 @@
                            
                         </ul>
                         </li>
-
-                        
-                    
-                      
-                    
+                        <?php if($row[11]==4){ ?>
+						 <li><a href="client_users.php"><i class="fa fa-users"></i><span>Users</span></a>
+                    	<?php } ?>
                 </ul>
             </div>
         </div>

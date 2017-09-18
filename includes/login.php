@@ -13,7 +13,7 @@ $sql = "SELECT
 	a.fname,
 	a.mname,
 	a.lname,
-	a.company_name,
+	a.company_id,
 	a.cnum,
 	a.email,
 	a.is_active,
@@ -53,7 +53,7 @@ if ($error) {
     //openWindow($goto = "../login.html");
 } else if (password_verify($pw, $row[9])) {
     $_SESSION['admin'] = $row[8];
-    if($row[11]== 4){
+    if($row[11]==4 || $row[11]==5){
          //openWindow($goto = "../homebanner.php");
 		 echo "client";
     } else{

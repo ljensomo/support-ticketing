@@ -35,7 +35,11 @@
                     		<?php } ?>
                     		<i class="fa fa-inbox"></i>Open Tickets</a></li>
                     		<li><a href="close_tickets.php"><i class="fa fa-envelope"></i>Closed Tickets</a></li>
-							<li><a href="assigned_tickets.php"><span class="label label-info pull-right"><?php echo $no_ass_tickets[0] ?></span><i class="fa fa-suitcase"></i>Assigned Tickets</a></li>
+							<li><a href="assigned_tickets.php">
+                            <?php if($no_ass_tickets[0]>0){ ?>
+                            <span class="label label-info pull-right"><?php echo $no_ass_tickets[0] ?></span>
+                            <?php } ?>
+                            <i class="fa fa-suitcase"></i>Assigned Tickets</a></li>
 							<li><a href=""><span class="label label-default pull-right">3</span><i class="fa fa-file-o"></i>Pending Tickets</a></li>					
                     	</ul>
                     </li>

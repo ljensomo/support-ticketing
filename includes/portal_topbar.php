@@ -13,7 +13,7 @@ $loggeduser = $_SESSION['admin'];
 						a.fname,
 						a.mname,
 						a.lname,
-						a.company_name,
+						a.company_id,
 						a.cnum,
 						a.email,
 						a.is_active,
@@ -36,8 +36,9 @@ $loggeduser = $_SESSION['admin'];
 
 if (!isset($_SESSION['admin'])) {
     redirect_to('login.html');
-}else if($row[11]!=4){
+}else if($row[11]!=4 && $row[11]!=5){
 	redirect_to('login.html');
+	
 }
 
 

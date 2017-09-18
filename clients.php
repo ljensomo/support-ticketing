@@ -56,7 +56,7 @@
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
-                    <h2><i class="fa fa-building-o" style="padding-right:10px"></i>Companies</h2>
+                    <h2><i class="fa fa-building-o" style="padding-right:10px"></i>Company Projects</h2>
                     <ol class="breadcrumb">
                         <li class="active">Client Records</li>
                       </ol>
@@ -97,8 +97,8 @@
                                                         <td class="center">
                                                 <center>
                                                     <a class="btn btn-info btn-sm" href="#"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-primary btn-sm" href="client_projects.php"><i class="fa fa-folder"></i></a>
                                                     <a class="btn btn-warning btn-sm" href="#"><i class="fa fa-pencil"></i></a>
-                                                    
                                                 </center>        
                                                 </td>
                                                 </tr>

@@ -156,7 +156,7 @@
                                                         <?php } ?>
                                                         
                                                         </center></td>
-                                                        <td><center><a class="btn btn-sm btn-info">View Details</a></center></td>
+                                                        <td><center><a class="btn btn-sm btn-info" href="client_ticket_details.php">View Details</a></center></td>
                                                 </tr>
                                             <?php
                                             }
@@ -246,7 +246,7 @@
           <script>
         
         
-        $('.table tbody tr').on('click','.btn',function(){
+        /*$('.table tbody tr').on('click','.btn',function(){
             var currow = $(this).closest('tr');
             var col1 = currow.find('td:eq(0)').text();
             var col2 = currow.find('td:eq(1)').text();

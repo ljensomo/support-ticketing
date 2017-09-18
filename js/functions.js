@@ -40,7 +40,7 @@
 				swal({ title : "Ooops!", text : "The username and password you enter did not match our records! Please try again.", type : "error"});
                   
 			}else if(request.responseText.trim() === "not active"){
-				swal({ title : "Ooops!", text : "Your accoount is not yet activated. Please check your email for the verification of your account.", type : "error"});
+				swal({ title : "Ooops!", text : "Your accoount is not yet activated. Please contact your administrator.", type : "error"});
 			}   
 			} // function end               
                                 
@@ -439,7 +439,192 @@ function add_status(){
         }
 
 
+        //NEW CLIENT USER
 
+        function n_client_user(){
+       var fname = $('#n_fname').val();
+       var mname = $('#n_mname').val();
+       var lname = $('#n_lname').val();
+       var email = $('#n_email').val();
+       var contact = $('#n_cnum').val();
+       var username = $('#n_uname').val();
+       var pass = $('#n_pass').val();
+       var confirm_pass = $('#n_confrm_pass').val();
+       var cmpny_id = $('#n_cid').val();
+       var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+       
+
+         if(fname == "" || lname == "" || email == "" || contact == "" || username == "" || pass == "" || confirm_pass == ""){
+          swal("Ooops!", "Please complete all necessary fields!", "warning");
+          //alert('asd');
+         }else{
+          if(!emailReg.test(email)){
+            swal("Ooops!","Please enter valid email!","warning");
+          }else if(pass.length<=6){
+            swal("Ooops!", "The password must be more than 6 characters!", "warning");  
+          }else if(confirm_pass!=pass){
+            swal("Ooops!", "Password did not match!", "warning");
+          }else{
+            $.ajax({
+              type:"POST",
+              url:"includes/add_client_user_process.php",
+              data:{
+                fname:fname,
+                mname:mname,
+                lname:lname,
+                contact:contact,
+                email:email,
+                cid:cmpny_id,
+                uname:username,
+                pass:pass
+              },
+              complete:function(a){
+                if(a.responseText.trim()=="success"){
+                  swal({title:"Saved!",text:"Successfully Added!", type:"success"},
+                    function(){
+                      //location.reload();
+                      $('#n_fname').val('');
+                      $('#n_mname').val('');
+                      $('#n_lname').val('');
+                      $('#n_email').val('');
+                      $('#n_cnum').val('');
+                      $('#n_uname').val('');
+                      $('#n_pass').val('');
+                      $('#n_confrm_pass').val('');
+                      $('#add-client-user').modal('hide');
+                      $('#datatable').load('client_users.php #datatable');
+                    }
+                  );
+                }else if(a.responseText.trim()=="exist"){
+                  swal({title:"Ooops!", text:"The username you entered already exist!", type:"warning"},
+                    function(){
+                      $('#n_uname').val('');
+                      $('#n_uname').focus();
+                    }
+                  );
+                }
+              }
+            })
+          }
+         }
+        }// end n_client_user
+
+
+
+        //DEACTIVATE CLIENT USER
+
+        function de_activate(id){
+          swal({
+        title: "Are you sure?",
+        text: "The user will not be able to login!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, De-Activate it!",
+        closeOnConfirm: false
+      },
+        function(){
+          $.ajax({
+            type:"POST",
+            url:"includes/de_activate_client_process.php",
+            data:"id="+id,
+            success:function(){
+              swal({ title:"De-Acitvated!", text:"The user was deactivated.", type:"success"},
+                function(){
+                  $('#datatable').load('client_users.php #datatable');
+                }
+              );
+            }
+          });
+        }
+      );
+    }
+
+
+    //DEACTIVATE CLIENT USER
+
+    function activate(id){
+          swal({
+        title: "Are you sure?",
+        text: "Login access will be granted!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#60C060",
+        confirmButtonText: "Yes, Activate it!",
+        closeOnConfirm: false
+      },
+        function(){
+          $.ajax({
+            type:"POST",
+            url:"includes/activate_client_process.php",
+            data:"id="+id,
+            success:function(){
+              swal({ title:"Acitvated!", text:"The user was activated.", type:"success"},
+                function(){
+                  $('#datatable').load('client_users.php #datatable');
+                }
+              );
+            }
+          });
+        }
+      );
+    }
+
+// FETCH CLIENT USER
+
+        function edit_client_user(id,fname,mname,lname,contact,email){
+			$('#edit_users').modal('show');
+			$('#edit_users_id').val(id);
+			$('#edit_fname').val(fname);
+			$('#edit_mname').val(mname);
+			$('#edit_lname').val(lname);
+			$('#edit_cntct').val(contact);
+			$('#edit_email').val(email);
+        }
+
+// EDIT CLIENT USER
+
+	function save_edit_clnt_user(){
+		var id = $('#edit_users_id').val();
+		var fname = $('#edit_fname').val();
+		var mname = $('#edit_mname').val();
+		var lname = $('#edit_lname').val();
+		var contact = $('#edit_cntct').val()
+		var email = $('#edit_email').val();
+		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+		
+		if(fname=="" || lname=="" || email=="" || contact == ""){
+			swal({title:"Ooops!", text:"Please complete all necessary fields!", type:"warning"});
+		}else if(!emailReg.test(email)){
+			swal({title:"Ooops!", text:"Please enter valid email!",type:"warning"},
+				function(){
+						$('#edit_email').focus();
+					}
+			);
+		}else{
+			$.ajax({
+				type:"POST",
+				url:"includes/edit_user_process.php",
+				data:{
+					id:id,
+					fname:fname,
+					mname:mname,
+					lname:lname,
+					contact:contact,
+					email:email
+				},
+				complete:function(){
+					$('#datatable').load('client_users.php #datatable');
+					swal({title:"Saved!", text:"Changes has been successfully saved!", type:"success"},
+						function(){
+							$('#edit_users').modal('hide');
+						}
+					);
+				}
+			})
+		}
+	}
 
 
 
