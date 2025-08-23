@@ -15,7 +15,7 @@ $mail->Port = 465;                          // TCP port to connect to
 
 $mail->setFrom('ticketing.system189@gmail.com', 'Sender');
 // $mail->addReplyTo('info@example.com', 'CodexWorld');
-$mail->addAddress($_POST['email']);   // Add a recipient
+$mail->addAddress('andanarandrian@gmail.com');   // Add a recipient
 // $mail->addCC('cc@example.com');
 // $mail->addBCC('bcc@example.com');
 
@@ -26,7 +26,7 @@ $mail->isHTML(true);  // Set email format to HTML
 
 $mail->Subject = 'Sample Email';
 // $mail->Body    = $bodyContent;
-$mail->Body    = $_POST['message'];
+$mail->Body    = 'This is a test';
 
 if(!$mail->send()) {
     // echo 'Message could not be sent.';

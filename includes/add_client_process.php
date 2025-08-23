@@ -7,6 +7,7 @@ include './functions.php';
 $company_name = htmlspecialchars($_POST['company_name']);
 $company_tin_code = htmlspecialchars($_POST['company_tin_code']);
 $email = htmlspecialchars($_POST['email']);
+$priority = $_POST['priority'];
 
 
 
@@ -37,9 +38,9 @@ if ($error) {
     //openWindow($goto = "../add_user.php");
     echo "exist";
 } else {
-    $sqlAdd = "INSERT INTO companies(company_name,company_tin_code,email_address)VALUES(?,?,?)";
+    $sqlAdd = "INSERT INTO companies(company_name,company_tin_code,email_address,priority_level)VALUES(?,?,?,?)";
     $qryAdd = $db->prepare($sqlAdd);
-    $qryAdd->execute(array($company_name,$company_tin_code,$email));
+    $qryAdd->execute(array($company_name,$company_tin_code,$email,$priority));
 	
 	echo "success";
 	

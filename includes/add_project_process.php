@@ -3,32 +3,20 @@
 require_once 'connection.php';
 include 'functions.php';
 
-$id = $_POST['id'];
-$project_description = htmlspecialchars($_POST['project']);
+$project = htmlspecialchars($_POST['prjct']);
 
-$required = array($project_description,$id);
-$error = false;
 
-foreach ($required as $fields) {
-    if (empty($fields)) {
-        $error = true;
-    }
-}
-
-$sql = "SELECT COUNT(*) FROM company_proj WHERE project_desc =?";
+$sql = "SELECT COUNT(*) FROM projects WHERE proj_desc = ?";
 $qry = $db->prepare($sql);
-$qry->execute(array($project_description));
+$qry->execute(array($project));
 
-if ($error) {
-
-    echo "null";
-} else if ($row = ($qry->fetchColumn() > 0)) {
-    echo "Invalid";
+if ($row = ($qry->fetchColumn() > 0)) {
+    echo "invalid";
    
 } else {
-    $sqlAdd = "INSERT INTO company_proj(company_id,project_desc) VALUES (?,?)";
+    $sqlAdd = "INSERT INTO projects(proj_desc) VALUES (?)";
     $qryAdd = $db->prepare($sqlAdd);
-    $qryAdd->execute(array($id,$project_description));
+    $qryAdd->execute(array($project));
 
     echo "success";  
      //msgAlert($alert = "Successfully Saved");

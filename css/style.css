@@ -3869,7 +3869,7 @@ h1:first-child {
     background: #F6F8FB;
 }
 .chat-wi .chat-in input[type=text] {
-    width: 100%;
+    width: 101%;
     border: 0;
     height: 47px;
     padding: 10px;
@@ -4107,7 +4107,8 @@ h1:first-child {
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-    background-color: #2083D6;
+    background-color: #5f5d5d;
+    border-color: #444343;
 }
 /*Nav Pills*/
 .nav-pills > li.active > a,
@@ -5392,8 +5393,8 @@ ul.timeline li > .date {
     }
     .not-nav {
         text-align: center;
-        background: #218ae1;
-        border-top: 1px solid #2082d5;
+        background: #9a0201;
+        border-top: 1px solid #ffffff;
         margin: 0;
     }
     .navbar-default .navbar-nav > li.button {

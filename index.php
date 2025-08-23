@@ -12,10 +12,13 @@
         <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
-        -->
+        --> 
         <link rel="stylesheet" type="text/css" href="css/fonts1.css">
         <link rel="stylesheet" type="text/css" href="css/fonts2.css">
         <link rel="stylesheet" type="text/css" href="css/fonts3.css">
+
+        <!-- Morris Charts CSS -->
+        <link href="vendor/morrisjs/morris.css" rel="stylesheet">
 
         <!-- Bootstrap core CSS -->
         <link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
@@ -49,7 +52,9 @@
         <?php include 'includes/topbar.php'; ?>
 
         <div id="cl-wrapper" class="fixed-menu">
-            <?php include 'includes/sidebar.php'; ?>
+            <?php 
+                    include 'includes/sidebar.php';
+            ?>
 
             <div class="container-fluid" id="pcont">
                 <div class="page-head">
@@ -58,174 +63,171 @@
                 </div>  
                 <div class="cl-mcont">
                 
-                <div class="col-md-3">
-                	<div class="panel panel-default">
-                	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #ed5b56;">
-                	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left:120px;">OPEN TICKETS</h5>
-                	       <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
-					    </div>								
-                	    </div>
-
-                		<div class="panel-footer" style="background-color: #ffffff;">
-                		  <a href="tickets.php"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
-                		  </div>
-                	</div> 
-                </div>
-                
-               <div class="col-md-3">
-                	<div class="panel panel-default">
-                	    <div class="panel-heading" style="height:100px;  color: #ffffff; background-color:#428bca;">
-                	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 120px;">CLOSED TICKETS</h5>
-                	       <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
-					    </div>								
-                	    </div>
-
-                		<div class="panel-footer" style="background-color: #ffffff;">
-                		  <a href="close_tickets.php"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
-                		  </div>
-                	</div> 
-                </div>      
-                          
-                <div class="col-md-3">
-                	<div class="panel panel-default">
-                	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #60c060;">
-                	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-60px; font-size:15px; padding-left: 90px;">TICKETS PER COMPANY</h5>
-                	       <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
-					    </div>								
-                	    </div>
-
-                		<div class="panel-footer" style="background-color: #ffffff;">
-                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
-                		  </div>
-                	</div> 
-                </div>
-                
-                <div class="col-md-3">
-                	<div class="panel panel-default">
-                	    <div class="panel-heading" style="height:100px; color: #ffffff; background-color: #fcad37;">
-                	    <div class="fixed">
-                	       <h5 style="margin-top:5px; margin-bottom:-50px; font-size:17px; padding-left: 70px;">DAILY CLOSED TICKETS</h5>
-                	       <h3 class="pull-left"><i class="fa fa-ticket" style="font-size:60px; padding-right:90px;"></i><span style="font-size:40px; margin-bottom:30px;"> 44 </span></h3>
-					    </div>								
-                	    </div>
-
-                	<div class="panel-footer" style="background-color: #ffffff;">
-                		  <a href="#"> View Details<i class="pull-right"><i class="fa fa-angle-double-right" style="font-size:20px; padding-left:60px"></i></i></a>              
-                		  </div>
-                	</div> 
-                </div>
-                
-                <div class="col-md-12">
-					<div class="block">
-						<div class="header no-border">
-							<h2>Sales</h2>
-						</div>
-						<div class="content blue-chart"  data-step="3" data-intro="<strong>Unique Styled Plugins</strong> <br/> We put love in every detail to give a great user experience!.">
-							<div id="site_statistics" style="height:180px;"></div>
-						</div>
-						<div class="content">
-							<div class="stat-data">
-								<div class="stat-blue">
-									<h2>1,254</h2>
-									<span>Total Sales</span>
-								</div>
-							</div>
-							<div class="stat-data">
-								<div class="stat-number">
-									<div><h2>83</h2></div>
-									<div>Total hits<br /><span>(Daily)</span></div>
-								</div>
-								<div class="stat-number">
-									<div><h2>57</h2></div>
-									<div>Views<br /><span>(Daily)</span></div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-					</div>
-				</div>	
-				
-			
-                
-                
-                        
-           <!--       <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-flat">
-                                <div class="content">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="datatable" >
-                                            <thead>
-                                            	<tr>
-                                            		<th colspan="8">Recent Tickets</th>
-                                            	</tr>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Subject</th>
-                                                    <th>Description</th>
-                                                    <th>Project</th>
-                                                    <th>Status</th>
-                                                    <th>Assignee</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                	<td>1</td>
-                                                	<td>System Failure!</td>
-                                                	<td>I cannot use the system.</td>
-                                                	<td>Ticketing System</td>
-                                                	<td><center><label class="label label-warning">In Progress</label></center></td>
-                                                	<td>None</td>
-                                                	<td><center>
-                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                	</center></td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                	<td>2</td>
-                                                	<td>System Failure!</td>
-                                                	<td>I cannot use the system.</td>
-                                                	<td>Ticketing System</td>
-                                                	<td><center><label class="label label-success">Resolved</label></center></td>
-                                                	<td>None</td>
-                                                	<td><center>
-                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                	</center></td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                	<td>3</td>
-                                                	<td>System Failure!</td>
-                                                	<td>I cannot use the system.</td>
-                                                	<td>Ticketing System</td>
-                                                	<td><center><label class="label label-danger">Unresolved</label></center></td>
-                                                	<td>None</td>
-                                                	<td><center>
-                                                		<a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                               			<a href="#" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>
-                                                	</center></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>                            
-                                    </div>
+                    <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow" style="border-color: #d9534f;">
+                        <div class="panel-heading" style="border-color:#d9534f; color: white;background-color: #d9534f;">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-ticket fa-5x"></i>
                                 </div>
-                            </div>              
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge" style="font-size: 35px;"><?php echo $alltickets[0]; ?></div><br>
+                                    <div style="font-size: 20px;">Total No. of<br> Tickets</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="all-tickets.php">
+                            <div class="panel-footer" style="color: #d9534f;background: white;">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!--#ed5b56-->
+             <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow" style="border-color: #337ab7;">
+                        <div class="panel-heading" style="border-color:#337ab7; color: white;background-color: #337ab7;">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-ticket fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge" style="font-size: 35px;"><?php echo $allopentickets[0]; ?></div><br>
+                                    <div style="font-size: 20px;">Open<br> Tickets</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="all-open-tickets.php">
+                            <div class="panel-footer" style="color: #337ab7;background: white;">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                    <br>
+                </div>
+                          
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow" style="border-color: #5cb85c;">
+                        <div class="panel-heading" style="border-color: #5cb85c; color: white;background-color: #5cb85c;">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-ticket fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge" style="font-size: 35px;"><?php echo $allclosedtickets[0]; ?></div><br>
+                                     <div style="font-size: 20px;">Total Closed<br>Tickets</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="total-closed-tickets.php">
+                            <div class="panel-footer" style="color: #5cb85c; background: white;">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow" style="border-color: #f0ad4e;">
+                        <div class="panel-heading" style="border-color: #f0ad4e; color: white;background-color: #f0ad4e;">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-building-o fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge" style="font-size: 35px;">
+                                        <?php echo $allinprogresstickets[0]; ?>
+                                    </div><br>
+                                     <div style="font-size: 20px;">In Progress<br>Tickets</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="all-inprogress-tickets.php">
+                            <div class="panel-footer" style="color: #f0ad4e;background: white;">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </br>
+                </div>
+        
+    
+                <div class="row dash-cols">
+                    <div class="col-sm-6 col-md-6">
+                        <div class="panel panel-default" style="border-color:#272930;">
+                            <div class="panel-heading" style="border-color:#272930; color: white;background-color:#272930;">
+                                Companies with top number of issues.
+                            </div>
+                            <div class="panel-body">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th style="width:50%;"><strong>Company Name</strong></th>
+                                            <th><strong>No. of isssues</strong></th>
+                                            <th><strong>Action</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+
+                                            $query = "SELECT 
+                                                        COUNT(t.ticket_id),
+                                                        c.company_name,
+                                                        c.id
+                                                    FROM tickets AS t
+                                                    JOIN users AS u
+                                                    ON t.reporter_id=u.user_id
+                                                    JOIN companies AS c
+                                                    ON u.company_id=c.id
+                                                    GROUP BY c.id
+                                                    LIMIT 5";
+                                            $stmt = $db->prepare($query);
+                                            $stmt->execute();
+                                            while($top_companies = $stmt->fetch(PDO::FETCH_NUM)){
+                                        ?>
+                                        <tr>
+                                            <td style="width:30%;"><?php echo $top_companies[1]; ?></td>
+                                            <td><?php echo $top_companies[0]; ?></td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-primary btn-flat btn-rad">View</button>
+                                            </td>
+                                        </tr> 
+                                        <?php } ?>                                    
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    -->
+                
+                
+                <div class="col-sm-6 col-md-6">
+                    <div class="block-flat">
+                        <div id="chart-container">
+                            <canvas id="bargraph"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 </div>
             </div> 
 
         </div>
-         
       
         <script src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/Chart.js"></script>
+
         <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
         <script type="text/javascript" src="js/jquery.sparkline/jquery.sparkline.min.js"></script>
         <script type="text/javascript" src="js/jquery.easypiechart/jquery.easy-pie-chart.js"></script>
@@ -241,25 +243,63 @@
         <script type="text/javascript" src="js/jquery.datatables/jquery.datatables.min.js"></script>
         <script type="text/javascript" src="js/jquery.datatables/bootstrap-adapter/js/datatables.js"></script>
         <script src="js/skycons/skycons.js" type="text/javascript"></script>
-  <script src="js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
-  <script src="js/intro.js/intro.js" type="text/javascript"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
-
-
+        <script src="js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
+        <script src="js/intro.js/intro.js" type="text/javascript"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
         <script type="text/javascript" src="js/table.js"></script>
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script type="text/javascript">
-		      $(document).ready(function(){
-		        //initialize the javascript
-		        //App.init();
-		 	  	App.dashBoard();        
-		        
-		          introJs().setOption('showBullets', false).start();
-		
-		      });
-    	</script>
+                $.ajax({
+
+                    url:"data.php",
+                    method:"get"
+
+                }).success(function(data){
+
+                    alert(data);
+
+                    console.log(data);
+                    var player =[];
+                    var score =[];
+
+                    for(var i in data){
+                        player.push(data[i].date_created);
+                        score.push(data[i].numbers);
+                    }
+
+
+
+                    var ctx = document.getElementById('bargraph').getContext('2d');
+                    var bargraph = new Chart(ctx,{
+                        type:'line',
+                        data:{
+                            labels: player,
+                        datasets: [
+                                {
+                                     label: "Severe Tickets",
+                                     bacgroundColor:"rgba(200,200,200,0.7)",
+                                     borderColor:"rgba(200,200,200,0.7)",
+                                     data:score
+                                }
+                            ]
+                        }
+                    })
+
+                });
+
+              $(document).ready(function(){
+                //initialize the javascript
+                //App.init();
+                App.dashBoard();        
+                
+                  introJs().setOption('showBullets', false).start();
+        
+              });
+        </script>
+        
+
         <script src="js/behaviour/voice-commands.js"></script>
         <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/jquery.flot/jquery.flot.js"></script>

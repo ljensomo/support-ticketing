@@ -61,6 +61,9 @@ if ($error) {
     //openWindow($goto = "../index.php");
 	}
 
+    $query = "UPDATE users SET line_status = ? WHERE uname = ?";
+    $stmt = $db->prepare($query);
+    $stmt->execute(array(1,$user));
     /*if ($row['userlevel_id'] == '1') {
         $_SESSION['admin'] = $row['username'];
         msgAlert($alert = "Login Successful");

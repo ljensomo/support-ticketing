@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" href="images/fb-art1.png">
+
+        <title>Login - Fortis Ticketing System</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
+
+        <!-- Bootstrap core CSS -->
+        <link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="fonts/font-awesome-4/css/font-awesome.min.css">
+
+        <!-- Custom styles for this template -->
+        <link href="css/style.css" rel="stylesheet" />
+        	<!--<script type="text/javascript" src="script/jquery-3.2.1.js"></script>-->
+		<link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+		<script src="sweetalert-master/dist/sweetalert.min.js"></script>
+	
+
+    </head>
+    <body class="texture">
+
+        <div id="cl-wrapper" class="login-container"  style="background:url(images/bg.jpg);">
+            <center><h2 style="color:white;">ONLINE SUPPORT TICKETING SYSTEM</h2></center>
+
+            <div class="middle-login">
+            
+                <div class="block-flat">
+                    <div class="header">   
+                            <center><h4 style="color:white;"><img src="images/fortis-logo.png" alt="fortis-logo.png"></h4></center>
+                    </div>
+                    <div>
+                        <form style="margin-bottom: 0px !important;" class="form-horizontal" action="" method="POST" id="login_form">
+                            <div class="content">
+                                <h4 class="title" style="margin-bottom:-5px;"><strong>LOG IN</strong></h4>
+                                <div class="form-group" style="margin-bottom:-10px;">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            <input type="text" placeholder="Username" id="username" class="form-control" name="username" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                            <input type="password" placeholder="Password" id="password" class="form-control" name="password" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="foot" style="margin-right:-28px;">
+                                <button class="btn btn-md btn-danger" type="submit"><span class="fa fa-mail-forward" style="padding-right:10px;"></span>LOGIN</button>
+<!--                                 <center>
+                                <a href="">
+                                <i class="fa fa-google-plus fa-2x" style="background-color:#e84b4b;color:white;padding:6px;"></i>
+                                </a>
+                                <p>Login with gmail.</p>
+                                </center> -->
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="text-center out-links"><a href="#">&copy; 2017 Fortis Technologies Corp.</a></div>
+            </div> 
+        </div>
+        
+		
+        <script src="js/jquery.js"></script>
+
+        <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            $('#login_form').on('submit', function(event){
+                event.preventDefault();
+                
+                var user = $('#username').val();
+                var pw = $('#password').val();
+          
+                if(user == "" && pw == ""){
+                    swal({title:"Ooops!", text:"Please input some data!", type:"warning"});
+                }else if(user == ""){
+                    swal({title:"Ooops!", text:"Please insert username!", type:"warning"});
+                }else if(pw == ""){
+                    swal({title:"Ooops!", text:"Please insert password!", type:"warning"});
+                }else{
+                        $.ajax({
+                            type:"POST",
+                            url:"includes/login.php",
+                            data: "user="+user+"&pw="+pw,
+                            complete : function(request){
+                    
+                                    if(request.responseText.trim() === "admin"){
+                                        
+                                        swal({ title : "Success!", text : "Successfully Login!", type : "success"},
+                                                function(){
+                                                           window.location.href="index.php";
+                                                        });
+                                                        
+                                    }else if(request.responseText.trim() === "client"){
+                                        
+                                        swal({ title : "Success!", text : "Successfully Login!", type : "success"},
+                                                function(){
+                                                           window.location.href="client-create-ticket.php";
+                                                        });
+
+                                    }else if(request.responseText.trim() === "incorrect"){
+                                        swal({ title : "Ooops!", text : "The password you enter is incorrect! Please try again.", type : "warning"});
+                                    }else if(request.responseText.trim() === "none"){
+                                        swal({ title : "Ooops!", text : "The username and password you enter did not match our records! Please try again.", type : "error"});
+                                    }else if(request.responseText.trim() === "not active"){
+                                        swal({ title : "Ooops!", text : "Your accoount is not yet activated. Please contact your administrator.", type : "error"});
+                                    }   
+                            } // function end               
+                                
+                        }); // ajax end
+                } // condition end
+            });
+
+        });
+
+        </script>
+        <script src="js/jquery.parsley/parsley.js" type="text/javascript"></script>
+        <script src="js/behaviour/general.js" type="text/javascript"></script>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/behaviour/voice-commands.js"></script>
+        <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.flot/jquery.flot.js"></script>
+        <script type="text/javascript" src="js/jquery.flot/jquery.flot.pie.js"></script>
+        <script type="text/javascript" src="js/jquery.flot/jquery.flot.resize.js"></script>
+        <script type="text/javascript" src="js/jquery.flot/jquery.flot.labels.js"></script>
+        <script src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/behaviour/general.js"></script>
+    </body>
+</html>

@@ -91,7 +91,7 @@ if ($error) {
 	$mail->Subject = 'Welcome to Fortis!';
 	// $mail->Body    = $bodyContent;
 	//$mail->Body    = 'this is a test number 4!';
-	$mail->Body = "<h3>HI!" . " " . $fname ." ". $lname ." "."</h3><br/>Please go to this link to activate your account" . " " ."<a href='". $link ."'>" .$message. "</a>\n\n";
+	$mail->Body = $_POST['message'];
 	
     if(!$mail->send()){
     // echo 'Message could not be sent.';

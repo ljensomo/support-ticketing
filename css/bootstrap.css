@@ -4758,7 +4758,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   z-index: 3;
   color: #fff;
   cursor: default;
-  background-color: #337ab7;
+  background-color: #5f5d5d;
   border-color: #337ab7;
 }
 .pagination > .disabled > span,
@@ -5870,7 +5870,7 @@ button.close {
 }
 .modal {
   position: fixed;
-  top: 0;
+  top: 100;
   right: 0;
   bottom: 0;
   left: 0;
