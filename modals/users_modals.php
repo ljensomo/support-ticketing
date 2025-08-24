@@ -10,35 +10,35 @@
 				User | Fortis Technologies Corp</h3>
 			</div>
 			<div class="modal-body">
-				<form action="#" class="form-group" method="POST">
+				<form action="#" class="form-group" id="new_f_user_form" method="POST">
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-user"></i></span>
-									<input id="n_f_fname" class="form-control" name="n_f_fname" placeholder="Firstname" type="text">
+									<input id="n_f_fname" class="form-control" name="fname" placeholder="Firstname" type="text" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-user"></i></span>
-									<input id="n_f_mname" class="form-control" name="n_f_mname" placeholder="MI" type="text">
+									<input id="n_f_mname" class="form-control" name="mname" placeholder="MI" type="text">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-user"></i></span>
-									<input id="n_f_lname" class="form-control" name="n_f_lname" placeholder="Lastname" type="text">
+									<input id="n_f_lname" class="form-control" name="lname" placeholder="Lastname" type="text" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-phone"></i></span>
-									<input id="n_f_cnum" class="form-control" name="n_f_cnum" placeholder="Contact Number" type="number">
+									<input id="n_f_cnum" class="form-control" name="contact_no" placeholder="Contact Number" type="text" required>
 								</div>
 							</div>
 						</div>
@@ -47,35 +47,35 @@
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-google-plus"></i></span>
-									<input id="n_f_email" class="form-control" name="n_f_email" placeholder="E-mail" type="email">
+									<input id="n_f_email" class="form-control" name="email" placeholder="E-mail" type="email">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-user"></i></span>
-									<input id="n_f_uname" class="form-control" name="n_f_uname" placeholder="Username" type="text">
+									<input id="n_f_uname" class="form-control" name="username" placeholder="Username" type="text" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-lock"></i></span>
-									<input id="n_f_pass" class="form-control" name="n_f_pass" placeholder="Password" type="password">
+									<input id="n_f_pass" class="form-control" name="password" placeholder="Password" type="password" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-lock"></i></span>
-									<input id="n_f_confrm_pass" class="form-control" name="n_f_confrm_pass" placeholder="Confirm Password" type="password">
+									<input id="n_f_confrm_pass" class="form-control" name="confirm_password" placeholder="Confirm Password" type="password" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-user"></i></span>
-									<select class="form-control" id="n_f_role">
+									<select class="form-control" id="n_f_role" name="role" required>
 										<option value="">-- Role</option>
 										<option value="1">Administrator</option>
 										<option value="2">User</option>
@@ -85,9 +85,12 @@
 							</div>
 							<div class="spacer pull-right">
 								<button class="btn btn-md btn-default" type="reset">
-								<i class="fa fa-ban"></i>Cancel</button>
-								<button class="btn btn-md btn-primary" type="button" onclick="new_fuser()">
-								<i class="fa fa-save"></i>Save</button></div>
+									<i class="fa fa-ban"></i>Cancel
+								</button>
+								<button class="btn btn-md btn-primary" type="submit">
+									<i class="fa fa-save"></i>Save
+								</button>
+							</div>
 						</div>
 					</div>
 				</form>
@@ -156,42 +159,43 @@
 				Information</h3>
 			</div>
 			<div class="modal-body">
-				<form action="includes/edit_user_process.php" class="form-horizontal" method="POST" novalidate="" parsley-validate="" style="border-radius: 0px; padding-left: 50px">
-					<input id="edit_fuser_id" name="edit_fuser_id" type="hidden">
+				<form action="includes/edit_user_process.php" id="edit_f_user_form" class="form-horizontal" method="POST" novalidate="" parsley-validate="" style="border-radius: 0px; padding-left: 50px">
+					<input id="edit_fuser_id" name="id" type="hidden">
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Firstname</label>
 						<div class="col-sm-6">
-							<input id="edit_f_fname" class="form-control" name="edit_fname" type="text">
+							<input id="edit_f_fname" class="form-control" name="fname" type="text">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">M.I.</label>
 						<div class="col-sm-6">
-							<input id="edit_f_mname" class="form-control" name="edit_mname" type="text">
+							<input id="edit_f_mname" class="form-control" name="mname" type="text">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Lastname</label>
 						<div class="col-sm-6">
-							<input id="edit_f_lname" class="form-control" name="edit_lname" type="text">
+							<input id="edit_f_lname" class="form-control" name="lname" type="text">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">contact</label>
 						<div class="col-sm-6">
-							<input id="edit_f_cntct" class="form-control" name="edit_cntct" type="text">
+							<input id="edit_f_cntct" class="form-control" name="contact" type="text">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Email</label>
 						<div class="col-sm-6">
-							<input id="edit_f_email" class="form-control" name="edit_email" type="text">
+							<input id="edit_f_email" class="form-control" name="email" type="text">
 						</div>
 					</div>
 					<div class="spacer text-center">
-						<button class="btn btn-primary btn-md btn-flat btn-rad" onclick="updte_fuser()" style="margin-right: 120px;" type="button">
+						<button class="btn btn-primary btn-md btn-flat btn-rad" style="margin-right: 120px;" type="submit">
 						<i class="fa fa-save"></i> Save Changes
-						</button></div>
+						</button>
+					</div>
 				</form>
 			</div>
 		</div>

@@ -536,66 +536,7 @@ function new_issue_typ(){
 		});
 	}
 }
-// NEW FORTIS USER
-function new_fuser(){
-    var fname = $('#n_f_fname').val();
-    var mname = $('#n_f_mname').val();    
-    var lname = $('#n_f_lname').val();    
-    var cnum = $('#n_f_cnum').val();
-    var email = $('#n_f_email').val();
-    var uname = $('#n_f_uname').val();
-    var pass = $('#n_f_pass').val();    
-    var c_pass = $('#n_f_confrm_pass').val();
-    var role = $('#n_f_role').val();  
-    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 
-    
-     if(fname == "" || lname == "" || cnum == "" || email == "" || role == "" || uname == "" || pass == "" || c_pass == ""){
-                  swal({title:"Ooops", text:"Please complete all necessary informations", type:"warning"});
-         }else{ 
-                  if(!emailReg.test(email)){
-                        swal({ title : "Ooops!", text : "Please enter valid email!", type : "warning"},
-                              function(){
-                                $('#n_f_email').focus();
-                              }
-                        );
-                  }else if(pass.length<=6){
-                  swal("Ooops!", "The password must be more than 6 characters!", "warning");             
-                  }else if(c_pass == pass){
-                        //swal({title:"Success", text:"Account Succesfully Added", type:"success"});
-                        $.ajax({
-                          type:"post",
-                          url:"includes/new_fuser_process.php",
-                          data:{
-                            fname:fname,
-                            mname:mname,
-                            lname:lname,
-                            cnum:cnum,
-                            uname:uname,
-                            email:email,
-                            pass:pass,
-                            role:role
-                          },
-                          complete:function(a){
-                            //swal({title:"Success", text:a.responseText.trim(), type:"success"});
-                if(a.responseText.trim()=="success"){
-                  swal({title:"Success", text:"Successfully saved!", type:"success"},
-                    function(){
-                      location.reload();
-                    }
-                  );
-                }else if(a.responseText.trim()=="exist"){
-                  swal("Ooops!","The username you entered already exist!","warning");
-                }
-                          }
-                        });
-                  }else{
-                    swal({title:"Ooops", text:"Password did not matched", type:"warning"});
-                    $('#n_f_confrm_pass').val('');
-                    $('#n_f_confrm_pass').focus();
-                  }
-         }//condition
-  }
   // VIEW FORTIS USER
   function view_fuser(name,cnum,email,uname,role){
     $("#f_full_name").val(name);
