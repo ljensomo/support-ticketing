@@ -10,30 +10,30 @@
 			</div>
 			<div class="modal-body">
 				<div class="text-center">
-					<form action="#" class="form-horizontal" method="POST" novalidate="" parsley-validate="" style="border-radius: 0px;">
+					<form action="#" class="form-horizontal" method="POST" id="add_company_form" style="border-radius: 0px;">
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Company name</label>
+							<label class="col-sm-3 control-label">Company Name</label>
 							<div class="col-sm-7">
-								<input id="company_name" class="form-control" name="company_name" placeholder="Company Name" required="" type="text">
+								<input id="company_name" class="form-control" name="name" placeholder="Company Name" required="" type="text" required>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Company TIN code</label>
+							<label class="col-sm-3 control-label">Contact #</label>
 							<div class="col-sm-7">
-								<input id="company_tin_code" class="form-control" name="company_tin_code" placeholder="Number" type="text">
+								<input id="company_tin_code" class="form-control" name="contact" placeholder="Contact #" type="text">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Email address</label>
+							<label class="col-sm-3 control-label">Email</label>
 							<div class="col-sm-7">
-								<input id="company_email" class="form-control" name="email" placeholder="Email" required="" type="text">
+								<input id="company_email" class="form-control" name="email" placeholder="Email" required="" type="email">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Priority Level</label>
 							<div class="col-sm-7">
-								<select class="form-control" id="priority">
-									<option value=""></option>
+								<select class="form-control" id="priority" name="priority" required>
+									<option value="">-- Select Priority Level --</option>
 									<option value=1>High</option>
 									<option value=2>Medium</option>
 									<option value=3>Low</option>
@@ -42,11 +42,12 @@
 						</div>						
 						<div class="spacer text-center" style="padding-left: 125px;">
 							<button class="btn btn-default btn-lg btn-flat btn-rad" style="width: 100px;" type="reset">
-							<i class="fa fa-ban" style="padding-right: 10px;">
-							</i>Cancel</button>
-							<button class="btn btn-primary btn-lg btn-flat btn-rad" type="button" style="width: 100px;" id="save_company" onclick="add_company()">
-							<i class="fa fa-save" style="padding-right: 10px;">
-							</i>Save</button></div>
+								<i class="fa fa-ban" style="padding-right: 10px;"></i>Cancel
+							</button>
+							<button class="btn btn-primary btn-lg btn-flat btn-rad" type="submit" style="width: 100px;" id="save_company">
+								<i class="fa fa-save" style="padding-right: 10px;"></i>Save
+							</button>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -61,34 +62,46 @@
 				<button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;
 				</button>
 				<h3 align="center">
-				<i class="fa fa-plus" style="padding-right: 10px"></i>Edit Company</h3>
+				<i class="fa fa-edit" style="padding-right: 10px"></i>Edit Company</h3>
 			</div>
 			<div class="modal-body">
 				<div class="text-center">
-					<form action="#" class="form-horizontal group-border" method="POST" novalidate="" parsley-validate="" style="border-radius: 0px;">
-						<input type="hidden" id="comp_id">
+					<form action="#" class="form-horizontal group-border" method="POST" id="edit_company_form" style="border-radius: 0px;">
+						<input type="hidden" id="comp_id" name="id">
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Company name</label>
+							<label class="col-sm-3 control-label">Company Name</label>
 							<div class="col-sm-7">
-								<input id="e_cname" class="form-control" name="company_name" placeholder="Company Name" required="" type="text">
+								<input id="e_cname" class="form-control" name="name" id="e_cname" placeholder="Company Name" required type="text">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Company TIN code</label>
+							<label class="col-sm-3 control-label">Contact #</label>
 							<div class="col-sm-7">
-								<input id="e_ccode" class="form-control" name="company_tin_code" placeholder="Number" type="text">
+								<input id="e_ccode" class="form-control" name="contact" id="e_ccontact" placeholder="Contact #" type="text">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Email address</label>
+							<label class="col-sm-3 control-label">Email</label>
 							<div class="col-sm-7">
-								<input id="e_cemail" class="form-control" name="email" placeholder="Email" required="" type="text">
+								<input id="e_cemail" class="form-control" name="email" id="e_cemail" placeholder="Email" required type="email">
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Priority Level</label>
+							<div class="col-sm-7">
+								<select class="form-control" id="e_priority" name="priority" required>
+									<option value="">-- Select Priority Level --</option>
+									<option value=1>High</option>
+									<option value=2>Medium</option>
+									<option value=3>Low</option>
+								</select>
+							</div>
+						</div>	
 						<div class="spacer text-center" style="padding-left: 200px">
-							<button class="btn btn-primary btn-md btn-flat btn-rad" onclick="updt_company()" type="button">
-							<i class="fa fa-save">
-							</i> Save Changes</button></div>
+							<button class="btn btn-primary btn-md btn-flat btn-rad" type="submit">
+								<i class="fa fa-save"></i> Save Changes
+							</button>
+						</div>
 					</form>
 				</div>
 			</div>

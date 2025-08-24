@@ -601,48 +601,6 @@ function activate_user(id){
     }
   );
 }
-// EDIT COMPANY
-function edit_company(id,cname,ccode,cemail){
-    $("#comp_id").val(id);
-    $("#e_cname").val(cname);
-    $("#e_ccode").val(ccode);
-    $("#e_cemail").val(cemail);
-    $("#edit_company").modal("show");
-}
-
-
-          // SAVE EDIT COMPANY
-  function updt_company(){
-      var id = $("#comp_id").val();
-      var cname = $("#e_cname").val();
-      var code = $("#e_ccode").val();
-      var email = $("#e_cemail").val();
-      if(cname==="" || code==="" || email===""){
-        swal("Ooops!","Please complete all fields!", "warning");
-      }else{
-        $.ajax({
-          type:"post",
-          url:"includes/edit_company_process.php",
-          data:{
-            id:id,
-            cname:cname,
-            code:code,
-            email:email
-          },
-          complete:function(a){
-            if(a.responseText.trim()=="success"){
-            swal({title:"Saved!",text:"Changes has been successfully saved.",type:"success"},
-                function(){
-                  location.reload();
-                }
-              );
-            }else{
-              swal("Ooops!","Invalid Company name, name already exists!", "info");
-            }
-          }
-        });
-      }
-    }
 
 // RE-OPEN TICKET
 function re_open(id){

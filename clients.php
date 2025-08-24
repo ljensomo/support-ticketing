@@ -42,7 +42,8 @@
 
 <body>
 
-<!-- Fixed navbar --><?php include 'includes/topbar.php'; ?>
+<!-- Fixed navbar -->
+<?php include 'includes/topbar.php'; ?>
 <div id="cl-wrapper" class="fixed-menu">
 	<?php include 'includes/sidebar.php'; ?>
 	<div id="pcont" class="container-fluid">
@@ -67,41 +68,46 @@
 											<tr style="background-color:#5f5d5d;color:white;">
 												<th class="hidden">Company ID</th>
 												<th>Company Name</th>
-												<th>Company TIN code</th>
+												<th>Contact</th>
 												<th>E-mail Address</th>
 												<th>Priority Level</th>
 												<th>Action</th>
 											</tr>
 										</thead>
 										<?php
-	                                                $sql_com = "SELECT * FROM companies";
-	                                                $res_com = $db->prepare($sql_com);
-	                                                $res_com->execute();
-	                                                while ($row_com = $res_com->fetch(PDO::FETCH_NUM)) {
+											$sql_com = "SELECT * FROM companies";
+											$res_com = $db->prepare($sql_com);
+											$res_com->execute();
+											while ($row_com = $res_com->fetch(PDO::FETCH_ASSOC)) {
 	                                    ?>
 										<tr class="odd gradeX">
-											<td class="hidden"><?php echo $row_com[0]; ?>
+											<td class="hidden"><?php echo $row_com['id']; ?>
 											</td>
-											<td><strong><?php echo $row_com[1]; ?></strong></td>
-											<td><?php echo $row_com[2]; ?></td>
-											<td><?php echo $row_com[3]; ?></td>
+											<td><strong><?php echo $row_com['company_name']; ?></strong></td>
+											<td><?php echo $row_com['contact_no']; ?></td>
+											<td><?php echo $row_com['email']; ?></td>
 
-											<?php if( $row_com[4] == 1){
+											<?php if( $row_com['priority_level_id'] == 1){
 												echo '<td style="background-color:red;color:white;"><strong>High</strong></td>';
-											}else if ( $row_com[4] == 2){
+											}else if ( $row_com['priority_level_id'] == 2){
 												echo '<td style="background-color:orange;color:white;"><strong>Medium</strong></td>';
-											}else if ( $row_com[4] == 3){
+											}else if ( $row_com['priority_level_id'] == 3){
 												echo '<td style="background-color:gray;color:white;"><strong>Low</strong></td>';
 											} ?>
 											
-											<td class="center"><center>
-											<a class="btn btn-primary btn-sm btn-flat btn-rad" href="client_projects.php?cid=<?php echo $row_com[0] ?>">
-											<i class="fa fa-folder"></i>Projects</a>
-											<a class="btn btn-warning btn-sm btn-flat btn-rad" type="button" onclick="edit_company(<?php echo $row_com[0]; ?>,'<?php echo $row_com[1]; ?>','<?php echo $row_com[2]; ?>','<?php echo $row_com[3]; ?>')">
-											<i class="fa fa-pencil"></i>Edit</a>
-											<a class="btn btn-danger btn-sm btn-flat btn-rad" href="company-users.php?cid=<?php echo $row_com[0]; ?>">
-											<i class="fa fa-users"></i>Users</a>
-											</center></td>
+											<td class="center">
+												<center>
+													<a class="btn btn-primary btn-sm btn-flat btn-rad" href="client_projects.php?cid=<?=$row_com['id']?>">
+														<i class="fa fa-folder"></i>Projects
+													</a>
+													<a class="btn btn-danger btn-sm btn-flat btn-rad" href="company-users.php?cid=<?=$row_com['id']?>">
+														<i class="fa fa-users"></i>Users
+													</a>
+													<a class="btn btn-warning btn-sm btn-flat btn-rad" type="button" onclick="edit_company(<?=$row_com['id']?>,'<?=$row_com['company_name']?>','<?=$row_com['contact_no']?>','<?=$row_com['email']?>',<?=$row_com['priority_level_id']?>)">
+														<i class="fa fa-pencil"></i>Edit
+													</a>
+												</center>
+											</td>
 										</tr>
 										<?php
 	                                        }
@@ -118,57 +124,6 @@
 </div>
 
 <?php include_once 'modals/company_modals.php'; ?>
-
-<script type="text/javascript">
-  function add_company(){
-            var company_name = $('#company_name').val();
-            var company_tin_code = $('#company_tin_code').val();
-            var email = $('#company_email').val();
-            var priority_level = $('#priority').val();      
-            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-
-            // alert(priority_level);
-            
-            if (company_name == "" || company_tin_code == "" || email == "" || priority_level == "") {
-              swal({ title : "Ooops!", text : "Please complete all fields!", type : "error"});
-            }else if(!emailReg.test(email)){
-              swal({title:"Ooops!",text:"Please enter a valid email!",type:"warning"},
-                function(){
-                  $('#company_email').focus();
-                }
-              );
-            }else{
-              $.ajax({
-
-                type:"POST",
-                url:"includes/add_client_process.php",
-                data: {
-                	company_name:company_name,
-                	company_tin_code:company_tin_code,
-                	email:email,
-                	priority:priority_level
-                },
-                complete : function(request){
-            
-                
-                  if(request.responseText.trim() === "exist"){
-                          swal({ title : "Ooops!", text : "Company Name alredy exist!", type : "error"});
-                        }else if(request.responseText.trim() === "success"){
-                            swal({ title : "Saved!", text : "Successfully Created!", type : "success"},
-                                function(){
-                                  location.reload();                        
-                                      }
-                            );
-                                  }
-                        }
-                }); 
-            }
-            
-            
-            
-            
-          }
-</script>
 
 <script src="js/jquery.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
@@ -199,5 +154,70 @@
 <script type="text/javascript" src="js/jquery.flot/jquery.flot.pie.js"></script>
 <script type="text/javascript" src="js/jquery.flot/jquery.flot.resize.js"></script>
 <script type="text/javascript" src="js/jquery.flot/jquery.flot.labels.js"></script>
+
+<script type="text/javascript">
+
+	// fetch company
+	function edit_company(id,name,contact,email,priority){
+		$("#comp_id").val(id);
+		$("#e_cname").val(name);
+		$("#e_ccode").val(contact);
+		$("#e_cemail").val(email);
+		$("#e_priority").val(priority);
+		$("#edit_company").modal("show");
+	}
+
+	// add client
+	$("#add_company_form").on("submit", function(e){
+		e.preventDefault();
+
+		$.ajax({
+			type: "POST",
+			url: "includes/add_client_process.php",
+			data: new FormData(this),
+			dataType: "json",
+			processData: false,
+			contentType: false
+		}).done(function(response){
+			if(response.success){
+				swal({ title: "Saved!", text: response.message, type: "success" },
+					function() {
+						location.reload();
+					}
+				);
+			}else{
+				swal({ title: "Ooops!", text: response.message, type: "error" });
+			}
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			swal({ title: "Error!", text: "An error occurred while processing your request.", type: "error" });
+		});
+	});
+
+	// update client
+	$("#edit_company_form").on("submit", function(e){
+		e.preventDefault();
+
+		$.ajax({
+			type: "POST",
+			url: "includes/edit_company_process.php",
+			data: new FormData(this),
+			dataType: "json",
+			processData: false,
+			contentType: false
+		}).done(function(response){
+			if(response.success){
+				swal({ title: "Saved!", text: response.message, type: "success" },
+					function() {
+						location.reload();
+					}
+				);
+			}else{
+				swal({ title: "Ooops!", text: response.message, type: "error" });
+			}
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			swal({ title: "Error!", text: "An error occurred while processing your request.", type: "error" });
+		});
+	});
+</script>
 </body>
 </html>
