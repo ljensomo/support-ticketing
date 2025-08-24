@@ -21,25 +21,29 @@
                     </div>
                 </div>
                 <ul class="cl-vnavigation">
-                    <li><a href="index.php"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
-                        <?php if($_SESSION['user']['role_id'] == 2){ ?>
-                    <li><a href="new_ticket.php"><i class="fa fa-envelope nav-icon"></i><span>Add Ticket</span></a>
+                    <li>
+                        <a href="index.php"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+                    </li>
+                    <?php if($_SESSION['user']['role_id'] == 2){ ?>
+                    <li>
+                        <a href="new_ticket.php"><i class="fa fa-envelope nav-icon"></i><span>Add Ticket</span></a>
                     </li> 
-                        <?php }else if($_SESSION['user']['role_id'] == 1){ ?>
-                        <li><a href="#"><i class="fa fa-file"></i><span>All Tickets</span></a>
-                            <ul class="sub-menu">
-                                <li><a href="all-open-tickets.php">
-                                    <span class="label label-warning pull-right"><?php echo $allopentickets[0]; ?></span><i class="fa fa-inbox"></i>Open Tickets</a>
-                                </li>
-                                <li><a href="all-inprogress-tickets.php">
-                                    <span class="label label-warning pull-right"><?php echo $allinprogresstickets[0]; ?></span><i class="fa fa-spinner"></i>In Progress Tickets</a>
-                                </li>
-                                <li><a href="all-closed-tickets.php">
-                                    <span class="label label-warning pull-right"><?php echo $allclosedtickets[0]; ?></span><i class="fa fa-lock"></i>Closed Tickets</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <?php } ?>
+                    <?php }else if($_SESSION['user']['role_id'] == 1){ ?>
+                    <li>
+                        <a href="#"><i class="fa fa-file"></i><span>All Tickets</span></a>
+                        <ul class="sub-menu">
+                            <li><a href="all-open-tickets.php">
+                                <span class="label label-warning pull-right"><?php echo $allopentickets; ?></span><i class="fa fa-inbox"></i>Open Tickets</a>
+                            </li>
+                            <li><a href="all-inprogress-tickets.php">
+                                <span class="label label-warning pull-right"><?php echo $allinprogresstickets; ?></span><i class="fa fa-spinner"></i>In Progress Tickets</a>
+                            </li>
+                            <li><a href="all-closed-tickets.php">
+                                <span class="label label-warning pull-right"><?php echo $allclosedtickets; ?></span><i class="fa fa-lock"></i>Closed Tickets</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <?php } ?>
                     <li><a href="tickets.php"><i class="fa fa-ticket"></i><span>Your Tickets</span></a>
                         <ul class="sub-menu">
                             <li><a href="open-tickets.php">
@@ -63,7 +67,7 @@
                         </ul>
                     </li>
                     <?php if ($_SESSION['user']['role_id'] == 1) { ?>
-                        <li><a href="users.php"><i class="fa fa-user"></i><span>Users</span></a>
+                        <li><a href="users.php"><i class="fa fa-user"></i><span>Users</span></a></li>
                         <li>
                             <a href="clients.php"><i class="fa fa-building-o"></i><span>Companies</span></a>
                         </li>
