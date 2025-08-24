@@ -5,9 +5,9 @@ session_start();
 include 'connection.php';
 include 'functions.php';
 
-    $query = "UPDATE users SET line_status = ? WHERE uname = ?";
+    $query = "UPDATE users SET is_online = ? WHERE username = ?";
     $stmt = $db->prepare($query);
-    $stmt->execute(array(0,$_SESSION['admin']));
+    $stmt->execute(array(0,$_SESSION['user']['id']));
 
 logout();
 ?>
