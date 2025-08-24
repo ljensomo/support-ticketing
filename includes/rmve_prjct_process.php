@@ -2,13 +2,10 @@
 	
 	require_once 'connection.php';
 
-	$cid = $_POST['cid'];
-	$pid = $_POST['pid'];
+	$id = $_POST['id'];
 
-	$sql = "DELETE FROM company_proj WHERE company_id = ? AND project_id = ?";
+	$sql = "DELETE FROM company_projects WHERE id = ?";
 	$qry = $db->prepare($sql);
-	$qry->execute(array($cid,$pid));
+	$qry->execute(array($id));
 
-
-	
-?>
+	echo json_encode(array("success" => true, "message" => "Project removed successfully."));
