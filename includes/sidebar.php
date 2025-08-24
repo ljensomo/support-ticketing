@@ -7,27 +7,25 @@
     <div class="cl-navblock">
         <div class="menu-space nano nscroller" style="height: 311px;">
             <div class="text-right collapse-button" style="padding: 7px 9px;">
-              <button id="sidebar-collapse" class="btn btn-default" style=""><i style="color:#fff;" class="fa fa-angle-left"></i></button>
+                <button id="sidebar-collapse" class="btn btn-default"><i style="color:#fff;" class="fa fa-angle-left"></i></button>
             </div>
             <div class="content">
                 <div class="side-user">
                     <div class="avatar">
-                    <img src="images/avatars/<?php echo $row[12]; ?>" alt="Avatar" width="70px" height="70px" style="border-radius:50px;" />
+                        <img src="images/avatars/<?php echo $_SESSION['user']['avatar']; ?>" alt="Avatar" width="70px" height="70px" style="border-radius:50px;" />
                     </div>
                     <div class="info">
-                        <a href="#"><?php echo $row[1] . " " . $row[3]; ?></a>
-                        <img src="images/state_online.png" alt="Status" /> <span>Online</span>
+                        <a href="#"><?php echo $_SESSION['user']['full_name']; ?></a>
+                        <img src="images/state_online.png" alt="Status" />
+                        <span>Online</span>
                     </div>
                 </div>
                 <ul class="cl-vnavigation">
                     <li><a href="index.php"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
-                        <?php if($row[11]==2){ ?>
+                        <?php if($_SESSION['user']['role_id'] == 2){ ?>
                     <li><a href="new_ticket.php"><i class="fa fa-envelope nav-icon"></i><span>Add Ticket</span></a>
-<!--                         <ul class="sub-menu">
-                            <li><a href="new_ticket.php"><span class="label label-danger pull-right">New</span>Add Ticket</a></li>
-                        </ul> -->
                     </li> 
-                        <?php }else if($row[11] == 1){ ?>
+                        <?php }else if($_SESSION['user']['role_id'] == 1){ ?>
                         <li><a href="#"><i class="fa fa-file"></i><span>All Tickets</span></a>
                             <ul class="sub-menu">
                                 <li><a href="all-open-tickets.php">
@@ -64,11 +62,13 @@
                             </li>
                         </ul>
                     </li>
-                    <?php if ($row[11] == 1) { ?>
+                    <?php if ($_SESSION['user']['role_id'] == 1) { ?>
                         <li><a href="users.php"><i class="fa fa-user"></i><span>Users</span></a>
-                         <li><a href="clients.php"><i class="fa fa-building-o"></i><span>Companies</span></a>
-                         </li>
-                       <li><a href="#"><i class="fa fa-gear nav-icon"></i><span>Settings</span></a>
+                        <li>
+                            <a href="clients.php"><i class="fa fa-building-o"></i><span>Companies</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gear nav-icon"></i><span>Settings</span></a>
                             <ul class="sub-menu">
                                 <li><a href="severity.php"><i class="fa fa-exclamation-triangle" style="padding-right:10px"></i>Severity</a></li>
                                 <li><a href="resolution.php"><i class="fa fa-clock-o" style="padding-right:10px"></i>Resolution</a></li>
@@ -83,8 +83,8 @@
                                 <li><a href="your-projects.php"><i class="fa fa-user" style="padding-right:10px"></i>Your Projects</a></li>
                             </ul> 
                         </li>
-                    	
-                    <?php }else if($row[11] == 2){ ?>
+
+                    <?php }else if($_SESSION['user']['role_id'] == 2){ ?>
                         <li><a href="your-projects.php"><i class="fa fa-folder"></i><span>Assigned Projects</span></a></li>
                     <?php } ?>
                     
