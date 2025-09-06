@@ -63,26 +63,27 @@
 				</h3>
 			</div>
 			<div class="modal-body">
-				<form action="#" class="form-horizontal" method="POST" novalidate="" parsley-validate="" style="border-radius: 0px; padding-left: 50px">
+				<form action="#" class="form-horizontal" method="POST" id="new_project_form" style="border-radius: 0px; padding-left: 50px">
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Project Name </label>
 						<div class="col-sm-6">
-							<input class="form-control" name="prjct" id="prjct" placeholder="Enter text..." type="text">
+							<input class="form-control" name="project_name" placeholder="Enter Project Name" type="text" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Project Description </label>
 						<div class="col-sm-6">
-							<input class="form-control" name="prjct_desc" id="prjct_desc" placeholder="Enter text..." type="text">
+							<textarea name="description" class="form-control" placeholder="Enter Project Description" required></textarea>
 						</div>
 					</div>
 					<div class="spacer text-center">
 						<button class="btn btn-default btn-lg btn-flat btn-rad" type="reset">
-						<i class="fa fa-ban"></i> Cancel
+							<i class="fa fa-ban"></i> Cancel
 						</button>
-						<button class="btn btn-danger btn-lg btn-flat btn-rad" onclick="new_prjct()" type="button">
-						<i class="fa fa-plus"></i> Add Project
-						</button></div>
+						<button class="btn btn-danger btn-lg btn-flat btn-rad" type="submit">
+							<i class="fa fa-plus"></i> Add Project
+						</button>
+					</div>
 				</form>
 			</div>
 			
@@ -151,47 +152,30 @@
 			</div>
 			<div class="modal-body">
 				<div class="text-center">
-					<form action="#" class="form-horizontal group-border" method="POST" novalidate="" parsley-validate="" style="border-radius: 0px;">
-						<input type="hidden" id="project_id" />
+					<form action="#" class="form-horizontal group-border" method="POST" id="add_support_form" style="border-radius: 0px;">
+						<input type="hidden" id="project_id" name="project_id" />
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Supports :</label>
 							<div class="col-sm-7">
-								<select class="select2" id="project_support">
-								<option value="">Select Support</option>
-
-								<?php
-
-									// $query_support = "SELECT 
-									// 					u.user_id,
-									// 					u.fname,
-									// 					u.mname,
-									// 					u.lname,
-									// 					u.profile_pic
-									// 				FROM users AS u
-									// 				JOIN users_roles AS ur
-									// 				ON u.user_id=ur.user_id
-									// 				WHERE ur.user_role IN (1,2)";
-									// $stmt_support = $db->prepare($query_support);
-									// $stmt_support->execute();
-
-									// while($supports = $stmt_support->fetch(PDO::FETCH_NUM)){
-
-								?>
-
-								<option value="<?php // echo $supports[0]; ?>">
-									<?php // echo $supports[1] . ' ' . $supports[3]; ?>
-								</option>
-
-								<?php
-
-									// }
-
-								?>
+								<select class="select2" id="project_support" name="support">
+									<option value="">Select Support</option>
+									<?php
+										$query_support = "SELECT 
+															u.id, CONCAT(fname,' ',lname) AS fullname
+														FROM users u 
+														JOIN user_roles AS ur ON u.id=ur.id
+														WHERE role_id IN (1,2)";
+										$stmt_support = $db->prepare($query_support);
+										$stmt_support->execute();
+										while($support = $stmt_support->fetch(PDO::FETCH_ASSOC)){
+									?>
+									<option value="<?=$support['id']?>"><?=$support['fullname']?></option>
+									<?php } ?>
 								</select>
 							</div>
 						</div>
 						<div class="spacer text-center" style="padding-left: 220px">
-							<button class="btn btn-primary btn-md btn-flat btn-rad" type="button" id="btn_addsupport">
+							<button class="btn btn-primary btn-md btn-flat btn-rad" type="submit">
 								<i class="fa fa-plus"></i> Add Support
 							</button>
 						</div>
@@ -214,18 +198,22 @@
 			</div>
 			<div class="modal-body">
 				<div class="text-center">
-					<form action="#" class="form-horizontal group-border" method="POST" novalidate="" parsley-validate="" style="border-radius: 0px;">
-						<input type="hidden" id="project_id2">
+					<form action="#" class="form-horizontal group-border" method="POST" id="edit_project_form" style="border-radius: 0px;">
+						<input type="hidden" id="project_id2" name="project_id">
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Project</label>
 							<div class="col-sm-7">
-								<input type="text" id="project_name2" class="form-control">
+								<input type="text" id="project_name2" name="project_name" class="form-control" placeholder="Project Name" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Description</label>
+							<div class="col-sm-7">
+								<textarea name="description" id="project_desc2" class="form-control" placeholder="Project Description"></textarea>
 							</div>
 						</div>
 						<div class="spacer text-center" style="padding-left: 230px">
-
-							<button type="button" class="btn btn-md btn-primary btn-flat btn-rad" id="btn_edit" >Save Changes</button>
-
+							<button type="submit" class="btn btn-md btn-primary btn-flat btn-rad">Save Changes</button>
 						</div>
 					</form>
 				</div>

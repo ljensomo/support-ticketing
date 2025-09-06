@@ -71,72 +71,62 @@
 												<th>Action</th>
 											</tr>
 										</thead>
-										<?php
-	                                                $sql_prjct = "SELECT * FROM projects";
-	                                                $res_prjct = $db->prepare($sql_prjct);
-	                                                $res_prjct->execute();
-	                                                while ($row_prjct = $res_prjct->fetch(PDO::FETCH_NUM)) {
-	                                                    ?>
+											<?php
+												$sql_prjct = "SELECT * FROM projects";
+												$res_prjct = $db->prepare($sql_prjct);
+												$res_prjct->execute();
+												while ($row_prjct = $res_prjct->fetch(PDO::FETCH_ASSOC)) {
+	                                        ?>
 										<tr class="odd gradeX">
-											<td class="hidden"><?php echo $row_prjct[0]; ?>
+											<td class="hidden"><?php echo $row_prjct['id']; ?>
 											</td>
-											<td><strong><?php echo $row_prjct[1]; ?></strong></td>
+											<td><strong><?php echo $row_prjct['project_name']; ?></strong></td>
 											<td>
+												<?php 
+													$query = "SELECT 
+																u.id,
+																CONCAT(fname,' ',lname) AS fullname,
+																avatar
+															FROM project_supports AS ps
+															JOIN users AS u ON ps.support_id=u.id
+															WHERE ps.project_id=?";
+													$stmt = $db->prepare($query);
+													$stmt->execute(array($row_prjct['id']));
+													$count = $stmt->rowCount();
 
-											<?php 
-
-												$query = "SELECT 
-															u.user_id,
-															u.fname,
-															u.mname,
-															u.lname,
-															u.profile_pic
-														FROM users AS u
-														JOIN assigned_projects AS ap
-														ON u.user_id=ap.user_id
-														WHERE ap.assigned_project = ?
-														AND ap.isdeleted = ?";
-												$stmt = $db->prepare($query);
-												$stmt->execute(array($row_prjct[0],0));
-												$count = $stmt->rowCount();
-
-												if ( $count > 0 ) {
-
-													while ( $support = $stmt->fetch(PDO::FETCH_NUM )) {
-
-											?>
-												<img src="images/avatars/<?php echo $support[4]; ?>" style="height:25px;width:25px;border-radius:20px;" alt="<?php echo $support[1] . ' ' . $support[3]; ?>" />
-												<?php echo $support[1] . ' ' . $support[2] . ' ' . $support[3]; ?>
-												<a href="#" type="button" class="label label-danger" style="margin-left:12px;" onclick="remove_support(<?php echo $support[0]; ?>,<?php echo $row_prjct[0]; ?>)">
+													if ( $count > 0 ) {
+														while ( $support = $stmt->fetch(PDO::FETCH_ASSOC )) {
+												?>
+												<img src="images/avatars/<?php echo $support['avatar']; ?>" style="height:25px;width:25px;border-radius:20px;" alt="<?php echo $support['fullname']; ?>" />
+												<?php echo $support['fullname']; ?>
+												<a href="#" type="button" class="label label-danger" style="margin-left:12px;" onclick="remove_support(<?php echo $support['id']; ?>,<?php echo $row_prjct['id']; ?>)">
 													<i class="fa fa-times"></i>
 												</a>
 												<br />
-
-											<?php 
-
-													} 
-												}else{
-													echo 'No support/s assigned.';
-												}
-
-											?>
-
+												<?php 
+														} 
+													}else{
+														echo 'No support/s assigned.';
+													}
+												?>
 											</td>
-											<td><center>
-												<button class="btn btn-info btn-md btn-flat btn-rad" type="button" onclick="show_modalsupports(<?php echo $row_prjct[0]; ?>)">
-													<i class="fa fa-plus"></i> Add support
-												</button>
-												<button id="editseverity" class="btn btn-warning btn-md btn-flat btn-rad" onclick="show_editmodal(<?php echo $row_prjct[0]; ?>,'<?php echo $row_prjct[1]; ?>')">
-													<i class="fa fa-pencil"></i> Edit
-												</button>
-												<a class="btn btn-md btn-primary btn-flat btn-rad" href="project-companies.php?pid=<?php echo $row_prjct[0]; ?>&pname=<?php echo $row_prjct[1]; ?>">
-													<i class="fa fa-building-o"></i> Companies
-												</a>
-											</center></td>
+											<td>
+												<center>
+													<button class="btn btn-info btn-md btn-flat btn-rad" type="button" onclick="show_modalsupports(<?=$row_prjct['id']?>)">
+														<i class="fa fa-plus"></i> Add support
+													</button>
+													<button id="editseverity" class="btn btn-warning btn-md btn-flat btn-rad" onclick="show_editmodal(<?=$row_prjct['id']?>,'<?=$row_prjct['project_name']?>','<?=$row_prjct['description']?>')">
+														<i class="fa fa-pencil"></i> Edit
+													</button>
+													<a class="btn btn-md btn-primary btn-flat btn-rad" href="project-companies.php?pid=<?php echo $row_prjct['id']; ?>&pname=<?php echo $row_prjct['project_name']; ?>">
+														<i class="fa fa-building-o"></i> Companies
+													</a>
+												</center>
+											</td>
 										</tr>
-										<?php
+											<?php
 	                                            }
-	                                	?>
+	                                		?>
 									</table>
 								</div>
 							</div>
@@ -154,59 +144,83 @@
 <script src="js/jquery.js"></script>
 <script type="text/javascript">
 
-
 	$(document).ready(function(){
 
-		$('#btn_edit').on('click',function(){
-			var pid = $('#project_id2').val();
-			var pname = $('#project_name2').val();
-			
+		$("#add_support_form").on("submit",function(e){
+			e.preventDefault();
+
 			$.ajax({
-				url:'includes/edit-project-name.php',
-				method:'post',
-				data:{
-					pid:pid,
-					pname:pname
-				},
-				success:function(data){
-					location.reload();
+				method:"POST",
+				url:"includes/add_project_support.php",
+				data:new FormData(this),
+				contentType:false,
+				processData:false,
+				dataType:"json",
+			}).done(function(response){
+				if(response.success){
+					swal({ title: "Success!", text: response.message, type: "success"}, function() {
+						location.reload();
+					});
+				} else {
+					swal("Ooops!", response.message, "error");
 				}
+			}).fail(function(){
+				swal("Ooops!","Something went wrong. Please try again.","error");
 			});
 		});
 
+		$("#new_project_form").on("submit",function(e){
+			e.preventDefault();
+
+			$.ajax({
+				method:"POST",
+				url:"includes/add_project_process.php",
+				data:new FormData(this),
+				contentType:false,
+				processData:false,
+				dataType:"json",
+			}).done(function(response){
+				if(response.success){
+					swal({ title: "Success!", text: response.message, type: "success"}, function() {
+						location.reload();
+					});
+				} else {
+					swal("Ooops!", response.message, "error");
+				}
+			}).fail(function(){
+				swal("Ooops!","Something went wrong. Please try again.","error");
+			});
+		});
+
+		$("#edit_project_form").on("submit",function(e){
+			e.preventDefault();
+
+			$.ajax({
+				method:"POST",
+				url:"includes/edit-project.php",
+				data:new FormData(this),
+				contentType:false,
+				processData:false,
+				dataType:"json",
+			}).done(function(response){
+				if(response.success){
+					swal({ title: "Success!", text: response.message, type: "success"}, function() {
+						location.reload();
+					});
+				} else {
+					swal("Ooops!", response.message, "error");
+				}
+			}).fail(function(){
+				swal("Ooops!","Something went wrong. Please try again.","error");
+			});
+		});
 	});
 
-	function show_editmodal(id,project_name){
+	function show_editmodal(id,project_name,project_desc){
 		$('#project_id2').val(id);
 		$('#project_name2').val(project_name);
+		$('#project_desc2').val(project_desc);
 		$('#edit-project').modal('show');
-	}
-
-	function new_prjct(){
-		//alert("test!");
-		var prjct = $("#prjct").val();
-		var prjct_desc = $("#prjct_desc").val();
-		
-		if(prjct == ""){
-			swal("Ooops!","Please enter project name.","warning");
-		}else{
-			$.ajax({
-				type:"post",
-				url:"includes/add_project_process.php",
-				data:"prjct="+prjct,
-				complete:function(a){
-					if(a.responseText.trim()=="invalid"){
-						swal("Ooops!","Project was already added!","warning");
-					}else if(a.responseText.trim()=="success"){
-						swal({title:"Saved!",text:"Project was successfully added!",type:"success"},
-							function(){
-								location.reload();
-							}
-						);
-					}
-				}
-			});	
-		}
 	}
 
 	function show_modalsupports(id){
@@ -218,61 +232,28 @@
 
 	}
 
-	function remove_support( sid, pid ){
-
-		var support_id = sid;
-		var project_id = pid;
-		var remove = 'yes';
+	function remove_support( user_id, project_id ){
 
 		$.ajax({
-			url:'includes/project-updates.php',
-			type:'post',
+			url:'includes/remove_project_support.php',
+			method:'POST',
+			dataType: 'json',
 			data:{
-				support_id:support_id,
-				project_id:project_id,
-				remove:remove
+				support_id:user_id,
+				project_id:project_id
 			},
-			success:function(){
-				location.reload();
-			}
-		});
-
-	}
-
-	$(document).ready(function(){
-
-		$('#btn_addsupport').on('click',function(){
-
-			var support_id = $('#project_support').val();
-			var project_id = $('#project_id').val();
-			var add = 'yes';
-
-			if ( support_id === '' ) {
-				swal('Ooops!','Please select a support you want to add in the project.', 'info');
-			}else{
-
-				$.ajax({
-					url:"includes/project-updates.php",
-					type:"post",
-					data:{
-						support_id:support_id,
-						project_id:project_id,
-						add:add
-					},
-					complete:function(data){
-						if ( data.responseText.trim() === 'success' ){
-							location.reload();
-						}else{
-							swal('Ooops!',data.responseText,'info');
-						}
-					}
+		}).done(function(response){
+			if(response.success){
+				swal({ title: "Success!", text: response.message, type: "success"}, function() {
+					location.reload();
 				});
-
+			} else {
+				swal("Ooops!", response.message, "error");
 			}
-
+		}).fail(function(){
+			swal("Ooops!","Something went wrong. Please try again.","error");
 		});
-		
-	});
+	}
 
 </script>
 

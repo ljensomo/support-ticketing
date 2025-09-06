@@ -1,25 +1,21 @@
 <?php
+    require_once 'connection.php';
+    include 'functions.php';
 
-require_once 'connection.php';
-include 'functions.php';
+    $project_name = htmlspecialchars($_POST['project_name']);
+    $description = htmlspecialchars($_POST['description']);
 
-$project = htmlspecialchars($_POST['prjct']);
+    $sql = "SELECT id FROM projects WHERE project_name = ?";
+    $qry = $db->prepare($sql);
+    $qry->execute(array($project_name));
 
+    if ($row = ($qry->rowCount() > 0)) {
+        echo json_encode(['success' => false, 'message' => 'Project already exists!']);    
 
-$sql = "SELECT COUNT(*) FROM projects WHERE proj_desc = ?";
-$qry = $db->prepare($sql);
-$qry->execute(array($project));
+    } else {
+        $sqlAdd = "INSERT INTO projects (project_name, description) VALUES (?, ?)";
+        $qryAdd = $db->prepare($sqlAdd);
+        $qryAdd->execute(array($project_name, $description));
 
-if ($row = ($qry->fetchColumn() > 0)) {
-    echo "invalid";
-   
-} else {
-    $sqlAdd = "INSERT INTO projects(proj_desc) VALUES (?)";
-    $qryAdd = $db->prepare($sqlAdd);
-    $qryAdd->execute(array($project));
-
-    echo "success";  
-     //msgAlert($alert = "Successfully Saved");
-    //openWindow($goto = "../clients.php");
-}
-?>
+        echo json_encode(['success' => true, 'message' => 'Project added successfully!']);
+    }

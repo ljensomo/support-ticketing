@@ -77,44 +77,43 @@
 												<th>Total number of issues</th>
 											</tr>
 										</thead>
-										<?php
-	                                                $sql_com = "SELECT 
-																cp.id,
-																c.company_name,
-																DATE_FORMAT(cp.date_implemented,'%M %d, %Y'),
-																cp.company_id
-																FROM company_proj AS cp
-																JOIN companies AS c 
-																ON cp.company_id=c.id
-																WHERE cp.project_id = ?
-																GROUP BY cp.company_id";
-	                                                $res_com = $db->prepare($sql_com);
-	                                                $res_com->execute(array($pid));
-	                                                while ($row_com = $res_com->fetch(PDO::FETCH_NUM)) {
-	                                    ?>
+											<?php
+												$sql_com = "SELECT 
+															cp.id,
+															c.company_name,
+															DATE_FORMAT(cp.date_implemented,'%M %d, %Y') AS date_implemented,
+															cp.company_id
+															FROM company_projects AS cp
+															JOIN companies AS c 
+															ON cp.company_id=c.id
+															WHERE cp.project_id = ?
+															GROUP BY cp.company_id";
+												$res_com = $db->prepare($sql_com);
+												$res_com->execute(array($pid));
+												while ($company = $res_com->fetch(PDO::FETCH_ASSOC)) {
+											?>
 										<tr class="odd gradeX">
-											<td class="hidden"><?php echo $row_com[0]; ?></td>
-											<td><strong><?php echo $row_com[1]; ?></strong></td>
-											<td><?php echo $row_com[2]; ?></td>
-											<td><strong>
-											
+											<td class="hidden"><?php echo $company['id']; ?></td>
+											<td><strong><?php echo $company['company_name']; ?></strong></td>
+											<td><?php echo $company['date_implemented']; ?></td>
+											<td>
+												<strong>
 												<?php  
-
-													$query = "SELECT COUNT(ticket_id)
+													$query = "SELECT 
+																	COUNT(u.id) AS total_issues
 																FROM tickets AS t
-																JOIN users AS u
-																ON t.reporter_id=u.user_id
-																WHERE u.company_id=?
-																AND t.project=?";
+																JOIN users AS u ON t.created_by=u.id
+																JOIN company_users cu ON u.id=cu.user_id
+																WHERE cu.company_id=?
+																AND t.project_id=?";
 													$stmt = $db->prepare($query);
-													$stmt->execute(array($row_com[3],$pid));
-													$number = $stmt->fetch(PDO::FETCH_NUM);
+													$stmt->execute(array($company['company_id'],$pid));
+													$number = $stmt->fetch(PDO::FETCH_ASSOC);
 
-													echo $number[0] . ' issue/s'; 
-
+													echo $number['total_issues'] . ' issue(s)'; 
 												?>
-											
-											</strong></td>
+												</strong>
+											</td>
 										</tr>
 										<?php
 	                                        }
