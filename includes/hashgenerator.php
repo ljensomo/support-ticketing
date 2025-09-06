@@ -27,4 +27,3 @@ class HashGenerator {
 }
 
 $hasher = new HashGenerator();
-?>

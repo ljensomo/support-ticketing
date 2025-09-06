@@ -173,36 +173,36 @@
 				User | <?php echo $cname_row[1]; ?></h3>
 			</div>
 			<div class="modal-body">
-				<form action="#" class="form-group" method="POST">
+				<form action="#" class="form-group" id="add-c-user-form" method="POST">
 					<div class="row">
 						<div class="col-md-6">
-						<input type="hidden" value="<?php echo $cname_row[0]; ?>" id="n_c_cid">
+						<input type="hidden" value="<?php echo $cname_row[0]; ?>" id="n_c_cid" name="company_id">
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-user"></i></span>
-									<input id="n_c_fname" class="form-control" name="n_c_fname" placeholder="Firstname" type="text">
+									<input id="n_c_fname" class="form-control" name="fname" placeholder="Firstname" type="text" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-user"></i></span>
-									<input id="n_c_mname" class="form-control" name="n_c_mname" placeholder="MI" type="text">
+									<input id="n_c_mname" class="form-control" name="mname" placeholder="MI" type="text">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-user"></i></span>
-									<input id="n_c_lname" class="form-control" name="n_c_lname" placeholder="Lastname" type="text">
+									<input id="n_c_lname" class="form-control" name="lname" placeholder="Lastname" type="text" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-phone"></i></span>
-									<input id="n_c_cnum" class="form-control" name="n_c_cnum" placeholder="Contact Number" type="number">
+									<input id="n_c_cnum" class="form-control" name="contact" placeholder="Contact Number" type="number">
 								</div>
 							</div>
 						</div>
@@ -211,35 +211,38 @@
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-google-plus"></i></span>
-									<input id="n_c_email" class="form-control" name="n_c_email" placeholder="E-mail" type="email">
+									<input id="n_c_email" class="form-control" name="email" placeholder="E-mail" type="email" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-user"></i></span>
-									<input id="n_c_uname" class="form-control" name="n_c_uname" placeholder="Username" type="text">
+									<input id="n_c_uname" class="form-control" name="username" placeholder="Username" type="text" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-lock"></i></span>
-									<input id="n_c_pass" class="form-control" name="n_c_pass" placeholder="Password" type="password">
+									<input id="n_c_pass" class="form-control" name="password" placeholder="Password" type="password" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">
 									<i class="fa fa-lock"></i></span>
-									<input id="n_c_confrm_pass" class="form-control" name="n_c_confrm_pass" placeholder="Confirm Password" type="password">
+									<input id="n_c_confrm_pass" class="form-control" name="confirm_pass" placeholder="Confirm Password" type="password" required>
 								</div>
 							</div>
 							<div class="spacer pull-right">
 								<button class="btn btn-md btn-default btn-flat btn-rad" type="reset">
-								<i class="fa fa-ban"></i> Cancel</button>
-								<button class="btn btn-md btn-primary btn-flat btn-rad" type="button" onclick="new_c_user()">
-								<i class="fa fa-save"></i> Save</button></div>
+									<i class="fa fa-ban"></i> Cancel
+								</button>
+								<button class="btn btn-md btn-primary btn-flat btn-rad" type="submit">
+									<i class="fa fa-save"></i> Save
+								</button>
+							</div>
 						</div>
 					</div>
 				</form>

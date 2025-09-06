@@ -83,58 +83,44 @@
 										</thead>
 										<tbody>
 
-										<?php  
-
-											$query = "SELECT 
-																a.user_id,  
-																a.fname,
-																a.mname,
-																a.lname,
-																a.cnum,
-																a.email,
-																a.uname,
-																a.pass,
-																d.user_desc,
-																c.user_role,
-																a.is_active,
-																a.profile_pic
-																FROM users AS a
-																JOIN users_roles AS c ON a.user_id=c.user_id
-																JOIN roles AS d ON c.user_role=d.userlevel_id 
-																WHERE a.company_id = ?";
-											$stmt = $db->prepare($query);
-											$stmt->execute(array($cid));
-											while($users = $stmt->fetch(PDO::FETCH_NUM)){
-
-										?>
-
+											<?php  
+												$query = "SELECT
+															u.id,
+															CONCAT(fname,' ',lname) AS fullname,
+															contact_no,
+															email,
+															username,
+															role_desc,
+															avatar, is_active
+														FROM company_users cu
+														JOIN users AS u ON cu.user_id=u.id
+														JOIN user_roles AS ur ON u.id=ur.user_id
+														JOIN roles AS r ON ur.role_id=r.id
+														WHERE company_id = ?";
+												$stmt = $db->prepare($query);
+												$stmt->execute(array($cid));
+												while($user = $stmt->fetch(PDO::FETCH_ASSOC)){
+											?>
 											<tr>
-												<td class="hidden"><?php echo $users[0]; ?></td>
-												<td><img src="images/avatars/<?php echo $users[11]; ?>" style="height:25px;width:25px;"> <?php echo $users[1] . ' ' . $users[2] . ' ' . $users[3]; ?></td>
-												<td><?php echo $users[4]; ?></td>
-												<td><?php echo $users[5]; ?></td>
-												<td><?php echo $users[6]; ?></td>
-												<td><?php echo $users[8]; ?></td>
+												<td class="hidden"><?php echo $user['id']; ?></td>
+												<td><img src="images/avatars/<?php echo $user['avatar']; ?>" style="height:25px;width:25px;"> <?=$user['fullname']?></td>
+												<td><?php echo $user['contact_no']; ?></td>
+												<td><?php echo $user['email']; ?></td>
+												<td><?php echo $user['username']; ?></td>
+												<td><?php echo $user['role_desc']; ?></td>
 												<td>
-													<?php if($users[10] == 1){ ?>
-
-													<button class="btn btn-md btn-danger btn-flat btn-rad" type="button" onclick="de_activate(<?php echo $users[0]; ?>)">
-														<i class="fa fa-lock"></i> De-activate
-													</button>
-
+													<?php if($user['is_active'] == 1){ ?>
+														<button class="btn btn-md btn-danger btn-flat btn-rad" type="button" onclick="changeUserStatus(<?php echo $user['id']; ?>, 0)">
+															<i class="fa fa-lock"></i> De-activate
+														</button>
 													<?php }else{ ?>
-
-													<button class="btn btn-md btn-success btn-flat btn-rad" type="button" onclick="activate(<?php echo $users[0]; ?>)">
-														<i class="fa fa-lock"></i> Activate
-													</button>
-
+														<button class="btn btn-md btn-success btn-flat btn-rad" type="button" onclick="changeUserStatus(<?php echo $user['id']; ?>, 1)">
+															<i class="fa fa-unlock"></i> Activate
+														</button>
 													<?php } ?>
-													<!-- <button class="btn btn-md btn-warning btn-flat btn-rad" type="button" onclick="test()"><i class="fa fa-pencil"></i> Edit</button> -->
 												</td>
 											</tr>
-
 										<?php } ?>
-
 										</tbody>
 									</table>
 								</div>
@@ -167,6 +153,28 @@
 <script src="js/table.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+
+	function changeUserStatus(user_id, status){
+		$.ajax({
+			type:"POST",
+			url:"includes/change_user_status_process.php",
+			method:"POST",
+			data:{user_id:user_id, status:status},
+			dataType:"json",
+		}).done(function(response){
+			if(response.success){
+				swal({title:"Success", text:response.message, type:"success"},
+					function(){
+						location.reload();
+					}
+				);
+			}else{
+				swal("Ooops!",response.message,"warning");
+			}
+		}).fail(function(){
+			swal("Ooops!","Something went wrong!","warning");
+		});
+	}
 
     function activate(id){
         swal({
@@ -218,63 +226,30 @@
         });
     }
 
-	function new_c_user(){
-		var fname = $('#n_c_fname').val();
-		var mname = $('#n_c_mname').val();		
-		var lname = $('#n_c_lname').val();		
-		var cnum = $('#n_c_cnum').val();
-		var email = $('#n_c_email').val();
-		var uname = $('#n_c_uname').val();
-		var pass = $('#n_c_pass').val();		
-		var c_pass = $('#n_c_confrm_pass').val();
-		var role = $('#n_c_role').val();
-		var cid = $('#n_c_cid').val();
-		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;	
+	$("#add-c-user-form").submit(function(e){
+		e.preventDefault();
 		
-		 if(fname == "" || lname == "" || cnum == "" || email == "" || role == "" || uname == "" || pass == "" || c_pass == ""){
-                  swal({title:"Ooops", text:"Please complete all necessary informations", type:"warning"});
-         }else{ 
-                  if(!emailReg.test(email)){
-                        swal({ title : "Ooops!", text : "Please enter valid email!", type : "warning"},
-                              function(){
-                                $('#email').focus();
-                              }
-                        );                          
-                  }else if(c_pass == pass){
-                        $.ajax({
-                        	type:"post",
-                        	url:"includes/new_c_user_process.php",
-                        	data:{
-                        		fname:fname,
-                        		mname:mname,
-                        		lname:lname,
-                        		cnum:cnum,
-                        		uname:uname,
-                        		email:email,
-                        		pass:pass,
-                        		role:role,
-                        		cid:cid
-                        	},
-                        	complete:function(a){
-                        		//swal({title:"Success", text:a.responseText.trim(), type:"success"});
-								if(a.responseText.trim()=="success"){
-									swal({title:"Success", text:"Successfully saved!", type:"success"},
-										function(){
-											location.reload();
-										}
-									);
-								}else if(a.responseText.trim()=="exist"){
-									swal("Ooops!","The username you entered already exist!","warning");
-								}
-                        	}
-                        });
-                  }else{
-		                swal({title:"Ooops", text:"Password did not matched", type:"warning"});
-		                $('#n_c_confrm_pass').val('');
-		                $('#n_c_confrm_pass').focus();
-                  }
-         }//condition
-	}	
+		$.ajax({
+			url: 'includes/new_c_user_process.php',
+			method: 'POST',
+			data: new FormData(this),
+			contentType: false,
+			processData: false,
+			dataType:"json"
+		}).done(function(response){
+			if(response.success){
+				swal({title:"Success", text:response.message, type:"success"},
+					function(){
+						location.reload();
+					}
+				);
+			}else{
+				swal("Ooops!",response.message,"warning");
+			}
+		}).fail(function(){
+			swal("Ooops!","Something went wrong!","warning");
+		});
+	});
 
 </script>
 

@@ -20,5 +20,3 @@
 
     $database = new Database();
     $db = & $database;
-?>
-
