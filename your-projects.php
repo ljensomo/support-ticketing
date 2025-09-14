@@ -65,44 +65,34 @@
 												<th>Action</th>
 											</tr>
 										</thead>
-										<?php
-	                                                $query = "SELECT
-																	ap.id,
-																	ap.user_id,
-																	ap.assigned_project,
-																	p.proj_desc
-																FROM projects AS p
-																JOIN assigned_projects AS ap
-																ON p.proj_id=ap.assigned_project
-																WHERE ap.user_id = ?";
-	                                                $stmt = $db->prepare($query);
-	                                                $stmt->execute(array($row[0]));
-	                                                while ($projects = $stmt->fetch(PDO::FETCH_NUM)) {
-	                                                	
-	                                                    ?>
+											<?php
+												$query = "SELECT 
+															p.id,
+															p.project_name
+														FROM projects AS p
+														JOIN project_supports AS ps ON p.id=ps.project_id
+														WHERE ps.support_id = ?";
+												$stmt = $db->prepare($query);
+												$stmt->execute(array($_SESSION['user']['id']));
+												while ($project = $stmt->fetch(PDO::FETCH_ASSOC)) {
+	                                        ?>
 										<tr class="odd gradeX">
-											<td class="hidden"><?php echo $projects[0]; ?>
-											</td>
-											<td><strong><?php echo $projects[3]; ?></strong></td>
+											<td class="hidden"><?=$project['id']?></td>
+											<td><strong><?=$project['project_name']?></strong></td>
 											<td>
 												<i class="fa fa-ticket"></i>
 												<?php 
-
-													$query_2 = "SELECT
-																COUNT(ticket_id)
-																FROM
-																tickets
-																WHERE project = ?";
+													$query_2 = "SELECT id FROM tickets WHERE project_id = ?";
 													$stmt_2 = $db->prepare($query_2);
-													$stmt_2->execute(array($projects[0]));
-													$number = $stmt_2->fetch(PDO::FETCH_NUM);
-													echo $number[0] . ' Tickets';
+													$stmt_2->execute(array($project['id']));
+													echo $stmt->rowCount() . ' Tickets';
 												?>
 											</td>
-											<td><center>
-												<a class="btn btn-info btn-sm btn-flat btn-rad" href="client-tickets.php?pid=<?php echo $projects[0]; ?>&pname=<?php echo $projects[3]; ?>">
-												<i class="fa fa-search"></i>View Ticket/s</a>
-											</center></td>
+											<td>
+												<center>
+													<a class="btn btn-info btn-sm btn-flat btn-rad" href="client-tickets.php?pid=<?=$project['id']?>&pname=<?=$project['project_name']?>"><i class="fa fa-search"></i>View Ticket/s</a>
+												</center>
+											</td>
 										</tr>
 										<?php
 	                                            }

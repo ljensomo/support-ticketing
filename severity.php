@@ -72,7 +72,7 @@
 										</tr>
 									</thead>
 									<?php
-                                                $sql = "SELECT * FROM severity";
+                                                $sql = "SELECT * FROM severities";
                                                 $res = $db->prepare($sql);
                                                 $res->execute();
                                                 while ($row = $res->fetch(PDO::FETCH_ASSOC)) {

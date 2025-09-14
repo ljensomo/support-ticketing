@@ -75,99 +75,53 @@
 											</tr>
 										</thead>
 										<?php
-
-												$pid = $_GET['pid'];
-
-	                                                $query = "SELECT 
-                                            				a.ticket_id,
-                                                            b.proj_desc,
-                                                            a.transaction_id,
-                                                            a.reporter_id,
-                                                            DATE_FORMAT(a.date_created,'%M %d, %Y %h:%s'),
-                                                            c.fname,
-                                                            c.mname,
-                                                            c.lname,
-                                                            e.before_status,
-                                                            f.status_desc,
-                                                            c.company_id,
-                                                            a.project
-			                                            FROM tickets AS a 
-			                                            JOIN projects AS b
-			                                            ON a.project=b.proj_id
-			                                            JOIN users AS c
-			                                            ON a.reporter_id=c.user_id
-			                                            JOIN ticket_progress AS e 
-			                                            ON a.ticket_id=e.ticket_id
-			                                            JOIN STATUS AS f 
-			                                            ON e.before_status=f.status_id
-			                                            JOIN companies AS g
-														ON c.company_id=g.id 
-			                                            WHERE b.proj_id = ?";
-	                                                $stmt = $db->prepare($query);
-	                                                $stmt->execute(array($pid));
-	                                                while ($tickets = $stmt->fetch(PDO::FETCH_NUM)) {
-	                                                    ?>
+											$pid = $_GET['pid'];
+											$query = "SELECT 
+														t.`id`,
+														c.`company_name`,
+														p.`project_name`,
+														t.subject,
+														t.description,
+														t.`date_created`,
+														CONCAT(u.fname,' ',u.lname) AS fullname,
+														s.`status_desc`
+													FROM tickets AS t
+													JOIN projects AS p ON t.project_id=p.id
+													JOIN company_projects AS cp ON p.id=cp.project_id
+													JOIN companies AS c ON cp.company_id=c.id
+													JOIN users AS u ON t.`created_by`=u.id
+													JOIN STATUS AS s ON t.`status`=s.`status_id`
+													WHERE t.project_id = ?";
+											$stmt = $db->prepare($query);
+											$stmt->execute(array($pid));
+											while ($ticket = $stmt->fetch(PDO::FETCH_ASSOC)) {
+	                                    ?>
 									<tr class="odd gradeX">
-										<td class="hidden"><?php echo $row_tickets[0]; ?>
+										<td class="hidden"><?=$ticket['id']?></td>
+										<td><strong><?=$ticket['company_name']?></strong></td>
+										<td><?=$ticket['project_name']?></td>
+										<td>
+											<strong><?=$ticket['subject']?></strong><br>
+											<small><?=substr($ticket['description'],0,30)?></small>
 										</td>
-										<td><strong>
-
-                                            <?php 
-
-                                            $sql_c = "SELECT company_name FROM companies WHERE id = ?";
-                                            $res_c = $db->prepare($sql_c);
-                                            $res_c->execute(array($tickets[10]));
-                                            $row_c = $res_c->fetch(PDO::FETCH_NUM);
-                                            echo $row_c[0];
-
-                                            ?>											
-
-										</strong></td>
-										<td><?php echo $tickets[1]; ?></td>
-
-	                                        <?php 
-
-	                                            $query_1 = "SELECT 
-	                                                        id,
-	                                                        ticket_id,
-	                                                        problem_subject,
-	                                                        problem_desc,
-	                                                        attachment,
-	                                                        issue_status
-	                                                    FROM ticket_details
-	                                                    WHERE ticket_id = ?";
-	                                            $stmt_1 = $db->prepare($query_1);
-	                                            $stmt_1->execute(array($tickets[0]));
-	                                            $descriptions = $stmt_1->fetch(PDO::FETCH_NUM);
-
-	                                        ?>
-
-										<td><strong><?php echo $descriptions[2]; ?>
-										</strong><br><small><?php echo substr($descriptions[3],0,30); ?>
-										</small></td>
-										<td><?php echo $tickets[4] ?></td>
-										<td><?php echo $tickets[5] . " " . $tickets[7]; ?>
+										<td><?=$ticket['date_created']?></td>
+										<td><?=$ticket['fullname']?></td>
 										</td>
-										<td><center>
-											<label class="label label-info"><?php echo $tickets[9]; ?>
-											</label>
-											</center></td>
-										<td class="center"><center>
-
-										<?php if($row[8]==1){ ?>
-
-										<a class="btn btn-info btn-sm" href="view-ticket.php?tid=<?php echo $tickets[0]; ?>">
-										<i class="fa fa-search"></i></a>
-
-										<?php } ?>
-
-										<a class="btn btn-primary btn-sm btn-flat btn-rad" type="button" href="view-ticket.php?tid=<?php echo $tickets[0]; ?>">
-											View Ticket
-										</a>
-										</center></td>
+										<td>
+											<center>
+												<label class="label label-info"><?=$ticket['status_desc']?></label>
+											</center>
+										</td>
+										<td class="center">
+											<center>
+												<a class="btn btn-primary btn-sm btn-flat btn-rad" type="button" href="view-ticket.php?tid=<?=$ticket['id']?>">
+													View Ticket
+												</a>
+											</center>
+										</td>
 									</tr>
 										<?php
-	                                            }
+	                                        }
 	                                	?>
 									</table>
 								</div>

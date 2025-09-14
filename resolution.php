@@ -72,7 +72,7 @@
 										</tr>
 									</thead>
 									<?php
-                                                $sql = "SELECT * FROM resolution";
+                                                $sql = "SELECT * FROM resolutions";
                                                 $res = $db->prepare($sql);
                                                 $res->execute();
                                                 while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
