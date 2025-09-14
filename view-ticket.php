@@ -1,12 +1,3 @@
-<?php
-// Turn on all error reporting
-error_reporting(E_ALL);
-
-// Tell PHP to display the errors on screen
-ini_set('display_errors', 1);
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 

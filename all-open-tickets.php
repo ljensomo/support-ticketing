@@ -80,85 +80,54 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
                                                     <?php
-
-                                                    $ticket_loader = "SELECT 
-                                                                a.ticket_id,
-                                                                b.proj_desc,
-                                                                a.transaction_id,
-                                                                a.reporter_id,
-                                                                DATE_FORMAT(a.date_created,'%M %d, %Y %h:%s'),
-                                                                c.fname,
-                                                                c.mname,
-                                                                c.lname,
-                                                                e.before_status,
-                                                                f.status_desc,
-                                                                c.company_id,
-                                                                e.assignto_id
-                                                            FROM tickets AS a 
-                                                            JOIN projects AS b
-                                                            ON a.project=b.proj_id
-                                                            JOIN users AS c
-                                                            ON a.reporter_id=c.user_id
-                                                            JOIN ticket_progress AS e 
-                                                            ON a.ticket_id=e.ticket_id
-                                                            JOIN STATUS AS f 
-                                                            ON e.before_status=f.status_id
-                                                            WHERE f.status_id IN (1,4)
-                                                            ORDER BY a.ticket_id DESC";
-                                                    $res_tickets = $db->prepare( $ticket_loader);
-                                                    $res_tickets->execute(array($row[0]));
-                                                    while ($row_tickets =  $res_tickets->fetch(PDO::FETCH_NUM)) {
-
-                                                        ?>
+                                                        $ticket_loader = "SELECT 
+                                                                            t.`id`,
+                                                                            c.`company_name`,
+                                                                            p.`project_name`,
+                                                                            t.subject,
+                                                                            t.description,
+                                                                            t.`date_created`,
+                                                                            CONCAT(u.fname,' ',u.lname) AS fullname,
+                                                                            s.`status_desc`,
+                                                                            u.avatar,
+                                                                            t.status,
+                                                                            se.`description` AS severity,
+                                                                            r.`description` AS resolution,
+                                                                            c.priority_level_id
+                                                                        FROM tickets AS t
+                                                                        JOIN projects AS p ON t.project_id=p.id
+                                                                        JOIN company_projects AS cp ON p.id=cp.project_id
+                                                                        JOIN companies AS c ON cp.company_id=c.id
+                                                                        JOIN users AS u ON t.`created_by`=u.id
+                                                                        JOIN status AS s ON t.`status`=s.`status_id`
+                                                                        LEFT JOIN severities AS se ON t.`severity_id`=se.`severity_id`
+                                                                        LEFT JOIN resolutions AS r ON t.`resolution`=r.`resolution_id`";
+                                                        $res_tickets = $db->prepare( $ticket_loader);
+                                                        $res_tickets->execute(array());
+                                                        while ($ticket =  $res_tickets->fetch(PDO::FETCH_ASSOC)) {
+                                                    ?>
 
                                                         <tr class="odd gradeX">
-                                                            <td class="hidden"><?php echo $row_tickets[0]; ?></td>
-                                                            <td><strong><?php 
-                                                                $sql_comp = "SELECT * FROM companies WHERE id = ?";
-                                                                $comp_res = $db->prepare($sql_comp);
-                                                                $comp_res->execute(array($row_tickets[10]));
-                                                                $comp_row = $comp_res->fetch(PDO::FETCH_NUM);
-                                                                echo $comp_row[1];
-                                                            ?></strong></td>
-
-                                                        <?php if( $comp_row[4] == 1){
-                                                            echo '<td style="background-color:red;color:white;"><strong>High</strong></td>';
-                                                        }else if ( $comp_row[4] == 2){
-                                                            echo '<td style="background-color:orange;color:white;"><strong>Medium</strong></td>';
-                                                        }else if ( $comp_row[4] == 3){
-                                                            echo '<td style="background-color:gray;color:white;"><strong>Low</strong></td>';
-                                                        } ?>
-                                                            
-                                                            <td><?php echo $row_tickets[1]; ?></td>
-
-                                                        <?php 
-
-                                                            $query = "SELECT 
-                                                                        id,
-                                                                        ticket_id,
-                                                                        problem_subject,
-                                                                        problem_desc,
-                                                                        attachment,
-                                                                        issue_status
-                                                                    FROM ticket_details
-                                                                    WHERE ticket_id = ?";
-                                                            $stmt = $db->prepare($query);
-                                                            $stmt->execute(array($row_tickets[0]));
-                                                            $descriptions = $stmt->fetch(PDO::FETCH_NUM);
-
-                                                        ?>
-
-                                                            <td><strong><?php echo $descriptions[2]; ?></strong><br><small><?php echo substr($descriptions[3],0,30); ?>..</small></td>
-                                                            <td><?php echo $row_tickets[4] ?></td>
-                                                            <td><?php echo $row_tickets[5] . " " . $row_tickets[7]; ?></td>
+                                                            <td class="hidden"><?php echo $ticket['id']; ?></td>
+                                                            <td><strong><?=$ticket['company_name']?></strong></td>
+                                                                <?php if( $ticket['priority_level_id'] == 1){
+                                                                    echo '<td style="background-color:red;color:white;"><strong>High</strong></td>';
+                                                                }else if ( $ticket['priority_level_id'] == 2){
+                                                                    echo '<td style="background-color:orange;color:white;"><strong>Medium</strong></td>';
+                                                                }else if ( $ticket['priority_level_id'] == 3){
+                                                                    echo '<td style="background-color:gray;color:white;"><strong>Low</strong></td>';
+                                                                } ?>
+                                                            <td><?=$ticket['project_name']?></td>
+                                                            <td><strong><?=$ticket['subject']?></strong><br><small><?=substr($ticket['description'],3,30); ?>...</small></td>
+                                                            <td><?=$ticket['date_created']?></td>
+                                                            <td><?=$ticket['fullname']?></td>
                                                             <td>
-                                                                <label class="label label-default"><?php echo $row_tickets[9]; ?></label>
+                                                                <label class="label label-default"><?=$ticket['status_desc']?></label>
                                                             </td>
                                                             <td>
-                                                                <a href="view-ticket.php?tid=<?php echo $row_tickets[0]; ?>" class="btn btn-sm btn-primary">View Ticket</a>
-                                                                <button class="btn btn-sm btn-default" type="button" onclick="show_modalassign(<?php echo $row_tickets[0]; ?>)">Assign Ticket</button>
+                                                                <a href="view-ticket.php?tid=<?php echo $ticket['id']; ?>" class="btn btn-sm btn-primary">View Ticket</a>
+                                                                <button class="btn btn-sm btn-default" type="button" onclick="show_modalassign(<?=$ticket['id']?>)">Assign Ticket</button>
                                                             </td>
                                                         </tr>
                                                     <?php

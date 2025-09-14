@@ -16,10 +16,7 @@
 						<div class="col-sm-7">
 							<select class="form-control" id="t_stts">
 								<?php
-									$tsql_stts = "SELECT 
-														* 
-													FROM STATUS 
-													WHERE status_id IN (2,5,6,7,17)";
+									$tsql_stts = "SELECT * FROM status WHERE status_id IN (2,5,6,7,17)";
 									$tstts_res = $db->prepare($tsql_stts);
 									$tstts_res->execute();
 									while($tstts_row=$tstts_res->fetch(PDO::FETCH_NUM)){
@@ -35,7 +32,7 @@
 							<select class="form-control" id="t_svrty">
 								<option value=0>--Severity</option>
 								<?php
-									$tsql_svrty = "SELECT * FROM severity";
+									$tsql_svrty = "SELECT * FROM severities";
 									$tsvrty_res = $db->prepare($tsql_svrty);
 									$tsvrty_res->execute();
 									while($tsvrty_row=$tsvrty_res->fetch(PDO::FETCH_NUM)){
@@ -57,9 +54,7 @@
 	</div>
 </div>
 
-	<!-- TRANSFER TICKET MODAL -->
-
-	
+<!-- TRANSFER TICKET MODAL -->	
 <div id="transfer-ticket-modal" class="modal fade" role="dialog" tabindex="-1">
 	<div class="modal-dialog colored-header default">
 		<div class="modal-content">
@@ -75,24 +70,26 @@
 				<hr>
 				<form action="#" class="form-horizontal group-border" method="POST" style="border-radius: 0px; padding-left: 50px">
 					<input type="hidden" id="ticket_id" />
-					<input type="hidden" id="sender" value="<?php echo $row[0]; ?>" />
+					<input type="hidden" id="sender" value="<?php echo $_SESSION['user']['id']; ?>" />
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><strong>Select support :</strong></label>
 						<div class="col-sm-7">
 							<select class="select2" id="user">
 								<option value="">SELECT SUPPORT</option>
 								<?php
-									$query = "SELECT u.user_id,fname,mname,lname 
-												FROM users AS u
-												JOIN users_roles AS ur
-												ON u.user_id=ur.user_id
-												WHERE u.user_id != ?
-												AND ur.user_role IN (1,2)";
+									$query = "SELECT 
+												u.id,
+												CONCAT(fname,' ',lname) AS fullname
+											FROM users AS u
+											JOIN user_roles AS ur
+											ON u.id=ur.user_id
+											WHERE u.id != ?
+											AND ur.role_id IN (1,2)";
 									$stmt = $db->prepare($query);
-									$stmt->execute(array($row[0]));
-									while($row_users=$stmt->fetch(PDO::FETCH_NUM)){
+									$stmt->execute(array($_SESSION['user']['id']));
+									while($support=$stmt->fetch(PDO::FETCH_ASSOC)){
 								?>
-								<option value="<?php echo $row_users[0]; ?>"><?php echo $row_users[1] . ' ' . $row_users[3]; ?></option>
+								<option value="<?=$support['id']?>"><?=$support['fullname']?></option>
 								<?php } ?>
 							</select>
 						</div>
@@ -128,7 +125,7 @@
 								<?php
 									$query_status = "SELECT 
 														* 
-													FROM STATUS 
+													FROM status 
 													WHERE status_id IN(3,7)";
 									$stmt_status = $db->prepare($query_status);
 									$stmt_status->execute();
@@ -144,7 +141,7 @@
 						<div class="col-sm-6">
 							<select class="form-control" id="close_resolution">
 								<?php
-									$tsql_rsltn = "SELECT * FROM resolution";
+									$tsql_rsltn = "SELECT * FROM resolutions";
 									$trsltn_res = $db->prepare($tsql_rsltn);
 									$trsltn_res->execute();
 									while($trsltn_row=$trsltn_res->fetch(PDO::FETCH_NUM)){
@@ -183,19 +180,17 @@
 							<select class="form-control" id="support">
 								<?php
 									$query_support = "SELECT 
-															u.user_id,
-															u.fname,
-															u.mname,
-															u.lname
+															u.id,
+															CONCAT(u.fname,' ',u.lname) AS fullname
 														FROM users AS u
-														JOIN users_roles AS ur 
-														ON u.user_id=ur.user_id
-														WHERE ur.user_role IN (1,2)";
+														JOIN user_roles AS ur 
+														ON u.id=ur.user_id
+														WHERE ur.role_id IN (1,2)";
 									$stmt_support = $db->prepare($query_support);
 									$stmt_support->execute();
-									while($support=$stmt_support->fetch(PDO::FETCH_NUM)){
+									while($support=$stmt_support->fetch(PDO::FETCH_ASSOC)){
 								?>
-								<option value="<?php echo $support[0]; ?>"><?php echo $support[1] . ' ' . $support[2] . ' ' .$support[3]; ?></option>
+								<option value="<?=$support['id']?>"><?=$support['fullname']?></option>
 								<?php } ?>
 							</select>
 						</div>
@@ -231,36 +226,22 @@
 							<label class="col-sm-3 control-label">Supports :</label>
 							<div class="col-sm-7">
 								<select class="select2" id="assign_ticket">
-								<option value="">Select Support</option>
+									<option value="">Select Support</option>
+									<?php
+										$query_support = "SELECT 
+															u.id,
+															CONCAT(u.fname,' ',u.lname) AS fullname
+														FROM users AS u
+														JOIN user_roles AS ur
+														ON u.id=ur.user_id
+														WHERE ur.role_id IN (1,2)";
+										$stmt_support = $db->prepare($query_support);
+										$stmt_support->execute();
 
-								<?php
-
-									$query_support = "SELECT 
-														u.user_id,
-														u.fname,
-														u.mname,
-														u.lname,
-														u.profile_pic
-													FROM users AS u
-													JOIN users_roles AS ur
-													ON u.user_id=ur.user_id
-													WHERE ur.user_role IN (1,2)";
-									$stmt_support = $db->prepare($query_support);
-									$stmt_support->execute();
-
-									while($supports = $stmt_support->fetch(PDO::FETCH_NUM)){
-
-								?>
-
-								<option value="<?php echo $supports[0]; ?>">
-									<?php echo $supports[1] . ' ' . $supports[3]; ?>
-								</option>
-
-								<?php
-
-									}
-
-								?>
+										while($support = $stmt_support->fetch(PDO::FETCH_ASSOC)){
+									?>
+										<option value="<?=$support['id']?>"><?=$support['fullname']?></option>
+									<?php } ?>
 								</select>
 							</div>
 						</div>
