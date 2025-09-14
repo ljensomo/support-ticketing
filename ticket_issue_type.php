@@ -55,7 +55,7 @@
 						</div>
 						<div class="panel-body">
 							<div class="header">
-								<a class="btn btn-default btn-flat btn-rad" data-target="#add_issue_type" data-toggle="modal">
+								<a class="btn btn-default btn-flat btn-rad" data-target="#issue_type_addModal" data-toggle="modal">
 									<i class="fa fa-plus-circle" style="padding-right: 10px"></i>Add Issue Type
 								</a>
 							</div>
@@ -70,7 +70,7 @@
 											</tr>
 										</thead>
 										<?php
-	                                                $sql = "SELECT * FROM issue";
+	                                                $sql = "SELECT * FROM issue_types";
 	                                                $res = $db->prepare($sql);
 	                                                $res->execute();
 	                                                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -107,7 +107,32 @@
 <script src="js/functions.js"></script>
 <script src="js/jquery.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-<script>
+<script type="text/javascript">
+
+		$("#issue_type_add_form").on("submit", function(e){
+			e.preventDefault();
+			
+			$.ajax({
+				type: "POST",
+				url: "includes/add_issuetype_process.php",
+				data: new FormData(this),
+				contentType: false,
+				processData: false,
+				dataType:"json",
+			}).done(function(response){
+				if(response.success){
+					swal({title:"Success!",text:response.message,type:"success"},
+						function(){
+							location.reload();
+						});
+				}else{
+					swal("Ooops!",response.message,"error");
+				}
+			}).fail(function(){
+				swal("Ooops!","Something went wrong!","error");
+			});
+		});
+
         $('.table tbody tr').on('click','#view_issue_type',function(){
             var currow = $(this).closest('tr');
             var col1 = currow.find('td:eq(0)').text();
@@ -118,28 +143,7 @@
            	$('#view_issue_name').val(col2);
 
             
-        })
-
-        	function add_issue_typ(){
-        		var issuetype = $("#ticket_issuetype_a").val();
-        		if(issuetype==""){
-        			swal("Ooops!","Please input something!","warning");
-        		}else{
-        			$.ajax({
-        				type:"post",
-        				url:"includes/add_issuetype_process.php",
-        				data:"issuetype="+issuetype,
-        				complete:function(b){
-        					swal({title:"Success!",text:b.responseText.trim(),type:"success"},
-        						function(){
-        							location.reload();
-        						}
-
-        				);
-        			}
-        		});
-        		}
-        	}
+        });
         
 </script>
 <script src="js/jquery.nanoscroller/jquery.nanoscroller.js" type="text/javascript"></script>

@@ -1,17 +1,16 @@
 <?php
 
-require_once 'connection.php';
-include 'functions.php';
+    require_once 'connection.php';
 
-$issue = htmlspecialchars($_POST['issuetype']);
+    $issue = htmlspecialchars($_POST['issue_type']);
 
-
-
-
-    $sqlAdd = "INSERT INTO issue(Issue_desc) VALUES (?);";
+    $sqlAdd = "INSERT INTO issue_types (Issue_desc) VALUES (?);";
     $qryAdd = $db->prepare($sqlAdd);
     $qryAdd->execute(array($issue));
-    //msgAlert($alert = "Successfully Saved");
-    //openWindow($goto = "../status.php");
+    
+    echo json_encode(array(
+        "success" => true,
+        "message" => "Issue Type added successfully."
+    ));
 
 ?>
